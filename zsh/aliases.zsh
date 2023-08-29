@@ -1,0 +1,10 @@
+# alias
+alias ls='exa -l'
+alias cat='bat'
+alias pnd='pnpm dev'
+alias nv='nvim'
+alias configjava='sudo update-alternatives --config java'
+alias configzsh='nvim ~/.zshrc'
+alias reload='source ~/.zshrc'
+alias cdp='cd /home/raydev/work/rmvfy-vue-portal'
+alias aptupdate='sudo apt update && sudo apt upgrade -y'
