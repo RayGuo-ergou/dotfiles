@@ -97,11 +97,11 @@ plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # deno
-export DENO_INSTALL="/home/raydev/.deno"
+export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # bun completions
-[ -s "/home/raydev/.bun/_bun" ] && source "/home/raydev/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -109,14 +109,14 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/raydev/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/raydev/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/raydev/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/raydev/miniconda3/bin:$PATH"
+        export PATH="$HOME/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -124,13 +124,13 @@ unset __conda_setup
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/raydev/google-cloud-sdk/path.zsh.inc' ]; then . '/home/raydev/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/raydev/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/raydev/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
 
 # pnpm
-export PNPM_HOME="/home/raydev/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
