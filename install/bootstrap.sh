@@ -119,9 +119,11 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  find -H "$DOTFILES" -maxdepth 2 -name 'links.prop' -not -path '*.git*' | while read linkfile
+  # find -H "$DOTFILES" -maxdepth 2 -name 'links.prop' -not -path '*.git*' | while read linkfile;
+  # use for
+  for linkfile in $(find -H "$DOTFILES" -maxdepth 2 -name 'links.prop' -not -path '*.git*')
   do
-    cat "$linkfile" | while read line
+    for line in $(cat "$linkfile");
     do
         local src dst dir
         src=$(eval echo "$line" | cut -d '=' -f 1)
