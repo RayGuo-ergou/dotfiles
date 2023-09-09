@@ -1,6 +1,12 @@
-# update and upgrade
-sudo apt-get update && sudo apt-get upgrade -y
-sudo apt-get install software-properties-common
+#!/bin/bash
+set -e
 
-# add php repo
-sudo add-apt-repository ppa:ondrej/php
+# Find directories containing install.sh and run them
+for dir in "$DOTFILES"/scripts/*/; do
+    if [[ -f "${dir}/install.sh" ]]; then
+        echo "Running install.sh in ${dir}"
+        bash "${dir}/install.sh"
+    fi
+done
+
+echo "All installations are complete!"
