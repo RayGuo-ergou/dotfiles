@@ -15,6 +15,8 @@ vim.keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- Visual Mode Keybindings
 vim.keymap.set("v", "<leader>", "<esc>", { noremap = true, silent = true })
+vim.keymap.set("v", "L", "$", { noremap = true, silent = true })
+vim.keymap.set("v", "H", "^", { noremap = true, silent = true })
 
 -- Insert Mode Keybindings
 vim.keymap.set("i", "jj", "<esc>", { noremap = true, silent = true })
