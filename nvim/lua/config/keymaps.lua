@@ -12,6 +12,8 @@ vim.keymap.set("n", "<leader>c", "caw", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>h", "^", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>l", "$", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
+vim.keymap.set("n", "1", "*", { noremap = true, silent = true })
+vim.keymap.set("n", "2", "#", { noremap = true, silent = true })
 
 -- Visual Mode Keybindings
 vim.keymap.set("v", "<leader>", "<esc>", { noremap = true, silent = true })
