@@ -4,27 +4,28 @@ vim.g.mapleader = " "
 -- key mapping
 local map = vim.keymap.set
 
--- Operator Pending Mode Keybindings
-map("o", "L", "$", { noremap = true, silent = true })
-map("o", "H", "^", { noremap = true, silent = true })
-
--- Normal Mode Keybindings Non Recursive
-map("n", "<C-n>", ":nohl<CR>", { noremap = true, silent = true })
-map("n", "<leader>c", "caw", { noremap = true, silent = true })
+-- better left/right
+map({ "o", "v" }, "L", "$", { noremap = true, silent = true })
+map({ "o", "v" }, "H", "^", { noremap = true, silent = true })
 map("n", "<leader>h", "^", { noremap = true, silent = true })
 map("n", "<leader>l", "$", { noremap = true, silent = true })
-map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
+-- Normal Mode Keybindings Non Recursive
+map("n", "<C-n>", "<cmd>nohl<CR>", { noremap = true, silent = true })
+map("n", "<leader>c", "caw", { noremap = true, silent = true })
+
+-- Find next alias
 map("n", "1", "*", { noremap = true, silent = true })
 map("n", "2", "#", { noremap = true, silent = true })
 
--- Visual Mode Keybindings
+-- exit visual mode
 map("v", "<leader>", "<esc>", { noremap = true, silent = true })
-map("v", "L", "$", { noremap = true, silent = true })
-map("v", "H", "^", { noremap = true, silent = true })
 
--- Insert Mode Keybindings
+-- Exit insert mode
 map("i", "jj", "<esc>", { noremap = true, silent = true })
-map("i", "<C-n>", "<esc>:nohl<CR>", { noremap = true, silent = true })
+
+-- Clear search highlight
+map("i", "<C-n>", "<esc><cmd>nohl<CR>", { noremap = true, silent = true })
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
