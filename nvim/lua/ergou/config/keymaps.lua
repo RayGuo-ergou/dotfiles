@@ -2,32 +2,32 @@
 vim.g.mapleader = " "
 
 -- key mapping
-local map = vim.keymap -- for conciseness
+local map = vim.keymap.set
 
 -- Operator Pending Mode Keybindings
-map.set("o", "L", "$", { noremap = true, silent = true })
-map.set("o", "H", "^", { noremap = true, silent = true })
+map("o", "L", "$", { noremap = true, silent = true })
+map("o", "H", "^", { noremap = true, silent = true })
 
 -- Normal Mode Keybindings Non Recursive
-map.set("n", "<C-n>", ":nohl<CR>", { noremap = true, silent = true })
-map.set("n", "<leader>c", "caw", { noremap = true, silent = true })
-map.set("n", "<leader>h", "^", { noremap = true, silent = true })
-map.set("n", "<leader>l", "$", { noremap = true, silent = true })
-map.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
-map.set("n", "1", "*", { noremap = true, silent = true })
-map.set("n", "2", "#", { noremap = true, silent = true })
+map("n", "<C-n>", ":nohl<CR>", { noremap = true, silent = true })
+map("n", "<leader>c", "caw", { noremap = true, silent = true })
+map("n", "<leader>h", "^", { noremap = true, silent = true })
+map("n", "<leader>l", "$", { noremap = true, silent = true })
+map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "1", "*", { noremap = true, silent = true })
+map("n", "2", "#", { noremap = true, silent = true })
 
 -- Visual Mode Keybindings
-map.set("v", "<leader>", "<esc>", { noremap = true, silent = true })
-map.set("v", "L", "$", { noremap = true, silent = true })
-map.set("v", "H", "^", { noremap = true, silent = true })
+map("v", "<leader>", "<esc>", { noremap = true, silent = true })
+map("v", "L", "$", { noremap = true, silent = true })
+map("v", "H", "^", { noremap = true, silent = true })
 
 -- Insert Mode Keybindings
-map.set("i", "jj", "<esc>", { noremap = true, silent = true })
-map.set("i", "<C-n>", "<esc>:nohl<CR>", { noremap = true, silent = true })
+map("i", "jj", "<esc>", { noremap = true, silent = true })
+map("i", "<C-n>", "<esc>:nohl<CR>", { noremap = true, silent = true })
 
 -- save file
-map.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
