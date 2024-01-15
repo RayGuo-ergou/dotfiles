@@ -25,3 +25,6 @@ keymap.set("v", "H", "^", { noremap = true, silent = true })
 -- Insert Mode Keybindings
 keymap.set("i", "jj", "<esc>", { noremap = true, silent = true })
 keymap.set("i", "<C-n>", "<esc>:nohl<CR>", { noremap = true, silent = true })
+
+-- save file
+keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
