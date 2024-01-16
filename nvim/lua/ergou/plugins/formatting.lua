@@ -13,6 +13,7 @@ return {
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         css = { "eslint_d" },
+        scss = { "eslint_d" },
         html = { "eslint_d" },
         json = { "eslint_d" },
         yaml = { "eslint_d" },
