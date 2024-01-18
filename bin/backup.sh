@@ -30,7 +30,7 @@ delete_cache_files() {
 
   find "$SOURCE_PATH" -iname "*Cache.fcpcache" | while read file
   do
-    info "moving to trash: $file" 
+    info "moving to trash: $file"
     /opt/homebrew/bin/trash "$file"
     cacheDeleted=1
   done
@@ -72,7 +72,7 @@ fi
 if [[ -d "$SOURCE_PATH" ]]
 then
   true
-else 
+else
     fail "SOURCE_PATH not found: $SOURCE_PATH"
     exit 1
 fi
@@ -80,7 +80,7 @@ fi
 if [[ -d "$DESTINATION_PATH" ]]
 then
   true
-else 
+else
     fail "DESTINATION_PATH  found: $DESTINATION_PATH"
     exit 1
 fi
