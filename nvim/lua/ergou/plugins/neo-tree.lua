@@ -52,6 +52,15 @@ return {
     window = {
       mappings = {
         ["<space>"] = "none",
+        ["o"] = { "open" },
+        ["oc"] = "none",
+        ["od"] = "none",
+        ["og"] = "none",
+        ["om"] = "none",
+        ["on"] = "none",
+        ["os"] = "none",
+        ["ot"] = "none",
+        ["e"] = "none",
       },
     },
     default_component_configs = {
