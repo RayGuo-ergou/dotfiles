@@ -48,6 +48,12 @@ return {
       bind_to_cwd = false,
       follow_current_file = { enabled = true },
       use_libuv_file_watcher = true,
+      commands = {
+        copy_file_name = function(state)
+          local node = state.tree:get_node()
+          vim.fn.setreg("*", node.name, "c")
+        end,
+      },
     },
     window = {
       mappings = {
@@ -61,6 +67,7 @@ return {
         ["os"] = "none",
         ["ot"] = "none",
         ["e"] = "none",
+        ["Y"] = "copy_file_name",
       },
     },
     default_component_configs = {
@@ -80,7 +87,7 @@ return {
     local events = require("neo-tree.events")
     opts.event_handlers = opts.event_handlers or {}
     vim.list_extend(opts.event_handlers, {
-      { event = events.FILE_MOVED, handler = on_move },
+      { event = events.FILE_MOVED,   handler = on_move },
       { event = events.FILE_RENAMED, handler = on_move },
     })
     require("neo-tree").setup(opts)
