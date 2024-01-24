@@ -16,7 +16,7 @@ map("n", "1", "*", { noremap = true, silent = true })
 map("n", "2", "#", { noremap = true, silent = true })
 
 -- exit visual mode
-map("v", "<leader>", "<esc>", { noremap = true, silent = true })
+map("v", "<leader><leader>", "<esc>", { noremap = true, silent = true })
 
 -- Exit insert mode
 map("i", "jj", "<esc>", { noremap = true, silent = true })
