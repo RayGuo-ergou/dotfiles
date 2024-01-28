@@ -27,6 +27,11 @@ return {
             "vim",
             "bash",
             "vim",
+            "html",
+            "css",
+            "scss",
+            "vue",
+            "php",
           },
 
           -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)

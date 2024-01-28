@@ -95,8 +95,9 @@ return {
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
-        -- tsserver = {},
-        -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+        tsserver = {},
+        html = { filetypes = { "html", "twig", "hbs" } },
+        volar = {},
 
         lua_ls = {
           Lua = {
