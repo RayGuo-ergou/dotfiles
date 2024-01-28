@@ -17,7 +17,12 @@ return {
 
       -- Additional lua configuration, makes nvim stuff amazing!
       "folke/neodev.nvim",
-      "SmiteshP/nvim-navic",
+      {
+        "SmiteshP/nvim-navic",
+        opts = {
+          highlight = true,
+        },
+      },
     },
     config = function()
       -- [[ Configure LSP ]]
