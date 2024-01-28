@@ -9,15 +9,20 @@ return {
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { "j-hui/fidget.nvim",       opts = {} },
+      { "j-hui/fidget.nvim", opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       "folke/neodev.nvim",
+      "SmiteshP/nvim-navic",
     },
     config = function()
       -- [[ Configure LSP ]]
       --  This function gets run when an LSP connects to a particular buffer.
-      local on_attach = function(_, bufnr)
+      local on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/documentSymbol") then
+          require("nvim-navic").attach(client, bufnr)
+        end
+        vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
         -- NOTE: Remember that lua is a real programming language, and as such it is possible
         -- to define small helper and utility functions so you don't have to repeat yourself
         -- many times.
