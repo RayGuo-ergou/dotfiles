@@ -6,6 +6,11 @@ return {
     local conform = require("conform")
 
     conform.setup({
+      formatters = {
+        phpcbf = {
+          prepend_args = { "--standard=vendor/php-cs/ruleset.xml" },
+        },
+      },
       formatters_by_ft = {
         vue = { "eslint_d" },
         javascript = { "eslint_d" },
@@ -21,6 +26,7 @@ return {
         graphql = { "eslint_d" },
         lua = { "stylua" },
         python = { "isort", "black" },
+        php = { "phpcbf" },
       },
       format_on_save = {
         lsp_fallback = true,
