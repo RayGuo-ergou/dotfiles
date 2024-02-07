@@ -13,7 +13,7 @@ return {
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { "j-hui/fidget.nvim", opts = {} },
+      { "j-hui/fidget.nvim",       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       "folke/neodev.nvim",
@@ -112,11 +112,13 @@ return {
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         tsserver = {},
         html = { filetypes = { "html", "twig", "hbs" } },
         volar = {},
-
+        eslint = {},
+        intelephense = {},
+        marksman = {},
         lua_ls = {
           Lua = {
             workspace = { checkThirdParty = false },
