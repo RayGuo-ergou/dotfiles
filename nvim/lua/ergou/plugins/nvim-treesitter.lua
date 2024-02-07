@@ -32,6 +32,10 @@ return {
             "scss",
             "vue",
             "php",
+            "json",
+            "jsonc",
+            "json5",
+            "jsdoc",
           },
 
           -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
