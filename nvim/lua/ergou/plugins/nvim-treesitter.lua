@@ -33,6 +33,7 @@ return {
             "scss",
             "vue",
             "php",
+            "phpdoc",
             "json",
             "jsonc",
             "json5",
