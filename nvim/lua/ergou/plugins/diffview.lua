@@ -1,19 +1,19 @@
 return {
-  "sindrets/diffview.nvim",
+  'sindrets/diffview.nvim',
   opts = {
     enhanced_diff_hl = true,
   },
   keys = {
     {
-      "<leader>dv",
+      '<leader>dv',
       function()
-        if next(require("diffview.lib").views) == nil then
-          vim.cmd("DiffviewOpen")
+        if next(require('diffview.lib').views) == nil then
+          vim.cmd('DiffviewOpen')
         else
-          vim.cmd("DiffviewClose")
+          vim.cmd('DiffviewClose')
         end
       end,
-      desc = "Toggle Diffview",
+      desc = 'Toggle Diffview',
     },
   },
 }

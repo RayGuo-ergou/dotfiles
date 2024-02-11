@@ -1,11 +1,11 @@
 return {
   {
-    "catppuccin/nvim",
+    'catppuccin/nvim',
     lazy = false,
-    name = "catppuccin",
+    name = 'catppuccin',
     priority = 1000,
     config = function()
-      require("catppuccin").setup({
+      require('catppuccin').setup({
         integrations = {
           navic = {
             enabled = true,
@@ -13,7 +13,7 @@ return {
         },
       })
 
-      vim.cmd.colorscheme("catppuccin")
+      vim.cmd.colorscheme('catppuccin')
     end,
   },
 }
