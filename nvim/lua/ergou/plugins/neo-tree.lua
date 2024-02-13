@@ -1,4 +1,5 @@
-local LspUtil = require('ergou.util.lsp')
+local Utils = require('ergou.util')
+
 return {
   'nvim-neo-tree/neo-tree.nvim',
   branch = 'v3.x',
@@ -67,7 +68,7 @@ return {
         ['os'] = 'none',
         ['ot'] = 'none',
         ['e'] = 'none',
-        ['Y'] = 'copy_file_name',
+        ['Y'] = Utils.neotree.copy_selector,
       },
     },
     default_component_configs = {
@@ -81,7 +82,7 @@ return {
   },
   config = function(_, opts)
     local function on_move(data)
-      LspUtil.on_rename(data.source, data.destination)
+      Utils.lsp.on_rename(data.source, data.destination)
     end
 
     local events = require('neo-tree.events')
