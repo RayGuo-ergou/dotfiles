@@ -29,6 +29,7 @@ function M.copy_selector(state)
       local i = tonumber(choice:sub(1, 1))
       if i then
         local result = results[i]
+        -- @see https://neovim.io/doc/user/options.html#clipboard-unnamedplus
         vim.fn.setreg('+', result)
         vim.notify('Copied: ' .. result)
       else
