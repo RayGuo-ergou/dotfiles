@@ -17,7 +17,7 @@ return {
 
     telescope.setup({
       defaults = {
-        path_display = { 'truncate ' },
+        path_display = { 'truncate' },
         mappings = {
           i = {
             ['<C-u>'] = false,
@@ -29,6 +29,7 @@ return {
 
     telescope.load_extension('fzf')
     telescope.load_extension('live_grep_args')
+    telescope.load_extension('rest')
 
     -- Telescope live_grep in git root
     -- Function to find the git root directory based on the current buffer's path
@@ -94,11 +95,13 @@ return {
     vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
     vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-    vim.keymap.set(
-      'n',
-      '<leader>fg',
-      ':lua require(\'telescope\').extensions.live_grep_args.live_grep_args()<CR>',
-      { desc = 'Live grep args' }
-    )
+    vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, { desc = 'Live grep args' })
+    -- To make telescope work with rest.nvim
+    -- fd is required to be installed
+    -- i have to link it via ln -s $(which fdfind) /usr/bin/fd
+    -- as ubuntu 'fd' is taken in apt
+    -- TODO: submit an issue in rest.nvim
+    -- The solution would be either replace fd with find or update the document to make it clear
+    vim.keymap.set('n', '<leader>re', telescope.extensions.rest.select_env, { desc = '[R]eplace [E]nv' })
   end,
 }

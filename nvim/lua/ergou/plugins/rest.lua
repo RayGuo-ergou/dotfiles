@@ -1,30 +1,3 @@
----@param callback function
-local function find_env(callback)
-  local pickers = require('telescope.pickers')
-  local finders = require('telescope.finders')
-  local sorters = require('telescope.sorters')
-  local actions = require('telescope.actions')
-  local actions_state = require('telescope.actions.state')
-
-  local function call_with_selected(prompt_bufnr)
-    local selection = actions_state.get_selected_entry(prompt_bufnr)
-    actions.close(prompt_bufnr)
-    callback(selection.value)
-  end
-
-  pickers
-    .new({}, {
-      prompt_title = 'Select .env file',
-      finder = finders.new_oneshot_job({ 'find', '.', '-type', 'f', '-name', '.env*' }),
-      sorter = sorters.get_fuzzy_file(),
-      attach_mappings = function(_, map)
-        map('i', '<CR>', call_with_selected)
-        map('n', '<CR>', call_with_selected)
-        return true
-      end,
-    })
-    :find()
-end
 return {
   'rest-nvim/rest.nvim',
   -- Lazy load otherwise it will break tree sitter
@@ -69,14 +42,7 @@ return {
       -- Jump to request line on run
       jump_to_request = false,
       env_file = 'http.env',
-      -- TODO: config telescope somehow it's not working for me
     })
-    vim.keymap.set({ 'n' }, '<leader>rs', function()
-      find_env(function(file)
-        rest.select_env(file)
-        print('Using env file: ' .. file)
-      end)
-    end)
   end,
   keys = {
     {
