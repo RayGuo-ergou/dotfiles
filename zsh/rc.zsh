@@ -19,6 +19,3 @@ source_if_exists $DOTFILES/zsh/omz.zsh
 source_if_exists $DOTFILES/zsh/init.zsh
 source_if_exists $DOTFILES/zsh/aliases.zsh
 
-
-# bun completions
-[ -s "/home/raydev/.bun/_bun" ] && source "/home/raydev/.bun/_bun"
