@@ -7,6 +7,15 @@ return {
       options = {
         theme = 'catppuccin',
       },
+      sections = {
+        lualine_x = {
+          {
+            'rest',
+            icon = '',
+            fg = '#428890',
+          },
+        },
+      },
     },
   },
 }
