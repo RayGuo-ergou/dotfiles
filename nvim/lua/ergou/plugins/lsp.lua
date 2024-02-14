@@ -21,6 +21,7 @@ return {
         'SmiteshP/nvim-navic',
         opts = {
           highlight = true,
+          icons = require('ergou.util.icons').kinds,
         },
       },
     },
