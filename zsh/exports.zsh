@@ -1,14 +1,11 @@
 # ZSH
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -29,7 +26,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -45,10 +41,4 @@ export PATH="$PNPM_HOME:$PATH"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# github copilot cli
-eval "$(github-copilot-cli alias -- "$0")"
-
-# add brew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-export EDITOR="code"
+export EDITOR="nvim"
