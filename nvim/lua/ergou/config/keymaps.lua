@@ -39,6 +39,12 @@ map('n', '<C-j>', '<C-w>j', { desc = 'Go to lower window', remap = true })
 map('n', '<C-k>', '<C-w>k', { desc = 'Go to upper window', remap = true })
 map('n', '<C-l>', '<C-w>l', { desc = 'Go to right window', remap = true })
 
+-- Use <leader>hjkl to move window
+map('n', '<leader>wh', '<C-w>h', { desc = 'Go to left window', remap = true })
+map('n', '<leader>wj', '<C-w>j', { desc = 'Go to lower window', remap = true })
+map('n', '<leader>wk', '<C-w>k', { desc = 'Go to upper window', remap = true })
+map('n', '<leader>wl', '<C-w>l', { desc = 'Go to right window', remap = true })
+
 -- Resize window using <ctrl> arrow keys
 map('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
 map('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window height' })
@@ -133,6 +139,7 @@ map('i', '<c-_>', '<Esc><Cmd>Texe v:count1 . "ToggleTerm"<CR>', { desc = 'which_
 
 -- Terminal Mappings
 map('t', '<esc><esc>', '<c-\\><c-n>', { desc = 'Enter Normal Mode' })
+map('t', 'jj', '<c-\\><c-n>', { desc = 'Enter Normal Mode' })
 map('t', '<C-h>', '<cmd>wincmd h<cr>', { desc = 'Go to left window' })
 map('t', '<C-j>', '<cmd>wincmd j<cr>', { desc = 'Go to lower window' })
 map('t', '<C-k>', '<cmd>wincmd k<cr>', { desc = 'Go to upper window' })
