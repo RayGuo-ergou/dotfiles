@@ -1,12 +1,5 @@
-source_if_exists () {
-    if test -r "$1"; then
-        source "$1"
-
-        else
-            echo "File not found: $1"
-    fi
-}
 source $HOME/.env.sh
+source $DOTFILES/zsh/utils.zsh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

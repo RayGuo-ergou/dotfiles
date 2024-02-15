@@ -1,13 +1,14 @@
-# TODO: Check if the command exists before running it
+source $HOME/.env.sh
+source $DOTFILES/zsh/utils.zsh
 
-# zoxide init
-eval "$(zoxide init zsh)"
+# zoxide initialization
+execute_if_command_exists "zoxide" "$(zoxide init zsh)"
 
-# github copilot cli
-eval "$(github-copilot-cli alias -- "$0")"
+# GitHub Copilot CLI setup
+execute_if_command_exists "github-copilot-cli" "$(github-copilot-cli alias -- \"$0\")"
 
-# add brew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Homebrew environment setup
+execute_if_command_exists "/home/linuxbrew/.linuxbrew/bin/brew" "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
