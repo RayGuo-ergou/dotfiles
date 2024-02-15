@@ -28,6 +28,7 @@ return {
           lua = { 'stylua' },
           python = { 'isort', 'black' },
           php = { 'phpcbf' },
+          zsh = { 'beautysh' },
         },
         format_on_save = {
           lsp_fallback = true,

@@ -128,6 +128,7 @@ return {
             -- diagnostics = { disable = { 'missing-fields' } },
           },
         },
+        bashls = { filetypes = { 'sh', 'bash', 'zsh' } },
       }
 
       -- Setup neovim lua configuration
