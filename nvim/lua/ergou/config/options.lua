@@ -69,9 +69,8 @@ if vim.fn.has('nvim-0.10') == 1 then
 end
 
 -- Folding
-vim.opt.foldlevel = 99
-
-vim.opt.foldmethod = 'indent'
+opt.foldlevel = 99
+opt.foldmethod = 'indent'
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

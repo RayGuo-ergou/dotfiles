@@ -27,6 +27,7 @@ local icons = {
     Operator = ' ',
     TypeParameter = ' ',
   },
+  signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' },
 }
 
 return icons
