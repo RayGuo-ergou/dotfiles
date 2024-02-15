@@ -1,5 +1,5 @@
 # alias
-alias ls='exa -l'
+alias ls='exa -l --icons -h'
 alias cat='bat'
 alias pnd='pnpm dev'
 alias nv='nvim'
