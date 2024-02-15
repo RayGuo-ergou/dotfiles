@@ -7,6 +7,11 @@ map({ 'o', 'v' }, 'H', '^', { noremap = true, silent = true })
 map('n', '<leader>h', '^', { noremap = true, silent = true })
 map('n', '<leader>l', '$', { noremap = true, silent = true })
 
+-- action on entire buffer
+map('n', 'dae', 'ggVGd', { noremap = true, silent = true, desc = 'Delete entire file' })
+map('n', 'yae', 'ggVGy', { noremap = true, silent = true, desc = 'Yank entire file' })
+map('n', 'cae', 'ggVGc', { noremap = true, silent = true, desc = 'Change entire file' })
+
 -- Normal Mode Keybindings Non Recursive
 map('n', '<C-n>', '<cmd>nohl<CR>', { noremap = true, silent = true })
 map('n', '<leader>c', 'caw', { noremap = true, silent = true })
