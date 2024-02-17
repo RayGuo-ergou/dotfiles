@@ -28,6 +28,22 @@ local icons = {
     TypeParameter = ' ',
   },
   signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' },
+  git = {
+    added = ' ',
+    modified = ' ',
+    removed = ' ',
+  },
+  file = {
+    symbols = {
+      modified = ' ●', -- Text to show when the buffer is modified
+      alternate_file = '#', -- Text to show to identify the alternate file
+      directory = '', -- Text to show when the buffer is a directory
+    },
+  },
+  others = {
+    rest = '',
+    clock = ' ',
+  },
 }
 
 return icons
