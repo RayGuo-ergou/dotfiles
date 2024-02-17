@@ -14,14 +14,20 @@ return {
   config = function()
     local telescope = require('telescope')
     local actions = require('telescope.actions')
+    local build_in = require('telescope.builtin')
 
     telescope.setup({
       defaults = {
+        prompt_prefix = ' ',
+        selection_caret = ' ',
         path_display = { 'truncate' },
         mappings = {
           i = {
             ['<C-u>'] = false,
             ['<C-d>'] = false,
+          },
+          n = {
+            ['q'] = actions.close,
           },
         },
       },
@@ -60,7 +66,7 @@ return {
     local function live_grep_git_root()
       local git_root = find_git_root()
       if git_root then
-        require('telescope.builtin').live_grep({
+        build_in.live_grep({
           search_dirs = { git_root },
         })
       end
@@ -68,33 +74,32 @@ return {
     vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
     -- See `:help telescope.builtin`
-    vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-    vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+    vim.keymap.set('n', '<leader>?', build_in.oldfiles, { desc = '[?] Find recently opened files' })
+    vim.keymap.set('n', '<leader><space>', build_in.buffers, { desc = '[ ] Find existing buffers' })
     vim.keymap.set('n', '<leader>/', function()
       -- You can pass additional configuration to telescope to change theme, layout, etc.
-      require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
+      build_in.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
         winblend = 10,
         previewer = false,
       }))
     end, { desc = '[/] Fuzzily search in current buffer' })
 
     local function telescope_live_grep_open_files()
-      require('telescope.builtin').live_grep({
+      build_in.live_grep({
         grep_open_files = true,
         prompt_title = 'Live Grep in Open Files',
       })
     end
     vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
-    vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
-    vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-    vim.keymap.set('n', '<Leader>fr', require('telescope.builtin').oldfiles, { desc = '[S]earch [R]ecent' })
-    vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-    vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-    vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+    vim.keymap.set('n', '<leader>ss', build_in.builtin, { desc = '[S]earch [S]elect Telescope' })
+    vim.keymap.set('n', '<leader>gf', build_in.git_files, { desc = 'Search [G]it [F]iles' })
+    vim.keymap.set('n', '<leader>sf', build_in.find_files, { desc = '[S]earch [F]iles' })
+    vim.keymap.set('n', '<leader>sh', build_in.help_tags, { desc = '[S]earch [H]elp' })
+    vim.keymap.set('n', '<leader>sw', build_in.grep_string, { desc = '[S]earch current [W]ord' })
+    vim.keymap.set('n', '<leader>sg', build_in.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-    vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-    vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+    vim.keymap.set('n', '<leader>sd', build_in.diagnostics, { desc = '[S]earch [D]iagnostics' })
+    vim.keymap.set('n', '<leader>sr', build_in.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, { desc = 'Live grep args' })
     -- To make telescope work with rest.nvim
     -- fd is required to be installed
