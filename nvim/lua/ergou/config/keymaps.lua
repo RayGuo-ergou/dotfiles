@@ -17,8 +17,8 @@ map('n', '<C-n>', '<cmd>nohl<CR>', { noremap = true, silent = true })
 map('n', '<leader>c', 'caw', { noremap = true, silent = true })
 
 -- Find next alias
-map('n', '1', '*', { noremap = true, silent = true })
-map('n', '2', '#', { noremap = true, silent = true })
+map('n', '<leader>1', '*', { noremap = true, silent = true })
+map('n', '<leader>2', '#', { noremap = true, silent = true })
 
 -- exit visual mode
 map('v', '<leader><leader>', '<esc>', { noremap = true, silent = true })
