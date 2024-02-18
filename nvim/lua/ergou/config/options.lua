@@ -63,6 +63,9 @@ opt.fillchars = {
   -- diff = "╱",
   eob = ' ',
 }
+-- Set pumblend to 0 so the cmp menu is not transparent
+-- The transparent menu caused the icon not showing properly if any text is under that row
+opt.pumblend = 0
 
 if vim.fn.has('nvim-0.10') == 1 then
   opt.smoothscroll = true
