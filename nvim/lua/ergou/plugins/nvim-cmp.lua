@@ -21,9 +21,6 @@ return {
     require('luasnip.loaders.from_vscode').lazy_load()
 
     cmp.setup({
-      completion = {
-        completeopt = 'menu,menuone,preview,noselect',
-      },
       snippet = { -- configure how nvim-cmp interacts with snippet engine
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -56,7 +53,6 @@ return {
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- snippets
         { name = 'buffer' }, -- text within current buffer
@@ -70,6 +66,15 @@ return {
         format = lspkind.cmp_format({
           maxwidth = 50,
           ellipsis_char = '...',
+          preset = 'codicons',
+          show_labelDetails = true, -- show labelDetails in menu.
+          menu = {
+            buffer = '[Buffer]',
+            nvim_lsp = '[LSP]',
+            luasnip = '[LuaSnip]',
+            nvim_lua = '[Lua]',
+            latex_symbols = '[Latex]',
+          },
         }),
       },
     })
