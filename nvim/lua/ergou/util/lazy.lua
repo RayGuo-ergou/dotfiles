@@ -1,5 +1,8 @@
 local M = {}
--- Properly load file based plugins without blocking the UI
+
+M.use_lazy_file = true
+M.lazy_file_events = { 'BufReadPost', 'BufNewFile', 'BufWritePre' } -- Properly load file based plugins without blocking the UI
+
 function M.lazy_file()
   M.use_lazy_file = M.use_lazy_file and vim.fn.argc(-1) > 0
 
