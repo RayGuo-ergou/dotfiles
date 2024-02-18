@@ -5,6 +5,7 @@ return {
     -- See `:help lualine.txt`
     opts = function()
       local icons = require('ergou.util.icons')
+      local ui = require('ergou.util.ui')
       return {
         options = {
           theme = 'catppuccin',
@@ -43,6 +44,24 @@ return {
             { ['buffers'] = {} },
           },
           lualine_x = {
+            {
+              function()
+                return require('noice').api.status.command.get()
+              end,
+              cond = function()
+                return package.loaded['noice'] and require('noice').api.status.command.has()
+              end,
+              color = ui.fg('Statement'),
+            },
+            {
+              function()
+                return require('noice').api.status.mode.get()
+              end,
+              cond = function()
+                return package.loaded['noice'] and require('noice').api.status.mode.has()
+              end,
+              color = ui.fg('Constant'),
+            },
             {
               'rest',
               icon = icons.others.rest,

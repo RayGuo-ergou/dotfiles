@@ -2,7 +2,7 @@ return {
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
-    event = { 'BufReadPost', 'BufNewFile', 'BufWritePre' },
+    event = 'LazyFile',
     dependencies = {
       {
         'SmiteshP/nvim-navbuddy',
