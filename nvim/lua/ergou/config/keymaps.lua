@@ -16,7 +16,8 @@ map('n', 'cae', 'ggVGc', { noremap = true, silent = true, desc = 'Change entire 
 map('n', '<C-n>', '<cmd>nohl<CR>', { noremap = true, silent = true })
 
 -- Change without yanking
-map('n', 'c', '"_c', { noremap = true, silent = true })
+map({ 'n', 'x' }, 'c', '"_c', { noremap = true, silent = true })
+map({ 'n', 'x' }, 'C', '"_C', { noremap = true, silent = true })
 
 -- Find next alias
 map('n', '<leader>1', '*', { noremap = true, silent = true })
