@@ -12,13 +12,19 @@ map('n', 'dae', 'ggVGd', { noremap = true, silent = true, desc = 'Delete entire 
 map('n', 'yae', 'ggVGy', { noremap = true, silent = true, desc = 'Yank entire file' })
 map('n', 'cae', 'ggVGc', { noremap = true, silent = true, desc = 'Change entire file' })
 
--- Normal Mode Keybindings Non Recursive
+-- Disable highlight for search
 map('n', '<C-n>', '<cmd>nohl<CR>', { noremap = true, silent = true })
-map('n', '<leader>c', 'caw', { noremap = true, silent = true })
+
+-- Change without yanking
+map('n', 'c', '"_c', { noremap = true, silent = true })
 
 -- Find next alias
 map('n', '<leader>1', '*', { noremap = true, silent = true })
 map('n', '<leader>2', '#', { noremap = true, silent = true })
+
+-- Add a new line from cursor (Not feel comfortable with this keybind)
+-- K is occupied by the hover and and new line is not like J (make two lines into one) need to spam sometime
+map('n', '<leader>k', 'i<CR><esc>', { noremap = true, silent = true, desc = 'Add a new line from cursor' })
 
 -- exit visual mode
 map('v', '<leader><leader>', '<esc>', { noremap = true, silent = true })
