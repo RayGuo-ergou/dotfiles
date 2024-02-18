@@ -30,11 +30,20 @@ return {
           php = { 'phpcbf' },
           zsh = { 'beautysh' },
         },
-        format_on_save = {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 1000,
-        },
+        format_on_save = function()
+          local ft = vim.bo.filetype
+
+          local config = {
+            lsp_fallback = true,
+            async = false,
+            timeout_ms = 1000,
+          }
+
+          if ft == 'php' then
+            config.lsp_fallback = 'always'
+          end
+          return config
+        end,
       })
 
       vim.keymap.set({ 'n', 'v' }, '<leader>fM', function()
