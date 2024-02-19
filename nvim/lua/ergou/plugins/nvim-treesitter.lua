@@ -48,7 +48,8 @@ return {
     ---@diagnostic disable-next-line: missing-fields
     opts = {
       highlight = { enable = true },
-      indent = { enable = true },
+      -- For some reason, the indent act really weird with lua
+      indent = { enable = true, disable = { 'lua' } },
       ensure_installed = {
         'c',
         'diff',
