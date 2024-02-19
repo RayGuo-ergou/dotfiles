@@ -1,7 +1,16 @@
-return {
-  lsp = require('ergou.util.lsp'),
-  neotree = require('ergou.util.neo-tree'),
-  ui = require('ergou.util.ui'),
-  lazy = require('ergou.util.lazy'),
-  snips = require('ergou.util.snips'),
-}
+local LazyUtil = require('lazy.core.util')
+
+local M = {}
+
+setmetatable(M, {
+  __index = function(t, k)
+    if LazyUtil[k] then
+      return LazyUtil[k]
+    end
+    ---@diagnostic disable-next-line: no-unknown
+    t[k] = require('ergou.util.' .. k)
+    return t[k]
+  end,
+})
+
+return M
