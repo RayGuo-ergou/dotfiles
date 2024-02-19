@@ -35,8 +35,14 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   group = augroup('last_loc'),
   callback = function(event)
     local exclude = { 'gitcommit' }
+    local modify = vim.fn.fnamemodify
+    local filename = modify(vim.api.nvim_buf_get_name(event.buf), ':t')
     local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+    if
+      vim.tbl_contains(exclude, vim.bo[buf].filetype)
+      or vim.b[buf].lazyvim_last_loc
+      or filename == 'COMMIT_EDITMSG'
+    then
       return
     end
     vim.b[buf].lazyvim_last_loc = true
