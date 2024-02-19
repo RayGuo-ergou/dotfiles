@@ -1,4 +1,4 @@
-local Utils = require('ergou.util')
+local Util = require('ergou.util')
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
@@ -8,11 +8,19 @@ return {
     {
       '<leader>fe',
       function()
+        require('neo-tree.command').execute({ toggle = true, dir = Util.root() })
+      end,
+      desc = 'Explorer NeoTree (root dir)',
+    },
+    {
+      '<leader>fE',
+      function()
         require('neo-tree.command').execute({ toggle = true, dir = vim.loop.cwd() })
       end,
       desc = 'Explorer NeoTree (cwd)',
     },
-    { '<leader>e', '<leader>fe', desc = 'Explorer NeoTree (cwd)', remap = true },
+    { '<leader>e', '<leader>fe', desc = 'Explorer NeoTree (root dir)', remap = true },
+    { '<leader>E', '<leader>fE', desc = 'Explorer NeoTree (cwd)', remap = true },
     {
       '<leader>ge',
       function()
@@ -66,7 +74,7 @@ return {
         ['os'] = 'none',
         ['ot'] = 'none',
         ['e'] = 'none',
-        ['Y'] = Utils.neotree.copy_selector,
+        ['Y'] = Util.neotree.copy_selector,
       },
     },
     default_component_configs = {
@@ -80,7 +88,7 @@ return {
   },
   config = function(_, opts)
     local function on_move(data)
-      Utils.lsp.on_rename(data.source, data.destination)
+      Util.lsp.on_rename(data.source, data.destination)
     end
 
     local events = require('neo-tree.events')
