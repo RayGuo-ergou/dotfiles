@@ -15,6 +15,7 @@ function M.setupSnips()
   local sn = ls.snippet_node
   ls.filetype_extend('vue', { 'javascript' })
   ls.filetype_extend('typescript', { 'javascript' })
+  ls.filetype_extend('php', { 'javascript', 'html' })
 
   ls.add_snippets('javascript', {
     s('clg', {
