@@ -6,6 +6,7 @@ source $DOTFILES/zsh/utils.zsh
 # confirmations, etc.) must go above this block; everything else may go below.
 source_if_exists $DOTFILES/zsh/p10k.zsh
 source_if_exists $DOTFILES/zsh/exports.zsh
+source_if_exists $DOTFILES/zsh/secret.zsh
 source_if_exists $ZSH/oh-my-zsh.sh
 source_if_exists $DOTFILES/zsh/.p10k.zsh
 source_if_exists $DOTFILES/zsh/omz.zsh
