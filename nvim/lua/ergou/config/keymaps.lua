@@ -46,16 +46,17 @@ map({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = 
 map({ 'n', 'x' }, '<Up>', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
-map('n', '<C-h>', '<C-w>h', { desc = 'Go to left window', remap = true })
-map('n', '<C-j>', '<C-w>j', { desc = 'Go to lower window', remap = true })
-map('n', '<C-k>', '<C-w>k', { desc = 'Go to upper window', remap = true })
-map('n', '<C-l>', '<C-w>l', { desc = 'Go to right window', remap = true })
+-- map('n', '<C-h>', '<C-w>h', { desc = 'Go to left window', remap = true })
+-- map('n', '<C-j>', '<C-w>j', { desc = 'Go to lower window', remap = true })
+-- map('n', '<C-k>', '<C-w>k', { desc = 'Go to upper window', remap = true })
+-- map('n', '<C-l>', '<C-w>l', { desc = 'Go to right window', remap = true })
 
 -- Use <leader>hjkl to move window
 map('n', '<leader>wh', '<C-w>h', { desc = 'Go to left window', remap = true })
 map('n', '<leader>wj', '<C-w>j', { desc = 'Go to lower window', remap = true })
 map('n', '<leader>wk', '<C-w>k', { desc = 'Go to upper window', remap = true })
 map('n', '<leader>wl', '<C-w>l', { desc = 'Go to right window', remap = true })
+map('n', '<leader>wo', '<C-w>o', { desc = 'Close other windows', remap = true })
 
 -- Resize window using <ctrl> arrow keys
 map('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
