@@ -27,6 +27,10 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": "toggleFocusMode",
+            "keys": "ctrl+shift+z"
         }
     ],
     "alwaysShowTabs": true,
