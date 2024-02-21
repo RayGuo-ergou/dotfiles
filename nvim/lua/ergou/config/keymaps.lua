@@ -158,3 +158,20 @@ map('t', '<C-k>', '<cmd>wincmd k<cr>', { desc = 'Go to upper window' })
 map('t', '<C-l>', '<cmd>wincmd l<cr>', { desc = 'Go to right window' })
 map('t', '<C-/>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
 map('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
+
+-- Toggle Quickfix
+map('n', '<leader>qf', function()
+  local qf_exists = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win['quickfix'] == 1 then
+      qf_exists = true
+    end
+  end
+  if qf_exists == true then
+    vim.cmd('cclose')
+    return
+  end
+  if not vim.tbl_isempty(vim.fn.getqflist()) then
+    vim.cmd('copen')
+  end
+end, { desc = 'Toggle Quickfix' })
