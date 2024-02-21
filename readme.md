@@ -9,6 +9,8 @@ cd <this-repo>
 # The script cannot run by POSIX sh.
 bash ./install/bootstrap.sh
 ```
+> [!IMPORTANT]
+> `links.prop` should not have EOL, don't ask me why w(ﾟДﾟ)w
 
 ## Local ZSH Config
 
