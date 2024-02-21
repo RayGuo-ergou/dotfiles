@@ -11,3 +11,5 @@ alias pvm='sudo update-alternatives --config php'
 alias fe='ESLINT_USE_FLAT_CONFIG=true $HOME/.local/share/nvim/mason/bin/eslint_d restart'
 alias ufe='ESLINT_USE_FLAT_CONFIG= $HOME/.local/share/nvim/mason/bin/eslint_d restart'
 alias cd='z'
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
