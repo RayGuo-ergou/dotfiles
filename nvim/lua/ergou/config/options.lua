@@ -74,6 +74,8 @@ end
 -- Folding
 opt.foldlevel = 99
 opt.foldmethod = 'indent'
+opt.foldlevelstart = 99
+opt.foldenable = true
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
