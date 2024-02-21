@@ -1,0 +1,26 @@
+[user]
+    email = 33137074+RayGuo-ergou@users.noreply.github.com
+    name = Ray Guo
+
+[core]
+    editor = nvim
+    pager = delta
+
+[credential "https://github.com"]
+    helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+    helper = !/usr/bin/gh auth git-credential
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
