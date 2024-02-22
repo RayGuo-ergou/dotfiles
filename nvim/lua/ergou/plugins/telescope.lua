@@ -1,3 +1,4 @@
+local Util = require('ergou.util')
 return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
@@ -9,6 +10,79 @@ return {
       -- This will not install any breaking changes.
       -- For major updates, this must be adjusted manually.
       version = '^1.0.0',
+    },
+  },
+  keys = {
+    -- find
+    {
+      '<leader>,',
+      '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>',
+      desc = 'Switch Buffer',
+    },
+    { '<leader>ff', Util.telescope('files'), desc = 'Find Files (root dir)' },
+    { '<leader>fF', Util.telescope('files', { cwd = false }), desc = 'Find Files (cwd)' },
+    { '<leader>gf', '<cmd>Telescope git_files<cr>', desc = 'Find Files (git-files)' },
+    { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
+    {
+      '<leader><space>',
+      '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>',
+      desc = 'Find Files (root dir)',
+    },
+    { '<leader>fc', Util.telescope.config_files(), desc = 'Find Config File' },
+    { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
+    { '<leader>fR', Util.telescope('oldfiles', { cwd = vim.loop.cwd() }), desc = 'Recent (cwd)' },
+    -- git
+    { '<leader>gc', '<cmd>Telescope git_commits<CR>', desc = 'commits' },
+    { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'status' },
+    -- search
+    { '<leader>s"', '<cmd>Telescope registers<cr>', desc = 'Registers' },
+    { '<leader>sc', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
+    { '<leader>sC', '<cmd>Telescope commands<cr>', desc = 'Commands' },
+    {
+      '<leader>/',
+      function()
+        -- You can pass additional configuration to telescope to change theme, layout, etc.
+        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
+          winblend = 10,
+          previewer = false,
+        }))
+      end,
+      desc = 'Buffer',
+    },
+    { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Document diagnostics' },
+    {
+      '<leader>s/',
+      Util.telescope('live_grep', { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }),
+      desc = 'Search in opened files',
+    },
+    { '<leader>sD', '<cmd>Telescope diagnostics<cr>', desc = 'Workspace diagnostics' },
+    { '<leader>sg', Util.telescope('live_grep'), desc = 'Grep (root dir)' },
+    { '<leader>sG', Util.telescope('live_grep', { cwd = false }), desc = 'Grep (cwd)' },
+    { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = 'Help Pages' },
+    { '<leader>sH', '<cmd>Telescope highlights<cr>', desc = 'Search Highlight Groups' },
+    { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'Key Maps' },
+    { '<leader>sm', '<cmd>Telescope marks<cr>', desc = 'Jump to Mark' },
+    { '<leader>sM', '<cmd>Telescope man_pages<cr>', desc = 'Man Pages' },
+    { '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
+    { '<leader>sr', '<cmd>Telescope resume<cr>', desc = 'Resume' },
+    { '<leader>sw', Util.telescope('grep_string', { word_match = '-w' }), desc = 'Word (root dir)' },
+    { '<leader>sW', Util.telescope('grep_string', { cwd = false, word_match = '-w' }), desc = 'Word (cwd)' },
+    { '<leader>sw', Util.telescope('grep_string'), mode = 'v', desc = 'Selection (root dir)' },
+    { '<leader>sW', Util.telescope('grep_string', { cwd = false }), mode = 'v', desc = 'Selection (cwd)' },
+    { '<leader>uC', Util.telescope('colorscheme', { enable_preview = true }), desc = 'Colorscheme with preview' },
+    {
+      '<leader>ss',
+      function()
+        require('telescope.builtin').lsp_document_symbols()
+      end,
+      desc = 'Goto Symbol',
+    },
+    {
+      '<leader>sS',
+      function()
+        require('telescope.builtin').lsp_dynamic_workspace_symbols()
+      end,
+      desc = 'Goto Symbol (Workspace)',
     },
   },
   config = function()
@@ -73,40 +147,11 @@ return {
     end
     vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
-    -- See `:help telescope.builtin`
-    vim.keymap.set('n', '<leader>?', build_in.oldfiles, { desc = '[?] Find recently opened files' })
-    vim.keymap.set('n', '<leader><space>', build_in.buffers, { desc = '[ ] Find existing buffers' })
-    vim.keymap.set('n', '<leader>/', function()
-      -- You can pass additional configuration to telescope to change theme, layout, etc.
-      build_in.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
-        winblend = 10,
-        previewer = false,
-      }))
-    end, { desc = '[/] Fuzzily search in current buffer' })
-
-    local function telescope_live_grep_open_files()
-      build_in.live_grep({
-        grep_open_files = true,
-        prompt_title = 'Live Grep in Open Files',
-      })
-    end
-    vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
-    vim.keymap.set('n', '<leader>ss', build_in.builtin, { desc = '[S]earch [S]elect Telescope' })
-    vim.keymap.set('n', '<leader>gf', build_in.git_files, { desc = 'Search [G]it [F]iles' })
-    vim.keymap.set('n', '<leader>sf', build_in.find_files, { desc = '[S]earch [F]iles' })
-    vim.keymap.set('n', '<leader>sh', build_in.help_tags, { desc = '[S]earch [H]elp' })
-    vim.keymap.set('n', '<leader>sw', build_in.grep_string, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>sg', build_in.live_grep, { desc = '[S]earch by [G]rep' })
-    vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-    vim.keymap.set('n', '<leader>sd', build_in.diagnostics, { desc = '[S]earch [D]iagnostics' })
-    vim.keymap.set('n', '<leader>sr', build_in.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, { desc = 'Live grep args' })
     -- To make telescope work with rest.nvim
     -- fd is required to be installed
     -- i have to link it via ln -s $(which fdfind) /usr/bin/fd
     -- as ubuntu 'fd' is taken in apt
-    -- TODO: submit an issue in rest.nvim
-    -- The solution would be either replace fd with find or update the document to make it clear
     vim.keymap.set('n', '<leader>re', telescope.extensions.rest.select_env, { desc = '[R]eplace [E]nv' })
   end,
 }
