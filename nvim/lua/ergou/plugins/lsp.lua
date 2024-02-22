@@ -51,9 +51,16 @@ return {
         nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
         nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-        nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+        nmap('gd', function()
+          require('telescope.builtin').lsp_definitions({ reuse_win = true })
+        end, '[G]oto [D]efinition')
         nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-        nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+        nmap('gI', function()
+          require('telescope.builtin').lsp_implementations({ reuse_win = true })
+        end, '[G]oto [I]mplementation')
+        nmap('gy', function()
+          require('telescope.builtin').lsp_type_definitions({ reuse_win = true })
+        end, '[G]oto T[y]pe')
 
         -- See `:help K` for why this keymap
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
