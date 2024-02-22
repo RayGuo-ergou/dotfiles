@@ -1,3 +1,4 @@
+local bufferline_util = require('ergou.util.bufferline')
 return {
   'akinsho/bufferline.nvim',
   event = 'VeryLazy',
@@ -12,6 +13,7 @@ return {
     { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev buffer' },
     { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next buffer' },
   },
+  ---@class bufferline.UserConfig
   opts = {
     options = {
         -- stylua: ignore
@@ -19,6 +21,8 @@ return {
         -- stylua: ignore
         right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
       diagnostics = 'nvim_lsp',
+      diagnostics_indicator = bufferline_util.diagnostics_symbol,
+      separator_style = 'slant',
       always_show_bufferline = false,
       offsets = {
         {
