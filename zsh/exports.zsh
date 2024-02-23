@@ -1,6 +1,6 @@
 # ZSH
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git tmux zsh-autosuggestions zsh-syntax-highlighting)
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # deno
@@ -19,4 +19,10 @@ export PATH="$PNPM_HOME:$PATH"
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 
+# Edoitor
 export EDITOR="nvim"
+
+# tmux
+# Make sure the tmux omz plugin is installed
+ZSH_TMUX_AUTOSTART=true
+
