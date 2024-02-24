@@ -50,10 +50,10 @@ map('n', '<leader>wl', '<C-w>l', { desc = 'Go to right window', remap = true })
 map('n', '<leader>wo', '<C-w>o', { desc = 'Close other windows', remap = true })
 
 -- Resize window using <ctrl> arrow keys
-map('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
-map('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window height' })
-map('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease window width' })
-map('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window width' })
+-- map('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
+-- map('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window height' })
+-- map('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease window width' })
+-- map('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window width' })
 
 -- buffers
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
