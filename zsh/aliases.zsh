@@ -13,3 +13,5 @@ alias ufe='ESLINT_USE_FLAT_CONFIG= $HOME/.local/share/nvim/mason/bin/eslint_d re
 alias cd='z'
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
+alias nvf=' fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
+
