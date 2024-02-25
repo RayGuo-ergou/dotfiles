@@ -25,5 +25,5 @@ export EDITOR="nvim"
 # tmux
 # Make sure the tmux omz plugin is installed
 ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_DEFAULT_SESSION_NAME='Happy Hacking'
+ZSH_TMUX_DEFAULT_SESSION_NAME='明鏡止水'
 
