@@ -1,4 +1,9 @@
 return {
+  -- Detect tabstop and shiftwidth automatically
+  {
+    'tpope/vim-sleuth',
+    event = 'LazyFile',
+  },
   {
     'lukas-reineke/indent-blankline.nvim',
     event = 'LazyFile',
