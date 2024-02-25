@@ -3,9 +3,31 @@ return {
   dependencies = {
     { 'kkharji/sqlite.lua' },
   },
-  opts = {
-    ring = { storage = 'sqlite' },
-  },
+  opts = function()
+    local utils = require('yanky.utils')
+    local mapping = require('yanky.telescope.mapping')
+    return {
+      ring = { storage = 'sqlite' },
+      picker = {
+        telescope = {
+          use_default_mappings = false,
+          mappings = {
+            default = mapping.put('p'),
+            i = {
+              ['<c-x>'] = mapping.delete(),
+              ['<c-r>'] = mapping.set_register(utils.get_default_register()),
+            },
+            n = {
+              p = mapping.put('p'),
+              P = mapping.put('P'),
+              d = mapping.delete(),
+              r = mapping.set_register(utils.get_default_register()),
+            },
+          },
+        },
+      },
+    }
+  end,
   keys = {
     {
       '<leader>p',
