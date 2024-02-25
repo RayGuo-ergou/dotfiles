@@ -10,7 +10,7 @@ map('n', '<leader>l', '$', { noremap = true, silent = true })
 -- action on entire buffer
 map('n', 'dae', 'ggVGd', { noremap = true, silent = true, desc = 'Delete entire file' })
 map('n', 'yae', 'ggVGy', { noremap = true, silent = true, desc = 'Yank entire file' })
-map('n', 'cae', 'ggVGc', { noremap = true, silent = true, desc = 'Change entire file' })
+map('n', 'cae', 'ggVG"_c', { noremap = true, silent = true, desc = 'Change entire file' })
 map('n', 'vae', 'ggVG', { noremap = true, silent = true, desc = 'Select entire file' })
 
 -- Disable highlight for search
