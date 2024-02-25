@@ -2,7 +2,8 @@ return {
   {
     'stevearc/conform.nvim',
     lazy = true,
-    event = { 'BufReadPre', 'BufNewFile' }, -- to disable, comment this out
+    event = 'LazyFile',
+    cmd = 'ConformInfo',
     config = function()
       local conform = require('conform')
 

@@ -1,4 +1,14 @@
 return {
+  -- Open file on github
+  {
+    'tpope/vim-rhubarb',
+    dependencies = {
+      'tpope/vim-fugitive',
+    },
+    keys = {
+      { '<leader>gx', '<cmd>GBrowse<cr>', desc = 'Open current file on GitHub' },
+    },
+  },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
