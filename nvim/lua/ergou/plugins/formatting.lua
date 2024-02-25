@@ -29,6 +29,7 @@ return {
           python = { 'isort', 'black' },
           php = { 'phpcbf' },
           zsh = { 'beautysh' },
+          sh = { 'beautysh' },
         },
         format_on_save = function()
           local ft = vim.bo.filetype
