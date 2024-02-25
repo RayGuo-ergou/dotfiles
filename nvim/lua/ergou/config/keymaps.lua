@@ -25,7 +25,7 @@ map('n', '<leader>1', '*', { noremap = true, silent = true })
 map('n', '<leader>2', '#', { noremap = true, silent = true })
 
 -- Add a new line from cursor (Not feel comfortable with this keybind)
-map('n', '<leader>k', 'i<CR><esc>', { noremap = true, silent = true, desc = 'Add a new line from cursor' })
+map('n', '<leader>K', 'i<CR><esc>', { noremap = true, silent = true, desc = 'Add a new line from cursor' })
 
 -- exit visual mode
 map('v', '<leader><leader>', '<esc>', { noremap = true, silent = true })
