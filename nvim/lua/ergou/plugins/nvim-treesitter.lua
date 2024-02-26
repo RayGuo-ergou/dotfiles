@@ -52,6 +52,8 @@ return {
       indent = { enable = true, disable = { 'lua' } },
       ensure_installed = {
         'c',
+        'git_rebase',
+        'twig',
         'diff',
         'cpp',
         'go',
