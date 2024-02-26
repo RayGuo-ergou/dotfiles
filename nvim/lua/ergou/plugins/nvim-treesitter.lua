@@ -156,6 +156,7 @@ return {
     config = function(_, opts)
       local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
       local Util = require('ergou.util')
+      local map = vim.keymap.set
 
       if type(opts.ensure_installed) == 'table' then
         ---@type table<string, boolean>
@@ -171,8 +172,26 @@ return {
       require('nvim-treesitter.configs').setup(opts)
 
       -- Override the default text objects next and previous
-      vim.keymap.set({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
-      vim.keymap.set({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
+      map({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
+      map({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
+
+      --diagnostic
+      local diagnostic_forward, diagnostic_backward =
+        ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_next)
+      map({ 'n', 'x', 'o' }, ']d', diagnostic_forward, { desc = 'Next Diagnostic' })
+      map({ 'n', 'x', 'o' }, '[d', diagnostic_backward, { desc = 'Prev Diagnostic' })
+      map({ 'n', 'x', 'o' }, ']e', function()
+        diagnostic_forward({ severity = vim.diagnostic.severity.ERROR })
+      end, { desc = 'Next Error' })
+      map({ 'n', 'x', 'o' }, '[e', function()
+        diagnostic_backward({ severity = vim.diagnostic.severity.ERROR })
+      end, { desc = 'Prev Error' })
+      map({ 'n', 'x', 'o' }, ']w', function()
+        diagnostic_forward({ severity = vim.diagnostic.severity.WARN })
+      end, { desc = 'Next Warning' })
+      map({ 'n', 'x', 'o' }, '[w', function()
+        diagnostic_backward({ severity = vim.diagnostic.severity.WARN })
+      end, { desc = 'Prev Warning' })
     end,
   },
   -- Show context of the current function
