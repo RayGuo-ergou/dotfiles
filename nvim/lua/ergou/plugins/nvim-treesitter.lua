@@ -53,6 +53,10 @@ return {
       ensure_installed = {
         'c',
         'git_rebase',
+        'gitcommit',
+        'git_config',
+        'gitattributes',
+        'gitignore',
         'twig',
         'diff',
         'cpp',
