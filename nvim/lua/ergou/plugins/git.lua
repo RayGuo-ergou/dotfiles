@@ -23,34 +23,14 @@ return {
         untracked = { text = '▎' },
       },
       on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
+        local gs = require('gitsigns')
+        local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 
         local function map(mode, l, r, opts)
           opts = opts or {}
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
-
-        -- Navigation
-        map({ 'n', 'v' }, ']h', function()
-          if vim.wo.diff then
-            return ']h'
-          end
-          vim.schedule(function()
-            gs.next_hunk()
-          end)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Jump to next hunk' })
-
-        map({ 'n', 'v' }, '[h', function()
-          if vim.wo.diff then
-            return '[h'
-          end
-          vim.schedule(function()
-            gs.prev_hunk()
-          end)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Jump to previous hunk' })
 
         -- Actions
         -- visual mode
@@ -79,6 +59,10 @@ return {
         map('n', '<leader>gb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
         map('n', '<leader>gd', gs.toggle_deleted, { desc = 'toggle git show deleted' })
 
+        -- Jump to next/prev hunk
+        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
+        vim.keymap.set({ 'n', 'x', 'o' }, ']h', next_hunk_repeat)
+        vim.keymap.set({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat)
         -- Text object
         map({ 'o', 'x' }, 'igh', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
       end,

@@ -108,27 +108,37 @@ return {
             ['ia'] = '@parameter.inner',
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
+            ['ac'] = '@call.outer',
+            ['ic'] = '@call.inner',
+            ['ab'] = '@block.outer',
+            ['ib'] = '@block.inner',
           },
         },
         move = {
           enable = true,
           goto_next_start = {
             [']f'] = '@function.outer',
-            [']c'] = '@class.outer',
+            [']c'] = '@call.outer',
+            [']b'] = '@block.outer',
+            [']a'] = '@assignment.outer',
           },
           goto_next_end = {
             [']F'] = '@function.outer',
-            [']C'] = '@class.outer',
+            [']C'] = '@call.outer',
+            [']B'] = '@block.outer',
+            [']A'] = '@assignment.outer',
           },
           goto_previous_start = {
             ['[f'] = '@function.outer',
-            ['[c'] = '@class.outer',
+            ['[c'] = '@call.outer',
+            ['[b'] = '@block.outer',
+            ['[a'] = '@assignment.outer',
           },
           goto_previous_end = {
             ['[F'] = '@function.outer',
-            ['[C'] = '@class.outer',
+            ['[C'] = '@call.outer',
+            ['[B'] = '@block.outer',
+            ['[A'] = '@assignment.outer',
           },
         },
         swap = {
@@ -144,6 +154,9 @@ return {
     },
     ---@param opts TSConfig
     config = function(_, opts)
+      local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
+      local Util = require('ergou.util')
+
       if type(opts.ensure_installed) == 'table' then
         ---@type table<string, boolean>
         local added = {}
@@ -156,6 +169,10 @@ return {
         end, opts.ensure_installed)
       end
       require('nvim-treesitter.configs').setup(opts)
+
+      -- Override the default text objects next and previous
+      vim.keymap.set({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
+      vim.keymap.set({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
     end,
   },
   -- Show context of the current function
