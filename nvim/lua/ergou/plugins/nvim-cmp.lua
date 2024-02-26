@@ -80,16 +80,37 @@ return {
         }),
       },
     })
+
+    local cmd_kepmap = {
+      ['<C-j>'] = {
+        c = function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
+      },
+      ['<C-k>'] = {
+        c = function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end,
+      },
+    }
     -- `/` cmdline setup.
     cmp.setup.cmdline('/', {
-      mapping = cmp.mapping.preset.cmdline(),
+      mapping = cmp.mapping.preset.cmdline(cmd_kepmap),
       sources = {
         { name = 'buffer' },
       },
     })
     -- `:` cmdline setup.
     cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
+      mapping = cmp.mapping.preset.cmdline(cmd_kepmap),
       sources = cmp.config.sources({
         { name = 'path' },
       }, {
