@@ -81,6 +81,7 @@ return {
         'toml',
         'yaml',
         'query',
+        'sql',
       },
       incremental_selection = {
         enable = true,
@@ -168,4 +169,5 @@ return {
     event = 'LazyFile',
     opts = {},
   },
+  { 'gbprod/php-enhanced-treesitter.nvim', ft = 'php' },
 }
