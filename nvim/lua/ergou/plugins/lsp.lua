@@ -27,6 +27,7 @@ return {
       },
     },
     config = function()
+      local Util = require('ergou.util')
       -- [[ Configure LSP ]]
       --  This function gets run when an LSP connects to a particular buffer.
       local on_attach = function(client, bufnr)
@@ -83,7 +84,7 @@ return {
         end, { desc = 'Format current buffer with LSP' })
       end
 
-      local signs = require('ergou.util.icons').signs
+      local signs = Util.icons.signs
       for type, icon in pairs(signs) do
         local hl = 'DiagnosticSign' .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -119,9 +120,12 @@ return {
         -- gopls = {},
         -- pyright = {},
         rust_analyzer = {},
-        tsserver = {},
+        -- tsserver = {},
         html = { filetypes = { 'html', 'twig', 'hbs' } },
-        volar = {},
+        -- takeover typescript servers
+        volar = {
+          filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+        },
         eslint = {},
         intelephense = {},
         marksman = {},
@@ -157,6 +161,11 @@ return {
             on_attach = on_attach,
             settings = servers[server_name],
             filetypes = (servers[server_name] or {}).filetypes,
+            on_new_config = function(new_config, new_root_dir)
+              if server_name == 'volar' then
+                new_config.init_options.typescript.tsdk = Util.lsp.volar_tsdk_pick(new_root_dir)
+              end
+            end,
           })
         end,
       })
