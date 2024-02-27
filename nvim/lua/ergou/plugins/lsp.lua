@@ -12,10 +12,6 @@ return {
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
 
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
-
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
       {
@@ -35,12 +31,7 @@ return {
           require('nvim-navic').attach(client, bufnr)
         end
         vim.o.winbar = '%{%v:lua.require\'nvim-navic\'.get_location()%}'
-        -- NOTE: Remember that lua is a real programming language, and as such it is possible
-        -- to define small helper and utility functions so you don't have to repeat yourself
-        -- many times.
-        --
-        -- In this case, we create a function that lets us more easily define mappings specific
-        -- for LSP related items. It sets the mode, buffer and description for us each time.
+
         local nmap = function(keys, func, desc)
           if desc then
             desc = 'LSP: ' .. desc
@@ -97,19 +88,9 @@ return {
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       })
 
-      -- mason-lspconfig requires that these setup functions are called in this order
-      -- before setting up the servers.
       require('mason').setup()
       require('mason-lspconfig').setup()
 
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
-      --  Add any additional override configuration in the following tables. They will be passed to
-      --  the `settings` field of the server config. You must look up that documentation yourself.
-      --
-      --  If you want to override the default filetypes that your language server will attach to you can
-      --  define the property 'filetypes' to the map in question.
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -128,8 +109,9 @@ return {
           Lua = {
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
-            -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
+            window = {
+              progressBar = false,
+            },
           },
         },
         bashls = { filetypes = { 'sh', 'bash', 'zsh' } },
