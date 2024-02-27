@@ -1,8 +1,7 @@
 return {
   {
-    -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
+    event = 'UIEnter',
     opts = function()
       local icons = require('ergou.util.icons')
       local ui = require('ergou.util.ui')
@@ -65,6 +64,7 @@ return {
             {
               'copilot',
             },
+            'diagnostics',
           },
           lualine_y = {
             { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
