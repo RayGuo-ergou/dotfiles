@@ -38,7 +38,7 @@ return {
           local config = {
             lsp_fallback = true,
             async = false,
-            timeout_ms = 1000,
+            timeout_ms = 3000,
           }
 
           if ft == 'php' then
@@ -52,7 +52,7 @@ return {
         conform.format({
           lsp_fallback = 'always',
           async = false,
-          timeout_ms = 1000,
+          timeout_ms = 3000,
         })
       end, { desc = 'Format file or range with LSP Formatter' })
 
@@ -60,7 +60,7 @@ return {
         conform.format({
           lsp_fallback = true,
           async = false,
-          timeout_ms = 1000,
+          timeout_ms = 3000,
         })
       end, { desc = 'Format file or range' })
     end,
