@@ -12,6 +12,7 @@ return {
       -- For major updates, this must be adjusted manually.
       version = '^1.0.0',
     },
+    { 'debugloop/telescope-undo.nvim' },
   },
   keys = {
     -- find
@@ -85,6 +86,11 @@ return {
       end,
       desc = 'Goto Symbol (Workspace)',
     },
+    { -- lazy style key map
+      '<leader>su',
+      '<cmd>Telescope undo<cr>',
+      desc = 'undo history',
+    },
   },
   config = function()
     local telescope = require('telescope')
@@ -137,6 +143,7 @@ return {
     telescope.load_extension('fzf')
     telescope.load_extension('live_grep_args')
     telescope.load_extension('rest')
+    telescope.load_extension('undo')
 
     -- Telescope live_grep in git root
     -- Function to find the git root directory based on the current buffer's path
