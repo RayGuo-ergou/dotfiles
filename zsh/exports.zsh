@@ -22,6 +22,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Edoitor
 export EDITOR="nvim"
 
+export NVM_DIR="$HOME/.nvm"
+
 # tmux
 # Make sure the tmux omz plugin is installed
 ZSH_TMUX_AUTOSTART=true
