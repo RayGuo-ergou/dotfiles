@@ -42,9 +42,9 @@ end
 
 function M.volar_tsdk_pick(root_dir)
   local util = require('lspconfig.util')
-  -- local global_ts = os.getenv('HOME') .. '/.npm/lib/node_modules/typescript/lib'
+  local global_ts = os.getenv('NVM_BIN') .. '/../lib/node_modules/typescript/lib'
   -- Alternative location if installed as root:
-  local global_ts = '/usr/local/lib/node_modules/typescript/lib'
+  -- local global_ts = '/usr/local/lib/node_modules/typescript/lib'
   local found_ts = ''
   local function check_dir(path)
     found_ts = util.path.join(path, 'node_modules', 'typescript', 'lib')
