@@ -115,6 +115,7 @@ return {
           },
         },
         bashls = { filetypes = { 'sh', 'bash', 'zsh' } },
+        typos_lsp = {},
       }
 
       -- Setup neovim lua configuration
