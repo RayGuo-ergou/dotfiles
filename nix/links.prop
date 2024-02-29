@@ -1,0 +1,1 @@
+$DOTFILES/nix/nix.conf=$HOME/.config/nix/nix.conf
