@@ -71,4 +71,25 @@ return {
       end,
     },
   },
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    keys = {
+      {
+        '<leader>a',
+        '<cmd>AerialToggle!<CR>',
+        desc = 'Toggle Aerial',
+      },
+      {
+        '{',
+        '<cmd>AerialPrev<CR>',
+        desc = 'Previous Aerial',
+      },
+      {
+        '}',
+        '<cmd>AerialNext<CR>',
+        desc = 'Next Aerial',
+      },
+    },
+  },
 }
