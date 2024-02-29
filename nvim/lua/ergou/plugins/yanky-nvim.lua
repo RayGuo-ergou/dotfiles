@@ -36,12 +36,12 @@ return {
       end,
       desc = 'Open Yank History',
     },
-    {
-      'y',
-      '<Plug>(YankyYank)',
-      mode = { 'n', 'x' },
-      desc = 'Yank text',
-    },
+    -- {
+    --   'y',
+    --   '<Plug>(YankyYank)',
+    --   mode = { 'n', 'x' },
+    --   desc = 'Yank text',
+    -- },
     {
       'p',
       '<Plug>(YankyPutAfter)',
