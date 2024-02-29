@@ -7,9 +7,6 @@ execute_if_command_exists "zoxide" "$(zoxide init zsh)"
 # GitHub Copilot CLI setup
 execute_if_command_exists "github-copilot-cli" "$(github-copilot-cli alias -- \"$0\")"
 
-# Homebrew environment setup
-execute_if_command_exists "/home/linuxbrew/.linuxbrew/bin/brew" "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
