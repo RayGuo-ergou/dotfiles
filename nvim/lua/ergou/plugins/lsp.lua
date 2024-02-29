@@ -138,11 +138,6 @@ return {
             on_attach = on_attach,
             settings = servers[server_name],
             filetypes = (servers[server_name] or {}).filetypes,
-            on_new_config = function(new_config, new_root_dir)
-              if server_name == 'volar' then
-                new_config.init_options.typescript.tsdk = Util.lsp.volar_tsdk_pick(new_root_dir)
-              end
-            end,
           })
         end,
       })
