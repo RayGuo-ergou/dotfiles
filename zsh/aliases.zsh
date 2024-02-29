@@ -1,5 +1,5 @@
 # alias
-alias ls='exa -l --icons -h'
+alias ls='eza -l --icons -h'
 alias cat='bat'
 alias pnd='pnpm dev'
 alias nv='nvim'
@@ -11,8 +11,6 @@ alias pvm='sudo update-alternatives --config php'
 alias fe='ESLINT_USE_FLAT_CONFIG=true $HOME/.local/share/nvim/mason/bin/eslint_d restart'
 alias ufe='ESLINT_USE_FLAT_CONFIG= $HOME/.local/share/nvim/mason/bin/eslint_d restart'
 alias cd='z'
-alias setclip="xclip -selection c"
-alias getclip="xclip -selection c -o"
 alias nvf='fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
 alias resetlazy='rm -rf $HOME/.local/share/nvim/*'
 
