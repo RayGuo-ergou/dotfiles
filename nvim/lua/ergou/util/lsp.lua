@@ -94,11 +94,13 @@ M.servers = {
   intelephense = {},
   marksman = {},
   lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-      window = {
-        progressBar = false,
+    settings = {
+      Lua = {
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
+        window = {
+          progressBar = false,
+        },
       },
     },
   },
