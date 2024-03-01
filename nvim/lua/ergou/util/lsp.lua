@@ -79,6 +79,7 @@ function M.on_attach(client, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+--- @type table<string, lspconfig.Config>
 M.servers = {
   -- clangd = {},
   -- gopls = {},
