@@ -34,9 +34,6 @@ return {
 
       mason_lspconfig.setup({
         ensure_installed = vim.tbl_keys(servers),
-      })
-
-      mason_lspconfig.setup({
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
