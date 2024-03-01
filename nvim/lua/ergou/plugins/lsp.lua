@@ -8,11 +8,13 @@ return {
       'williamboman/mason-lspconfig.nvim',
       { 'folke/neodev.nvim', config = true },
       {
-        'SmiteshP/nvim-navic',
-        opts = {
-          highlight = true,
-          icons = require('ergou.util.icons').kinds,
+        'utilyre/barbecue.nvim',
+        name = 'barbecue',
+        version = '*',
+        dependencies = {
+          'SmiteshP/nvim-navic',
         },
+        opts = {},
       },
     },
     config = function()

@@ -40,12 +40,7 @@ function M.on_rename(from, to)
   end
 end
 
-function M.on_attach(client, bufnr)
-  if client.supports_method('textDocument/documentSymbol') then
-    require('nvim-navic').attach(client, bufnr)
-  end
-  vim.o.winbar = '%{%v:lua.require\'nvim-navic\'.get_location()%}'
-
+function M.on_attach(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc

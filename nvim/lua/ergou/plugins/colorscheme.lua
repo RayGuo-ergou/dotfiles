@@ -8,6 +8,7 @@ return {
       require('catppuccin').setup({
         no_italic = true, -- Force no italic
         integrations = {
+          aerial = true,
           neotree = true,
           mason = true,
           noice = true,
