@@ -43,11 +43,10 @@ return {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      -- 'rcarriga/nvim-notify',
+      'rcarriga/nvim-notify',
     },
   },
   {
-    enabled = false,
     'rcarriga/nvim-notify',
     keys = {
       {
@@ -69,6 +68,9 @@ return {
       on_open = function(win)
         vim.api.nvim_win_set_config(win, { zindex = 100 })
       end,
+      render = 'compact',
+      -- fps = 120,
+      stages = 'static',
     },
   },
   {
