@@ -56,6 +56,11 @@ return {
         end,
         desc = 'Dismiss all Notifications',
       },
+      {
+        '<leader>sn',
+        '<cmd> Telescope notify<CR>',
+        desc = 'Notifications History',
+      },
     },
     opts = {
       timeout = 3000,
@@ -69,7 +74,6 @@ return {
         vim.api.nvim_win_set_config(win, { zindex = 100 })
       end,
       render = 'compact',
-      -- fps = 120,
       stages = 'static',
     },
   },
