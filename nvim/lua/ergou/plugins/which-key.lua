@@ -21,6 +21,7 @@ return {
       ['<leader>gh'] = { name = '+Git Hunk' },
       ['<leader>r'] = { name = '+Rename/Replace' },
       ['<leader>w'] = { name = '+Window' },
+      ['<leader>m'] = { name = '+mini.nvim' },
     },
   },
   config = function(_, opts)
