@@ -53,8 +53,7 @@
             "font":
             {
                 "face": "FiraCode Nerd Font",
-                // zoom in two times
-                "size": 18.0,
+                "size": 14.0,
                 "weight": "normal"
             },
             "opacity": 100,
