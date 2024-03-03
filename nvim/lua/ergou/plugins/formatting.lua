@@ -48,7 +48,7 @@ return {
         end,
       })
 
-      vim.keymap.set({ 'n', 'v' }, '<leader>fM', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>fC', function()
         conform.format({
           lsp_fallback = 'always',
           async = false,
@@ -56,7 +56,7 @@ return {
         })
       end, { desc = 'Format file or range with LSP Formatter' })
 
-      vim.keymap.set({ 'n', 'v' }, '<leader>fm', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>fc', function()
         conform.format({
           lsp_fallback = true,
           async = false,
