@@ -75,7 +75,10 @@ return {
           ['os'] = 'none',
           ['ot'] = 'none',
           ['e'] = 'none',
-          ['Y'] = Util.neotree.copy_selector,
+          ['Y'] = {
+            Util.neotree.copy_selector,
+            desc = 'copy path/filename to clipboard',
+          },
         },
       },
       default_component_configs = {
