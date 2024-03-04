@@ -4,6 +4,10 @@ source $DOTFILES/zsh/utils.zsh
 # zoxide initialization
 execute_if_command_exists "zoxide" "$(zoxide init zsh)"
 
+# nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # GitHub Copilot CLI setup
 execute_if_command_exists "github-copilot-cli" "$(github-copilot-cli alias -- \"$0\")"
 
@@ -32,10 +36,6 @@ unset __conda_setup
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
 fi
-
-# nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Nix
 if [ -e /home/ray/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ray/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
