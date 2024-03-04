@@ -2,10 +2,8 @@
 local map = vim.keymap.set
 
 -- better left/right
-map({ 'o', 'v' }, 'L', '$', { noremap = true, silent = true })
-map({ 'o', 'v' }, 'H', '^', { noremap = true, silent = true })
-map('n', '<leader>h', '^', { noremap = true, silent = true })
-map('n', '<leader>l', '$', { noremap = true, silent = true })
+map({ 'o', 'v', 'n' }, '<leader>l', '$', { noremap = true, silent = true })
+map({ 'o', 'v', 'n' }, '<leader>h', '^', { noremap = true, silent = true })
 
 -- action on entire buffer
 map('n', 'dae', 'ggVGd', { noremap = true, silent = true, desc = 'Delete entire file' })
