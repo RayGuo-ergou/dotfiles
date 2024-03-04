@@ -106,7 +106,7 @@ M.servers = {
         },
       },
     },
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json', 'jsonc' },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
   },
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   eslint = {
