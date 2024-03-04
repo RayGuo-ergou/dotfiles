@@ -40,38 +40,39 @@ function M.on_rename(from, to)
   end
 end
 
-function M.on_attach(_, bufnr)
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
+function M.lsp_autocmd()
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+    callback = function(event)
+      local nmap = function(keys, func, desc)
+        vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+      end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
+      nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
+      nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
 
-  nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
-  nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
+      nmap('gd', function()
+        require('telescope.builtin').lsp_definitions({ reuse_win = true })
+      end, 'Goto Definition')
+      nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
+      nmap('gI', function()
+        require('telescope.builtin').lsp_implementations({ reuse_win = true })
+      end, 'Goto Implementation')
+      nmap('gy', function()
+        require('telescope.builtin').lsp_type_definitions({ reuse_win = true })
+      end, 'Goto Type')
+      nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+      nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-  nmap('gd', function()
-    require('telescope.builtin').lsp_definitions({ reuse_win = true })
-  end, 'Goto Definition')
-  nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
-  nmap('gI', function()
-    require('telescope.builtin').lsp_implementations({ reuse_win = true })
-  end, 'Goto Implementation')
-  nmap('gy', function()
-    require('telescope.builtin').lsp_type_definitions({ reuse_win = true })
-  end, 'Goto Type')
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
+      -- Lesser used LSP functionality
+      nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
+      -- Create a command `:Format` local to the LSP buffer
+      vim.api.nvim_buf_create_user_command(event.buf, 'Format', function(_)
+        vim.lsp.buf.format()
+      end, { desc = 'Format current buffer with LSP' })
+    end,
+  })
 end
 
 --- @type table<string, lspconfig.Config>
