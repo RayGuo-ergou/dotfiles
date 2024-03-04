@@ -16,6 +16,7 @@ return {
         },
         opts = {},
       },
+      'pmizio/typescript-tools.nvim',
     },
     config = function()
       local Util = require('ergou.util')
@@ -43,7 +44,20 @@ return {
           end,
         },
       })
+
+      -- For TypeScript and vue
+      -- Vue project needs to make sure @vue/typescript-plugin is installed
+      require('typescript-tools').setup({
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'javascript.jsx',
+          'typescript',
+          'typescriptreact',
+          'typescript.tsx',
+          'vue',
+        },
+      })
     end,
   },
-  {},
 }

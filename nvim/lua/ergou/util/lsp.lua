@@ -82,11 +82,9 @@ M.servers = {
   rust_analyzer = {},
   -- tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
-  -- takeover typescript servers
-  volar = {
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+  eslint = {
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json', 'jsonc' },
   },
-  eslint = {},
   intelephense = {},
   marksman = {},
   lua_ls = {
