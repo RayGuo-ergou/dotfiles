@@ -53,7 +53,6 @@ function M.lsp_autocmd()
           not (file_type == 'vue' and client_name == 'tsserver')
           and client.server_capabilities['documentSymbolProvider']
         then
-          print('LSP attached to', client_name, 'for file type', file_type)
           require('nvim-navic').attach(client, bufnr)
         end
       end
