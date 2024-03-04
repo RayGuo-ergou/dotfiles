@@ -16,7 +16,6 @@ return {
         },
         opts = {},
       },
-      'pmizio/typescript-tools.nvim',
     },
     config = function()
       local Util = require('ergou.util')
@@ -42,20 +41,6 @@ return {
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
-        },
-      })
-
-      -- For TypeScript and vue
-      -- Vue project needs to make sure @vue/typescript-plugin is installed
-      require('typescript-tools').setup({
-        filetypes = {
-          'javascript',
-          'javascriptreact',
-          'javascript.jsx',
-          'typescript',
-          'typescriptreact',
-          'typescript.tsx',
-          'vue',
         },
       })
     end,
