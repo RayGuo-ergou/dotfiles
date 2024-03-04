@@ -12,7 +12,9 @@ return {
         name = 'barbecue',
         version = '*',
         dependencies = {
-          'SmiteshP/nvim-navic',
+          {
+            'SmiteshP/nvim-navic',
+          },
         },
         opts = { attach_navic = false },
       },

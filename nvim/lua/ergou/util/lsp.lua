@@ -44,8 +44,22 @@ function M.lsp_autocmd()
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
     callback = function(event)
+      local bufnr = event.buf
+      local client = vim.lsp.get_client_by_id(event.data.client_id)
+      if client then
+        local client_name = client.name
+        local file_type = vim.bo[bufnr].filetype
+        if
+          not (file_type == 'vue' and client_name == 'tsserver')
+          and client.server_capabilities['documentSymbolProvider']
+        then
+          print('LSP attached to', client_name, 'for file type', file_type)
+          require('nvim-navic').attach(client, bufnr)
+        end
+      end
+
       local nmap = function(keys, func, desc)
-        vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = 'LSP: ' .. desc })
       end
 
       nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
@@ -68,7 +82,7 @@ function M.lsp_autocmd()
       nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
       -- Create a command `:Format` local to the LSP buffer
-      vim.api.nvim_buf_create_user_command(event.buf, 'Format', function(_)
+      vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
     end,
