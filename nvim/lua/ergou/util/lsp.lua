@@ -99,6 +99,7 @@ M.servers = {
   eslint = {
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json', 'jsonc' },
   },
+  volar = {},
   intelephense = {},
   marksman = {},
   lua_ls = {

@@ -14,7 +14,7 @@ return {
         dependencies = {
           'SmiteshP/nvim-navic',
         },
-        opts = {},
+        opts = { attach_navic = false },
       },
     },
     config = function()
