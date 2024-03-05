@@ -77,6 +77,7 @@ return {
         'scss',
         'vue',
         'php',
+        'php_only',
         'phpdoc',
         'json',
         'jsonc',
@@ -155,8 +156,19 @@ return {
     ---@param opts TSConfig
     config = function(_, opts)
       local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
-      local Util = require('ergou.util')
+      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
       local map = vim.keymap.set
+
+      -- Has to add query
+      -- @see https://github.com/EmranMR/tree-sitter-blade/discussions/19
+      parser_config.blade = {
+        install_info = {
+          url = 'https://github.com/EmranMR/tree-sitter-blade',
+          files = { 'src/parser.c' },
+          branch = 'main',
+        },
+        filetype = 'blade',
+      }
 
       if type(opts.ensure_installed) == 'table' then
         ---@type table<string, boolean>
