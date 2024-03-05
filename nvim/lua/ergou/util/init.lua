@@ -13,7 +13,7 @@ setmetatable(M, {
   end,
 })
 function M.is_win()
-  return vim.loop.os_uname().sysname:find('Windows') ~= nil
+  return vim.uv.os_uname().sysname:find('Windows') ~= nil
 end
 
 ---@param plugin string
@@ -60,8 +60,8 @@ function M.lazy_notify()
   local orig = vim.notify
   vim.notify = temp
 
-  local timer = vim.loop.new_timer()
-  local check = assert(vim.loop.new_check())
+  local timer = vim.uv.new_timer()
+  local check = assert(vim.uv.new_check())
 
   local replay = function()
     timer:stop()
