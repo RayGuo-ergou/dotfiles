@@ -169,6 +169,23 @@ return {
         },
         filetype = 'blade',
       }
+      parser_config.liquid = {
+        install_info = {
+          -- From https://github.com/hankthetank27/tree-sitter-liquid
+          -- @see https://github.com/Shopify/tree-sitter-liquid/pull/11
+          -- switch to shopify's tree-sitter-liquid after merged
+          url = 'https://github.com/RayGuo-ergou/tree-sitter-liquid', -- local path or git repo
+          files = {
+            'src/parser.c',
+            'src/scanner.c',
+          },
+          -- optional entries:
+          branch = 'main', -- default branch in case of git repo if different from master
+          generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+          requires_generate_from_grammar = true, -- if folder contains pre-generated src/parser.c
+        },
+        filetype = 'liquid', -- if filetype does not match the parser name
+      }
 
       if type(opts.ensure_installed) == 'table' then
         ---@type table<string, boolean>
