@@ -129,6 +129,7 @@ M.servers = {
   bashls = { filetypes = { 'sh', 'bash', 'zsh' } },
   typos_lsp = {},
   tailwindcss = {},
+  theme_check = {},
 }
 
 return M
