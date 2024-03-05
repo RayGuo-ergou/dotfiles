@@ -2,8 +2,13 @@ return {
   'kevinhwang91/nvim-ufo',
   dependencies = { 'kevinhwang91/promise-async' },
   event = 'LazyFile',
-  config = function()
-    require('ufo').setup()
+  opts = {
+    provider_selector = function()
+      return { 'treesitter', 'indent' }
+    end,
+  },
+  config = function(_, opts)
+    require('ufo').setup(opts)
 
     vim.keymap.set('n', 'zk', function()
       local winid = require('ufo').peekFoldedLinesUnderCursor()
