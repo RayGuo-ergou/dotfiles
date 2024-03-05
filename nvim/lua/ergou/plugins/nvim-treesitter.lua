@@ -89,6 +89,7 @@ return {
         'yaml',
         'query',
         'sql',
+        'prisma',
       },
       incremental_selection = {
         enable = true,
