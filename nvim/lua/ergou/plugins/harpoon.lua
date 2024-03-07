@@ -18,6 +18,10 @@ return {
         harpoon:list():clear()
       end, 'Clear harpoon list')
 
+      nmap('<leader>hd', function()
+        harpoon:list():remove()
+      end, 'Remove current file from harpoon')
+
       nmap('<C-e>', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end, 'Toggle harpoon quick menu')
