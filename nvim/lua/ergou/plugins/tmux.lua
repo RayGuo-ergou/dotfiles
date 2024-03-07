@@ -1,26 +1,4 @@
 return {
-  -- Keep this in config
-  -- as aserowy/tmux.nvim is deprecated
-  -- But this seems also not maintained tho
-  -- anyway tmux + nvim will not change in a long time imo
-  {
-    'christoomey/vim-tmux-navigator',
-    enabled = false,
-    cmd = {
-      'TmuxNavigateLeft',
-      'TmuxNavigateDown',
-      'TmuxNavigateUp',
-      'TmuxNavigateRight',
-      'TmuxNavigatePrevious',
-    },
-    keys = {
-      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
-      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
-    },
-  },
   {
     'aserowy/tmux.nvim',
     opts = {
