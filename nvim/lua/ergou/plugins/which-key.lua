@@ -22,6 +22,9 @@ return {
       ['<leader>r'] = { name = '+Rename/Replace' },
       ['<leader>w'] = { name = '+Window' },
     },
+    triggers_blacklist = {
+      n = { 'd', 'y' },
+    },
   },
   config = function(_, opts)
     local wk = require('which-key')
