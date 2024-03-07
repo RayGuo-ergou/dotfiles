@@ -112,4 +112,5 @@ return {
       set_cursor = false,
     },
   },
+  { 'NvChad/nvim-colorizer.lua', config = true },
 }
