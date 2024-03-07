@@ -13,6 +13,11 @@ return {
           enabled = true,
           auto_trigger = true,
         },
+        filetypes = {
+          markdown = true,
+          gitcommit = true,
+          gitrebase = true,
+        },
       })
     end,
   },
