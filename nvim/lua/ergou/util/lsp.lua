@@ -110,7 +110,7 @@ M.servers = {
   },
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   eslint = {
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json', 'jsonc' },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json', 'jsonc', 'markdown' },
   },
   volar = {},
   intelephense = {},
