@@ -116,8 +116,8 @@ return {
             ['ib'] = '@block.inner',
             ['al'] = '@loop.outer',
             ['il'] = '@loop.inner',
-            ['ad'] = '@conditional.outer',
-            ['id'] = '@conditional.inner',
+            ['ai'] = '@conditional.outer',
+            ['ii'] = '@conditional.inner',
           },
         },
         move = {
@@ -128,7 +128,7 @@ return {
             [']b'] = '@block.outer',
             [']a'] = '@assignment.outer',
             [']l'] = '@loop.outer',
-            [']d'] = '@conditional.outer',
+            [']i'] = '@conditional.outer',
           },
           goto_next_end = {
             [']F'] = '@function.outer',
@@ -136,7 +136,7 @@ return {
             [']B'] = '@block.outer',
             [']A'] = '@assignment.outer',
             [']L'] = '@loop.outer',
-            [']D'] = '@conditional.outer',
+            [']I'] = '@conditional.outer',
           },
           goto_previous_start = {
             ['[f'] = '@function.outer',
@@ -144,7 +144,7 @@ return {
             ['[b'] = '@block.outer',
             ['[a'] = '@assignment.outer',
             ['[l'] = '@loop.outer',
-            ['[d'] = '@conditional.outer',
+            ['[i'] = '@conditional.outer',
           },
           goto_previous_end = {
             ['[F'] = '@function.outer',
@@ -152,7 +152,7 @@ return {
             ['[B'] = '@block.outer',
             ['[A'] = '@assignment.outer',
             ['[L'] = '@loop.outer',
-            ['[D'] = '@conditional.outer',
+            ['[I'] = '@conditional.outer',
           },
         },
         swap = {

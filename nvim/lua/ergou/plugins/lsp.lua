@@ -21,7 +21,6 @@ return {
     },
     config = function()
       local Util = require('ergou.util')
-      local on_attach = Util.lsp.on_attach
       local servers = Util.lsp.servers
       local signs = Util.icons.signs
       local capabilities = vim.lsp.protocol.make_client_capabilities()

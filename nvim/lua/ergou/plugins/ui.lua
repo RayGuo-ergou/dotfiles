@@ -112,5 +112,5 @@ return {
       set_cursor = false,
     },
   },
-  { 'NvChad/nvim-colorizer.lua', config = true },
+  { 'NvChad/nvim-colorizer.lua', config = true, event = 'LazyFile' },
 }
