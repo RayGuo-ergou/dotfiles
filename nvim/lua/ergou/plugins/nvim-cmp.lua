@@ -65,19 +65,35 @@ return {
         -- Keep the default formatting fields and expandable_indicator
         fields = { 'abbr', 'kind', 'menu' },
         expandable_indicator = true,
-        format = lspkind.cmp_format({
-          maxwidth = 50,
-          ellipsis_char = '...',
-          preset = 'codicons',
-          show_labelDetails = true, -- show labelDetails in menu.
-          menu = {
-            buffer = '[Buffer]',
-            nvim_lsp = '[LSP]',
-            luasnip = '[LuaSnip]',
-            nvim_lua = '[Lua]',
-            latex_symbols = '[Latex]',
-          },
-        }),
+        format = function(entry, vim_item)
+          local item_with_kind = lspkind.cmp_format({
+            maxwidth = 50,
+            ellipsis_char = '...',
+            preset = 'codicons',
+            show_labelDetails = true,
+            menu = {
+              buffer = '[Buffer]',
+              nvim_lsp = '[LSP]',
+              luasnip = '[LuaSnip]',
+              nvim_lua = '[Lua]',
+              latex_symbols = '[Latex]',
+            },
+          })(entry, vim_item)
+
+          local completion_item = entry.completion_item
+          local completion_context = completion_item.detail
+            or completion_item.labelDetails and completion_item.labelDetails.description
+            or nil
+          if completion_context ~= nil and completion_context ~= '' then
+            local truncated_context = string.sub(completion_context, 1, 30)
+            if truncated_context ~= completion_context then
+              truncated_context = truncated_context .. '...'
+            end
+            item_with_kind.menu = item_with_kind.menu .. ' ' .. truncated_context
+          end
+
+          return item_with_kind
+        end,
       },
     })
 
