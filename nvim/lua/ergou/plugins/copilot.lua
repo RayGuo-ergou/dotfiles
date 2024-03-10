@@ -10,6 +10,7 @@ return {
           auto_refresh = true,
         },
         suggestion = {
+          accept = false,
           enabled = true,
           auto_trigger = true,
         },
