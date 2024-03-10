@@ -2,7 +2,7 @@ return {
   {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
-    events = 'VeryLazy',
+    event = 'LazyFile',
     config = function()
       local harpoon = require('harpoon')
 
