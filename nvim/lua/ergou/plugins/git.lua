@@ -47,7 +47,8 @@ return {
         map('n', '<leader>ghS', gs.stage_buffer, { desc = 'git Stage buffer' })
         map('n', '<leader>ghu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
         map('n', '<leader>ghR', gs.reset_buffer, { desc = 'git Reset buffer' })
-        map('n', '<leader>ghp', gs.preview_hunk, { desc = 'preview git hunk' })
+        map('n', '<leader>ghp', gs.preview_hunk_inline, { desc = 'preview git hunk' })
+        map('n', '<leader>ghP', gs.preview_hunk, { desc = 'preview git hunk' })
         map('n', '<leader>ghb', function()
           gs.blame_line({ full = false })
         end, { desc = 'git blame line' })
@@ -65,7 +66,7 @@ return {
         vim.keymap.set({ 'n', 'x', 'o' }, ']h', next_hunk_repeat)
         vim.keymap.set({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat)
         -- Text object
-        map({ 'o', 'x' }, 'igh', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
       end,
     },
   },
