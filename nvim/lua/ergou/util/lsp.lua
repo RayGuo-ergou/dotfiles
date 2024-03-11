@@ -92,6 +92,7 @@ function M.lsp_autocmd()
 end
 
 M.get_servers = function()
+  local mason_registry = require('mason-registry')
   --- @type table<string, lspconfig.Config>
   local servers = {
     -- clangd = {},
@@ -139,17 +140,25 @@ M.get_servers = function()
     prismals = {},
   }
 
-  -- If server `volar` exists, then add `typescript` and `javascript` to its filetypes
-  if servers.volar ~= nil and servers.tsserver ~= nil then
+  local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
+
+  -- If server `volar` and `tsserver` exists, add `@vue/typescript-plugin` to `tsserver`
+  if servers.volar ~= nil and servers.tsserver ~= nil and has_volar then
     local tsserver = servers.tsserver or {} -- Ensure tsserver is initialized
     tsserver.init_options = tsserver.init_options or {} -- Ensure init_options is initialized
     tsserver.init_options.plugins = tsserver.init_options.plugins or {} -- Ensure plugins is initialized
+
+    -- Even for now can use
+    local vue_ts_plugin_path = volar:get_install_path()
+      .. '/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
+    -- after volar 2.0.7
+    -- local vue_ts_plugin_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/typescript-plugin'
 
     local vue_plugin = {
       name = '@vue/typescript-plugin',
       -- Maybe a function to get the location of the plugin is better?
       -- e.g. pnpm fallback to nvm fallback to default node path
-      location = os.getenv('PNPM_HOME') .. '/global/5/node_modules/@vue/typescript-plugin',
+      location = vue_ts_plugin_path,
       languages = { 'vue' },
     }
 
@@ -157,12 +166,6 @@ M.get_servers = function()
     vim.list_extend(tsserver.init_options.plugins, { vue_plugin })
 
     servers.tsserver = tsserver
-
-    -- after volar 2.0.7
-    -- local mason_registry = require('mason-registry')
-    -- local ts_plugin_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/typescript-plugin'
-    -- Even for now can use
-    -- local ts_plugin_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
   end
   return servers
 end
