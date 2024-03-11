@@ -1,3 +1,4 @@
+--- @class ergou.util.ui
 local M = {}
 
 function M.fg(name)

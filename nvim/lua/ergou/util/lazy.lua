@@ -1,3 +1,4 @@
+--- @class ergou.util.lazy
 local M = {}
 
 M.use_lazy_file = true

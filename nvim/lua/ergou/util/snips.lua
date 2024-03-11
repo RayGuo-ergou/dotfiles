@@ -1,3 +1,4 @@
+--- @class ergou.util.snips
 local M = {}
 -- luasnip.lua
 

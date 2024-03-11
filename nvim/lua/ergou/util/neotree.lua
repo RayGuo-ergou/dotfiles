@@ -1,3 +1,4 @@
+--- @class ergou.util.neotree
 local M = {}
 
 function M.copy_selector(state)

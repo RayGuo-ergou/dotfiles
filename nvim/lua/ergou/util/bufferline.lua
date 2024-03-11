@@ -1,5 +1,6 @@
 local icons = require('ergou.util.icons')
 
+--- @class ergou.util.bufferline
 local M = {}
 
 M.diagnostics_symbol = function(count, level, diagnostics_dict, context)

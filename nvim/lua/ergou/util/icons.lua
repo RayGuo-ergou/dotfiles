@@ -1,3 +1,4 @@
+--- @class ergou.util.icons
 local icons = {
   kinds = {
     File = ' ',

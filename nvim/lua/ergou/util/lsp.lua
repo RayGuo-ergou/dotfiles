@@ -1,4 +1,7 @@
+--- @class ergou.util.lsp
 local M = {}
+
+local Util = require('ergou.util')
 
 function M.get_clients(opts)
   local ret = {} ---@type vim.lsp.Client[]
@@ -88,50 +91,80 @@ function M.lsp_autocmd()
   })
 end
 
---- @type table<string, lspconfig.Config>
-M.servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  rust_analyzer = {},
-  tsserver = {
-    init_options = {
-      plugins = {
-        {
-          name = '@vue/typescript-plugin',
-          -- Maybe a function to get the location of the plugin is better?
-          -- e.g. pnpm fallback to nvm fallback to default node path
-          location = os.getenv('PNPM_HOME') .. '/global/5/node_modules/@vue/typescript-plugin',
-          languages = { 'typescript', 'vue', 'javascript' },
+M.get_servers = function()
+  --- @type table<string, lspconfig.Config>
+  local servers = {
+    -- clangd = {},
+    -- gopls = {},
+    -- pyright = {},
+    rust_analyzer = {},
+    tsserver = {
+      init_options = {
+        plugins = {},
+      },
+      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    },
+    html = { filetypes = { 'html', 'twig', 'hbs' } },
+    eslint = {
+      filetypes = {
+        'typescript',
+        'javascript',
+        'javascriptreact',
+        'typescriptreact',
+        'vue',
+        'json',
+        'jsonc',
+        'markdown',
+      },
+    },
+    volar = {},
+    intelephense = {},
+    marksman = {},
+    lua_ls = {
+      settings = {
+        Lua = {
+          workspace = { checkThirdParty = false },
+          telemetry = { enable = false },
+          window = {
+            progressBar = false,
+          },
         },
       },
     },
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-  },
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
-  eslint = {
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json', 'jsonc', 'markdown' },
-  },
-  volar = {},
-  intelephense = {},
-  marksman = {},
-  lua_ls = {
-    settings = {
-      Lua = {
-        workspace = { checkThirdParty = false },
-        telemetry = { enable = false },
-        window = {
-          progressBar = false,
-        },
-      },
-    },
-  },
-  bashls = { filetypes = { 'sh', 'bash', 'zsh' } },
-  typos_lsp = {},
-  tailwindcss = {},
-  unocss = {},
-  theme_check = {},
-  prismals = {},
-}
+    bashls = { filetypes = { 'sh', 'bash', 'zsh' } },
+    typos_lsp = {},
+    tailwindcss = {},
+    unocss = {},
+    theme_check = {},
+    prismals = {},
+  }
+
+  -- If server `volar` exists, then add `typescript` and `javascript` to its filetypes
+  if servers.volar ~= nil and servers.tsserver ~= nil then
+    local tsserver = servers.tsserver or {} -- Ensure tsserver is initialized
+    tsserver.init_options = tsserver.init_options or {} -- Ensure init_options is initialized
+    tsserver.init_options.plugins = tsserver.init_options.plugins or {} -- Ensure plugins is initialized
+
+    local vue_plugin = {
+      name = '@vue/typescript-plugin',
+      -- Maybe a function to get the location of the plugin is better?
+      -- e.g. pnpm fallback to nvm fallback to default node path
+      location = os.getenv('PNPM_HOME') .. '/global/5/node_modules/@vue/typescript-plugin',
+      languages = { 'vue' },
+    }
+
+    -- Append the plugin to the `tsserver` server
+    vim.list_extend(tsserver.init_options.plugins, { vue_plugin })
+
+    servers.tsserver = tsserver
+
+    -- after volar 2.0.7
+    -- local mason_registry = require('mason-registry')
+    -- local ts_plugin_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/typescript-plugin'
+    -- Even for now can use
+    -- local ts_plugin_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
+  end
+  return servers
+end
 
 return M

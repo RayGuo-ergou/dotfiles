@@ -1,5 +1,6 @@
 local LazyUtil = require('lazy.core.util')
 
+---@class ErgouUtilModule
 local M = {}
 
 setmetatable(M, {
@@ -106,29 +107,30 @@ function M.on_load(name, fn)
   end
 end
 
--- Wrapper around vim.keymap.set that will
--- not create a keymap if a lazy key handler exists.
--- It will also set `silent` to true by default.
-function M.safe_keymap_set(mode, lhs, rhs, opts)
-  local keys = require('lazy.core.handler').handlers.keys
-  ---@cast keys LazyKeysHandler
-  local modes = type(mode) == 'string' and { mode } or mode
-
-  ---@param m string
-  modes = vim.tbl_filter(function(m)
-    return not (keys.have and keys:have(lhs, m))
-  end, modes)
-
-  -- do not create the keymap if a lazy keys handler exists
-  if #modes > 0 then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    if opts.remap and not vim.g.vscode then
-      ---@diagnostic disable-next-line: no-unknown
-      opts.remap = nil
+--- @param table table
+--- @param keys string[]
+function M.table_walk(table, keys)
+  local result = table
+  for _, key in ipairs(keys) do
+    if type(result) == 'table' then
+      result = result[key]
+    else
+      return nil
     end
-    vim.keymap.set(modes, lhs, rhs, opts)
   end
+  return result
 end
 
 return M
+
+---@class ErgouUtilModule
+---@field public bufferline ergou.util.bufferline
+---@field public icons ergou.util.icons
+---@field public inject ergou.util.inject
+---@field public lazy ergou.util.lazy
+---@field public lsp ergou.util.lsp
+---@field public neotree ergou.util.neotree
+---@field public root ergou.util.root
+---@field public snips ergou.util.snips
+---@field public telescope ergou.util.telescope
+---@field public ui ergou.util.ui
