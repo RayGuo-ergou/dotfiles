@@ -90,6 +90,8 @@ return {
         'query',
         'sql',
         'prisma',
+        'markdown',
+        'markdown_inline',
       },
       incremental_selection = {
         enable = true,
