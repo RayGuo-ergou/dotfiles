@@ -21,6 +21,7 @@ return {
       ['<leader>gh'] = { name = '+Git Hunk' },
       ['<leader>r'] = { name = '+Rename/Replace' },
       ['<leader>w'] = { name = '+Window' },
+      ['<leader>n'] = { name = '+Npm' },
     },
     triggers_blacklist = {
       n = { 'd', 'y' },
