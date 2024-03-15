@@ -12,4 +12,4 @@ jobs:
             token: ${{ secrets.GITHUB_TOKEN }}
             version: latest
             # CLI arguments
-            args: --check ./nvim
+            args: --check ./nvim --config-path ./nvim/stylua.toml
