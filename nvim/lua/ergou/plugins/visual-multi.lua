@@ -7,5 +7,6 @@ return {
     vim.g.VM_maps = {
       ['Find Under'] = '<C-d>',
     }
+    vim.g.VM_theme = 'codedark'
   end,
 }
