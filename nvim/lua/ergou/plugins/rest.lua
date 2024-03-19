@@ -19,15 +19,9 @@ return {
     keys = {
       {
         '<leader>cr',
-        '<Plug>RestNvim',
+        '<cmd>Rest run<CR>',
         mode = { 'n', 'x' },
         desc = '[C]url [R]equest',
-      },
-      {
-        '<leader>cp',
-        '<Plug>RestNvimPreview',
-        mode = { 'n', 'x' },
-        desc = '[C]url [P]review',
       },
     },
   },
