@@ -25,7 +25,6 @@ return {
 
       null_ls.setup({
         sources = {
-          null_ls.builtins.completion.spell,
           cspell.diagnostics.with({ config = cspellConfig }),
           cspell.code_actions.with({ config = cspellConfig }),
         },
