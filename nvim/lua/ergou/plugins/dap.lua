@@ -11,77 +11,78 @@ local function get_args(config)
 end
 
 return {
-  'mfussenegger/nvim-dap',
+  {
+    'mfussenegger/nvim-dap',
 
-  dependencies = {
+    dependencies = {
 
-    -- fancy UI for the debugger
-    {
-      'rcarriga/nvim-dap-ui',
-      dependencies = { 'nvim-neotest/nvim-nio' },
+      -- fancy UI for the debugger
+      {
+        'rcarriga/nvim-dap-ui',
+        dependencies = { 'nvim-neotest/nvim-nio' },
       -- stylua: ignore
       keys = {
         { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
         { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
       },
-      opts = {},
-      config = function(_, opts)
-        -- setup dap config by VsCode launch.json file
-        -- require("dap.ext.vscode").load_launchjs()
-        local dap = require('dap')
-        local dapui = require('dapui')
-        dapui.setup(opts)
-        dap.listeners.after.event_initialized['dapui_config'] = function()
-          dapui.open({})
-        end
-        dap.listeners.before.event_terminated['dapui_config'] = function()
-          dapui.close({})
-        end
-        dap.listeners.before.event_exited['dapui_config'] = function()
-          dapui.close({})
-        end
-      end,
-    },
+        opts = {},
+        config = function(_, opts)
+          -- setup dap config by VsCode launch.json file
+          -- require("dap.ext.vscode").load_launchjs()
+          local dap = require('dap')
+          local dapui = require('dapui')
+          dapui.setup(opts)
+          dap.listeners.after.event_initialized['dapui_config'] = function()
+            dapui.open({})
+          end
+          dap.listeners.before.event_terminated['dapui_config'] = function()
+            dapui.close({})
+          end
+          dap.listeners.before.event_exited['dapui_config'] = function()
+            dapui.close({})
+          end
+        end,
+      },
 
-    -- virtual text for the debugger
-    {
-      'theHamsta/nvim-dap-virtual-text',
-      opts = {},
-    },
+      -- virtual text for the debugger
+      {
+        'theHamsta/nvim-dap-virtual-text',
+        opts = {},
+      },
 
-    -- which key integration
-    {
-      'folke/which-key.nvim',
-      optional = true,
-      opts = {
-        defaults = {
-          ['<leader>d'] = { name = '+debug' },
+      -- which key integration
+      {
+        'folke/which-key.nvim',
+        optional = true,
+        opts = {
+          defaults = {
+            ['<leader>d'] = { name = '+debug' },
+          },
+        },
+      },
+
+      -- mason.nvim integration
+      {
+        'jay-babu/mason-nvim-dap.nvim',
+        dependencies = 'mason.nvim',
+        cmd = { 'DapInstall', 'DapUninstall' },
+        opts = {
+          -- Makes a best effort to setup the various debuggers with
+          -- reasonable debug configurations
+          automatic_installation = true,
+
+          -- You can provide additional configuration to the handlers,
+          -- see mason-nvim-dap README for more information
+          handlers = {},
+
+          -- You'll need to check that you have the required things installed
+          -- online, please don't ask me how to install them :)
+          ensure_installed = {
+            -- Update this to ensure that you have the debuggers for the langs you want
+          },
         },
       },
     },
-
-    -- mason.nvim integration
-    {
-      'jay-babu/mason-nvim-dap.nvim',
-      dependencies = 'mason.nvim',
-      cmd = { 'DapInstall', 'DapUninstall' },
-      opts = {
-        -- Makes a best effort to setup the various debuggers with
-        -- reasonable debug configurations
-        automatic_installation = true,
-
-        -- You can provide additional configuration to the handlers,
-        -- see mason-nvim-dap README for more information
-        handlers = {},
-
-        -- You'll need to check that you have the required things installed
-        -- online, please don't ask me how to install them :)
-        ensure_installed = {
-          -- Update this to ensure that you have the debuggers for the langs you want
-        },
-      },
-    },
-  },
 
   -- stylua: ignore
   keys = {
@@ -104,16 +105,60 @@ return {
     { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
   },
 
-  config = function()
-    local icons = require('ergou.util.icons')
-    vim.api.nvim_set_hl(0, 'DapStoppedLine', { default = true, link = 'Visual' })
+    config = function()
+      local icons = require('ergou.util.icons')
+      vim.api.nvim_set_hl(0, 'DapStoppedLine', { default = true, link = 'Visual' })
 
-    for name, sign in pairs(icons.dap) do
-      sign = type(sign) == 'table' and sign or { sign }
-      vim.fn.sign_define(
-        'Dap' .. name,
-        { text = sign[1], texthl = sign[2] or 'DiagnosticInfo', linehl = sign[3], numhl = sign[3] }
-      )
-    end
-  end,
+      for name, sign in pairs(icons.dap) do
+        sign = type(sign) == 'table' and sign or { sign }
+        vim.fn.sign_define(
+          'Dap' .. name,
+          { text = sign[1], texthl = sign[2] or 'DiagnosticInfo', linehl = sign[3], numhl = sign[3] }
+        )
+      end
+    end,
+  },
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      {
+        'jbyuki/one-small-step-for-vimkind',
+      -- stylua: ignore
+      config = function()
+        local dap = require("dap")
+        dap.adapters.nlua = function(callback, conf)
+          local adapter = {
+            type = "server",
+            host = conf.host or "127.0.0.1",
+            port = conf.port or 8086,
+          }
+          if conf.start_neovim then
+            local dap_run = dap.run
+            dap.run = function(c)
+              adapter.port = c.port
+              adapter.host = c.host
+            end
+            require("osv").run_this()
+            dap.run = dap_run
+          end
+          callback(adapter)
+        end
+        dap.configurations.lua = {
+          {
+            type = "nlua",
+            request = "attach",
+            name = "Run this file",
+            start_neovim = {},
+          },
+          {
+            type = "nlua",
+            request = "attach",
+            name = "Attach to running Neovim instance (port = 8086)",
+            port = 8086,
+          },
+        }
+      end,
+      },
+    },
+  },
 }
