@@ -92,6 +92,7 @@ return {
         'prisma',
         'markdown',
         'markdown_inline',
+        'java',
       },
       incremental_selection = {
         enable = true,
