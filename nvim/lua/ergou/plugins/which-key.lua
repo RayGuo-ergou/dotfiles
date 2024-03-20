@@ -12,7 +12,7 @@ return {
       ['<leader><tab>'] = { name = '+tabs' },
       ['<leader>b'] = { name = '+Buffer' },
       ['<leader>c'] = { name = '+Code' },
-      ['<leader>d'] = { name = '+Document/Diff' },
+      ['<leader>d'] = { name = '+Debug/Diff' },
       ['<leader>f'] = { name = '+File/find' },
       ['<leader>q'] = { name = '+Quit/session' },
       ['<leader>s'] = { name = '+Search' },
