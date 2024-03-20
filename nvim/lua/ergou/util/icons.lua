@@ -41,6 +41,13 @@ local icons = {
       directory = '', -- Text to show when the buffer is a directory
     },
   },
+  dap = {
+    Stopped = { '󰁕 ', 'DiagnosticWarn', 'DapStoppedLine' },
+    Breakpoint = ' ',
+    BreakpointCondition = ' ',
+    BreakpointRejected = { ' ', 'DiagnosticError' },
+    LogPoint = '.>',
+  },
   others = {
     rest = '',
     clock = ' ',
