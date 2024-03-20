@@ -27,5 +27,5 @@ export NVM_DIR="$HOME/.nvm"
 # tmux
 # Make sure the tmux omz plugin is installed
 ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_DEFAULT_SESSION_NAME='明鏡止水'
+ZSH_TMUX_DEFAULT_SESSION_NAME='森羅万象'
 
