@@ -178,4 +178,26 @@ function M.pretty_path(opts)
   return ''
 end
 
+---@param filename string
+---@param cwd string
+---@return string|nil
+---@usage find_file('package.json', vim.fn.getcwd())
+function M.find_file(filename, cwd)
+  ---@type string|nil
+  local current_dir = cwd
+  local root_dir = '/'
+
+  repeat
+    local file_path = current_dir .. '/' .. filename
+    local stat = vim.uv.fs_stat(file_path)
+    if stat and stat.type == 'file' then
+      return file_path
+    end
+
+    current_dir = vim.uv.fs_realpath(current_dir .. '/..')
+  until current_dir == root_dir
+
+  return nil
+end
+
 return M

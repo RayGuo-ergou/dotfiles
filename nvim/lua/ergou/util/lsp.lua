@@ -1,7 +1,14 @@
 --- @class ergou.util.lsp
 local M = {}
 
-local Util = require('ergou.util')
+--- @type string[]
+M.CSPELL_CONFIG_FILES = {
+  'cspell.json',
+  '.cspell.json',
+  'cSpell.json',
+  '.cSpell.json',
+  '.cspell.config.json',
+}
 
 function M.get_clients(opts)
   local ret = {} ---@type vim.lsp.Client[]
@@ -133,7 +140,6 @@ M.get_servers = function()
       },
     },
     bashls = { filetypes = { 'sh', 'bash', 'zsh' } },
-    typos_lsp = {},
     tailwindcss = {},
     unocss = {},
     theme_check = {},
