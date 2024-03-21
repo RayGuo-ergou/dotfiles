@@ -161,8 +161,7 @@ M.get_servers = function()
     tsserver.init_options = tsserver.init_options or {} -- Ensure init_options is initialized
     tsserver.init_options.plugins = tsserver.init_options.plugins or {} -- Ensure plugins is initialized
 
-    local vue_ts_plugin_path = volar:get_install_path()
-      .. '/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
+    local vue_ts_plugin_path = volar:get_install_path() .. '/node_modules/@vue/language-server'
 
     local vue_plugin = {
       name = '@vue/typescript-plugin',
