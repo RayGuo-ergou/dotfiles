@@ -1,7 +1,6 @@
 return {
   {
     'stevearc/conform.nvim',
-    lazy = true,
     event = 'LazyFile',
     cmd = 'ConformInfo',
     config = function()
@@ -64,12 +63,5 @@ return {
         })
       end, { desc = 'Format file or range' })
     end,
-  },
-  -- This is a Mason thing not "format" thing, but for lsp servers ensure installed already configured in mason lsp
-  {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    opts = {
-      ensure_installed = { 'stylua', 'eslint_d', 'phpcbf', 'cspell' },
-    },
   },
 }

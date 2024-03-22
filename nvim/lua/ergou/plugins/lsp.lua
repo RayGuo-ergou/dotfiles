@@ -1,3 +1,4 @@
+local Util = require('ergou.util')
 return {
   {
     -- LSP Configuration & Plugins
@@ -20,7 +21,6 @@ return {
       },
     },
     config = function()
-      local Util = require('ergou.util')
       local servers = Util.lsp.get_servers()
       local signs = Util.icons.signs
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -35,7 +35,6 @@ return {
       Util.lsp.lsp_autocmd()
 
       mason_lspconfig.setup({
-        ensure_installed = vim.tbl_keys(servers),
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -43,6 +42,16 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
+      })
+    end,
+  },
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    config = function()
+      local servers = Util.lsp.get_servers()
+      local ensure_installed = vim.list_extend(vim.tbl_keys(servers), { 'stylua', 'eslint_d', 'phpcbf', 'cspell' })
+      require('mason-tool-installer').setup({
+        ensure_installed = ensure_installed,
       })
     end,
   },
