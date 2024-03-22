@@ -102,7 +102,10 @@ M.get_servers = function()
   local mason_registry = require('mason-registry')
   --- @type table<string, lspconfig.Config>
   local servers = {
-    -- clangd = {},
+    clangd = { cmd = {
+      'clangd',
+      '--offset-encoding=utf-16',
+    } },
     -- gopls = {},
     -- pyright = {},
     rust_analyzer = {},
