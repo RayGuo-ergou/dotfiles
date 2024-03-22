@@ -237,6 +237,12 @@ return {
       map({ 'n', 'x', 'o' }, '[w', function()
         diagnostic_backward({ severity = vim.diagnostic.severity.WARN })
       end, { desc = 'Prev Warning' })
+
+      -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+      map({ 'n', 'x', 'o' }, 'f', ts_repeat_move.builtin_f)
+      map({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F)
+      map({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t)
+      map({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T)
     end,
   },
   -- Show context of the current function
