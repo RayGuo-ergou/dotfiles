@@ -9,7 +9,7 @@ return {
       {
         'vhyrro/luarocks.nvim',
         config = function()
-          require('luarocks').setup({ rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' } })
+          require('luarocks-nvim').setup({ rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' } })
         end,
       },
     },
