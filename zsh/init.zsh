@@ -9,7 +9,9 @@ execute_if_command_exists "zoxide" "$(zoxide init zsh)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # GitHub Copilot CLI setup
-execute_if_command_exists "github-copilot-cli" "$(github-copilot-cli alias -- \"$0\")"
+# To install gh extension install github/gh-copilot
+# To upgrade gh extension upgrade gh-copilot
+eval "$(gh copilot alias -- zsh)"
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
