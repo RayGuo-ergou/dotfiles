@@ -154,6 +154,7 @@ M.get_servers = function()
     theme_check = {},
     prismals = {},
     jdtls = {},
+    emmet_language_server = {},
   }
 
   local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
