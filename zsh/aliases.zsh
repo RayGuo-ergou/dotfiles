@@ -11,6 +11,5 @@ alias jvm='sudo update-alternatives --config java'
 alias fe='ESLINT_USE_FLAT_CONFIG=true $HOME/.local/share/nvim/mason/bin/eslint_d restart'
 alias ufe='ESLINT_USE_FLAT_CONFIG= $HOME/.local/share/nvim/mason/bin/eslint_d restart'
 alias cd='z'
-alias nvf='fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
 alias resetlazy='rm -rf $HOME/.local/share/nvim/*'
 
