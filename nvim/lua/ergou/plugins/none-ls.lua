@@ -27,6 +27,10 @@ return {
         sources = {
           cspell.diagnostics.with({ config = cspellConfig }),
           cspell.code_actions.with({ config = cspellConfig }),
+          null_ls.builtins.diagnostics.phpcs.with({
+            extra_args = { '--standard=vendor/php-cs/ruleset.xml' },
+          }),
+          null_ls.builtins.diagnostics.zsh,
         },
       })
     end,

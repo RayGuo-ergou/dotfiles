@@ -49,7 +49,8 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     config = function()
       local servers = Util.lsp.get_servers()
-      local ensure_installed = vim.list_extend(vim.tbl_keys(servers), { 'stylua', 'eslint_d', 'phpcbf', 'cspell' })
+      local ensure_installed =
+        vim.list_extend(vim.tbl_keys(servers), { 'stylua', 'eslint_d', 'phpcbf', 'cspell', 'phpcs' })
       require('mason-tool-installer').setup({
         ensure_installed = ensure_installed,
       })
