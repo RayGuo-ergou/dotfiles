@@ -155,6 +155,18 @@ M.get_servers = function()
     prismals = {},
     jdtls = {},
     emmet_language_server = {},
+    jsonls = {
+      settings = {
+        json = {
+          schemas = {
+            {
+              fileMatch = { 'package.json' },
+              url = 'https://json.schemastore.org/package.json',
+            },
+          },
+        },
+      },
+    },
   }
 
   local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
