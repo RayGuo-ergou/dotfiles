@@ -158,20 +158,8 @@ M.get_servers = function()
     jsonls = {
       settings = {
         json = {
-          schemas = {
-            {
-              fileMatch = { 'package.json' },
-              url = 'https://json.schemastore.org/package.json',
-            },
-            {
-              fileMatch = { 'tsconfig*.json' },
-              url = 'https://json.schemastore.org/tsconfig.json',
-            },
-            {
-              fileMatch = { 'jsconfig*.json' },
-              url = 'https://json.schemastore.org/jsconfig.json',
-            },
-          },
+          schemas = require('schemastore').json.schemas(),
+          validate = { enable = true },
         },
       },
     },
@@ -179,9 +167,13 @@ M.get_servers = function()
       settings = {
         yaml = {
           schemaStore = {
-            enable = true,
-            url = 'https://www.schemastore.org/api/json/catalog.json',
+            -- You must disable built-in schemaStore support if you want to use
+            -- this plugin and its advanced options like `ignore`.
+            enable = false,
+            -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+            url = '',
           },
+          schemas = require('schemastore').yaml.schemas(),
         },
       },
     },

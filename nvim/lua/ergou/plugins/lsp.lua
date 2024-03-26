@@ -19,6 +19,7 @@ return {
         },
         opts = { attach_navic = false },
       },
+      { 'b0o/schemastore.nvim' },
     },
     config = function()
       local servers = Util.lsp.get_servers()
