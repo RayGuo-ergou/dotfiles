@@ -274,5 +274,5 @@ return {
     event = 'LazyFile',
     opts = {},
   },
-  { 'gbprod/php-enhanced-treesitter.nvim', ft = 'php' },
+  -- { 'gbprod/php-enhanced-treesitter.nvim', ft = 'php' },
 }
