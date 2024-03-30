@@ -95,6 +95,11 @@ return {
           expander_expanded = '',
           expander_highlight = 'NeoTreeExpander',
         },
+        git_status = {
+          symbols = {
+            deleted = ' ', -- this can only be used in the git_status source
+          },
+        },
       },
     },
     config = function(_, opts)
