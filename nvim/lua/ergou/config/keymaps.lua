@@ -92,12 +92,12 @@ map('n', '<leader>-', '<C-W>s', { desc = 'Split window below', remap = true })
 map('n', '<leader>|', '<C-W>v', { desc = 'Split window right', remap = true })
 
 -- tabs
-map('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
-map('n', '<leader><tab>f', '<cmd>tabfirst<cr>', { desc = 'First Tab' })
-map('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'New Tab' })
-map('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
-map('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
-map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
+-- map('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
+-- map('n', '<leader><tab>f', '<cmd>tabfirst<cr>', { desc = 'First Tab' })
+-- map('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'New Tab' })
+-- map('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
+-- map('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
+-- map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 
 -- Toggle Quickfix
 map('n', '<leader>qf', function()
