@@ -2,7 +2,9 @@ return {
   'sindrets/diffview.nvim',
   opts = {
     enhanced_diff_hl = true,
+    hooks = {}, -- See ':h diffview-config-hooks'
   },
+  cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
   keys = {
     {
       '<leader>dv',
