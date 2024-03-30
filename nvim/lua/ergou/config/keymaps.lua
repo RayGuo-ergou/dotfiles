@@ -41,11 +41,7 @@ map({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = 
 map({ 'n', 'x' }, '<Up>', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
 
 -- Use <leader>hjkl to move window
-map('n', '<leader>wh', '<C-w>h', { desc = 'Go to left window', remap = true })
-map('n', '<leader>wj', '<C-w>j', { desc = 'Go to lower window', remap = true })
-map('n', '<leader>wk', '<C-w>k', { desc = 'Go to upper window', remap = true })
-map('n', '<leader>wl', '<C-w>l', { desc = 'Go to right window', remap = true })
-map('n', '<leader>wo', '<C-w>o', { desc = 'Close other windows', remap = true })
+map('n', '<leader>w', '<C-w>', { remap = true })
 
 -- buffers
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
