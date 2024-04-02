@@ -1,4 +1,6 @@
 return {
   'andrewferrier/debugprint.nvim',
-  config = true,
+  opts = {
+    print_tag = 'Debug',
+  },
 }
