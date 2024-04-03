@@ -40,9 +40,6 @@ map({ 'n', 'x' }, '<Down>', 'v:count == 0 ? \'gj\' : \'j\'', { expr = true, sile
 map({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
 map({ 'n', 'x' }, '<Up>', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
 
--- Use <leader>hjkl to move window
-map('n', '<leader>w', '<C-w>', { remap = true })
-
 -- buffers
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
@@ -86,8 +83,11 @@ map('n', '<leader>ui', vim.show_pos, { desc = 'Inspect Pos' })
 -- windows
 map('n', '<leader>ww', '<C-W>p', { desc = 'Other window', remap = true })
 map('n', '<leader>wd', '<C-W>c', { desc = 'Delete window', remap = true })
+map('n', '<leader>w{', '<C-W>x', { desc = 'Swap window', remap = true })
+map('n', '<leader>w}', '<C-W>x', { desc = 'Swap window', remap = true })
 map('n', '<leader>w-', '<C-W>s', { desc = 'Split window below', remap = true })
 map('n', '<leader>w|', '<C-W>v', { desc = 'Split window right', remap = true })
+map('n', '<leader>w=', '<C-W>=', { desc = 'Equal window height and width', remap = true })
 map('n', '<leader>-', '<C-W>s', { desc = 'Split window below', remap = true })
 map('n', '<leader>|', '<C-W>v', { desc = 'Split window right', remap = true })
 

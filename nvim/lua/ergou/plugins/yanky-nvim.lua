@@ -55,18 +55,6 @@ return {
       desc = 'Put yanked text before cursor',
     },
     {
-      'gp',
-      '<Plug>(YankyGPutAfter)',
-      mode = { 'n', 'x' },
-      desc = 'Put yanked text after selection',
-    },
-    {
-      'gP',
-      '<Plug>(YankyGPutBefore)',
-      mode = { 'n', 'x' },
-      desc = 'Put yanked text before selection',
-    },
-    {
       '<a-p>',
       '<Plug>(YankyPreviousEntry)',
       desc = 'Select previous entry through yank history',
