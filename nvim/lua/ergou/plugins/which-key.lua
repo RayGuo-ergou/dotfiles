@@ -17,6 +17,7 @@ return {
       ['<leader>q'] = { name = '+Quit/session' },
       ['<leader>s'] = { name = '+Search' },
       ['<leader>u'] = { name = '+Ui' },
+      ['<leader>t'] = { name = '+Toggle' },
       ['<leader>x'] = { name = '+Diagnostics/Quickfix' },
       ['<leader>g'] = { name = '+Git' },
       ['<leader>gh'] = { name = '+Git Hunk' },
