@@ -113,7 +113,6 @@ M.get_servers = function()
       init_options = {
         plugins = {},
       },
-      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     },
     html = { filetypes = { 'html', 'twig', 'hbs' } },
     eslint = {
@@ -131,7 +130,7 @@ M.get_servers = function()
     volar = {
       init_options = {
         vue = {
-          hybridMode = true,
+          hybridMode = false,
         },
       },
     },
