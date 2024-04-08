@@ -27,7 +27,7 @@ return {
           graphql = { 'eslint_d' },
           lua = { 'stylua' },
           python = { 'isort', 'black' },
-          php = { 'phpcbf' },
+          php = { { 'pint', 'phpcbf' } },
           zsh = { 'beautysh' },
           sh = { 'beautysh' },
         },
