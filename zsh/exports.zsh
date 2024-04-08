@@ -1,6 +1,6 @@
 # ZSH
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(git tmux zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git tmux zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # deno
