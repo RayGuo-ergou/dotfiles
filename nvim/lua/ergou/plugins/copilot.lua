@@ -18,6 +18,7 @@ return {
           markdown = true,
           gitcommit = true,
           gitrebase = true,
+          yaml = true,
         },
       })
     end,
