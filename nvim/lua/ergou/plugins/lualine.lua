@@ -45,6 +45,11 @@ return {
           lualine_x = {
             {
               function()
+                return vim.t.maximized and icons.others.maximize or ''
+              end,
+            },
+            {
+              function()
                 return require('noice').api.status.command.get()
               end,
               cond = function()

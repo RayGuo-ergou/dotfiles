@@ -51,6 +51,7 @@ local icons = {
   others = {
     rest = '',
     clock = ' ',
+    maximize = ' ',
   },
 }
 
