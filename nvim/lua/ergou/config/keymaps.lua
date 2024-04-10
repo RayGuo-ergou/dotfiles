@@ -83,6 +83,7 @@ map('n', '<leader>ui', vim.show_pos, { desc = 'Inspect Pos' })
 -- windows
 map('n', '<leader>ww', '<C-W>p', { desc = 'Other window', remap = true })
 map('n', '<leader>wd', '<C-W>c', { desc = 'Delete window', remap = true })
+map('n', '<leader>wo', '<C-W>o', { desc = 'Delete other windows', remap = true })
 map('n', '<leader>w{', '<C-W>x', { desc = 'Swap window', remap = true })
 map('n', '<leader>w}', '<C-W>x', { desc = 'Swap window', remap = true })
 map('n', '<leader>w-', '<C-W>s', { desc = 'Split window below', remap = true })
