@@ -42,5 +42,3 @@ fi
 # Nix
 if [ -e /home/ray/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ray/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
-# Set caps lock to escape
-setxkbmap -option caps:swapescapek
