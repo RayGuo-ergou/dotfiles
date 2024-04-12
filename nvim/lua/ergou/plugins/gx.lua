@@ -1,12 +1,7 @@
 local function detect_browser()
-  -- This function attempts to determine if it's running under WSL by checking the command's success
-  local wsl_check = os.execute('wsl.exe -l > /dev/nul 2>&1')
-
-  if wsl_check == 0 then
-    -- Command succeeded, WSL is present
+  if vim.fn.executable('wsl.exe') == 1 then
     return 'powershell.exe', { 'Start-Process' }
   else
-    -- Command failed, assuming running on Linux or other environments
     return 'x-www-browser', {}
   end
 end
