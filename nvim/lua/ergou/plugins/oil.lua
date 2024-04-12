@@ -4,9 +4,9 @@ return {
     delete_to_trash = true,
     columns = {
       'icon',
-      'permissions',
-      'size',
-      'mtime',
+      -- 'permissions',
+      -- 'size',
+      -- 'mtime',
     },
     use_default_keymaps = false,
     keymaps = {
