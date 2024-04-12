@@ -28,8 +28,9 @@ return {
           lua = { 'stylua' },
           python = { 'isort', 'black' },
           php = { { 'pint', 'phpcbf' } },
-          zsh = { 'beautysh' },
-          sh = { 'beautysh' },
+          zsh = { 'shfmt' },
+          sh = { 'shfmt' },
+          bash = { 'shfmt' },
         },
         format_on_save = function()
           local ft = vim.bo.filetype
