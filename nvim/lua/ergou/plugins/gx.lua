@@ -1,3 +1,19 @@
+local function detect_browser()
+  -- This function attempts to determine if it's running under WSL by checking the command's success
+  local wsl_check = os.execute('wsl.exe -l >nul 2>&1')
+
+  if wsl_check == 0 then
+    -- Command succeeded, WSL is present
+    print('WSL detected, configuring for Windows with PowerShell')
+    return 'powershell.exe', { 'Start-Process' }
+  else
+    -- Command failed, assuming running on Linux or other environments
+    print('No WSL detected, assuming Linux or other environment')
+    return 'x-www-browser', {}
+  end
+end
+
+local browser_app, browser_args = detect_browser()
 return {
   'chrishrb/gx.nvim',
   keys = { { 'gx', '<cmd>Browse<cr>', mode = { 'n', 'x' } } },
@@ -7,8 +23,10 @@ return {
   end,
   submodules = false, -- not needed, submodules are required only for tests
   opts = {
-    open_browser_app = 'powershell.exe', -- specify your browser app; default for macOS is "open", Linux "xdg-open" and Windows "powershell.exe"
-    open_browser_args = { 'Start-Process' }, -- specify any arguments, such as --background for macOS' "open".
+    open_browser_app = browser_app, -- dynamically set based on OS detection
+    open_browser_args = browser_args, -- dynamically set based on OS detection
+    -- open_browser_app = 'powershell.exe', -- specify your browser app; default for macOS is "open", Linux "xdg-open" and Windows "powershell.exe"
+    -- open_browser_args = { 'Start-Process' }, -- specify any arguments, such as --background for macOS' "open".
     handlers = {
       plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
       github = true, -- open github issues

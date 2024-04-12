@@ -12,4 +12,4 @@ alias fe='ESLINT_USE_FLAT_CONFIG=true $HOME/.local/share/nvim/mason/bin/eslint_d
 alias ufe='ESLINT_USE_FLAT_CONFIG= $HOME/.local/share/nvim/mason/bin/eslint_d restart'
 alias cd='z'
 alias resetlazy='rm -rf $HOME/.local/share/nvim/*'
-
+alias x-www-browser='wslview'
