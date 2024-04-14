@@ -1,5 +1,7 @@
 local function detect_browser()
-  if vim.fn.executable('wsl.exe') == 1 then
+  if vim.fn.executable('wslview') == 1 then
+    return 'wslview', {}
+  elseif vim.fn.executable('wsl.exe') then
     return 'powershell.exe', { 'Start-Process' }
   else
     return 'x-www-browser', {}
