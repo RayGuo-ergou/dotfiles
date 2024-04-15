@@ -51,7 +51,7 @@ return {
     config = function()
       local servers = Util.lsp.get_servers()
       local ensure_installed =
-        vim.list_extend(vim.tbl_keys(servers), { 'stylua', 'eslint_d', 'phpcbf', 'cspell', 'phpcs' })
+        vim.list_extend(vim.tbl_keys(servers), { 'stylua', 'eslint_d', 'phpcbf', 'cspell', 'phpcs', 'prettierd' })
       require('mason-tool-installer').setup({
         ensure_installed = ensure_installed,
       })

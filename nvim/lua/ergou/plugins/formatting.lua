@@ -31,6 +31,7 @@ return {
           zsh = { 'shfmt' },
           sh = { 'shfmt' },
           bash = { 'shfmt' },
+          liquid = { 'prettierd' },
         },
         format_on_save = function()
           local ft = vim.bo.filetype
