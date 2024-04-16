@@ -3,14 +3,27 @@ export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(
     git
+    git-extras
     aliases
+    ubuntu
     bun
     tmux
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-vi-mode
     you-should-use
+    colored-man-pages
+    command-not-found
+    composer
+    ssh
+    copyfile
+    copypath
+    cp
+    gh
+    fd
+    ripgrep
 )
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # deno
