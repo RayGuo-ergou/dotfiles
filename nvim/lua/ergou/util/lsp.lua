@@ -139,7 +139,7 @@ M.get_servers = function()
     volar = {
       init_options = {
         vue = {
-          hybridMode = true,
+          hybridMode = false,
         },
       },
     },
