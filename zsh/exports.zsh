@@ -3,6 +3,8 @@ export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(
     git
+    aliases
+    bun
     tmux
     zsh-autosuggestions
     zsh-syntax-highlighting

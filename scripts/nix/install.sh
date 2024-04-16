@@ -10,4 +10,5 @@ nix-env -iA nixpkgs.git-extras
 nix-env -iA nixpkgs.gh
 # Adapt install gh normally do
 # sudo ln -s $HOME/.nix-profile/bin/gh /usr/bin/gh
+nix-env -iA nixpkgs.zoxide
 
