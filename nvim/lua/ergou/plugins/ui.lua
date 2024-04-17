@@ -18,6 +18,7 @@ return {
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
+    ---@type NoiceConfig
     opts = {
       lsp = {
         progress = { enabled = false },
