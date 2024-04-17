@@ -93,6 +93,10 @@ return {
             win:resize('height', -2)
           end,
         },
+        animate = {
+          enabled = false,
+        },
+        exit_when_last = true,
       }
       return opts
     end,
