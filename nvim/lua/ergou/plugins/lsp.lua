@@ -1,4 +1,5 @@
 local Util = require('ergou.util')
+local signs = Util.icons.signs
 return {
   {
     -- LSP Configuration & Plugins
@@ -21,16 +22,37 @@ return {
       },
       { 'b0o/schemastore.nvim' },
     },
-    config = function()
+    ---@class PluginLspOpts
+    opts = {
+      diagnostics = {
+        underline = true,
+        update_in_insert = false,
+        virtual_text = {
+          spacing = 4,
+          source = 'if_many',
+          prefix = '●',
+          -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+          -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
+          -- prefix = "icons",
+        },
+        severity_sort = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = signs.Error,
+            [vim.diagnostic.severity.WARN] = signs.Warn,
+            [vim.diagnostic.severity.HINT] = signs.Hint,
+            [vim.diagnostic.severity.INFO] = signs.Info,
+          },
+        },
+      },
+    },
+    ---@param opts PluginLspOpts
+    config = function(_, opts)
       local servers = Util.lsp.get_servers()
-      local signs = Util.icons.signs
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      for type, icon in pairs(signs) do
-        local hl = 'DiagnosticSign' .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
+      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
       local mason_lspconfig = require('mason-lspconfig')
       Util.lsp.lsp_autocmd()
