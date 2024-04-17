@@ -25,7 +25,12 @@ return {
 
       null_ls.setup({
         sources = {
-          cspell.diagnostics.with({ config = cspellConfig }),
+          cspell.diagnostics.with({
+            config = cspellConfig,
+            diagnostics_postprocess = function(diagnostic)
+              diagnostic.severity = vim.diagnostic.severity['HINT']
+            end,
+          }),
           cspell.code_actions.with({ config = cspellConfig }),
           null_ls.builtins.diagnostics.phpcs.with({
             extra_args = { '--standard=vendor/php-cs/ruleset.xml' },
