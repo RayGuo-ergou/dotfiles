@@ -54,6 +54,13 @@ return {
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
+      -- FIXME: For trouble v2 only
+      -- Remove after v3 is released
+      for type, icon in pairs(signs) do
+        local hl = 'DiagnosticSign' .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+
       local mason_lspconfig = require('mason-lspconfig')
       Util.lsp.lsp_autocmd()
 
