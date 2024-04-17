@@ -28,7 +28,7 @@ local icons = {
     Operator = ' ',
     TypeParameter = ' ',
   },
-  signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' },
+  diagnostics = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' },
   git = {
     added = ' ',
     modified = ' ',

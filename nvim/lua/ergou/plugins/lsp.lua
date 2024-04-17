@@ -1,5 +1,5 @@
 local Util = require('ergou.util')
-local signs = Util.icons.signs
+local signs = Util.icons.diagnostics
 return {
   {
     -- LSP Configuration & Plugins
@@ -24,16 +24,28 @@ return {
     },
     ---@class PluginLspOpts
     opts = {
+      ---@type vim.diagnostic.Opts
       diagnostics = {
         underline = true,
         update_in_insert = false,
         virtual_text = {
           spacing = 4,
           source = 'if_many',
-          prefix = '●',
+          -- prefix = '●',
           -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
           -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-          -- prefix = "icons",
+          prefix = function(diagnostic)
+            if diagnostic.severity == vim.diagnostic.severity.ERROR then
+              return signs.Error
+            elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+              return signs.Warn
+            elseif diagnostic.severity == vim.diagnostic.severity.HINT then
+              return signs.Hint
+            elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+              return signs.Info
+            end
+            return '●'
+          end,
         },
         severity_sort = true,
         signs = {
