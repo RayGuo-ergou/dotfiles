@@ -139,7 +139,7 @@ return {
           timing = animate.gen_timing.linear({ duration = 100, unit = 'total' }),
         },
         cursor = {
-          timing = animate.gen_timing.linear({ duration = 100, unit = 'total' }),
+          enable = false,
         },
         scroll = {
           timing = animate.gen_timing.linear({ duration = 150, unit = 'total' }),
