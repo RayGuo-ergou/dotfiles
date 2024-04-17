@@ -67,6 +67,20 @@ return {
               color = ui.fg('Constant'),
             },
             {
+              function()
+                return '  ' .. require('dap').status()
+              end,
+              cond = function()
+                return package.loaded['dap'] and require('dap').status() ~= ''
+              end,
+              color = ui.fg('Debug'),
+            },
+            {
+              require('lazy.status').updates,
+              cond = require('lazy.status').has_updates,
+              color = ui.fg('Special'),
+            },
+            {
               'copilot',
             },
             'diagnostics',
@@ -75,6 +89,7 @@ return {
             { 'progress', separator = ' ', padding = { left = 1, right = 1 } },
           },
         },
+        extensions = { 'neo-tree', 'lazy' },
       }
     end,
   },

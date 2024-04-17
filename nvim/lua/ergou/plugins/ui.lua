@@ -62,7 +62,7 @@ return {
       },
       {
         '<leader>sn',
-        '<cmd> Telescope notify<CR>',
+        '<cmd>Noice telescope<CR>',
         desc = 'Notifications History',
       },
     },
