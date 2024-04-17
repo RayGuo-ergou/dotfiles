@@ -144,6 +144,7 @@ return {
         scroll = {
           timing = animate.gen_timing.linear({ duration = 150, unit = 'total' }),
           subscroll = animate.gen_subscroll.equal({
+            max_output_steps = 120,
             predicate = function(total_scroll)
               if mouse_scrolled then
                 mouse_scrolled = false
