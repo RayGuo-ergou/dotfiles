@@ -1,6 +1,9 @@
 source $HOME/.env.sh
 source $DOTFILES/zsh/utils.zsh
 
+# Nix
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
 # zoxide initialization
 execute_if_command_exists "zoxide" "$(zoxide init zsh)"
 
@@ -38,6 +41,3 @@ unset __conda_setup
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
 fi
-
-# Nix
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
