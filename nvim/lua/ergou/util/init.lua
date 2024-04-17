@@ -134,3 +134,4 @@ return M
 ---@field public snips ergou.util.snips
 ---@field public telescope ergou.util.telescope
 ---@field public ui ergou.util.ui
+---@field public git ergou.util.git

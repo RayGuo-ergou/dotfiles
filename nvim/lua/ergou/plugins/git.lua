@@ -24,6 +24,7 @@ return {
         untracked = { text = '▎' },
       },
       on_attach = function(bufnr)
+        local git_util = require('ergou.util.git')
         local gs = require('gitsigns')
         local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 
@@ -60,6 +61,7 @@ return {
         -- Toggles
         map('n', '<leader>gb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
         map('n', '<leader>gd', gs.toggle_deleted, { desc = 'toggle git show deleted' })
+        map('n', '<leader>gb', git_util.blame_line, { desc = 'Git Blame Line' })
 
         -- Jump to next/prev hunk
         local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
