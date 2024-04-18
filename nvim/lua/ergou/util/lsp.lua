@@ -10,6 +10,10 @@ M.CSPELL_CONFIG_FILES = {
   '.cspell.config.json',
 }
 
+M.PHP = {
+  working_large_file = true,
+}
+
 function M.get_clients(opts)
   local ret = {} ---@type vim.lsp.Client[]
   if vim.lsp.get_clients then
@@ -143,7 +147,17 @@ M.get_servers = function()
         },
       },
     },
-    intelephense = {},
+    -- intelephense is a node.js server, so it's pretty slow
+    -- And can only running one thread
+    -- Use phpactor instead for large files
+    -- it's not as good as intelephense, but it's faster
+    intelephense = {
+      enabled = not M.PHP.working_large_file,
+    },
+    -- To install phpactor, need php8
+    phpactor = {
+      enabled = M.PHP.working_large_file,
+    },
     marksman = {},
     lua_ls = {
       settings = {
