@@ -52,3 +52,5 @@ export NVM_DIR="$HOME/.nvm"
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_DEFAULT_SESSION_NAME='森羅万象'
 
+# To tell pnpm not to check packageManager
+export COREPACK_ROOT="E"
