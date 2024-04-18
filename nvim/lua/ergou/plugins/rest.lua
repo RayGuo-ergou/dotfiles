@@ -20,10 +20,10 @@ return {
     end,
     keys = {
       {
-        '<leader>cr',
+        '<leader>rr',
         '<cmd>Rest run<CR>',
         mode = { 'n', 'x' },
-        desc = '[C]url [R]equest',
+        desc = '[R]est [R]equest',
       },
     },
   },
