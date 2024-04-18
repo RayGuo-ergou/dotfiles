@@ -18,6 +18,22 @@ return {
 
     local lspkind = require('lspkind')
 
+    local cmp_select_next_item = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+      else
+        fallback()
+      end
+    end
+
+    local cmp_select_prev_item = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+      else
+        fallback()
+      end
+    end
+
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require('luasnip.loaders.from_vscode').lazy_load()
     require('ergou.util.snips').setupSnips()
@@ -29,8 +45,8 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ['<C-k>'] = cmp.mapping.select_prev_item(), -- previous suggestion
-        ['<C-j>'] = cmp.mapping.select_next_item(), -- next suggestion
+        ['<C-k>'] = cmp.mapping(cmp_select_prev_item),
+        ['<C-j>'] = cmp.mapping(cmp_select_next_item),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
@@ -39,19 +55,11 @@ return {
         ['<Tab>'] = cmp.mapping(function(fallback)
           if require('copilot.suggestion').is_visible() then
             require('copilot.suggestion').accept()
-          elseif cmp.visible() then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           else
-            fallback()
+            cmp_select_next_item(fallback)
           end
         end, { 'i', 's' }),
-        ['<S-Tab>'] = vim.schedule_wrap(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            fallback()
-          end
-        end),
+        ['<S-Tab>'] = cmp.mapping(cmp_select_prev_item),
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
@@ -99,22 +107,10 @@ return {
 
     local cmd_kepmap = {
       ['<C-j>'] = {
-        c = function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          else
-            fallback()
-          end
-        end,
+        c = cmp_select_next_item,
       },
       ['<C-k>'] = {
-        c = function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end,
+        c = cmp_select_prev_item,
       },
     }
     -- `/` cmdline setup.
