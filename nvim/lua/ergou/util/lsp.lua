@@ -11,7 +11,7 @@ M.CSPELL_CONFIG_FILES = {
 }
 
 M.PHP = {
-  working_large_file = true,
+  working_large_file = false,
 }
 
 function M.get_clients(opts)
