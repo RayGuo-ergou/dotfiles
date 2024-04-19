@@ -1,21 +1,22 @@
 import = [
   # uncomment the flavour you want below:
-  # "~/.config/alacritty/catppuccin-latte.toml"
-  # "~/.config/alacritty/catppuccin-frappe.toml"
-  "~/.config/alacritty/catppuccin-macchiato.toml"
-  # "~/.config/alacritty/catppuccin-mocha.toml"
+  # '~/.config/alacritty/catppuccin-latte.toml'
+  # '~/.config/alacritty/catppuccin-frappe.toml'
+  '~/.config/alacritty/catppuccin-macchiato.toml'
+  # '~/.config/alacritty/catppuccin-mocha.toml'
 ]
 
 [font]
-normal = { family = "FiraCode Nerd Font", style = "Retina" }
+normal = { family = 'FiraCode Nerd Font', style = 'Retina' }
 size = 14  # Default: 11.25
-bold = { style = "Retina" }  # Inherits family from normal, Default style: Bold
-italic = { style = "Retina" }  # Inherits family from normal, Default style: Italic
-bold_italic = { style = "Retina" }
+bold = { style = 'Retina' }  # Inherits family from normal, Default style: Bold
+italic = { style = 'Retina' }  # Inherits family from normal, Default style: Italic
+bold_italic = { style = 'Retina' }
 
 [[keyboard.bindings]]
-key = "V"
-mods = "Control"
-action = "Paste"
+key = 'V'
+mods = 'Control'
+action = 'Paste'
 
-
+[window]
+decorations = 'none'
