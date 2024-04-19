@@ -107,10 +107,22 @@ return {
 
     local cmd_kepmap = {
       ['<C-j>'] = {
-        c = cmp_select_next_item,
+        c = function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
       },
       ['<C-k>'] = {
-        c = cmp_select_prev_item,
+        c = function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end,
       },
     }
     -- `/` cmdline setup.
