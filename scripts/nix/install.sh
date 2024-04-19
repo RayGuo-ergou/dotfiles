@@ -12,3 +12,4 @@ nix-env -iA nixpkgs.gh
 # sudo ln -s $HOME/.nix-profile/bin/gh /usr/bin/gh
 nix-env -iA nixpkgs.zoxide
 
+nix-env -iA nixpkgs.bat
