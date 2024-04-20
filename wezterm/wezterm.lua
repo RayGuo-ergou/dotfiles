@@ -10,7 +10,9 @@ config.keys = {
 local font = wezterm.font({ family = 'FiraCode Nerd Font', weight = 450, stretch = 'Normal' })
 
 config.font = font
+config.window_decorations = 'NONE'
 config.font_size = 14
+config.hide_tab_bar_if_only_one_tab = true
 config.font_rules = {
   {
     intensity = 'Bold',
