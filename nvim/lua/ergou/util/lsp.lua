@@ -171,7 +171,23 @@ M.get_servers = function()
       },
     },
     bashls = { filetypes = { 'sh', 'bash', 'zsh' } },
-    tailwindcss = {},
+    tailwindcss = {
+      settings = {
+        tailwindCSS = {
+          experimental = {
+            classRegex = {
+              '\\/\\*\\s*tw\\s*\\*\\/\\s*[`\'"](.*)[`\'"];?',
+              { '(?:twMerge|twJoin)\\(([^\\);]*)[\\);]', '[`\'"]([^\'"`,;]*)[`\'"]' },
+              'twc\\`(.*)\\`;?',
+              'clsx[`]([\\s\\S][^`]*)[`]',
+              { 'clsx\\(([^)]*)\\)', '(?:\'|"|`)([^\']*)(?:\'|"|`)' },
+              'cva[`]([\\s\\S][^`]*)[`]',
+              { 'cva\\(([^)]*)\\)', '(?:\'|"|`)([^\']*)(?:\'|"|`)' },
+            },
+          },
+        },
+      },
+    },
     unocss = {},
     theme_check = {},
     prismals = {},
