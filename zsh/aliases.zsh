@@ -2,7 +2,7 @@
 alias ls='eza -l --icons -h'
 alias cat='bat'
 alias pnd='pnpm dev'
-alias nv='nvim'
+alias vim='nvim'
 alias configzsh='nvim ~/.zshrc'
 alias reload='source ~/.zshrc'
 alias aptupdate='sudo apt update && sudo apt upgrade -y'
