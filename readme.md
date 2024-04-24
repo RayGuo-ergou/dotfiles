@@ -1,5 +1,7 @@
 # Dotfiles
 
+![vim](./public/VIM.png)
+
 ## Install
 
 ```bash
