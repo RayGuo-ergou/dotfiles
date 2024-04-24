@@ -50,6 +50,15 @@ return {
             },
             {
               function()
+                return require('noice').api.status.search.get()
+              end,
+              cond = function()
+                return package.loaded['noice'] and require('noice').api.status.search.has()
+              end,
+              color = ui.fg('PreProc'),
+            },
+            {
+              function()
                 return require('noice').api.status.command.get()
               end,
               cond = function()
