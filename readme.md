@@ -24,3 +24,5 @@ and put it in there. It will be loaded near the top of `.zshrc`.
 
 [Here's a description of how my dotfiles work](https://shaky.sh/simple-dotfiles/).
 Forked from [andrew8088/dotfiles](https://github.com/andrew8088/dotfiles)
+
+Image credit to: [SAWARATSUKI](https://github.com/SAWARATSUKI/ServiceLogos)
