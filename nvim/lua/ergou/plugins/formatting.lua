@@ -22,6 +22,8 @@ return {
           scss = { 'eslint_d' },
           html = { 'eslint_d' },
           json = { 'eslint_d' },
+          jsonc = { 'eslint_d' },
+          json5 = { 'eslint_d' },
           yaml = { 'eslint_d' },
           markdown = { 'eslint_d' },
           graphql = { 'eslint_d' },
