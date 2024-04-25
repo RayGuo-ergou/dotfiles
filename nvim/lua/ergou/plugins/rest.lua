@@ -5,7 +5,7 @@ return {
     ft = 'http',
     dependencies = {
       -- Perpare for lua-curl
-      -- sudo apt install liblua5.1-0-dev
+      -- sudo apt install lua5.1 liblua5.1-0-dev
       -- If having issue with install lua-curl (curl.h not found)
       -- Use sudo ln -s /usr/include/x86_64-linux-gnu/curl /usr/include/curl
       {
