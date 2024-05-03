@@ -8,6 +8,10 @@ nmap <Space>l $
 " Quickly remove search highlights
 nmap <C-n> :nohl
 
+" Map c and C to not register in the clipboard
+nnoremap c "_c
+nnoremap C "_C
+
 " Yank to system clipboard
 set clipboard=unnamed
 
