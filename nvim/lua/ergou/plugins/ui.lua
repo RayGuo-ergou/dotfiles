@@ -50,6 +50,18 @@ return {
       --   If not available, we use `mini` as the fallback
       'rcarriga/nvim-notify',
     },
+    keys = {
+      {
+        '<leader>sn',
+        '<cmd>Noice telescope<CR>',
+        desc = 'Notifications History',
+      },
+      {
+        '<leader>nh',
+        '<cmd>Noice History<CR>',
+        desc = 'Noice History in Quick fix list',
+      },
+    },
   },
   {
     'rcarriga/nvim-notify',
@@ -60,11 +72,6 @@ return {
           require('notify').dismiss({ silent = true, pending = true })
         end,
         desc = 'Dismiss all Notifications',
-      },
-      {
-        '<leader>sn',
-        '<cmd>Noice telescope<CR>',
-        desc = 'Notifications History',
       },
     },
     opts = {
