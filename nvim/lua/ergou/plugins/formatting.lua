@@ -1,3 +1,4 @@
+local timeout = 1000
 return {
   {
     'stevearc/conform.nvim',
@@ -41,7 +42,7 @@ return {
           local config = {
             lsp_fallback = true,
             async = false,
-            timeout_ms = 3000,
+            timeout_ms = timeout,
           }
 
           if ft == 'php' then
@@ -55,7 +56,7 @@ return {
         conform.format({
           lsp_fallback = 'always',
           async = false,
-          timeout_ms = 3000,
+          timeout_ms = timeout,
         })
       end, { desc = 'Format file or range with LSP Formatter' })
 
@@ -63,7 +64,7 @@ return {
         conform.format({
           lsp_fallback = true,
           async = false,
-          timeout_ms = 3000,
+          timeout_ms = timeout,
         })
       end, { desc = 'Format file or range' })
     end,
