@@ -9,6 +9,7 @@ return {
       require('catppuccin').setup({
         integrations = {
           aerial = true,
+          diffview = true,
           neotree = true,
           mason = true,
           noice = true,
