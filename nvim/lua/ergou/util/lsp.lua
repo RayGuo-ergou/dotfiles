@@ -59,24 +59,35 @@ function M.lsp_autocmd()
     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
     callback = function(event)
       local bufnr = event.buf
+
+      local nmap = function(keys, func, desc)
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = 'LSP: ' .. desc })
+      end
+
       local client = vim.lsp.get_client_by_id(event.data.client_id)
       if client then
         local client_name = client.name
         local file_type = vim.bo[bufnr].filetype
         if
           not (file_type == 'vue' and client_name == 'tsserver')
-          and client.server_capabilities['documentSymbolProvider']
+          and client.supports_method('textDocument/documentSymbol')
         then
           require('nvim-navic').attach(client, bufnr)
         end
-      end
 
-      local nmap = function(keys, func, desc)
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = 'LSP: ' .. desc })
+        -- If want to enable inlay hint on lsp attach
+        -- if client.supports_method('textDocument/inlayHint') then
+        --   vim.lsp.inlay_hint.enable()
+        -- end
       end
 
       nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
       nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
+
+      -- map for toggle inlay hint
+      nmap('<leader>ih', function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      end, 'Toggle Inlay Hint')
 
       nmap('gd', function()
         require('telescope.builtin').lsp_definitions({ reuse_win = true })
@@ -114,6 +125,7 @@ M.get_servers = function()
     -- pyright = {},
     rust_analyzer = {},
     tsserver = {
+      -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
       init_options = {
         plugins = {},
       },
@@ -125,6 +137,30 @@ M.get_servers = function()
         'typescriptreact',
         'typescript.tsx',
         'vue',
+      },
+      settings = {
+        javascript = {
+          inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = 'all',
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+          },
+        },
+        typescript = {
+          inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = 'all',
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+          },
+        },
       },
     },
     html = { filetypes = { 'html', 'twig', 'hbs' } },
@@ -167,6 +203,7 @@ M.get_servers = function()
           window = {
             progressBar = false,
           },
+          hint = { enable = true },
         },
       },
     },

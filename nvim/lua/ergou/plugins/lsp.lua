@@ -25,6 +25,7 @@ return {
     ---@class PluginLspOpts
     opts = {
       ---@type vim.diagnostic.Opts
+      inlay_hints = { enabled = true },
       diagnostics = {
         underline = true,
         update_in_insert = false,
