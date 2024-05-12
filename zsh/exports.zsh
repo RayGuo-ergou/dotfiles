@@ -5,6 +5,7 @@ plugins=(
     git
     git-extras
     aliases
+    docker
     ubuntu
     bun
     tmux
