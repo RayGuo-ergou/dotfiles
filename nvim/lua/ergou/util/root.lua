@@ -144,7 +144,7 @@ function M.setup()
     Util.root.info()
   end, { desc = 'LazyVim roots for the current buffer' })
 
-  vim.api.nvim_create_autocmd({ 'LspAttach', 'BufWritePost' }, {
+  vim.api.nvim_create_autocmd({ 'LspAttach', 'BufWritePost', 'DirChanged', 'BufEnter' }, {
     group = vim.api.nvim_create_augroup('lazyvim_root_cache', { clear = true }),
     callback = function(event)
       M.cache[event.buf] = nil
@@ -171,6 +171,13 @@ function M.get(opts)
     return ret
   end
   return Util.is_win() and ret:gsub('/', '\\') or ret
+end
+
+function M.git()
+  local root = M.get()
+  local git_root = vim.fs.find('.git', { path = root, upward = true })[1]
+  local ret = git_root and vim.fn.fnamemodify(git_root, ':h') or root
+  return ret
 end
 
 ---@param opts? {hl_last?: string}
