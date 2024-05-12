@@ -128,6 +128,7 @@ return {
         '*',
         lazy = { rgb_fn = false, names = false },
         mason = { rgb_fn = false, names = false },
+        gitcommit = { rgb_fn = false, names = false },
       },
     },
     event = 'LazyFile',
