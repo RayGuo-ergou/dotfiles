@@ -16,6 +16,9 @@ return {
       },
     },
     config = function()
+      require('ergou.util').on_load('telescope.nvim', function()
+        require('telescope').load_extension('rest')
+      end)
       require('rest-nvim').setup()
     end,
     keys = {
