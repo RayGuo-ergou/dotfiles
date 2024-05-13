@@ -174,6 +174,9 @@ M.get_servers = function()
         'json',
         'jsonc',
         'markdown',
+        'yaml',
+        'yaml.docker-compose',
+        'yaml.gitlab',
       },
     },
     volar = {
