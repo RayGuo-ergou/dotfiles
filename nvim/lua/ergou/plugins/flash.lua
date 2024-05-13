@@ -1,14 +1,8 @@
 return {
   'folke/flash.nvim',
-  event = 'VeryLazy',
+  event = 'LazyFile',
   ---@type Flash.Config
-  opts = {
-    modes = {
-      search = {
-        enabled = false,
-      },
-    },
-  },
+  opts = {},
   keys = {
     {
       's',
