@@ -1,4 +1,4 @@
-local timeout = 1000
+local timeout = 1500
 return {
   {
     'stevearc/conform.nvim',
