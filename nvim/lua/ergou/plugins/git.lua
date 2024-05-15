@@ -25,50 +25,61 @@ return {
       },
       on_attach = function(bufnr)
         local git_util = require('ergou.util.git')
-        local gs = require('gitsigns')
+        local gitsigns = require('gitsigns')
         local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
+        local function map(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
         end
 
         -- Actions
         -- visual mode
         map('v', '<leader>ghs', function()
-          gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = 'stage git hunk' })
+          gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+        end, 'stage git hunk')
         map('v', '<leader>ghr', function()
-          gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = 'reset git hunk' })
+          gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+        end, 'reset git hunk')
         -- normal mode
-        map('n', '<leader>ghs', gs.stage_hunk, { desc = 'git stage hunk' })
-        map('n', '<leader>ghr', gs.reset_hunk, { desc = 'git reset hunk' })
-        map('n', '<leader>ghS', gs.stage_buffer, { desc = 'git Stage buffer' })
-        map('n', '<leader>ghu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
-        map('n', '<leader>ghR', gs.reset_buffer, { desc = 'git Reset buffer' })
-        map('n', '<leader>ghp', gs.preview_hunk_inline, { desc = 'preview git hunk' })
-        map('n', '<leader>ghP', gs.preview_hunk, { desc = 'preview git hunk' })
+        map('n', '<leader>ghs', gitsigns.stage_hunk, 'git stage hunk')
+        map('n', '<leader>ghr', gitsigns.reset_hunk, 'git reset hunk')
+        map('n', '<leader>ghS', gitsigns.stage_buffer, 'git Stage buffer')
+        map('n', '<leader>ghu', gitsigns.undo_stage_hunk, 'undo stage hunk')
+        map('n', '<leader>ghR', gitsigns.reset_buffer, 'git Reset buffer')
+        map('n', '<leader>ghp', gitsigns.preview_hunk_inline, 'preview git hunk')
+        map('n', '<leader>ghP', gitsigns.preview_hunk, 'preview git hunk')
         map('n', '<leader>ghb', function()
-          gs.blame_line({ full = false })
-        end, { desc = 'git blame line' })
-        map('n', '<leader>ghd', gs.diffthis, { desc = 'git diff against index' })
+          gitsigns.blame_line({ full = false })
+        end, 'git blame line')
+        map('n', '<leader>ghd', gitsigns.diffthis, 'git diff against index')
         map('n', '<leader>ghD', function()
-          gs.diffthis('~')
-        end, { desc = 'git diff against last commit' })
+          gitsigns.diffthis('~')
+        end, 'git diff against last commit')
 
         -- Toggles
-        map('n', '<leader>gb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
-        map('n', '<leader>gd', gs.toggle_deleted, { desc = 'toggle git show deleted' })
-        map('n', '<leader>gb', git_util.blame_line, { desc = 'Git Blame Line' })
+        map('n', '<leader>gb', gitsigns.toggle_current_line_blame, 'toggle git blame line')
+        map('n', '<leader>gd', gitsigns.toggle_deleted, 'toggle git show deleted')
+        map('n', '<leader>gb', git_util.blame_line, 'Git Blame Line')
 
         -- Jump to next/prev hunk
-        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
-        vim.keymap.set({ 'n', 'x', 'o' }, ']h', next_hunk_repeat)
-        vim.keymap.set({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat)
+        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()
+          gitsigns.nav_hunk('next')
+        end, function()
+          gitsigns.nav_hunk('prev')
+        end)
+        -- Jump to first/last hunk
+        map('n', ']H', function()
+          gitsigns.nav_hunk('last')
+        end, 'jump to last git hunk')
+
+        map('n', '[H', function()
+          gitsigns.nav_hunk('first')
+        end, 'jump to first git hunk')
+
+        map({ 'n', 'x', 'o' }, ']h', next_hunk_repeat, 'jump to next git hunk')
+        map({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat, 'jump to prev git hunk')
         -- Text object
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'select git hunk')
       end,
     },
   },
