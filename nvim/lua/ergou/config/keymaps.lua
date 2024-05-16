@@ -116,3 +116,12 @@ map('n', '<leader>qf', function()
     vim.cmd('copen')
   end
 end, { desc = 'Toggle Quickfix' })
+
+-- Toggle wrap or unwrap
+map('n', '<leader>tw', function()
+  if vim.wo.wrap then
+    vim.wo.wrap = false
+  else
+    vim.wo.wrap = true
+  end
+end, { desc = 'Toggle Wrap' })
