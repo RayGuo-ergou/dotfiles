@@ -5,7 +5,7 @@
 
 # My neovim configuration with 💤 LazyVim
 
-This is my neovim configuration.
+This is my neovim configuration. And I constantly copy from my hero folke and Lazyvim 😜.
 
 
 # References
