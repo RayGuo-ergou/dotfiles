@@ -92,6 +92,9 @@ map('n', '<leader>w=', '<C-W>=', { desc = 'Equal window height and width', remap
 map('n', '<leader>-', '<C-W>s', { desc = 'Split window below', remap = true })
 map('n', '<leader>|', '<C-W>v', { desc = 'Split window right', remap = true })
 
+--buffer
+-- map('n', '<leader>bd', require('ergou.util').ui.bufremove, { desc = 'Delete Buffer' })
+map('n', '<leader>bD', '<cmd>:bd<cr>', { desc = 'Delete Buffer and Window' })
 -- tabs
 -- map('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
 -- map('n', '<leader><tab>f', '<cmd>tabfirst<cr>', { desc = 'First Tab' })
