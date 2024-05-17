@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   'RRethy/vim-illuminate',
   event = 'LazyFile',
   opts = {
