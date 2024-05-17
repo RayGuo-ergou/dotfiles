@@ -50,3 +50,4 @@ require('lazy').setup({
     colorscheme = { 'catppuccin-macchiato' },
   },
 })
+_G.Ergou = require('ergou.util')

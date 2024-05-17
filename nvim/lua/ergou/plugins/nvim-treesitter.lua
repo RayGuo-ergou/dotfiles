@@ -264,13 +264,12 @@ return {
       {
         '<leader>ut',
         function()
-          local Util = require('ergou.util')
           local tsc = require('treesitter-context')
           tsc.toggle()
-          if Util.inject.get_upvalue(tsc.toggle, 'enabled') then
-            Util.info('Enabled Treesitter Context', { title = 'Option' })
+          if Ergou.inject.get_upvalue(tsc.toggle, 'enabled') then
+            Ergou.info('Enabled Treesitter Context', { title = 'Option' })
           else
-            Util.warn('Disabled Treesitter Context', { title = 'Option' })
+            Ergou.warn('Disabled Treesitter Context', { title = 'Option' })
           end
         end,
         desc = 'Toggle Treesitter Context',
