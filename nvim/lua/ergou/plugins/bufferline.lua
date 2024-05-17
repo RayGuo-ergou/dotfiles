@@ -15,10 +15,10 @@ return {
   opts = {
     options = {
       close_command = function(n)
-        require('mini.bufremove').delete(n, false)
+        Ergou.ui.bufremove(n)
       end,
       right_mouse_command = function(n)
-        require('mini.bufremove').delete(n, false)
+        Ergou.ui.bufremove(n)
       end,
       diagnostics = 'nvim_lsp',
       diagnostics_indicator = bufferline_util.diagnostics_symbol,
@@ -37,7 +37,7 @@ return {
   config = function(_, opts)
     require('bufferline').setup(opts)
     -- Fix bufferline when restoring a session
-    vim.api.nvim_create_autocmd('BufAdd', {
+    vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete' }, {
       callback = function()
         vim.schedule(function()
           pcall(nvim_bufferline)
