@@ -26,6 +26,10 @@ return {
     opts = {
       ---@type vim.diagnostic.Opts
       inlay_hints = { enabled = true },
+      -- Enable lsp cursor word highlighting
+      document_highlight = {
+        enabled = true,
+      },
       diagnostics = {
         underline = true,
         update_in_insert = false,
