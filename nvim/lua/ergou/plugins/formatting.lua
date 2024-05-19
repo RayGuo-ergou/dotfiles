@@ -48,6 +48,12 @@ return {
           if ft == 'php' then
             config.lsp_fallback = 'always'
           end
+
+          -- do not format blade file with html lsp
+          if ft == 'blade' then
+            config.lsp_fallback = false
+          end
+
           return config
         end,
       })

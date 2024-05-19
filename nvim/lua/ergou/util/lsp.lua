@@ -188,7 +188,7 @@ M.get_servers = function()
         },
       },
     },
-    html = { filetypes = { 'html', 'twig', 'hbs' } },
+    html = { filetypes = { 'html', 'twig', 'hbs', 'blade' } },
     eslint = {
       filetypes = {
         'typescript',
@@ -267,7 +267,21 @@ M.get_servers = function()
     theme_check = {},
     prismals = {},
     jdtls = {},
-    emmet_language_server = {},
+    emmet_language_server = {
+      filetypes = {
+        'css',
+        'eruby',
+        'html',
+        'htmldjango',
+        'javascriptreact',
+        'less',
+        'pug',
+        'sass',
+        'scss',
+        'typescriptreact',
+        'blade',
+      },
+    },
     jsonls = {
       settings = {
         json = {
