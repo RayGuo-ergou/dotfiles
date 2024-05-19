@@ -51,7 +51,15 @@ return {
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
         ['<C-e>'] = cmp.mapping.abort(), -- close completion window
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ['<CR>'] = function(fallback)
+          if cmp.visible() then
+            Ergou.create_undo()
+            if cmp.confirm({ select = true }) then
+              return
+            end
+          end
+          return fallback()
+        end,
         ['<Tab>'] = cmp.mapping(function(fallback)
           if require('copilot.suggestion').is_visible() then
             require('copilot.suggestion').accept()
