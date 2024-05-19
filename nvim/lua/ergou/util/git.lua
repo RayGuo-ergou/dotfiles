@@ -13,6 +13,7 @@ function M.blame_line(opts)
     border = 'rounded',
   }, opts or {})
   local cursor = vim.api.nvim_win_get_cursor(0)
+  -- If there's none stashed code, the line number may not be correct
   local line = cursor[1]
   local file = vim.api.nvim_buf_get_name(0)
   local cmd = { 'git', 'log', '-n', opts.count, '-u', '-L', line .. ',+1:' .. file }

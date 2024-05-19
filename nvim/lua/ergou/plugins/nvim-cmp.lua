@@ -52,6 +52,8 @@ return {
         ['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
         ['<C-e>'] = cmp.mapping.abort(), -- close completion window
         ['<CR>'] = function(fallback)
+          -- Test the below later
+          -- if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
           if cmp.visible() then
             Ergou.create_undo()
             if cmp.confirm({ select = true }) then
@@ -107,7 +109,6 @@ return {
             end
             item_with_kind.menu = item_with_kind.menu .. ' ' .. truncated_context
           end
-
           return item_with_kind
         end,
       },
