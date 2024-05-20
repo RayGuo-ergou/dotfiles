@@ -65,7 +65,6 @@ return {
   },
   {
     'echasnovski/mini.splitjoin',
-    version = '*',
     keys = {
       {
         'gS',
@@ -76,7 +75,6 @@ return {
   },
   {
     'echasnovski/mini.align',
-    version = '*',
     keys = {
       {
         'ga',
