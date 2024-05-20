@@ -69,8 +69,9 @@ map('n', '<leader>fn', '<cmd>enew<cr>', { desc = 'New File' })
 map('n', '<leader>xl', '<cmd>lopen<cr>', { desc = 'Location List' })
 map('n', '<leader>xq', '<cmd>copen<cr>', { desc = 'Quickfix List' })
 
-map('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
-map('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })
+-- set in trouble.lua
+-- map('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
+-- map('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })
 
 -- quit
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
