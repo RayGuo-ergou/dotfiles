@@ -6,6 +6,7 @@ return {
     'hrsh7th/cmp-path', -- source for file system paths
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-calc',
     'L3MON4D3/LuaSnip', -- snippet engine
     'saadparwaiz1/cmp_luasnip', -- for autocompletion
     'rafamadriz/friendly-snippets', -- useful snippets
@@ -77,6 +78,7 @@ return {
         { name = 'path' }, -- file system paths
         { name = 'luasnip' }, -- snippets
         { name = 'buffer' }, -- text within current buffer
+        { name = 'calc' }, -- simple calculator
       }),
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
@@ -95,6 +97,7 @@ return {
               luasnip = '[LuaSnip]',
               nvim_lua = '[Lua]',
               latex_symbols = '[Latex]',
+              calc = '[Calc]',
             },
           })(entry, vim_item)
 
