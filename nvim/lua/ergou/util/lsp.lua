@@ -305,6 +305,7 @@ M.get_servers = function()
       },
     },
     cssls = {},
+    taplo = {},
   }
 
   local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')

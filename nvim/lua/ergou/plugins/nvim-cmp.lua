@@ -17,8 +17,6 @@ return {
 
     local luasnip = require('luasnip')
 
-    local lspkind = require('lspkind')
-
     local cmp_select_next_item = function(fallback)
       if cmp.visible() then
         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
@@ -85,37 +83,17 @@ return {
         -- Keep the default formatting fields and expandable_indicator
         fields = { 'abbr', 'kind', 'menu' },
         expandable_indicator = true,
-        format = function(entry, vim_item)
-          local item_with_kind = lspkind.cmp_format({
-            maxwidth = 50,
-            ellipsis_char = '...',
-            preset = 'codicons',
-            show_labelDetails = true,
-            menu = {
-              buffer = '[Buffer]',
-              nvim_lsp = '[LSP]',
-              luasnip = '[LuaSnip]',
-              nvim_lua = '[Lua]',
-              latex_symbols = '[Latex]',
-              calc = '[Calc]',
-            },
-          })(entry, vim_item)
-
-          local completion_item = entry.completion_item
-          local completion_context = completion_item.detail
-            or completion_item.labelDetails and completion_item.labelDetails.description
-            or nil
-          if completion_context ~= nil and completion_context ~= '' then
-            local truncated_context = string.sub(completion_context, 1, 30)
-            if truncated_context ~= completion_context then
-              truncated_context = truncated_context .. '...'
-            end
-            item_with_kind.menu = item_with_kind.menu .. ' ' .. truncated_context
-          end
-          return item_with_kind
-        end,
+        format = Ergou.cmp.cmp_format,
       },
     })
+    cmp.event:on('confirm_done', function(event)
+      Ergou.cmp.auto_brackets(event.entry)
+    end)
+
+    -- seems I already got the documentation for snippets
+    -- cmp.event:on('menu_opened', function(event)
+    --   Ergou.cmp.add_missing_snippet_docs(event.window)
+    -- end)
 
     local cmd_kepmap = {
       ['<C-j>'] = {
