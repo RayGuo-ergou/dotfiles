@@ -55,7 +55,7 @@ return {
           -- if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
           if cmp.visible() then
             Ergou.create_undo()
-            if cmp.confirm({ select = true }) then
+            if cmp.confirm({ select = false }) then
               return
             end
           end
