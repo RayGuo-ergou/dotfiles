@@ -69,6 +69,12 @@ return {
           end
         end, { 'i', 's' }),
         ['<S-Tab>'] = cmp.mapping(cmp_select_prev_item),
+        ['<C-p>'] = function(fallback)
+          return fallback()
+        end,
+        ['<C-n>'] = function(fallback)
+          return fallback()
+        end,
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({

@@ -37,6 +37,14 @@ return {
       desc = 'Open Yank History',
     },
     {
+      '<C-p>',
+      function()
+        require('telescope').extensions.yank_history.yank_history({})
+      end,
+      desc = 'Open Yank History',
+      mode = { 'i' },
+    },
+    {
       'y',
       '<Plug>(YankyYank)',
       mode = { 'n', 'x' },
