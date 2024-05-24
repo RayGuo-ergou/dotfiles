@@ -13,6 +13,8 @@ return {
     'onsails/lspkind.nvim', -- vs-code like pictograms
   },
   config = function()
+    local auto_brackets_fts = { 'lua', 'vue', 'javascript', 'typescript' }
+
     local cmp = require('cmp')
 
     local luasnip = require('luasnip')
@@ -93,7 +95,9 @@ return {
       },
     })
     cmp.event:on('confirm_done', function(event)
-      Ergou.cmp.auto_brackets(event.entry)
+      if vim.tbl_contains(auto_brackets_fts, vim.bo.filetype) then
+        Ergou.cmp.auto_brackets(event.entry)
+      end
     end)
 
     -- seems I already got the documentation for snippets
