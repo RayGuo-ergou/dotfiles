@@ -95,6 +95,8 @@ return {
           ['sn'] = { 'order_by_name', nowait = false },
           ['ss'] = { 'order_by_size', nowait = false },
           ['st'] = { 'order_by_type', nowait = false },
+          ['h'] = Util.neotree.left_movement,
+          ['l'] = Util.neotree.right_movement,
         },
       },
       default_component_configs = {

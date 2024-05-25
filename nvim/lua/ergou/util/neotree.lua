@@ -42,4 +42,26 @@ function M.copy_selector(state)
   end)
 end
 
+function M.left_movement(state)
+  local node = state.tree:get_node()
+  if node.type == 'directory' and node:is_expanded() then
+    require('neo-tree.sources.filesystem').toggle_directory(state, node)
+  else
+    require('neo-tree.ui.renderer').focus_node(state, node:get_parent_id())
+  end
+end
+
+function M.right_movement(state)
+  local node = state.tree:get_node()
+  if node.type == 'directory' then
+    if not node:is_expanded() then
+      require('neo-tree.sources.filesystem').toggle_directory(state, node)
+    elseif node:has_children() then
+      require('neo-tree.ui.renderer').focus_node(state, node:get_child_ids()[1])
+    end
+  else
+    state.commands.open(state)
+  end
+end
+
 return M
