@@ -41,25 +41,59 @@ function M.get_clients(opts)
   return opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
 end
 
+function M.rename_file()
+  local buf = vim.api.nvim_get_current_buf()
+  local old = assert(Ergou.root.realpath(vim.api.nvim_buf_get_name(buf)))
+  local root = assert(Ergou.root.realpath(Ergou.root.get({ normalize = true })))
+  assert(old:find(root, 1, true) == 1, 'File not in project root')
+
+  local extra = old:sub(#root + 2)
+
+  vim.ui.input({
+    prompt = 'New File Name: ',
+    default = extra,
+  }, function(new)
+    if not new or new == '' or new == extra then
+      return
+    end
+    new = Ergou.norm(root .. '/' .. new)
+    vim.fn.mkdir(vim.fs.dirname(new), 'p')
+    M.on_rename(old, new, function()
+      vim.fn.rename(old, new)
+      vim.cmd.edit(new)
+      vim.api.nvim_buf_delete(buf, { force = true })
+      vim.fn.delete(old)
+    end)
+  end)
+end
+
+---@from https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/lsp.lua
 ---@param from string
 ---@param to string
----@from https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/lsp.lua
-function M.on_rename(from, to)
+---@param rename? fun()
+function M.on_rename(from, to, rename)
+  local changes = { files = { {
+    oldUri = vim.uri_from_fname(from),
+    newUri = vim.uri_from_fname(to),
+  } } }
+
   local clients = M.get_clients()
   for _, client in ipairs(clients) do
     if client.supports_method('workspace/willRenameFiles') then
-      ---@diagnostic disable-next-line: invisible
-      local resp = client.request_sync('workspace/willRenameFiles', {
-        files = {
-          {
-            oldUri = vim.uri_from_fname(from),
-            newUri = vim.uri_from_fname(to),
-          },
-        },
-      }, 1000, 0)
+      local resp = client.request_sync('workspace/willRenameFiles', changes, 1000, 0)
       if resp and resp.result ~= nil then
         vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
       end
+    end
+  end
+
+  if rename then
+    rename()
+  end
+
+  for _, client in ipairs(clients) do
+    if client.supports_method('workspace/didRenameFiles') then
+      client.notify('workspace/didRenameFiles', changes)
     end
   end
 end
@@ -99,6 +133,7 @@ function M.lsp_autocmd()
           return handler(err, result, ctx, config)
         end
 
+        -- lsp highlight references
         if client.supports_method('textDocument/documentHighlight') then
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'CursorMoved', 'CursorMovedI' }, {
             group = vim.api.nvim_create_augroup('lsp_word_' .. bufnr, { clear = true }),
@@ -119,6 +154,13 @@ function M.lsp_autocmd()
           vim.keymap.set('n', '[[', function()
             M.words.jump(-vim.v.count1)
           end, { buffer = bufnr, desc = 'Previous reference' })
+        end
+
+        -- Rename file
+        if
+          client.supports_method('workspace/didRenameFiles') or client.supports_method('workspace/willRenameFiles')
+        then
+          nmap('<leader>cR', Ergou.lsp.rename_file, 'Rename File')
         end
       end
 
