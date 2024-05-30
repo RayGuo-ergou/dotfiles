@@ -5,6 +5,17 @@ return {
     opts = function()
       local icons = require('ergou.util.icons')
       local ui = require('ergou.util.ui')
+      local trouble = require('trouble')
+
+      local troubleSymbols = trouble.statusline({
+        mode = 'symbols',
+        groups = {},
+        title = false,
+        filter = { range = true },
+        format = '{kind_icon}{symbol.name:Normal}',
+        hl_group = 'lualine_c_normal',
+      })
+
       return {
         options = {
           theme = 'catppuccin',
@@ -39,8 +50,10 @@ return {
             },
           },
           lualine_c = {
-            -- Disable the default sections
-            { ['buffers'] = {} },
+            {
+              troubleSymbols.get,
+              cond = troubleSymbols.has,
+            },
           },
           lualine_x = {
             {
