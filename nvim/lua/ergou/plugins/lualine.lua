@@ -5,16 +5,6 @@ return {
     opts = function()
       local icons = require('ergou.util.icons')
       local ui = require('ergou.util.ui')
-      local trouble = require('trouble')
-
-      local troubleSymbols = trouble.statusline({
-        mode = 'symbols',
-        groups = {},
-        title = false,
-        filter = { range = true },
-        format = '{kind_icon}{symbol.name:Normal}',
-        hl_group = 'lualine_c_normal',
-      })
 
       return {
         options = {
@@ -49,12 +39,7 @@ return {
               symbols = icons.file.symbols,
             },
           },
-          lualine_c = {
-            {
-              troubleSymbols.get,
-              cond = troubleSymbols.has,
-            },
-          },
+          lualine_c = {},
           lualine_x = {
             {
               function()
