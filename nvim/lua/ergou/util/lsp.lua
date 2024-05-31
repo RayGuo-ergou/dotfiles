@@ -247,9 +247,9 @@ M.get_servers = function()
       },
       settings = {
         -- work around due to nvim-lspconfig#3183
-        -- should remove after eslint lsp adopt vscode-eslint 3.0.5 (now as a pre release)
+        -- Maybe a mason issue?
         experimental = {
-          useFlatConfig = true,
+          useFlatConfig = nil,
         },
       },
     },
