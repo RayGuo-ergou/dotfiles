@@ -245,6 +245,13 @@ M.get_servers = function()
         'yaml.docker-compose',
         'yaml.gitlab',
       },
+      settings = {
+        -- work around due to nvim-lspconfig#3183
+        -- should remove after eslint lsp adopt vscode-eslint 3.0.5 (now as a pre release)
+        experimental = {
+          useFlatConfig = true,
+        },
+      },
     },
     volar = {
       init_options = {
@@ -308,7 +315,7 @@ M.get_servers = function()
     unocss = {},
     theme_check = {},
     prismals = {},
-    jdtls = {},
+    -- jdtls = {},
     emmet_language_server = {
       filetypes = {
         'css',
