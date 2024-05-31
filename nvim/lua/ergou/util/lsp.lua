@@ -245,13 +245,6 @@ M.get_servers = function()
         'yaml.docker-compose',
         'yaml.gitlab',
       },
-      settings = {
-        -- work around due to nvim-lspconfig#3183
-        -- Maybe a mason issue?
-        experimental = {
-          useFlatConfig = nil,
-        },
-      },
     },
     volar = {
       init_options = {
