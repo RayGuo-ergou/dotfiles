@@ -85,6 +85,10 @@ return {
         { name = 'luasnip' }, -- snippets
         { name = 'buffer' }, -- text within current buffer
         { name = 'calc' }, -- simple calculator
+        {
+          name = 'lazydev',
+          group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+        },
       }),
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
