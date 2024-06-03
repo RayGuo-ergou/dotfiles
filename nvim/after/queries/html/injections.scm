@@ -25,8 +25,8 @@
 ; <x-foo :bar="$baz" />
 (element
   (_
-    (tag_name) @_tag
-      (#lua-match? @_tag "^x%-%l")
+    ; (tag_name) @_tag
+    ;   (#lua-match? @_tag "^x%-%l")
     (attribute
       (attribute_name) @_attr
         (#lua-match? @_attr "^:%l")
