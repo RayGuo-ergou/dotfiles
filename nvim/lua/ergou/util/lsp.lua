@@ -23,6 +23,17 @@ M.TS_INLAY_HINTS = {
   includeInlayPropertyDeclarationTypeHints = true,
   includeInlayVariableTypeHints = true,
 }
+M.TS_FILETYPES = {
+  'javascript',
+  'javascriptreact',
+  'javascript.jsx',
+  'typescript',
+  'typescriptreact',
+  'typescript.tsx',
+  'vue',
+}
+--- @type 'vtsls'|'tsserver'
+M.TS_SERVER = 'vtsls'
 
 function M.get_clients(opts)
   local ret = {} ---@type vim.lsp.Client[]
@@ -113,7 +124,7 @@ function M.lsp_autocmd()
         local client_name = client.name
         local file_type = vim.bo[bufnr].filetype
         if
-          not (file_type == 'vue' and client_name == 'tsserver')
+          not (file_type == 'vue' and (client_name == 'tsserver' or client_name == 'vtsls'))
           and client.supports_method('textDocument/documentSymbol')
         then
           require('nvim-navic').attach(client, bufnr)
@@ -197,7 +208,23 @@ function M.lsp_autocmd()
 end
 
 M.get_servers = function()
+  -- Define vue plugin
   local mason_registry = require('mason-registry')
+  local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
+  local vue_ts_plugin_path = volar:get_install_path() .. '/node_modules/@vue/language-server'
+  local vue_plugin = {}
+  if has_volar then
+    vue_plugin = {
+      name = '@vue/typescript-plugin',
+      -- Maybe a function to get the location of the plugin is better?
+      -- e.g. pnpm fallback to nvm fallback to default node path
+      location = vue_ts_plugin_path,
+      languages = { 'vue' },
+      configNamespace = 'typescript',
+      enableForWorkspaceTypeScriptVersions = true,
+    }
+  end
+
   --- @type table<string, lspconfig.Config>
   local servers = {
     clangd = { cmd = {
@@ -207,20 +234,28 @@ M.get_servers = function()
     -- gopls = {},
     -- pyright = {},
     rust_analyzer = {},
+    vtsls = {
+      enabled = M.TS_SERVER == 'vtsls',
+      filetypes = M.TS_FILETYPES,
+      settings = {
+        vtsls = {
+          tsserver = {
+            globalPlugins = {
+              vue_plugin,
+            },
+          },
+        },
+      },
+    },
     tsserver = {
+      enabled = M.TS_SERVER == 'tsserver',
       -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
       init_options = {
-        plugins = {},
+        plugins = {
+          vue_plugin,
+        },
       },
-      filetypes = {
-        'javascript',
-        'javascriptreact',
-        'javascript.jsx',
-        'typescript',
-        'typescriptreact',
-        'typescript.tsx',
-        'vue',
-      },
+      filetypes = M.TS_FILETYPES,
       settings = {
         javascript = {
           inlayHints = M.TS_INLAY_HINTS,
@@ -350,29 +385,6 @@ M.get_servers = function()
     taplo = {},
   }
 
-  local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
-
-  -- If server `volar` and `tsserver` exists, add `@vue/typescript-plugin` to `tsserver`
-  if servers.volar ~= nil and servers.tsserver ~= nil and has_volar then
-    local tsserver = servers.tsserver or {} -- Ensure tsserver is initialized
-    tsserver.init_options = tsserver.init_options or {} -- Ensure init_options is initialized
-    tsserver.init_options.plugins = tsserver.init_options.plugins or {} -- Ensure plugins is initialized
-
-    local vue_ts_plugin_path = volar:get_install_path() .. '/node_modules/@vue/language-server'
-
-    local vue_plugin = {
-      name = '@vue/typescript-plugin',
-      -- Maybe a function to get the location of the plugin is better?
-      -- e.g. pnpm fallback to nvm fallback to default node path
-      location = vue_ts_plugin_path,
-      languages = { 'vue' },
-    }
-
-    -- Append the plugin to the `tsserver` server
-    vim.list_extend(tsserver.init_options.plugins, { vue_plugin })
-
-    servers.tsserver = tsserver
-  end
   return servers
 end
 
