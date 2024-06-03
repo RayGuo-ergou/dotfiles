@@ -11,6 +11,7 @@ return {
     'saadparwaiz1/cmp_luasnip', -- for autocompletion
     'rafamadriz/friendly-snippets', -- useful snippets
     'onsails/lspkind.nvim', -- vs-code like pictograms
+    'hrsh7th/cmp-nvim-lsp-document-symbol', -- source for document symbols
   },
   config = function()
     local auto_brackets_fts = { 'lua', 'vue', 'javascript', 'typescript' }
@@ -132,9 +133,11 @@ return {
     -- `/` cmdline setup.
     cmp.setup.cmdline('/', {
       mapping = cmp.mapping.preset.cmdline(cmd_kepmap),
-      sources = {
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp_document_symbol' },
+      }, {
         { name = 'buffer' },
-      },
+      }),
     })
     -- `:` cmdline setup.
     cmp.setup.cmdline(':', {
