@@ -1,6 +1,18 @@
 local LazyUtil = require('lazy.core.util')
 
----@class ErgouUtilModule
+---@class ergou.util: LazyUtilCore
+---@field public bufferline ergou.util.bufferline
+---@field public icons ergou.util.icons
+---@field public inject ergou.util.inject
+---@field public lazy ergou.util.lazy
+---@field public lsp ergou.util.lsp
+---@field public neotree ergou.util.neotree
+---@field public root ergou.util.root
+---@field public snips ergou.util.snips
+---@field public telescope ergou.util.telescope
+---@field public ui ergou.util.ui
+---@field public git ergou.util.git
+---@field public cmp ergou.util.cmp
 local M = {}
 
 setmetatable(M, {
@@ -142,17 +154,3 @@ function M.create_undo()
 end
 
 return M
-
----@class ErgouUtilModule: LazyUtilCore
----@field public bufferline ergou.util.bufferline
----@field public icons ergou.util.icons
----@field public inject ergou.util.inject
----@field public lazy ergou.util.lazy
----@field public lsp ergou.util.lsp
----@field public neotree ergou.util.neotree
----@field public root ergou.util.root
----@field public snips ergou.util.snips
----@field public telescope ergou.util.telescope
----@field public ui ergou.util.ui
----@field public git ergou.util.git
----@field public cmp ergou.util.cmp
