@@ -16,7 +16,7 @@ return {
       },
     },
     config = function()
-      Ergou.on_load('telescope.nvim', function()
+      ergou.on_load('telescope.nvim', function()
         require('telescope').load_extension('rest')
       end)
       require('rest-nvim').setup()

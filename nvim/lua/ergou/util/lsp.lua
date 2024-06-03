@@ -54,8 +54,8 @@ end
 
 function M.rename_file()
   local buf = vim.api.nvim_get_current_buf()
-  local old = assert(Ergou.root.realpath(vim.api.nvim_buf_get_name(buf)))
-  local root = assert(Ergou.root.realpath(Ergou.root.get({ normalize = true })))
+  local old = assert(ergou.root.realpath(vim.api.nvim_buf_get_name(buf)))
+  local root = assert(ergou.root.realpath(ergou.root.get({ normalize = true })))
   assert(old:find(root, 1, true) == 1, 'File not in project root')
 
   local extra = old:sub(#root + 2)
@@ -67,7 +67,7 @@ function M.rename_file()
     if not new or new == '' or new == extra then
       return
     end
-    new = Ergou.norm(root .. '/' .. new)
+    new = ergou.norm(root .. '/' .. new)
     vim.fn.mkdir(vim.fs.dirname(new), 'p')
     M.on_rename(old, new, function()
       vim.fn.rename(old, new)
@@ -171,7 +171,7 @@ function M.lsp_autocmd()
         if
           client.supports_method('workspace/didRenameFiles') or client.supports_method('workspace/willRenameFiles')
         then
-          nmap('<leader>cR', Ergou.lsp.rename_file, 'Rename File')
+          nmap('<leader>cR', ergou.lsp.rename_file, 'Rename File')
         end
       end
 
@@ -303,6 +303,9 @@ M.get_servers = function()
     lua_ls = {
       settings = {
         Lua = {
+          diagnostics = {
+            globals = { 'vim', 'ergou' },
+          },
           workspace = { checkThirdParty = false },
           telemetry = { enable = false },
           window = {

@@ -57,7 +57,7 @@ return {
           -- Test the below later
           -- if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
           if cmp.visible() then
-            Ergou.create_undo()
+            ergou.create_undo()
             if cmp.confirm({ select = false }) then
               return
             end
@@ -96,18 +96,18 @@ return {
         -- Keep the default formatting fields and expandable_indicator
         fields = { 'abbr', 'kind', 'menu' },
         expandable_indicator = true,
-        format = Ergou.cmp.cmp_format,
+        format = ergou.cmp.cmp_format,
       },
     })
     cmp.event:on('confirm_done', function(event)
       if vim.tbl_contains(auto_brackets_fts, vim.bo.filetype) then
-        Ergou.cmp.auto_brackets(event.entry)
+        ergou.cmp.auto_brackets(event.entry)
       end
     end)
 
     -- seems I already got the documentation for snippets
     -- cmp.event:on('menu_opened', function(event)
-    --   Ergou.cmp.add_missing_snippet_docs(event.window)
+    --   ergou.cmp.add_missing_snippet_docs(event.window)
     -- end)
 
     local cmd_kepmap = {

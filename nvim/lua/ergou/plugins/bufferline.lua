@@ -15,10 +15,10 @@ return {
   opts = {
     options = {
       close_command = function(n)
-        Ergou.ui.bufremove(n)
+        ergou.ui.bufremove(n)
       end,
       right_mouse_command = function(n)
-        Ergou.ui.bufremove(n)
+        ergou.ui.bufremove(n)
       end,
       diagnostics = 'nvim_lsp',
       diagnostics_indicator = bufferline_util.diagnostics_symbol,

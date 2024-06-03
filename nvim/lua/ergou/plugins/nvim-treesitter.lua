@@ -231,8 +231,11 @@ return {
       map({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
 
       --diagnostic
-      local diagnostic_forward, diagnostic_backward =
-        ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
+      local diagnostic_forward, diagnostic_backward = ts_repeat_move.make_repeatable_move_pair(function()
+        vim.diagnostic.jump({ count = 1 })
+      end, function()
+        vim.diagnostic.jump({ count = -1 })
+      end)
       map({ 'n', 'x', 'o' }, ']d', diagnostic_forward, { desc = 'Next Diagnostic' })
       map({ 'n', 'x', 'o' }, '[d', diagnostic_backward, { desc = 'Prev Diagnostic' })
       map({ 'n', 'x', 'o' }, ']e', function()
@@ -247,12 +250,6 @@ return {
       map({ 'n', 'x', 'o' }, '[w', function()
         diagnostic_backward({ severity = vim.diagnostic.severity.WARN })
       end, { desc = 'Prev Warning' })
-
-      -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-      map({ 'n', 'x', 'o' }, 'f', ts_repeat_move.builtin_f)
-      map({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F)
-      map({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t)
-      map({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T)
     end,
   },
   -- Show context of the current function
@@ -266,10 +263,10 @@ return {
         function()
           local tsc = require('treesitter-context')
           tsc.toggle()
-          if Ergou.inject.get_upvalue(tsc.toggle, 'enabled') then
-            Ergou.info('Enabled Treesitter Context', { title = 'Option' })
+          if ergou.inject.get_upvalue(tsc.toggle, 'enabled') then
+            ergou.info('Enabled Treesitter Context', { title = 'Option' })
           else
-            Ergou.warn('Disabled Treesitter Context', { title = 'Option' })
+            ergou.warn('Disabled Treesitter Context', { title = 'Option' })
           end
         end,
         desc = 'Toggle Treesitter Context',
