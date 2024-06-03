@@ -16,7 +16,7 @@ function M.blame_line(opts)
   -- If there's none stashed code, the line number may not be correct
   local line = cursor[1]
   local file = vim.api.nvim_buf_get_name(0)
-  local cmd = { 'git', 'log', '-n', opts.count, '-u', '-L', line .. ',+1:' .. file }
+  local cmd = { 'git', 'log', '-n', opts.count, '-u', '-L', line .. ',+5:' .. file }
   return require('lazy.util').float_cmd(cmd, opts)
 end
 
