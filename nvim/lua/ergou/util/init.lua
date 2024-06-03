@@ -143,7 +143,7 @@ end
 
 return M
 
----@class ErgouUtilModule
+---@class ErgouUtilModule: LazyUtilCore
 ---@field public bufferline ergou.util.bufferline
 ---@field public icons ergou.util.icons
 ---@field public inject ergou.util.inject
