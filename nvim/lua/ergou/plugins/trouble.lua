@@ -57,6 +57,9 @@ return {
           '<cmd>Trouble qflist toggle<cr>',
           desc = 'Quickfix List (Trouble)',
         },
+        { '<leader>xt', '<cmd>Trouble todo toggle<cr>', desc = 'Todo (Trouble)' },
+        { '<leader>xT', '<cmd>Trouble todo toggle keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme (Trouble)' },
+
         {
           '[q',
           trouble_backward,
