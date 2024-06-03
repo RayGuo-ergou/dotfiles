@@ -7,6 +7,7 @@ return {
     priority = 1000,
     config = function()
       require('catppuccin').setup({
+        no_italic = true,
         integrations = {
           aerial = true,
           diffview = true,
@@ -26,6 +27,7 @@ return {
               hints = { 'undercurl' },
               warnings = { 'undercurl' },
               information = { 'undercurl' },
+              ok = { 'undercurl' },
             },
           },
         },

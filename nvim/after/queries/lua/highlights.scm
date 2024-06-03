@@ -1,7 +1,7 @@
 ;; extends
 
-((identifier) @namespace.builtin
-  (#eq? @namespace.builtin "vim"))
+((identifier) @variable.builtin
+  (#eq? @variable.builtin "vim"))
 
-((identifier) @namespace.builtin
-  (#eq? @namespace.builtin "Ergou"))
+((identifier) @variable.builtin
+  (#eq? @variable.builtin "Ergou"))
