@@ -19,7 +19,6 @@ return {
         opts = { attach_navic = false },
       },
       { 'b0o/schemastore.nvim' },
-      { 'folke/neodev.nvim', opts = {} },
     },
     ---@class PluginLspOpts
     opts = {
