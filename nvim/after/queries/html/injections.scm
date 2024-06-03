@@ -29,7 +29,7 @@
     ;   (#lua-match? @_tag "^x%-%l")
     (attribute
       (attribute_name) @_attr
-        (#lua-match? @_attr "^:%l")
+        (#lua-match? @_attr "^[:@]%l")
       (quoted_attribute_value
         (attribute_value) @injection.content)
       (#set! injection.language "php_only"))))
