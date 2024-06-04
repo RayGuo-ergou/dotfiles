@@ -52,6 +52,7 @@ local icons = {
     rest = '',
     clock = ' ',
     maximize = ' ',
+    terminal = ' ',
   },
 }
 

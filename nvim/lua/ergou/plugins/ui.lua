@@ -45,7 +45,7 @@ return {
       },
       cmdline = {
         format = {
-          cmdline = { icon = '' },
+          cmdline = { icon = require('ergou.util').icons.others.terminal },
         },
       },
     },
