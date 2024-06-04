@@ -34,6 +34,20 @@ M.TS_FILETYPES = {
 }
 --- @type 'vtsls'|'tsserver'
 M.TS_SERVER = 'vtsls'
+M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG = {
+  updateImportsOnFileMove = { enabled = 'always' },
+  suggest = {
+    completeFunctionCalls = true,
+  },
+  inlayHints = {
+    enumMemberValues = { enabled = true },
+    functionLikeReturnTypes = { enabled = true },
+    parameterNames = { enabled = 'literals' },
+    parameterTypes = { enabled = true },
+    propertyDeclarationTypes = { enabled = true },
+    variableTypes = { enabled = false },
+  },
+}
 
 function M.get_clients(opts)
   local ret = {} ---@type vim.lsp.Client[]
@@ -239,13 +253,23 @@ M.get_servers = function()
       enabled = M.TS_SERVER == 'vtsls',
       filetypes = M.TS_FILETYPES,
       settings = {
+        complete_function_calls = true,
         vtsls = {
+          enableMoveToFileCodeAction = true,
+          autoUseWorkspaceTsdk = true,
+          experimental = {
+            completion = {
+              enableServerSideFuzzyMatch = true,
+            },
+          },
           tsserver = {
             globalPlugins = {
               vue_plugin,
             },
           },
         },
+        typescript = M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG,
+        javascript = M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG,
       },
     },
     tsserver = {
