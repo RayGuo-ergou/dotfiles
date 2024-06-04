@@ -88,7 +88,7 @@ return {
     opts = {},
   },
   {
-    'echasnovski/mini.nvim',
+    'echasnovski/mini.hipatterns',
     event = 'LazyFile',
     opts = function()
       local hi = require('mini.hipatterns')
