@@ -284,6 +284,6 @@ return {
     'ckolkey/ts-node-action',
     dependencies = { 'nvim-treesitter' },
     opts = {},
-    event = { 'LazyFile', 'VeryLazy' },
+    event = 'LazyFile',
   },
 }
