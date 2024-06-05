@@ -1,6 +1,11 @@
 " Have j and k navigate visual lines rather than logical ones
 nmap j gj
 nmap k gk
+
+" Visual mode bindings
+vmap j gj
+vmap k gk
+
 " I like using H and L for beginning/end of line
 unmap <Space>
 nmap <Space>h ^
