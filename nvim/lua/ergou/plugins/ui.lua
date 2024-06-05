@@ -31,6 +31,11 @@ return {
         hover = {
           silent = true,
         },
+        documentation = {
+          opts = {
+            win_options = { conceallevel = 0 },
+          },
+        },
       },
       -- you can enable a preset for easier configuration
       presets = {
