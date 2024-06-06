@@ -44,15 +44,15 @@ return {
         },
       }
 
-      for i = 1, 5 do
-        table.insert(keys, {
-          '<leader>h' .. i,
-          function()
-            require('harpoon'):list():select(i)
-          end,
-          desc = 'Harpoon to File ' .. i,
-        })
-      end
+      -- for i = 1, 5 do
+      --   table.insert(keys, {
+      --     '<leader>h' .. i,
+      --     function()
+      --       require('harpoon'):list():select(i)
+      --     end,
+      --     desc = 'Harpoon to File ' .. i,
+      --   })
+      -- end
       return keys
     end,
   },
