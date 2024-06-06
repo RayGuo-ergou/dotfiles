@@ -14,7 +14,7 @@ return {
     'hrsh7th/cmp-nvim-lsp-document-symbol', -- source for document symbols
   },
   config = function()
-    local auto_brackets_fts = { 'lua', 'vue', 'javascript', 'typescript' }
+    local auto_brackets_fts = { 'lua' }
 
     local cmp = require('cmp')
 
