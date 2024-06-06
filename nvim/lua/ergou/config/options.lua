@@ -81,4 +81,4 @@ opt.foldenable = true
 vim.g.markdown_recommended_style = 0
 
 -- Disable deprecation messages
-vim.deprecate = function() end
+-- vim.deprecate = function() end
