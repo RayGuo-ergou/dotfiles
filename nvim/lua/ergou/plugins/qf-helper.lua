@@ -1,5 +1,5 @@
 return {
-  'kevinhwang91/nvim-bqf',
+  'stevearc/qf_helper.nvim',
   ft = 'qf',
   opts = {},
 }
