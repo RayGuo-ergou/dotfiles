@@ -71,3 +71,5 @@ if type complete &>/dev/null; then
 fi
 ###-end-pnpm-completion-###
 
+# init cargo
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
