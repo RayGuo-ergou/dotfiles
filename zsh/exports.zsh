@@ -58,3 +58,12 @@ export COREPACK_ROOT="E"
 
 # eslint_d default to use flat config
 export ESLINT_USE_FLAT_CONFIG=true
+
+# bat theme
+# mkdir -p "$(bat --config-dir)/themes"
+# wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+# wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+# wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+# wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+# bat cache --build
+export BAT_THEME="Catppuccin Macchiato"
