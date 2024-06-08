@@ -153,4 +153,6 @@ function M.create_undo()
   end
 end
 
+M.sql_ft = { 'sql', 'mysql', 'plsql' }
+
 return M

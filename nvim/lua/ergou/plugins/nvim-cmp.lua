@@ -110,6 +110,12 @@ return {
     --   ergou.cmp.add_missing_snippet_docs(event.window)
     -- end)
 
+    cmp.setup.filetype(ergou.sql_ft, {
+      sources = {
+        { name = 'vim-dadbod-completion' },
+      },
+    })
+
     local cmd_kepmap = {
       ['<C-j>'] = {
         c = function(fallback)
