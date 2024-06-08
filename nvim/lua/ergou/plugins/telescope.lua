@@ -171,11 +171,6 @@ return {
       vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
       vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, { desc = 'Live grep args' })
-      -- To make telescope work with rest.nvim
-      -- fd is required to be installed
-      -- i have to link it via ln -s $(which fdfind) /usr/bin/fd
-      -- as ubuntu 'fd' is taken in apt
-      vim.keymap.set('n', '<leader>re', telescope.extensions.rest.select_env, { desc = '[R]eplace [E]nv' })
     end,
   },
   {
