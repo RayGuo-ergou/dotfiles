@@ -66,4 +66,5 @@ export ESLINT_USE_FLAT_CONFIG=true
 # wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
 # wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
 # bat cache --build
+# bat --list-themes
 export BAT_THEME="Catppuccin Macchiato"
