@@ -191,4 +191,12 @@ return {
       end)
     end,
   },
+  {
+    'crispgm/telescope-heading.nvim',
+    config = function()
+      Util.on_load('telescope.nvim', function()
+        require('telescope').load_extension('heading')
+      end)
+    end,
+  },
 }
