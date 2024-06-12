@@ -230,26 +230,29 @@ return {
       map({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
       map({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
 
-      --diagnostic
-      local diagnostic_forward, diagnostic_backward = ts_repeat_move.make_repeatable_move_pair(function()
-        vim.diagnostic.jump({ count = 1 })
-      end, function()
-        vim.diagnostic.jump({ count = -1 })
-      end)
+      -- Create forward and backward movement functions with severity
+      local function create_diagnostic_move_pair(severity)
+        return ts_repeat_move.make_repeatable_move_pair(function()
+          vim.diagnostic.jump({ count = 1, severity = severity })
+        end, function()
+          vim.diagnostic.jump({ count = -1, severity = severity })
+        end)
+      end
+      -- Default diagnostic navigation (without severity)
+      local diagnostic_forward, diagnostic_backward = create_diagnostic_move_pair(nil)
       map({ 'n', 'x', 'o' }, ']d', diagnostic_forward, { desc = 'Next Diagnostic' })
       map({ 'n', 'x', 'o' }, '[d', diagnostic_backward, { desc = 'Prev Diagnostic' })
-      map({ 'n', 'x', 'o' }, ']e', function()
-        diagnostic_forward({ severity = vim.diagnostic.severity.ERROR })
-      end, { desc = 'Next Error' })
-      map({ 'n', 'x', 'o' }, '[e', function()
-        diagnostic_backward({ severity = vim.diagnostic.severity.ERROR })
-      end, { desc = 'Prev Error' })
-      map({ 'n', 'x', 'o' }, ']w', function()
-        diagnostic_forward({ severity = vim.diagnostic.severity.WARN })
-      end, { desc = 'Next Warning' })
-      map({ 'n', 'x', 'o' }, '[w', function()
-        diagnostic_backward({ severity = vim.diagnostic.severity.WARN })
-      end, { desc = 'Prev Warning' })
+
+      -- Diagnostic navigation for specific severities
+      local diagnostic_forward_error, diagnostic_backward_error =
+        create_diagnostic_move_pair(vim.diagnostic.severity.ERROR)
+      map({ 'n', 'x', 'o' }, ']e', diagnostic_forward_error, { desc = 'Next Error' })
+      map({ 'n', 'x', 'o' }, '[e', diagnostic_backward_error, { desc = 'Prev Error' })
+
+      local diagnostic_forward_warn, diagnostic_backward_warn =
+        create_diagnostic_move_pair(vim.diagnostic.severity.WARN)
+      map({ 'n', 'x', 'o' }, ']w', diagnostic_forward_warn, { desc = 'Next Warning' })
+      map({ 'n', 'x', 'o' }, '[w', diagnostic_backward_warn, { desc = 'Prev Warning' })
     end,
   },
   -- Show context of the current function
