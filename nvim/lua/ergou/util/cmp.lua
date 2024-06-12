@@ -101,8 +101,6 @@ function M.cmp_sort()
   ---@type table<integer, integer>
   local modified_priority = {
     [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Method,
-    [types.lsp.CompletionItemKind.Function] = 0, -- top
-    [types.lsp.CompletionItemKind.Keyword] = 0, -- top
     [types.lsp.CompletionItemKind.Text] = 100, -- bottom
   }
   local function modified_kind(kind)
@@ -122,6 +120,7 @@ function M.cmp_sort()
       cmp.config.compare.offset,
       cmp.config.compare.exact,
       cmp.config.compare.sort_text,
+      custom_kind,
       -- cmp.config.compare.scopes,
       cmp.score,
       cmp.recently_used,
