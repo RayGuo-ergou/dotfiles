@@ -132,6 +132,17 @@ function M.cmp_sort()
   }
 end
 
+-- Function to check if the cursor is inside a start tag
+-- Can be a global function? bue need refactoring for sure
+local function is_in_start_tag()
+  local ts_utils = require('nvim-treesitter.ts_utils')
+  local node = ts_utils.get_node_at_cursor()
+  if not node then
+    return false
+  end
+  return node:type() == 'start_tag'
+end
+
 ---@param entry cmp.Entry
 ---@param ctx cmp.Context
 ---For vue mostly
@@ -141,19 +152,14 @@ function M.cmp_lsp_entry_filter(entry, ctx)
     return true
   end
 
-  -- Function to check if the cursor is inside a start tag
-  -- TODO: Refactor this to a separate function later
-  local ts_utils = require('nvim-treesitter.ts_utils')
-  local function is_in_start_tag()
-    local node = ts_utils.get_node_at_cursor()
-    if not node then
-      return false
-    end
-    return node:type() == 'start_tag'
+  -- Use a buffer-local variable to cache the result of the Treesitter check
+  local bufnr = ctx.bufnr
+  local cached_is_in_start_tag = vim.b[bufnr]._ts_cached_is_in_start_tag
+  if cached_is_in_start_tag == nil then
+    vim.b[bufnr]._ts_cached_is_in_start_tag = is_in_start_tag()
   end
-
   -- If not in start tag, return true
-  if not is_in_start_tag() then
+  if vim.b[bufnr]._ts_cached_is_in_start_tag == false then
     return true
   end
 
