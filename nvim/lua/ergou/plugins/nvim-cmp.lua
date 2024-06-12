@@ -81,7 +81,10 @@ return {
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
+        {
+          name = 'nvim_lsp',
+          entry_filter = ergou.cmp.cmp_lsp_entry_filter,
+        },
         { name = 'path' }, -- file system paths
         { name = 'luasnip' }, -- snippets
         { name = 'buffer' }, -- text within current buffer
@@ -98,6 +101,7 @@ return {
         expandable_indicator = true,
         format = ergou.cmp.cmp_format,
       },
+      sorting = ergou.cmp.cmp_sort(),
     })
     cmp.event:on('confirm_done', function(event)
       if vim.tbl_contains(auto_brackets_fts, vim.bo.filetype) then

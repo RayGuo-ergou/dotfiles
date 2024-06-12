@@ -92,4 +92,59 @@ function M.cmp_format(entry, vim_item)
   return item_with_kind
 end
 
+function M.cmp_sort()
+  local types = require('cmp.types')
+  local cmp = require('cmp')
+  local default_config = require('cmp.config.default')
+  -- Take from, Thank you!
+  ---@see https://github.com/pysan3/dotfiles/blob/9d3ca30baecefaa2a6453d8d6d448d62b5614ff2/nvim/lua/plugins/70-nvim-cmp.lua
+  ---@type table<integer, integer>
+  local modified_priority = {
+    [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Method,
+    [types.lsp.CompletionItemKind.Function] = 0, -- top
+    [types.lsp.CompletionItemKind.Keyword] = 0, -- top
+    [types.lsp.CompletionItemKind.Text] = 100, -- bottom
+  }
+  local function modified_kind(kind)
+    return modified_priority[kind] or kind
+  end
+  local function custom_kind(entry1, entry2) -- sort by compare kind (Variable, Function etc)
+    local kind1 = modified_kind(entry1:get_kind())
+    local kind2 = modified_kind(entry2:get_kind())
+    if kind1 ~= kind2 then
+      return kind1 - kind2 < 0
+    end
+  end
+
+  return {
+    priority_weight = default_config().sorting.priority_weight,
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.sort_text,
+      -- cmp.config.compare.scopes,
+      cmp.score,
+      cmp.recently_used,
+      cmp.locality,
+      cmp.kind,
+      cmp.length,
+      cmp.order,
+    },
+  }
+end
+
+---@param entry cmp.Entry
+---@param ctx cmp.Context
+---For vue mostly
+function M.cmp_lsp_entry_filter(entry, ctx)
+  local cursor_before_line = ctx.cursor_before_line
+  if cursor_before_line:sub(-1) == '@' then
+    return entry.completion_item.label:match('^@')
+  elseif cursor_before_line:sub(-1) == ':' then
+    return entry.completion_item.label:match('^:')
+  else
+    return true
+  end
+end
+
 return M
