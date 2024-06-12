@@ -154,12 +154,12 @@ function M.cmp_lsp_entry_filter(entry, ctx)
 
   -- Use a buffer-local variable to cache the result of the Treesitter check
   local bufnr = ctx.bufnr
-  local cached_is_in_start_tag = vim.b[bufnr]._ts_cached_is_in_start_tag
+  local cached_is_in_start_tag = vim.b[bufnr]._vue_ts_cached_is_in_start_tag
   if cached_is_in_start_tag == nil then
-    vim.b[bufnr]._ts_cached_is_in_start_tag = is_in_start_tag()
+    vim.b[bufnr]._vue_ts_cached_is_in_start_tag = is_in_start_tag()
   end
   -- If not in start tag, return true
-  if vim.b[bufnr]._ts_cached_is_in_start_tag == false then
+  if vim.b[bufnr]._vue_ts_cached_is_in_start_tag == false then
     return true
   end
 

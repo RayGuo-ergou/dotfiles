@@ -119,7 +119,7 @@ return {
     -- Reset the cache at the start of each completion session
     cmp.event:on('menu_opened', function()
       local bufnr = vim.api.nvim_get_current_buf()
-      vim.b[bufnr]._ts_cached_is_in_start_tag = nil
+      vim.b[bufnr]._vue_ts_cached_is_in_start_tag = nil
     end)
 
     cmp.setup.filetype(ergou.sql_ft, {
