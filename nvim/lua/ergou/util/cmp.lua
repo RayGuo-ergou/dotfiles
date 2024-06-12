@@ -142,6 +142,25 @@ function M.cmp_lsp_entry_filter(entry, ctx)
     return true
   end
 
+  -- Function to check if the cursor is inside a start tag
+  -- TODO: Refactor this to a separate function later
+  local ts_utils = require('nvim-treesitter.ts_utils')
+  local function is_in_start_tag()
+    local node = ts_utils.get_node_at_cursor()
+    while node do
+      if node:type() == 'start_tag' then
+        return true
+      end
+      node = node:parent()
+    end
+    return false
+  end
+
+  -- If not in start tag, return true
+  if not is_in_start_tag() then
+    return true
+  end
+
   local cursor_before_line = ctx.cursor_before_line
   if cursor_before_line:sub(-1) == '@' then
     return entry.completion_item.label:match('^@')
