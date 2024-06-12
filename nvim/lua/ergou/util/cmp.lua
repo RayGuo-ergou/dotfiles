@@ -141,7 +141,7 @@ function M.cmp_lsp_entry_filter(entry, ctx)
   if cursor_before_line:sub(-1) == '@' then
     return entry.completion_item.label:match('^@')
   elseif cursor_before_line:sub(-1) == ':' then
-    return entry.completion_item.label:match('^:')
+    return entry.completion_item.label:match('^:') and not entry.completion_item.label:match('^:on-')
   else
     return true
   end
