@@ -77,6 +77,7 @@ function M.rename_file()
   vim.ui.input({
     prompt = 'New File Name: ',
     default = extra,
+    completion = 'file',
   }, function(new)
     if not new or new == '' or new == extra then
       return
