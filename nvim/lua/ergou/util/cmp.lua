@@ -137,6 +137,12 @@ end
 ---@param ctx cmp.Context
 ---For vue mostly
 function M.cmp_lsp_entry_filter(entry, ctx)
+  -- Check if the buffer type is 'vue'
+  local filetype = vim.bo.filetype
+  if filetype ~= 'vue' then
+    return true
+  end
+
   local cursor_before_line = ctx.cursor_before_line
   if cursor_before_line:sub(-1) == '@' then
     return entry.completion_item.label:match('^@')
