@@ -138,8 +138,7 @@ end
 ---For vue mostly
 function M.cmp_lsp_entry_filter(entry, ctx)
   -- Check if the buffer type is 'vue'
-  local filetype = vim.bo.filetype
-  if filetype ~= 'vue' then
+  if ctx.filetype ~= 'vue' then
     return true
   end
 
