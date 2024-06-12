@@ -117,7 +117,7 @@ return {
     -- end)
 
     -- Reset the cache at the start of each completion session
-    cmp.event:on('menu_opened', function()
+    cmp.event:on('menu_closed', function()
       local bufnr = vim.api.nvim_get_current_buf()
       vim.b[bufnr]._vue_ts_cached_is_in_start_tag = nil
     end)
