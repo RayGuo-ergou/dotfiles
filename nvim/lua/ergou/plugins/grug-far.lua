@@ -5,6 +5,14 @@ return {
   end,
   keys = {
     {
+      '<leader>rr',
+      function()
+        require('grug-far').grug_far({})
+      end,
+      desc = 'replace current cursor word',
+    },
+
+    {
       '<leader>rw',
       function()
         require('grug-far').grug_far({ prefills = { search = vim.fn.expand('<cword>') } })

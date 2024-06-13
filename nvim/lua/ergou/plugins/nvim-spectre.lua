@@ -1,6 +1,7 @@
 return {
   'nvim-pack/nvim-spectre',
   build = 'bash build.sh',
+  enabled = false,
   cmd = 'Spectre',
   opts = {
     open_cmd = 'noswapfile vnew',
