@@ -55,7 +55,7 @@ export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_DEFAULT_SESSION_NAME='森羅万象'
 
 # To tell pnpm not to check packageManager
-export COREPACK_ROOT="E"
+# export COREPACK_ROOT="E"
 
 # eslint_d default to use flat config
 export ESLINT_USE_FLAT_CONFIG=true
