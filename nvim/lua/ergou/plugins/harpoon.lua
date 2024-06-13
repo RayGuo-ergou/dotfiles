@@ -1,6 +1,7 @@
 return {
   {
     'ThePrimeagen/harpoon',
+    enabled = false,
     branch = 'harpoon2',
     event = 'LazyFile',
     opts = {
