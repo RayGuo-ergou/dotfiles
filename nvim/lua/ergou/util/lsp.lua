@@ -190,7 +190,8 @@ function M.lsp_autocmd()
         end
       end
 
-      nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
+      -- nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
+      nmap('<leader>rn', ':IncRename ', 'Rename')
       nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
 
       -- map for toggle inlay hint
