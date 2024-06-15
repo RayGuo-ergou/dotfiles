@@ -12,6 +12,11 @@ return {
     'rafamadriz/friendly-snippets', -- useful snippets
     'onsails/lspkind.nvim', -- vs-code like pictograms
     'hrsh7th/cmp-nvim-lsp-document-symbol', -- source for document symbols
+    {
+      'David-Kunz/cmp-npm',
+      event = { 'BufRead package.json' },
+      config = true,
+    },
   },
   config = function()
     local auto_brackets_fts = { 'lua' }
@@ -83,6 +88,7 @@ return {
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
+        { name = 'npm', keyword_length = 4 },
         {
           name = 'nvim_lsp',
           entry_filter = ergou.cmp.cmp_lsp_entry_filter,
