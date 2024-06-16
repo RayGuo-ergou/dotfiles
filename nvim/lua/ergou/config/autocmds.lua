@@ -111,3 +111,12 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     vim.opt_local.conceallevel = 0
   end,
 })
+
+-- disable noice markdown keys gx and k
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { 'noice' },
+  group = augroup('noice_disable_keys'),
+  callback = function(event)
+    vim.b[event.buf].markdown_keys = true
+  end,
+})
