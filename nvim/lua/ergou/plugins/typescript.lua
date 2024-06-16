@@ -22,11 +22,4 @@ return {
     },
     cmd = { 'TSC' },
   },
-  -- stable version
-  {
-    'OlegGulevskyy/better-ts-errors.nvim',
-    url = 'https://github.com/RayGuo-ergou/better-ts-errors.nvim',
-    cmd = { 'TsBetterError' },
-    config = true,
-  },
 }
