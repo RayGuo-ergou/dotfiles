@@ -1,6 +1,7 @@
 # Install Nix
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 
+# TODO: update with flask
 # packages
 nix-env -iA nixpkgs.wslu
 nix-env -iA nixpkgs.eza
@@ -12,5 +13,7 @@ nix-env -iA nixpkgs.gh
 # Adapt install gh normally do
 # sudo ln -s $HOME/.nix-profile/bin/gh /usr/bin/gh
 nix-env -iA nixpkgs.zoxide
-
 nix-env -iA nixpkgs.bat
+
+# New profile command
+nix profile install nixpkgs#fzf
