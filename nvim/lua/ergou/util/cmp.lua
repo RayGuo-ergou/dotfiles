@@ -79,8 +79,6 @@ function M.cmp_format(entry, vim_item)
     },
   })(entry, vim_item)
 
-  vim.api.nvim_set_hl(0, 'CmpItemKindNpm', { fg = '#BD93F9' })
-
   local completion_item = entry.completion_item
   local completion_context = completion_item.detail
     or completion_item.labelDetails and completion_item.labelDetails.description

@@ -31,6 +31,11 @@ return {
             },
           },
         },
+        custom_highlights = function(colors)
+          return {
+            CmpItemKindNpm = { fg = colors.red },
+          }
+        end,
       })
 
       vim.cmd.colorscheme('catppuccin-macchiato')
