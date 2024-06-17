@@ -67,6 +67,7 @@ function M.cmp_format(entry, vim_item)
     maxwidth = 50,
     ellipsis_char = '...',
     preset = 'codicons',
+    symbol_map = { Npm = ergou.icons.others.npm },
     show_labelDetails = true,
     menu = {
       buffer = '[Buffer]',
@@ -77,6 +78,8 @@ function M.cmp_format(entry, vim_item)
       calc = '[Calc]',
     },
   })(entry, vim_item)
+
+  vim.api.nvim_set_hl(0, 'CmpItemKindNpm', { fg = '#BD93F9' })
 
   local completion_item = entry.completion_item
   local completion_context = completion_item.detail

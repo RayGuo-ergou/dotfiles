@@ -181,6 +181,7 @@ return {
   },
   {
     'David-Kunz/cmp-npm',
+    url = 'https://github.com/whengely/cmp-npm',
     event = { 'BufRead package.json' },
     config = true,
   },

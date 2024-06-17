@@ -53,6 +53,7 @@ local icons = {
     clock = ' ',
     maximize = ' ',
     terminal = ' ',
+    npm = ' ',
   },
 }
 
