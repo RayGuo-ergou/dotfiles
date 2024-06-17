@@ -1,4 +1,5 @@
 --- @class ergou.util.lsp
+--- @field TS_SERVER 'tsserver' | 'vtsls'
 local M = {}
 
 --- @type string[]
@@ -32,7 +33,6 @@ M.TS_FILETYPES = {
   'typescript.tsx',
   'vue',
 }
---- @type 'vtsls'|'tsserver'
 M.TS_SERVER = 'vtsls'
 M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG = {
   updateImportsOnFileMove = { enabled = 'always' },
@@ -301,6 +301,7 @@ M.get_servers = function()
       },
     },
     tsserver = {
+      handlers = M.TS_SERVER_HANDLERS,
       enabled = M.TS_SERVER == 'tsserver',
       -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
       init_options = {
