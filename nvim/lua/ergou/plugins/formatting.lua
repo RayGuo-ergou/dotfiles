@@ -39,19 +39,20 @@ return {
         format_on_save = function()
           local ft = vim.bo.filetype
 
+          ---@type conform.FormatOpts
           local config = {
-            lsp_fallback = true,
+            lsp_format = 'fallback',
             async = false,
             timeout_ms = timeout,
           }
 
           if ft == 'php' then
-            config.lsp_fallback = 'always'
+            config.lsp_format = 'first'
           end
 
           -- do not format blade file with html lsp
           if ft == 'blade' then
-            config.lsp_fallback = false
+            config.lsp_format = 'never'
           end
 
           return config
