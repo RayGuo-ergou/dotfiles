@@ -4,6 +4,9 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 # zoxide initialization
 execute_if_command_exists "zoxide" "$(zoxide init zsh)"
 
+# fzf initialization
+execute_if_command_exists "fzf" "source <(fzf --zsh)"
+
 # nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
@@ -73,3 +76,4 @@ fi
 
 # init cargo
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
