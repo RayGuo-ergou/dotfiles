@@ -118,6 +118,44 @@ function M.cmp_sort()
     end
   end
 
+  ---@param entry1 cmp.Entry
+  ---@param entry2 cmp.Entry
+  local function package_json_npm(entry1, entry2)
+    local filename = vim.fn.expand('%:t')
+    if filename == 'package.json' then
+      local source1 = entry1.source.name
+      local source2 = entry2.source.name
+
+      -- make source npm has higher priority
+      if source1 == 'npm' and source2 ~= 'npm' then
+        return true
+      end
+
+      if source1 ~= 'npm' and source2 == 'npm' then
+        return false
+      end
+
+      -- if both source are npm, sort by version
+      if source1 == 'npm' and source2 == 'npm' then
+        local label1 = entry1.completion_item.label
+        local label2 = entry2.completion_item.label
+        local major1, minor1, patch1 = string.match(label1, '(%d+)%.(%d+)%.(%d+)')
+        local major2, minor2, patch2 = string.match(label2, '(%d+)%.(%d+)%.(%d+)')
+        if major1 ~= major2 then
+          return tonumber(major1) > tonumber(major2)
+        end
+        if minor1 ~= minor2 then
+          return tonumber(minor1) > tonumber(minor2)
+        end
+        if patch1 ~= patch2 then
+          return tonumber(patch1) > tonumber(patch2)
+        end
+      end
+    end
+
+    return false
+  end
+
   return {
     priority_weight = default_config().sorting.priority_weight,
     comparators = {
@@ -125,6 +163,7 @@ function M.cmp_sort()
       cmp.config.compare.exact,
       cmp.config.compare.sort_text,
       custom_kind,
+      package_json_npm,
       -- cmp.config.compare.scopes,
       cmp.score,
       cmp.recently_used,
