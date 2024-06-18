@@ -107,6 +107,9 @@ function M.cmp_sort()
   local function modified_kind(kind)
     return modified_priority[kind] or kind
   end
+
+  ---@param entry1 cmp.Entry
+  ---@param entry2 cmp.Entry
   local function custom_kind(entry1, entry2) -- sort by compare kind (Variable, Function etc)
     local kind1 = modified_kind(entry1:get_kind())
     local kind2 = modified_kind(entry2:get_kind())
