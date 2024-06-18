@@ -107,11 +107,32 @@ function M.cmp_sort()
   local function modified_kind(kind)
     return modified_priority[kind] or kind
   end
+
+  ---@param entry1 cmp.Entry
+  ---@param entry2 cmp.Entry
   local function custom_kind(entry1, entry2) -- sort by compare kind (Variable, Function etc)
     local kind1 = modified_kind(entry1:get_kind())
     local kind2 = modified_kind(entry2:get_kind())
     if kind1 ~= kind2 then
       return kind1 - kind2 < 0
+    end
+  end
+
+  ---@param entry1 cmp.Entry
+  ---@param entry2 cmp.Entry
+  local function packageJsonVersion(entry1, entry2)
+    local filename = vim.fn.expand('%:t')
+    if filename ~= 'package.json' then
+      return false
+    end
+    local _, entry1_under = entry1.completion_item.label:find('(%d+)%.(%d+)%.(%d+)')
+    local _, entry2_under = entry2.completion_item.label:find('(%d+)%.(%d+)%.(%d+)')
+    entry1_under = entry1_under or 0
+    entry2_under = entry2_under or 0
+    if entry1_under > entry2_under then
+      return true
+    elseif entry1_under < entry2_under then
+      return false
     end
   end
 
@@ -121,6 +142,7 @@ function M.cmp_sort()
       cmp.config.compare.offset,
       cmp.config.compare.exact,
       cmp.config.compare.sort_text,
+      packageJsonVersion,
       custom_kind,
       -- cmp.config.compare.scopes,
       cmp.score,
