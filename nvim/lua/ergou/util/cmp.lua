@@ -93,6 +93,8 @@ function M.cmp_format(entry, vim_item)
   return item_with_kind
 end
 
+M.json_filename = ''
+
 function M.cmp_sort()
   local types = require('cmp.types')
   local cmp = require('cmp')
@@ -121,8 +123,16 @@ function M.cmp_sort()
   ---@param entry1 cmp.Entry
   ---@param entry2 cmp.Entry
   local function package_json_npm(entry1, entry2)
-    local filename = vim.fn.expand('%:t')
-    if filename == 'package.json' then
+    local filetype = vim.bo.filetype
+    if filetype ~= 'json' then
+      return false
+    end
+
+    if M.json_filename == '' then
+      M.json_filename = vim.fn.expand('%:t')
+    end
+
+    if M.json_filename == 'package.json' then
       local source1 = entry1.source.name
       local source2 = entry2.source.name
 

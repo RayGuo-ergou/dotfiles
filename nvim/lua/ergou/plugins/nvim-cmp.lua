@@ -121,11 +121,15 @@ return {
       -- Reset the cache at the start of each completion session
       cmp.event:on('menu_closed', function()
         local filetype = vim.bo.filetype
-        if filetype ~= 'vue' then
-          return
+
+        if filetype == 'json' then
+          ergou.cmp.json_filename = ''
         end
-        local bufnr = vim.api.nvim_get_current_buf()
-        vim.b[bufnr]._vue_ts_cached_is_in_start_tag = nil
+
+        if filetype == 'vue' then
+          local bufnr = vim.api.nvim_get_current_buf()
+          vim.b[bufnr]._vue_ts_cached_is_in_start_tag = nil
+        end
       end)
 
       cmp.setup.filetype(ergou.sql_ft, {
