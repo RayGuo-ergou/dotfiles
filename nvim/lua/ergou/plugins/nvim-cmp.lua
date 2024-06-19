@@ -22,7 +22,7 @@ return {
       local luasnip = require('luasnip')
 
       local cmp_select_next_item = function(fallback)
-        if cmp.visible() then
+        if ergou.cmp.visible() then
           cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
         else
           fallback()
@@ -30,7 +30,7 @@ return {
       end
 
       local cmp_select_prev_item = function(fallback)
-        if cmp.visible() then
+        if ergou.cmp.visible() then
           cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
         else
           fallback()
@@ -55,9 +55,7 @@ return {
           ['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
           ['<C-e>'] = cmp.mapping.abort(), -- close completion window
           ['<CR>'] = function(fallback)
-            -- Test the below later
-            -- if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
-            if cmp.visible() then
+            if ergou.cmp.visible() then
               ergou.create_undo()
               if cmp.confirm({ select = false }) then
                 return
@@ -141,7 +139,7 @@ return {
       local cmd_kepmap = {
         ['<C-j>'] = {
           c = function(fallback)
-            if cmp.visible() then
+            if ergou.cmp.visible() then
               cmp.select_next_item()
             else
               fallback()
@@ -150,7 +148,7 @@ return {
         },
         ['<C-k>'] = {
           c = function(fallback)
-            if cmp.visible() then
+            if ergou.cmp.visible() then
               cmp.select_prev_item()
             else
               fallback()
