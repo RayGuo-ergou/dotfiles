@@ -194,7 +194,7 @@ function M.lsp_autocmd()
               if not M.words.at() then
                 if ev.event:find('CursorMoved') then
                   vim.lsp.buf.clear_references()
-                else
+                elseif not ergou.cmp.visible() then
                   vim.lsp.buf.document_highlight()
                 end
               end

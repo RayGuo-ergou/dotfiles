@@ -226,4 +226,10 @@ function M.cmp_lsp_entry_filter(entry, ctx)
   end
 end
 
+function M.visible()
+  ---@module 'cmp'
+  local cmp = package.loaded['cmp']
+  return cmp and cmp.core.view:visible()
+end
+
 return M
