@@ -172,7 +172,7 @@ function M.cmp_sort()
     comparators = {
       compare.offset,
       compare.exact,
-      custom_kind,
+      -- custom_kind,
       -- compare.scopes,
       compare.score,
       compare.recently_used,
