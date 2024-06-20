@@ -98,6 +98,7 @@ M.json_filename = ''
 function M.cmp_sort()
   local types = require('cmp.types')
   local cmp = require('cmp')
+  local compare = require('cmp.config.compare')
   local default_config = require('cmp.config.default')
   -- Take from, Thank you!
   ---@see https://github.com/pysan3/dotfiles/blob/9d3ca30baecefaa2a6453d8d6d448d62b5614ff2/nvim/lua/plugins/70-nvim-cmp.lua
@@ -169,18 +170,18 @@ function M.cmp_sort()
   return {
     priority_weight = default_config().sorting.priority_weight,
     comparators = {
-      cmp.config.compare.offset,
-      cmp.config.compare.exact,
-      cmp.config.compare.sort_text,
+      compare.offset,
+      compare.exact,
       custom_kind,
+      -- compare.scopes,
+      compare.score,
+      compare.recently_used,
+      compare.locality,
+      compare.kind,
+      compare.sort_text,
+      compare.length,
+      compare.order,
       package_json_npm,
-      -- cmp.config.compare.scopes,
-      cmp.score,
-      cmp.recently_used,
-      cmp.locality,
-      cmp.kind,
-      cmp.length,
-      cmp.order,
     },
   }
 end
