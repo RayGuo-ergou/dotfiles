@@ -5,6 +5,7 @@ return {
     opts = {
       library = {
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = 'nvim-lspconfig/lua' },
       },
     },
   },
