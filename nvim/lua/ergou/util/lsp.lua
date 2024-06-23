@@ -33,7 +33,7 @@ M.TS_FILETYPES = {
   'typescript.tsx',
   'vue',
 }
-M.TS_SERVER = 'vtsls'
+M.TS_SERVER = 'tsserver'
 M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG = {
   updateImportsOnFileMove = { enabled = 'always' },
   suggest = {
