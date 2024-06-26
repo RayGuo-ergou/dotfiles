@@ -14,7 +14,7 @@ return {
     local bracket = basic.bracket_creator(config)
 
     npairs.add_rules({
-      bracket('<', '>'),
+      bracket('<', '>'):with_pair(ts_conds.is_ts_node({ 'function', 'arguments' })),
     })
 
     -- For vue, e.g. v-if="a === ''"
