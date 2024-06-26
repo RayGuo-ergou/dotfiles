@@ -201,6 +201,7 @@ end
 ---@param ctx cmp.Context
 ---For vue mostly
 function M.cmp_lsp_entry_filter(entry, ctx)
+  local types = require('cmp.types')
   -- Check if the buffer type is 'vue'
   if ctx.filetype ~= 'vue' then
     return true
@@ -222,6 +223,9 @@ function M.cmp_lsp_entry_filter(entry, ctx)
     return entry.completion_item.label:match('^@')
   elseif cursor_before_line:sub(-1) == ':' then
     return entry.completion_item.label:match('^:') and not entry.completion_item.label:match('^:on-')
+  -- For slot
+  elseif cursor_before_line:sub(-1) == '#' then
+    return entry.completion_item.kind == types.lsp.CompletionItemKind.Method
   else
     return true
   end
