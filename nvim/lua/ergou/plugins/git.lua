@@ -23,6 +23,13 @@ return {
         changedelete = { text = '▎' },
         untracked = { text = '▎' },
       },
+      signs_staged = {
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+      },
       on_attach = function(bufnr)
         local git_util = require('ergou.util.git')
         local gitsigns = require('gitsigns')
