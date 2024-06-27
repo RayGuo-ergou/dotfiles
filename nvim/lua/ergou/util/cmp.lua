@@ -128,7 +128,7 @@ function M.cmp_sort()
   local function package_json_npm(entry1, entry2)
     local filetype = vim.bo.filetype
     if filetype ~= 'json' then
-      return false
+      return nil
     end
 
     if M.json_filename == '' then
@@ -166,7 +166,7 @@ function M.cmp_sort()
       end
     end
 
-    return false
+    return nil
   end
 
   return {
