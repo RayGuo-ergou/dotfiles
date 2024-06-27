@@ -121,6 +121,8 @@ function M.cmp_sort()
     end
   end
 
+  local i = 1
+
   ---@param entry1 cmp.Entry
   ---@param entry2 cmp.Entry
   local function package_json_npm(entry1, entry2)
@@ -170,6 +172,7 @@ function M.cmp_sort()
   return {
     priority_weight = default_config().sorting.priority_weight,
     comparators = {
+      package_json_npm,
       compare.offset,
       compare.exact,
       -- custom_kind,
@@ -181,7 +184,6 @@ function M.cmp_sort()
       compare.sort_text,
       compare.length,
       compare.order,
-      package_json_npm,
     },
   }
 end
