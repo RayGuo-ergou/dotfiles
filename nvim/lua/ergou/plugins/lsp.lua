@@ -7,7 +7,7 @@ return {
     event = 'LazyFile',
     dependencies = {
       { 'williamboman/mason.nvim', config = true },
-      'williamboman/mason-lspconfig.nvim',
+      { 'williamboman/mason-lspconfig.nvim', config = function() end },
       {
         'utilyre/barbecue.nvim',
         name = 'barbecue',
