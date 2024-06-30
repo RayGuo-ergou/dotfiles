@@ -64,7 +64,7 @@ return {
         end, 'git diff against last commit')
 
         -- Toggles
-        map('n', '<leader>gb', gitsigns.toggle_current_line_blame, 'toggle git blame line')
+        map('n', '<leader>gB', gitsigns.toggle_current_line_blame, 'toggle git blame line')
         map('n', '<leader>gd', gitsigns.toggle_deleted, 'toggle git show deleted')
         map('n', '<leader>gb', git_util.blame_line, 'Git Blame Line')
 
