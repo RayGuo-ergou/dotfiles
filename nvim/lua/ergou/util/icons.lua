@@ -41,6 +41,7 @@ local icons = {
       directory = '', -- Text to show when the buffer is a directory
     },
   },
+  ---@type table<string, string|string[]> {icon, text_highlight, line/num_highlight}
   dap = {
     Stopped = { '󰁕 ', 'DiagnosticWarn', 'DapStoppedLine' },
     Breakpoint = ' ',
