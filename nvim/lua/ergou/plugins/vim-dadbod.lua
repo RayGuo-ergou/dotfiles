@@ -31,6 +31,11 @@ return {
       -- you save the file running those queries can crash neovim to run use the
       -- default keymap: <leader>S
       vim.g.db_ui_execute_on_save = false
+
+      ---@see https://github.com/kristijanhusak/vim-dadbod-ui?tab=readme-ov-file#databases
+      vim.g.dbs = {
+        { name = 'dev', url = 'postgres://postgres:mysecretpassword@localhost:5432' },
+      }
     end,
   },
 }
