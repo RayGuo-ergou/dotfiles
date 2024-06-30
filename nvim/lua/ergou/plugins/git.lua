@@ -23,6 +23,8 @@ return {
         changedelete = { text = '▎' },
         untracked = { text = '▎' },
       },
+      -- Higher than lsp diagnostics so I will see git changes first
+      sign_priority = 10,
       signs_staged = {
         add = { text = '▎' },
         change = { text = '▎' },
