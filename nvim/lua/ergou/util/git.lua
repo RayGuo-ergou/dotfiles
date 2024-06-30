@@ -13,10 +13,10 @@ function M.blame_line(opts)
     border = 'rounded',
   }, opts or {})
   local cursor = vim.api.nvim_win_get_cursor(0)
-  -- If there's none stashed code, the line number may not be correct
   local line = cursor[1]
   local file = vim.api.nvim_buf_get_name(0)
-  local cmd = { 'git', 'log', '-n', opts.count, '-u', '-L', line .. ',+5:' .. file }
+  local root = ergou.root.detectors.pattern(0, { '.git' })[1] or '.'
+  local cmd = { 'git', '-C', root, 'log', '-n', opts.count, '-u', '-L', line .. ',+5:' .. file }
   return require('lazy.util').float_cmd(cmd, opts)
 end
 
