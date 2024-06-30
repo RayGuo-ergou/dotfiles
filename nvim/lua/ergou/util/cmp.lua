@@ -61,6 +61,9 @@ function M.add_missing_snippet_docs(window)
   end
 end
 
+---@param entry cmp.Entry
+---@param vim_item vim.CompletedItem
+---@return vim.CompletedItem
 function M.cmp_format(entry, vim_item)
   local lspkind = require('lspkind')
   local item_with_kind = lspkind.cmp_format({
@@ -78,6 +81,11 @@ function M.cmp_format(entry, vim_item)
       calc = '[Calc]',
     },
   })(entry, vim_item)
+
+  local filetype = vim.bo.filetype
+  if vim.tbl_contains(ergou.sql_ft, filetype) then
+    return item_with_kind
+  end
 
   local completion_item = entry.completion_item
   local completion_context = completion_item.detail
