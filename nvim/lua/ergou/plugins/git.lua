@@ -36,7 +36,7 @@ return {
         local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 
         local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+          vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
         end
 
         -- Actions
