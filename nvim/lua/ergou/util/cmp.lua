@@ -204,7 +204,8 @@ local function is_in_start_tag()
   if not node then
     return false
   end
-  return node:type() == 'start_tag' or node:type() == 'self_closing_tag'
+  local node_to_check = { 'start_tag', 'self_closing_tag', 'directive_attribute' }
+  return vim.tbl_contains(node_to_check, node:type())
 end
 
 ---@param entry cmp.Entry
