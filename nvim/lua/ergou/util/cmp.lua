@@ -204,7 +204,7 @@ local function is_in_start_tag()
   if not node then
     return false
   end
-  return node:type() == 'start_tag'
+  return node:type() == 'start_tag' or node:type() == 'self_closing_tag'
 end
 
 ---@param entry cmp.Entry
