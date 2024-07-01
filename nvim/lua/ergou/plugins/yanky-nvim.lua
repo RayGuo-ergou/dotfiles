@@ -57,12 +57,12 @@ return {
     --   mode = { 'n', 'x' },
     --   desc = 'Put yanked text after cursor',
     -- },
-    {
-      'P',
-      '<Plug>(YankyPutBefore)',
-      mode = { 'n', 'x' },
-      desc = 'Put yanked text before cursor',
-    },
+    -- {
+    --   'P',
+    --   '<Plug>(YankyPutBefore)',
+    --   mode = { 'n', 'x' },
+    --   desc = 'Put yanked text before cursor',
+    -- },
     {
       '<a-p>',
       '<Plug>(YankyPreviousEntry)',
