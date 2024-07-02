@@ -24,7 +24,8 @@ return {
         untracked = { text = '▎' },
       },
       -- Higher than lsp diagnostics so I will see git changes first
-      sign_priority = 10,
+      -- I am okay for this to be top priority as the error will show in buffer anyway
+      sign_priority = 1000,
       signs_staged = {
         add = { text = '▎' },
         change = { text = '▎' },
