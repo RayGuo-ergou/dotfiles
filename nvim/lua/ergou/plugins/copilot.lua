@@ -15,7 +15,6 @@ return {
       },
       filetypes = {
         markdown = true,
-        gitcommit = true,
         gitrebase = true,
         yaml = true,
         ['grug-far'] = false,
