@@ -6,13 +6,13 @@ return {
     event = 'InsertEnter',
     opts = {
       panel = {
-        enabled = false,
+        enabled = true,
         auto_refresh = true,
       },
       suggestion = {
         accept = false,
-        enabled = false,
-        auto_trigger = false,
+        enabled = true,
+        auto_trigger = true,
       },
       filetypes = {
         markdown = true,
