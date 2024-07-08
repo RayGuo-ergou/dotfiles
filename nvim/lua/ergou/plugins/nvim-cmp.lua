@@ -64,9 +64,10 @@ return {
             return fallback()
           end,
           ['<Tab>'] = cmp.mapping(function(fallback)
-            if ergou.has('copilot.suggestion') then
-              if require('copilot.suggestion').is_visible() then
-                require('copilot.suggestion').accept()
+            local has_copilot, copilot = pcall(require, 'copilot.suggestion')
+            if has_copilot then
+              if copilot.is_visible() then
+                copilot.accept()
               end
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
