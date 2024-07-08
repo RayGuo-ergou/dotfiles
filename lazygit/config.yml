@@ -123,7 +123,7 @@ promptToReturnFromSubprocess: true # display confirmation when subprocess termin
 keybinding:
   universal:
     quit: '<c-c>'
-    # quit-alt1: 'q' # alternative/alias of quit
+    quit-alt1: 'q' # alternative/alias of quit
     return: '<esc>' # return to previous menu, will quit if there's nowhere to return
     quitWithoutChangingDirectory: 'Q'
     togglePanel: '<tab>' # goto the next panel
