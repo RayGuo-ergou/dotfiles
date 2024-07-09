@@ -160,6 +160,13 @@ return {
         end,
         desc = 'Git line history',
       },
+      {
+        '<leader>ghf',
+        function()
+          require('tinygit').interactiveStaging()
+        end,
+        desc = 'Git interactive staging',
+      },
     },
   },
 }

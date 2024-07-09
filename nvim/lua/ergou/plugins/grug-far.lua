@@ -11,7 +11,6 @@ return {
       end,
       desc = 'replace current cursor word',
     },
-
     {
       '<leader>rw',
       function()
