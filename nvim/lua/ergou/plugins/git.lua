@@ -161,7 +161,7 @@ return {
         desc = 'Git line history',
       },
       {
-        '<leader>ghf',
+        '<leader>gs',
         function()
           require('tinygit').interactiveStaging()
         end,
