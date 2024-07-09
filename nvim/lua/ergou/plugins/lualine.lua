@@ -34,13 +34,24 @@ return {
                 end
               end,
             },
-            {
-              'buffers',
-              symbols = icons.file.symbols,
-            },
+            -- {
+            --   'buffers',
+            --   symbols = icons.file.symbols,
+            -- },
           },
           lualine_c = {},
           lualine_x = {
+            {
+              function()
+                return require('tinygit.statusline').branchState()
+              end,
+            },
+            {
+              function()
+                return require('tinygit.statusline').blame()
+              end,
+              color = ui.fg('Tag'),
+            },
             {
               function()
                 return vim.t.maximized and icons.others.maximize or ''
