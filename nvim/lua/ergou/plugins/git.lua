@@ -139,6 +139,13 @@ return {
         end,
         desc = 'Git commit',
       },
+      {
+        '<leader>gP',
+        function()
+          require('tinygit').push()
+        end,
+        desc = 'Git push',
+      },
     },
   },
 }
