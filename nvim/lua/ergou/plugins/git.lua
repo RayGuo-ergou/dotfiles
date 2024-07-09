@@ -128,4 +128,17 @@ return {
       { '<leader>gl', '<cmd>LazyGit<cr>', mode = { 'n' }, desc = 'Open lazygit' },
     },
   },
+
+  {
+    'chrisgrieser/nvim-tinygit',
+    keys = {
+      {
+        '<leader>gc',
+        function()
+          require('tinygit').smartCommit()
+        end,
+        desc = 'Git commit',
+      },
+    },
+  },
 }
