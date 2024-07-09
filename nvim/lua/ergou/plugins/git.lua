@@ -131,6 +131,13 @@ return {
 
   {
     'chrisgrieser/nvim-tinygit',
+    opts = {
+      statusline = {
+        blame = {
+          icon = ' ',
+        },
+      },
+    },
     keys = {
       {
         '<leader>gc',
