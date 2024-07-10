@@ -100,6 +100,9 @@ return {
             },
             {
               'copilot',
+              cond = function()
+                return package.loaded['copilot.suggestion']
+              end,
             },
             'diagnostics',
           },
