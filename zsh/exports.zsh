@@ -90,3 +90,6 @@ export FZF_CTRL_T_OPTS="
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
+
+# vi-mode config
+export VI_MODE_SET_CURSOR=true
