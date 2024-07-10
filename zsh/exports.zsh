@@ -12,7 +12,7 @@ tmux
 zsh-autosuggestions
 # zsh-syntax-highlighting
 fast-syntax-highlighting
-zsh-vi-mode
+# zsh-vi-mode
 you-should-use
 colored-man-pages
 command-not-found
