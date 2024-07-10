@@ -69,15 +69,27 @@ return {
           hide_gitignored = true,
           hide_by_name = { '.git' },
         },
-        commands = {
-          copy_file_name = function(state)
-            local node = state.tree:get_node()
-            vim.fn.setreg('*', node.name, 'c')
-          end,
-        },
       },
+      commands = {
+        copy_file_name = function(state)
+          local node = state.tree:get_node()
+          vim.fn.setreg('*', node.name, 'c')
+        end,
+        diff_files = Util.neotree.diff,
+      },
+
       window = {
         mappings = {
+          ['D'] = 'diff_files',
+          ['e'] = function()
+            require('neo-tree.command').execute({ toggle = true, dir = Util.root() })
+          end,
+          ['b'] = function()
+            require('neo-tree.command').execute({ source = 'buffers', toggle = true })
+          end,
+          ['g'] = function()
+            require('neo-tree.command').execute({ source = 'git_status', toggle = true })
+          end,
           ['<space>'] = 'none',
           ['o'] = { 'open' },
           ['oc'] = 'none',
@@ -87,7 +99,6 @@ return {
           ['on'] = 'none',
           ['os'] = 'none',
           ['ot'] = 'none',
-          ['e'] = 'none',
           ['Y'] = {
             Util.neotree.copy_selector,
             desc = 'copy path/filename to clipboard',
