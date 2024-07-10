@@ -14,6 +14,7 @@ zsh-autosuggestions
 fast-syntax-highlighting
 # zsh-vi-mode
 you-should-use
+vi-mode
 colored-man-pages
 command-not-found
 composer
