@@ -136,6 +136,13 @@ return {
         blame = {
           icon = ' ',
         },
+        branchState = {
+          icons = {
+            ahead = '󰮭 ',
+            behind = '󱙝 ',
+            diverge = '󱚠 ',
+          },
+        },
       },
     },
     keys = {
