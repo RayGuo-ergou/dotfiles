@@ -34,6 +34,9 @@ return {
                 end
               end,
             },
+            {
+              'windows',
+            },
             -- {
             --   'buffers',
             --   symbols = icons.file.symbols,
