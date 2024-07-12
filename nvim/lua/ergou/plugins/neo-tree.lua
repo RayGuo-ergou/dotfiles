@@ -81,13 +81,13 @@ return {
       window = {
         mappings = {
           ['D'] = 'diff_files',
-          ['e'] = function()
+          ['E'] = function()
             require('neo-tree.command').execute({ toggle = true, dir = Util.root() })
           end,
-          ['b'] = function()
+          ['B'] = function()
             require('neo-tree.command').execute({ source = 'buffers', toggle = true })
           end,
-          ['g'] = function()
+          ['G'] = function()
             require('neo-tree.command').execute({ source = 'git_status', toggle = true })
           end,
           ['<space>'] = 'none',
@@ -99,6 +99,7 @@ return {
           ['on'] = 'none',
           ['os'] = 'none',
           ['ot'] = 'none',
+          ['e'] = 'none',
           ['Y'] = {
             Util.neotree.copy_selector,
             desc = 'copy path/filename to clipboard',
