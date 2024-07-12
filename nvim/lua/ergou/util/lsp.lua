@@ -439,7 +439,15 @@ M.get_servers = function()
         },
       },
     },
-    cssls = {},
+    cssls = {
+      settings = {
+        css = {
+          lint = {
+            unknownAtRules = 'ignore',
+          },
+        },
+      },
+    },
     taplo = {},
   }
 
