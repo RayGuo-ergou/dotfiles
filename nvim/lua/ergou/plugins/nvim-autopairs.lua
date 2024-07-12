@@ -18,8 +18,8 @@ return {
     })
 
     -- For vue, e.g. v-if="a === ''"
-    npairs.add_rules({
-      Rule('\'', '\'', 'vue'):with_pair(ts_conds.is_ts_node({ 'program', 'attribute_value' })),
-    })
+    -- npairs.add_rules({
+    --   Rule('\'', '\'', 'vue'):with_pair(ts_conds.is_ts_node({ 'program', 'attribute_value' })),
+    -- })
   end,
 }
