@@ -1,37 +1,53 @@
 return {
   'folke/which-key.nvim',
   event = 'VeryLazy',
+  ---@type Options
   opts = {
     plugins = { spelling = true },
-    defaults = {
-      mode = { 'n', 'v' },
-      ['g'] = { name = '+goto' },
-      ['z'] = { name = '+fold' },
-      [']'] = { name = '+next' },
-      ['['] = { name = '+prev' },
-      ['<leader><tab>'] = { name = '+tabs' },
-      ['<leader>b'] = { name = '+Buffer' },
-      ['<leader>c'] = { name = '+Code' },
-      ['<leader>d'] = { name = '+Debug/Diff' },
-      ['<leader>f'] = { name = '+File/find' },
-      ['<leader>q'] = { name = '+Quit/session' },
-      ['<leader>s'] = { name = '+Search' },
-      ['<leader>u'] = { name = '+Ui' },
-      ['<leader>t'] = { name = '+Toggle' },
-      ['<leader>x'] = { name = '+Diagnostics/Quickfix' },
-      ['<leader>g'] = { name = '+Git' },
-      ['<leader>gh'] = { name = '+Git Hunk' },
-      ['<leader>r'] = { name = '+Rename/Replace' },
-      ['<leader>w'] = { name = '+Window' },
-      ['<leader>n'] = { name = '+Npm' },
+    defaults = {},
+    spec = {
+      {
+        mode = { 'n', 'v' },
+        -- Icons build in
+        { '<leader><tab>', group = 'tabs' },
+        { '<leader>b', group = 'buffer' },
+        { '<leader>c', group = 'code' },
+        { '<leader>d', group = 'debug' },
+        { '<leader>f', group = 'file/find' },
+        { '<leader>g', group = 'git' },
+        { '<leader>gh', group = 'hunks' },
+        { '<leader>q', group = 'quit/session' },
+        { '<leader>s', group = 'search' },
+        { '<leader>n', group = 'noice' },
+        { '<leader>t', group = 'toggle' },
+        { '<leader>u', group = 'ui' },
+        { '<leader>w', group = 'windows' },
+        { '<leader>x', group = 'diagnostics/quickfix' },
+        { '[', group = 'prev' },
+        { ']', group = 'next' },
+        { 'g', group = 'goto' },
+        { 'gs', group = 'surround' },
+        { 'z', group = 'fold' },
+
+        -- No icon
+        { '<leader>r', group = 'rename/replace', icon = '󰬲 ', color = 'purple' },
+      },
     },
     triggers_blacklist = {
       n = { 'd', 'y' },
     },
   },
+  keys = {
+    {
+      '<leader>?',
+      function()
+        require('which-key').show({ global = false })
+      end,
+      desc = 'Buffer Local Keymaps (which-key)',
+    },
+  },
   config = function(_, opts)
     local wk = require('which-key')
     wk.setup(opts)
-    wk.register(opts.defaults)
   end,
 }
