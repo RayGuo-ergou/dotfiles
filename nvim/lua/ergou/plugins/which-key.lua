@@ -1,10 +1,11 @@
 return {
   'folke/which-key.nvim',
   event = 'VeryLazy',
-  ---@type Options
+  ---@type wk.Opts
   opts = {
     plugins = { spelling = true },
     defaults = {},
+    ---@type wk.Spec
     spec = {
       {
         mode = { 'n', 'v' },
