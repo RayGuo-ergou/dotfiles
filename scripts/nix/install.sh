@@ -17,3 +17,4 @@ nix-env -iA nixpkgs.bat
 
 # New profile command
 nix profile install nixpkgs#fzf
+nix profile install nixpkgs#ripgrep

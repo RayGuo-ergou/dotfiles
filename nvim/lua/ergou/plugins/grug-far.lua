@@ -9,7 +9,7 @@ return {
       function()
         require('grug-far').grug_far({})
       end,
-      desc = 'replace current cursor word',
+      desc = 'open grug-far',
     },
     {
       '<leader>rw',
