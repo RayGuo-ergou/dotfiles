@@ -4,12 +4,6 @@ return {
   cmd = { 'FzfLua' },
   keys = {
     {
-      '<C-e>',
-      '<cmd>FzfLua<cr>',
-      mode = { 'n' },
-      desc = 'Open fzf-lua',
-    },
-    {
       '<leader>ss',
       '<cmd>FzfLua lsp_document_symbols<cr>',
       mode = { 'n' },
