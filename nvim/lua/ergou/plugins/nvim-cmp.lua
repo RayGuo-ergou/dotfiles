@@ -39,7 +39,7 @@ return {
 
       -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
       require('luasnip.loaders.from_vscode').lazy_load()
-      require('ergou.util.snips').setupSnips()
+      require('ergou.util.snips').setup_snipes()
 
       cmp.setup({
         snippet = { -- configure how nvim-cmp interacts with snippet engine
