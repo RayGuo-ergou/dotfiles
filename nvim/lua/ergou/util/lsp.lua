@@ -216,9 +216,9 @@ function M.lsp_autocmd()
         end
       end
 
-      nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
+      -- nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
       -- nmap('<leader>rn', ':IncRename ', 'Rename')
-      nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
+      -- nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
 
       -- map for toggle inlay hint
       nmap('<leader>ih', function()
@@ -228,7 +228,6 @@ function M.lsp_autocmd()
       nmap('gd', function()
         require('telescope.builtin').lsp_definitions({ reuse_win = true })
       end, 'Goto Definition')
-      nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
       nmap('gI', function()
         require('telescope.builtin').lsp_implementations({ reuse_win = true })
       end, 'Goto Implementation')
