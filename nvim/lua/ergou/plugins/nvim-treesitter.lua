@@ -3,6 +3,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     event = { 'LazyFile', 'VeryLazy' },
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     init = function(plugin)
       -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
       -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
@@ -280,6 +281,7 @@ return {
   -- Automatically add closing tags for HTML and JSX
   {
     'windwp/nvim-ts-autotag',
+    event = 'LazyFile',
     opts = {},
   },
   -- { 'gbprod/php-enhanced-treesitter.nvim', ft = 'php' },
