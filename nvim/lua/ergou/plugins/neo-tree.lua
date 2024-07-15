@@ -81,15 +81,6 @@ return {
       window = {
         mappings = {
           ['D'] = 'diff_files',
-          ['E'] = function()
-            require('neo-tree.command').execute({ toggle = true, dir = Util.root() })
-          end,
-          ['B'] = function()
-            require('neo-tree.command').execute({ source = 'buffers', toggle = true })
-          end,
-          ['G'] = function()
-            require('neo-tree.command').execute({ source = 'git_status', toggle = true })
-          end,
           ['<space>'] = 'none',
           ['o'] = { 'open' },
           ['oc'] = 'none',
