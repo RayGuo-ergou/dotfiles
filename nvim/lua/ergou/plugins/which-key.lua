@@ -34,9 +34,6 @@ return {
         { '<leader>r', group = 'rename/replace', icon = '󰬲 ' },
       },
     },
-    triggers_blacklist = {
-      n = { 'd', 'y' },
-    },
   },
   keys = {
     {
