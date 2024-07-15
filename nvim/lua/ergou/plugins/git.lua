@@ -134,7 +134,7 @@ return {
     opts = {
       statusline = {
         blame = {
-          icon = ' ',
+          icon = ' ',
         },
         branchState = {
           icons = {
