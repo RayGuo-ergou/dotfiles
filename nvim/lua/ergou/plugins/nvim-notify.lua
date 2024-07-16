@@ -22,5 +22,6 @@ return {
     end,
     render = 'compact',
     stages = 'static',
+    top_down = false,
   },
 }
