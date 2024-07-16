@@ -21,6 +21,8 @@ npm install -g n
 corepack enable
 corepack enable pnpm
 
+# add ni
+pnpm add -g @antfu/ni
 
 
 # --- ZSH ---
