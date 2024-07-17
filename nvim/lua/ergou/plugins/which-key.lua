@@ -31,7 +31,7 @@ return {
         { 'z', group = 'fold' },
 
         -- No icon
-        { '<leader>r', group = 'rename/replace', icon = '󰬲 ' },
+        { '<leader>r', group = 'rename/replace', icon = { icon = '󰬲 ', color = 'purple' } },
       },
     },
   },
