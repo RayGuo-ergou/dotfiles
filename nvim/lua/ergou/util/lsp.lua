@@ -187,7 +187,7 @@ function M.lsp_autocmd()
 
         -- lsp highlight references
         if client.supports_method('textDocument/documentHighlight') then
-          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'CursorMoved', 'CursorMovedI' }, {
+          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'CursorMoved', 'CursorMovedI', 'ModeChanged' }, {
             group = vim.api.nvim_create_augroup('lsp_word_' .. bufnr, { clear = true }),
             buffer = bufnr,
             callback = function(ev)
@@ -197,6 +197,12 @@ function M.lsp_autocmd()
                 elseif not ergou.cmp.visible() then
                   vim.lsp.buf.document_highlight()
                 end
+              end
+
+              -- Clear reference on mode change
+              -- So in visible mode it's clear of the selected parts
+              if ev.event:find('ModeChanged') then
+                vim.lsp.buf.clear_references()
               end
             end,
           })
