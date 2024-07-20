@@ -195,7 +195,10 @@ function M.lsp_autocmd()
                 if ev.event:find('CursorMoved') then
                   vim.lsp.buf.clear_references()
                 elseif not ergou.cmp.visible() then
-                  vim.lsp.buf.document_highlight()
+                  local ok = pcall(vim.lsp.buf.document_highlight)
+                  if not ok then
+                    vim.notify('Document Highlight failed', vim.log.levels.WARN)
+                  end
                 end
               end
 
