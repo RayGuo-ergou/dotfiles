@@ -1,21 +1,21 @@
 --- @class ergou.util.lsp
---- @field TS_SERVER_TO_USE 'tsserver' | 'vtsls'
 local M = {}
 
 --- @type string[]
-M.CSPELL_CONFIG_FILES = {
+M.cspell_config_files = {
   'cspell.json',
   '.cspell.json',
   'cSpell.json',
   '.cSpell.json',
   '.cspell.config.json',
 }
+-- PHP
+M.PHP = {}
+M.PHP.working_large_file = false
 
-M.PHP = {
-  working_large_file = false,
-}
-
-M.TS_INLAY_HINTS = {
+-- TYPESCRIPT
+M.TYPESCRIPT = {}
+M.TYPESCRIPT.ts_inlay_hints = {
   includeInlayEnumMemberValueHints = true,
   includeInlayFunctionLikeReturnTypeHints = true,
   includeInlayFunctionParameterTypeHints = true,
@@ -24,7 +24,7 @@ M.TS_INLAY_HINTS = {
   includeInlayPropertyDeclarationTypeHints = true,
   includeInlayVariableTypeHints = true,
 }
-M.TS_FILETYPES = {
+M.TYPESCRIPT.ts_filetypes = {
   'javascript',
   'javascriptreact',
   'javascript.jsx',
@@ -33,9 +33,9 @@ M.TS_FILETYPES = {
   'typescript.tsx',
   'vue',
 }
-M.TS_SERVER = { 'vtsls', 'tsserver' }
-M.TS_SERVER_TO_USE = 'vtsls'
-M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG = {
+M.TYPESCRIPT.ts_server = { 'vtsls', 'tsserver' }
+M.TYPESCRIPT.ts_server_to_use = 'vtsls'
+M.TYPESCRIPT.vtsls_typescript_javascript_config = {
   updateImportsOnFileMove = { enabled = 'always' },
   suggest = {
     completeFunctionCalls = true,
@@ -49,7 +49,7 @@ M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG = {
     variableTypes = { enabled = false },
   },
 }
-M.TS_SERVER_HANDLERS = {
+M.TYPESCRIPT.ts_server_handlers = {
   ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
     if result.diagnostics == nil then
       return
@@ -74,6 +74,22 @@ M.TS_SERVER_HANDLERS = {
 
     vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
   end,
+}
+
+-- ESLINT
+M.ESLINT = {}
+
+M.ESLINT.customizations = {
+  { rule = 'style/*', severity = 'off', fixable = true },
+  { rule = 'format/*', severity = 'off', fixable = true },
+  { rule = '*-indent', severity = 'off', fixable = true },
+  { rule = '*-spacing', severity = 'off', fixable = true },
+  { rule = '*-spaces', severity = 'off', fixable = true },
+  { rule = '*-order', severity = 'off', fixable = true },
+  { rule = '*-dangle', severity = 'off', fixable = true },
+  { rule = '*-newline', severity = 'off', fixable = true },
+  { rule = '*quotes', severity = 'off', fixable = true },
+  { rule = '*semi', severity = 'off', fixable = true },
 }
 
 function M.get_clients(opts)
@@ -166,7 +182,7 @@ function M.lsp_autocmd()
         local client_name = client.name
         local file_type = vim.bo[bufnr].filetype
         if
-          not (file_type == 'vue' and vim.list_contains(M.TS_SERVER, client_name))
+          not (file_type == 'vue' and vim.list_contains(M.TYPESCRIPT.ts_server, client_name))
           and client.supports_method('textDocument/documentSymbol')
         then
           require('nvim-navic').attach(client, bufnr)
@@ -287,9 +303,9 @@ M.get_servers = function()
     -- pyright = {},
     rust_analyzer = {},
     vtsls = {
-      handlers = M.TS_SERVER_HANDLERS,
-      enabled = M.TS_SERVER_TO_USE == 'vtsls',
-      filetypes = M.TS_FILETYPES,
+      handlers = M.TYPESCRIPT.ts_server_handlers,
+      enabled = M.TYPESCRIPT.ts_server_to_use == 'vtsls',
+      filetypes = M.TYPESCRIPT.ts_filetypes,
       settings = {
         complete_function_calls = true,
         vtsls = {
@@ -306,26 +322,26 @@ M.get_servers = function()
             },
           },
         },
-        typescript = M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG,
-        javascript = M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG,
+        typescript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
+        javascript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
       },
     },
     tsserver = {
-      handlers = M.TS_SERVER_HANDLERS,
-      enabled = M.TS_SERVER_TO_USE == 'tsserver',
+      handlers = M.TYPESCRIPT.ts_server_handlers,
+      enabled = M.TYPESCRIPT.ts_server_to_use == 'tsserver',
       -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
       init_options = {
         plugins = {
           vue_plugin,
         },
       },
-      filetypes = M.TS_FILETYPES,
+      filetypes = M.TYPESCRIPT.ts_filetypes,
       settings = {
         javascript = {
-          inlayHints = M.TS_INLAY_HINTS,
+          inlayHints = M.TYPESCRIPT.ts_inlay_hints,
         },
         typescript = {
-          inlayHints = M.TS_INLAY_HINTS,
+          inlayHints = M.TYPESCRIPT.ts_inlay_hints,
         },
       },
     },
@@ -343,6 +359,9 @@ M.get_servers = function()
         'yaml',
         'yaml.docker-compose',
         'yaml.gitlab',
+      },
+      settings = {
+        rulesCustomizations = M.ESLINT.customizations,
       },
     },
     volar = {
