@@ -1,9 +1,8 @@
-local lsp_util = require('ergou.util.lsp')
 return {
   {
     'nvimtools/none-ls.nvim',
     event = 'LazyFile',
-    enabled = not lsp_util.php.working_large_file,
+    enabled = not ergou.lsp.PHP.working_large_file,
     dependencies = { 'davidmh/cspell.nvim' },
     config = function()
       local null_ls = require('null-ls')
