@@ -244,7 +244,12 @@ function M.lsp_autocmd()
       nmap('gy', function()
         require('telescope.builtin').lsp_type_definitions({ reuse_win = true })
       end, 'Goto Type')
-      nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+      nmap('K', function()
+        local winid = require('ufo').peekFoldedLinesUnderCursor()
+        if not winid then
+          vim.lsp.buf.hover()
+        end
+      end, 'Hover Documentation')
       nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
 
       -- Lesser used LSP functionality
