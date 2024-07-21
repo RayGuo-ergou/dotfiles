@@ -27,7 +27,7 @@ return {
         { '[', group = 'prev' },
         { ']', group = 'next' },
         { 'g', group = 'goto' },
-        { 'gs', group = 'surround' },
+        { 'gx', desc = 'Open with system app' },
         { 'z', group = 'fold' },
 
         -- No icon
