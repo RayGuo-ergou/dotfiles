@@ -1,5 +1,5 @@
 --- @class ergou.util.lsp
---- @field TS_SERVER 'tsserver' | 'vtsls'
+--- @field TS_SERVER_TO_USE 'tsserver' | 'vtsls'
 local M = {}
 
 --- @type string[]
@@ -33,7 +33,8 @@ M.TS_FILETYPES = {
   'typescript.tsx',
   'vue',
 }
-M.TS_SERVER = 'vtsls'
+M.TS_SERVER = { 'vtsls', 'tsserver' }
+M.TS_SERVER_TO_USE = 'vtsls'
 M.VTSLS_TYPESCRIPT_JAVASCRIPT_CONFIG = {
   updateImportsOnFileMove = { enabled = 'always' },
   suggest = {
@@ -165,7 +166,7 @@ function M.lsp_autocmd()
         local client_name = client.name
         local file_type = vim.bo[bufnr].filetype
         if
-          not (file_type == 'vue' and (client_name == 'tsserver' or client_name == 'vtsls'))
+          not (file_type == 'vue' and vim.list_contains(M.TS_SERVER, client_name))
           and client.supports_method('textDocument/documentSymbol')
         then
           require('nvim-navic').attach(client, bufnr)
@@ -287,7 +288,7 @@ M.get_servers = function()
     rust_analyzer = {},
     vtsls = {
       handlers = M.TS_SERVER_HANDLERS,
-      enabled = M.TS_SERVER == 'vtsls',
+      enabled = M.TS_SERVER_TO_USE == 'vtsls',
       filetypes = M.TS_FILETYPES,
       settings = {
         complete_function_calls = true,
@@ -311,7 +312,7 @@ M.get_servers = function()
     },
     tsserver = {
       handlers = M.TS_SERVER_HANDLERS,
-      enabled = M.TS_SERVER == 'tsserver',
+      enabled = M.TS_SERVER_TO_USE == 'tsserver',
       -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
       init_options = {
         plugins = {
