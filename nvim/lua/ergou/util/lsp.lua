@@ -78,7 +78,6 @@ M.TYPESCRIPT.ts_server_handlers = {
 
 -- ESLINT
 M.ESLINT = {}
-
 M.ESLINT.customizations = {
   { rule = 'style/*', severity = 'off', fixable = true },
   { rule = 'format/*', severity = 'off', fixable = true },
@@ -90,6 +89,28 @@ M.ESLINT.customizations = {
   { rule = '*-newline', severity = 'off', fixable = true },
   { rule = '*quotes', severity = 'off', fixable = true },
   { rule = '*semi', severity = 'off', fixable = true },
+}
+M.ESLINT.filetypes = {
+  'javascript',
+  'javascriptreact',
+  'typescript',
+  'typescriptreact',
+  'vue',
+  'html',
+  'markdown',
+  'json',
+  'jsonc',
+  'yaml',
+  'toml',
+  'xml',
+  'gql',
+  'graphql',
+  'astro',
+  'css',
+  'less',
+  'scss',
+  'pcss',
+  'postcss',
 }
 
 function M.get_clients(opts)
@@ -347,19 +368,7 @@ M.get_servers = function()
     },
     html = { filetypes = { 'html', 'twig', 'hbs', 'blade' } },
     eslint = {
-      filetypes = {
-        'typescript',
-        'javascript',
-        'javascriptreact',
-        'typescriptreact',
-        'vue',
-        'json',
-        'jsonc',
-        'markdown',
-        'yaml',
-        'yaml.docker-compose',
-        'yaml.gitlab',
-      },
+      filetypes = M.ESLINT.filetypes,
       settings = {
         rulesCustomizations = M.ESLINT.customizations,
       },
