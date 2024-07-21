@@ -95,7 +95,7 @@ return {
           text = {
             [vim.diagnostic.severity.ERROR] = signs.Error,
             [vim.diagnostic.severity.WARN] = signs.Warn,
-            [vim.diagnostic.severity.HINT] = signs.Hint,
+            [vim.diagnostic.severity.HINT] = '',
             [vim.diagnostic.severity.INFO] = signs.Info,
           },
         },

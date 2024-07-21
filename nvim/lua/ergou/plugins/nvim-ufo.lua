@@ -13,4 +13,16 @@ return {
       return { 'treesitter', 'indent' }
     end,
   },
+  keys = {
+    {
+      'zK',
+      function()
+        local winid = require('ufo').peekFoldedLinesUnderCursor()
+        if not winid then
+          vim.lsp.buf.hover()
+        end
+      end,
+      desc = 'Hover on fold or lsp',
+    },
+  },
 }
