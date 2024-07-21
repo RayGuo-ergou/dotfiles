@@ -15,6 +15,14 @@ return {
     'MeanderingProgrammer/markdown.nvim',
     cmd = 'RenderMarkdown',
     ft = 'markdown',
+    keys = {
+      {
+        '<leader>mt',
+        '<cmd>RenderMarkdown toggle<cr>',
+        desc = 'Toggle markdown plugin',
+      },
+    },
+
     opts = {},
   },
 }
