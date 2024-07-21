@@ -15,7 +15,7 @@ M.PHP.working_large_file = false
 
 -- TYPESCRIPT
 M.TYPESCRIPT = {}
-M.TYPESCRIPT.ts_inlay_hints = {
+M.TYPESCRIPT.inlay_hints = {
   includeInlayEnumMemberValueHints = true,
   includeInlayFunctionLikeReturnTypeHints = true,
   includeInlayFunctionParameterTypeHints = true,
@@ -24,7 +24,7 @@ M.TYPESCRIPT.ts_inlay_hints = {
   includeInlayPropertyDeclarationTypeHints = true,
   includeInlayVariableTypeHints = true,
 }
-M.TYPESCRIPT.ts_filetypes = {
+M.TYPESCRIPT.filetypes = {
   'javascript',
   'javascriptreact',
   'javascript.jsx',
@@ -33,8 +33,8 @@ M.TYPESCRIPT.ts_filetypes = {
   'typescript.tsx',
   'vue',
 }
-M.TYPESCRIPT.ts_server = { 'vtsls', 'tsserver' }
-M.TYPESCRIPT.ts_server_to_use = 'vtsls'
+M.TYPESCRIPT.servers = { 'vtsls', 'tsserver' }
+M.TYPESCRIPT.server_to_use = 'vtsls'
 M.TYPESCRIPT.vtsls_typescript_javascript_config = {
   updateImportsOnFileMove = { enabled = 'always' },
   suggest = {
@@ -49,7 +49,7 @@ M.TYPESCRIPT.vtsls_typescript_javascript_config = {
     variableTypes = { enabled = false },
   },
 }
-M.TYPESCRIPT.ts_server_handlers = {
+M.TYPESCRIPT.handlers = {
   ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
     if result.diagnostics == nil then
       return
@@ -203,7 +203,7 @@ function M.lsp_autocmd()
         local client_name = client.name
         local file_type = vim.bo[bufnr].filetype
         if
-          not (file_type == 'vue' and vim.list_contains(M.TYPESCRIPT.ts_server, client_name))
+          not (file_type == 'vue' and vim.list_contains(M.TYPESCRIPT.servers, client_name))
           and client.supports_method('textDocument/documentSymbol')
         then
           require('nvim-navic').attach(client, bufnr)
@@ -324,9 +324,9 @@ M.get_servers = function()
     -- pyright = {},
     rust_analyzer = {},
     vtsls = {
-      handlers = M.TYPESCRIPT.ts_server_handlers,
-      enabled = M.TYPESCRIPT.ts_server_to_use == 'vtsls',
-      filetypes = M.TYPESCRIPT.ts_filetypes,
+      handlers = M.TYPESCRIPT.handlers,
+      enabled = M.TYPESCRIPT.server_to_use == 'vtsls',
+      filetypes = M.TYPESCRIPT.filetypes,
       settings = {
         complete_function_calls = true,
         vtsls = {
@@ -348,21 +348,21 @@ M.get_servers = function()
       },
     },
     tsserver = {
-      handlers = M.TYPESCRIPT.ts_server_handlers,
-      enabled = M.TYPESCRIPT.ts_server_to_use == 'tsserver',
+      handlers = M.TYPESCRIPT.handlers,
+      enabled = M.TYPESCRIPT.server_to_use == 'tsserver',
       -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
       init_options = {
         plugins = {
           vue_plugin,
         },
       },
-      filetypes = M.TYPESCRIPT.ts_filetypes,
+      filetypes = M.TYPESCRIPT.filetypes,
       settings = {
         javascript = {
-          inlayHints = M.TYPESCRIPT.ts_inlay_hints,
+          inlayHints = M.TYPESCRIPT.inlay_hints,
         },
         typescript = {
-          inlayHints = M.TYPESCRIPT.ts_inlay_hints,
+          inlayHints = M.TYPESCRIPT.inlay_hints,
         },
       },
     },
