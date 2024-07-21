@@ -12,7 +12,12 @@ vim.g.root_spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
-opt.clipboard = 'unnamedplus' -- Sync with system clipboard
+opt.clipboard = '' -- Sync with system clipboard
+-- Set clipboard after nvim start
+---@see discuession https://github.com/LazyVim/LazyVim/discussions/4112
+vim.schedule(function()
+  vim.opt.clipboard = vim.env.SSH_TTY and '' or 'unnamedplus'
+end)
 opt.completeopt = 'menu,menuone,noselect'
 opt.conceallevel = 0 -- Hide nothing in markdown files
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
