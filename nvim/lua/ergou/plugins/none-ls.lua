@@ -3,7 +3,7 @@ return {
   {
     'nvimtools/none-ls.nvim',
     event = 'LazyFile',
-    enabled = not lsp_util.PHP.working_large_file,
+    enabled = not lsp_util.php.working_large_file,
     dependencies = { 'davidmh/cspell.nvim' },
     config = function()
       local null_ls = require('null-ls')
@@ -12,7 +12,7 @@ return {
 
       local cspellConfig = {
         find_json = function()
-          for _, file in ipairs(util.lsp.CSPELL_CONFIG_FILES) do
+          for _, file in ipairs(util.lsp.cspell_config_files) do
             local dotfiles_path = os.getenv('DOTFILES')
             if dotfiles_path then
               local path = util.root.find_file(file, dotfiles_path .. '/cspell')
