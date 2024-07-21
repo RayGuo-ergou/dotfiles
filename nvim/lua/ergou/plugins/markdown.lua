@@ -13,6 +13,7 @@ return {
   },
   {
     'MeanderingProgrammer/markdown.nvim',
+    cmd = 'RenderMarkdown',
     ft = 'markdown',
     opts = {},
   },
