@@ -6,7 +6,7 @@ exit 0;
 
 # --- System ---
 # TODO: How should I use nixpkg, or aur is enough?
-sudo pacman -S  base-devel git cmake zsh bat zoxide tmux eza fzf ripgrep fd xsel git-delta github-cli
+sudo pacman -S base-devel git cmake zsh bat zoxide tmux eza fzf ripgrep fd xsel git-delta github-cli lazygit
 
 cd ~/git && pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 yay git-extras
@@ -44,3 +44,14 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZS
 # this plugin has conflicts with fzf
 # git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode"
 
+# --- NVIM ---
+# Can pass depth 1 if take too long
+git clone https://github.com/neovim/neovim.git
+
+cd neovim
+
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+
+sudo make install
+
+yay upzip # for stylua

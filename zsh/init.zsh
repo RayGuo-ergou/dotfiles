@@ -77,3 +77,5 @@ fi
 # init cargo
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
+# disable autocd
+unsetopt autocd
