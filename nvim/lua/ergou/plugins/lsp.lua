@@ -109,10 +109,13 @@ return {
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
+      local ensure_install_servers = vim.tbl_keys(servers)
+
       local mason_lspconfig = require('mason-lspconfig')
       Util.lsp.lsp_autocmd()
 
       mason_lspconfig.setup({
+        ensure_installed = ensure_install_servers,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}

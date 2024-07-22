@@ -445,7 +445,7 @@ M.get_servers = function()
       },
     },
     unocss = {},
-    theme_check = {},
+    -- theme_check = {},
     prismals = {},
     -- jdtls = {},
     emmet_language_server = {
