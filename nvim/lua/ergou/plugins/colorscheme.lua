@@ -8,6 +8,9 @@ return {
     config = function()
       require('catppuccin').setup({
         no_italic = true,
+        dim_inactive = {
+          enabled = true,
+        },
         integrations = {
           aerial = true,
           diffview = true,
