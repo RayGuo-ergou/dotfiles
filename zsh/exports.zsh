@@ -30,8 +30,8 @@ ripgrep
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # n node
-export N_PREFIX=$HOME/.n
-export PATH=$N_PREFIX/bin:$PATH
+# export N_PREFIX=$HOME/.n
+# export PATH=$N_PREFIX/bin:$PATH
 
 # deno
 export DENO_INSTALL="$HOME/.deno"
