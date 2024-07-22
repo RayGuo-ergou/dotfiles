@@ -1,6 +1,5 @@
 local bufferline_util = require('ergou.util.buffer')
 return {
-  enabled = false,
   'akinsho/bufferline.nvim',
   event = 'VeryLazy',
   keys = {
@@ -14,7 +13,6 @@ return {
   },
   ---@class bufferline.UserConfig
   opts = function()
-    local macchiato = require('catppuccin.palettes').get_palette('macchiato')
     return {
       options = {
         close_command = function(n)
