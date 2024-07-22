@@ -34,7 +34,6 @@ return {
           },
         },
       },
-      highlights = require('catppuccin.groups.integrations.bufferline').get(),
     }
   end,
   config = function(_, opts)
