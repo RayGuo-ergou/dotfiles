@@ -1,4 +1,4 @@
-local bufferline_util = require('ergou.util.bufferline')
+local bufferline_util = require('ergou.util.buffer')
 return {
   enabled = false,
   'akinsho/bufferline.nvim',
@@ -18,10 +18,10 @@ return {
     return {
       options = {
         close_command = function(n)
-          ergou.bufferline.bufremove(n)
+          ergou.buffer.bufremove(n)
         end,
         right_mouse_command = function(n)
-          ergou.bufferline.bufremove(n)
+          ergou.buffer.bufremove(n)
         end,
         diagnostics = 'nvim_lsp',
         diagnostics_indicator = bufferline_util.diagnostics_symbol,
