@@ -6,6 +6,14 @@ return {
     {
       '<leader>rr',
       function()
+        require('grug-far').grug_far({})
+      end,
+      mode = { 'n', 'v' },
+      desc = 'Search and Replace',
+    },
+    {
+      '<leader>rR',
+      function()
         local grug = require('grug-far')
         local ext = vim.bo.buftype == '' and vim.fn.expand('%:e')
         grug.grug_far({
@@ -15,7 +23,7 @@ return {
         })
       end,
       mode = { 'n', 'v' },
-      desc = 'Search and Replace',
+      desc = 'Search and Replace with current file type',
     },
     {
       '<leader>rw',
