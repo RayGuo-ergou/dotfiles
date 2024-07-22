@@ -14,6 +14,8 @@ yay git-extras
 
 # --- NodeJs ---
 # Install n
+export N_PREFIX=$HOME/.n
+export PATH=$N_PREFIX/bin:$PATH
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
 # use npm to install for version management otherwise can save the stdout from above into /usr/bin
 npm install -g n
