@@ -1,5 +1,6 @@
 local bufferline_util = require('ergou.util.bufferline')
 return {
+  enabled = false,
   'akinsho/bufferline.nvim',
   event = 'VeryLazy',
   keys = {
@@ -12,28 +13,32 @@ return {
     { '<S-l>', '<cmd>BufferLineCycleNext<cr>', desc = 'Next buffer' },
   },
   ---@class bufferline.UserConfig
-  opts = {
-    options = {
-      close_command = function(n)
-        ergou.bufferline.bufremove(n)
-      end,
-      right_mouse_command = function(n)
-        ergou.bufferline.bufremove(n)
-      end,
-      diagnostics = 'nvim_lsp',
-      diagnostics_indicator = bufferline_util.diagnostics_symbol,
-      separator_style = 'slant',
-      always_show_bufferline = false,
-      offsets = {
-        {
-          filetype = 'neo-tree',
-          text = 'Neo-tree',
-          highlight = 'Directory',
-          text_align = 'left',
+  opts = function()
+    local macchiato = require('catppuccin.palettes').get_palette('macchiato')
+    return {
+      options = {
+        close_command = function(n)
+          ergou.bufferline.bufremove(n)
+        end,
+        right_mouse_command = function(n)
+          ergou.bufferline.bufremove(n)
+        end,
+        diagnostics = 'nvim_lsp',
+        diagnostics_indicator = bufferline_util.diagnostics_symbol,
+        separator_style = 'slant',
+        always_show_bufferline = false,
+        offsets = {
+          {
+            filetype = 'neo-tree',
+            text = 'Neo-tree',
+            highlight = 'Directory',
+            text_align = 'left',
+          },
         },
       },
-    },
-  },
+      highlights = require('catppuccin.groups.integrations.bufferline').get(),
+    }
+  end,
   config = function(_, opts)
     require('bufferline').setup(opts)
     -- Fix bufferline when restoring a session
