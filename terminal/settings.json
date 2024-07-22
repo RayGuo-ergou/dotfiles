@@ -53,6 +53,8 @@
         {
             "colorScheme": "Catppuccin Macchiato",
             "cursorShape": "filledBox",
+            "backgroundImageOpacity": 0.1,
+            "bellStyle": "none",
             "experimental.retroTerminalEffect": false,
             "font":
             {
