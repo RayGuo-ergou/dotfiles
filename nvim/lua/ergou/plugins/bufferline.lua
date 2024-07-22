@@ -26,10 +26,6 @@ return {
         diagnostics_indicator = bufferline_util.diagnostics_symbol,
         separator_style = 'slant',
         always_show_bufferline = false,
-        indicator = {
-          icon = '111', -- this should be omitted if indicator style is not 'icon'
-          style = 'icon',
-        },
         offsets = {
           {
             filetype = 'neo-tree',
