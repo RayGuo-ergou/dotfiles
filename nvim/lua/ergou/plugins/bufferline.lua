@@ -13,6 +13,7 @@ return {
   },
   ---@class bufferline.UserConfig
   opts = function()
+    local macchiato = require('catppuccin.palettes').get_palette('macchiato')
     return {
       options = {
         close_command = function(n)
@@ -25,6 +26,10 @@ return {
         diagnostics_indicator = bufferline_util.diagnostics_symbol,
         separator_style = 'slant',
         always_show_bufferline = false,
+        indicator = {
+          icon = '111', -- this should be omitted if indicator style is not 'icon'
+          style = 'icon',
+        },
         offsets = {
           {
             filetype = 'neo-tree',
@@ -33,6 +38,11 @@ return {
             text_align = 'left',
           },
         },
+      },
+      highlights = {
+        separator = { fg = macchiato.crust },
+        separator_visible = { fg = macchiato.crust },
+        separator_selected = { fg = macchiato.crust },
       },
     }
   end,
