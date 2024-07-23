@@ -1,5 +1,9 @@
 return {
   'kevinhwang91/nvim-bqf',
   ft = 'qf',
-  opts = {},
+  opts = {
+    preview = {
+      winblend = 0,
+    },
+  },
 }
