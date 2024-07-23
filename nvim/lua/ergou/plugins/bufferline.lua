@@ -24,7 +24,7 @@ return {
         end,
         diagnostics = 'nvim_lsp',
         diagnostics_indicator = bufferline_util.diagnostics_symbol,
-        separator_style = 'slant',
+        separator_style = 'thin',
         always_show_bufferline = false,
         offsets = {
           {
