@@ -144,6 +144,9 @@ return {
           },
         },
       },
+      backdrop = {
+        enabled = false,
+      },
     },
     keys = {
       {
