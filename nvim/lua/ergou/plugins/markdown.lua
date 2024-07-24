@@ -14,7 +14,7 @@ return {
   {
     'MeanderingProgrammer/markdown.nvim',
     cmd = 'RenderMarkdown',
-    ft = 'markdown',
+    ft = { 'markdown', 'norg', 'rmd', 'org' },
     keys = {
       {
         '<leader>mt',
@@ -24,9 +24,7 @@ return {
     },
     ---@type render.md.UserConfig
     opts = {
-      code = {
-        width = 'block',
-      },
+      file_types = { 'markdown', 'norg', 'rmd', 'org' },
     },
   },
 }
