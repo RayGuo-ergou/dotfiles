@@ -22,7 +22,11 @@ return {
         desc = 'Toggle markdown plugin',
       },
     },
-
-    opts = {},
+    ---@type render.md.UserConfig
+    opts = {
+      code = {
+        width = 'block',
+      },
+    },
   },
 }
