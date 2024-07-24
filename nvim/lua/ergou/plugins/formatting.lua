@@ -30,7 +30,7 @@ return {
           graphql = { 'eslint_d' },
           lua = { 'stylua' },
           python = { 'isort', 'black' },
-          php = { { 'pint', 'phpcbf' } },
+          php = { 'pint', 'phpcbf', stop_after_first = true },
           zsh = { 'shfmt' },
           sh = { 'shfmt' },
           bash = { 'shfmt' },
