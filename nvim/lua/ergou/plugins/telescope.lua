@@ -10,7 +10,7 @@ return {
       -- find
       {
         '<leader>,',
-        '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>',
+        '<cmd>Telescope buffers sort_mru=true<cr>',
         desc = 'Switch Buffer',
       },
       { '<leader>ff', Util.telescope('files'), desc = 'Find Files (root dir)' },
@@ -19,7 +19,7 @@ return {
       { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
       {
         '<leader><space>',
-        '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>',
+        '<cmd>Telescope buffers sort_mru=true<cr>',
         desc = 'Find Files (root dir)',
       },
       { '<leader>fc', Util.telescope.config_files(), desc = 'Find Config File' },
