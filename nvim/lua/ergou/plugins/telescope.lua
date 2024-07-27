@@ -112,16 +112,12 @@ return {
           path_display = { 'truncate' },
           mappings = {
             i = {
-              ['<C-u>'] = false,
-              ['<C-d>'] = false,
               ['<c-t>'] = open_with_trouble,
               ['<a-t>'] = open_selected_with_trouble,
               ['<a-i>'] = find_files_no_ignore,
               ['<a-h>'] = find_files_with_hidden,
               ['<C-Down>'] = actions.cycle_history_next,
               ['<C-Up>'] = actions.cycle_history_prev,
-              ['<C-f>'] = actions.preview_scrolling_down,
-              ['<C-b>'] = actions.preview_scrolling_up,
               ['<C-j>'] = actions.move_selection_next,
               ['<C-k>'] = actions.move_selection_previous,
             },

@@ -41,8 +41,8 @@ map({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = 
 map({ 'n', 'x' }, '<Up>', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
 
 -- buffers
--- map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
--- map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
+map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
+map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 map('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 map('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 

@@ -1,5 +1,6 @@
 local bufferline_util = require('ergou.util.buffer')
 return {
+  enabled = false,
   'akinsho/bufferline.nvim',
   event = 'VeryLazy',
   keys = {
