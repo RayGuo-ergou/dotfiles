@@ -23,8 +23,6 @@ copyfile
 copypath
 cp
 gh
-fd
-ripgrep
 )
 
 export ZSH_THEME="powerlevel10k/powerlevel10k"
