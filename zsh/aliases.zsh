@@ -15,6 +15,8 @@ alias resetlazy='rm -rf $HOME/.local/share/nvim/*'
 alias x-www-browser='wslview'
 alias php7='/usr/bin/php7.4'
 alias windowsroot='wslpath "$(wslvar USERPROFILE)"'
+alias yy='yazi'
+alias lg='lazygit'
 
 vimf() {
   local file=$(fd --type f --hidden --exclude .git | fzf --reverse)
@@ -41,13 +43,3 @@ cdh() {
     cd "$dir"
   fi
 }
-
-yy() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    builtin cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
-}
-
