@@ -1,2 +1,3 @@
 $DOTFILES/zsh/rc.zsh=$HOME/.zshrc
 $DOTFILES/zsh/rc.zsh=$HOME/.zshenv
+$DOTFILES/zsh/zsh-complete=$HOME/.zsh-complete

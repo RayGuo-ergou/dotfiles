@@ -103,3 +103,6 @@ export FZF_ALT_C_OPTS="
 
 # vi-mode config
 export VI_MODE_SET_CURSOR=true
+
+# Add zsh-completions
+fpath=($HOME/.zsh-complete $fpath)
