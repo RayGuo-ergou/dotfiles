@@ -1,9 +1,11 @@
 return {
   'stevearc/overseer.nvim',
   opts = {
-    bindings = {
-      ['<C-l>'] = false,
-      ['<C-h>'] = false,
+    task_list = {
+      bindings = {
+        ['<C-l>'] = false,
+        ['<C-h>'] = false,
+      },
     },
   },
   cmd = {
