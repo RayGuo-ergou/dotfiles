@@ -1,0 +1,16 @@
+# vscode config
+.vscode
+# garbage from some system
+.DS_Store
+
+# node
+node_modules
+
+# php
+vendor
+
+# http 
+*.http
+
+# env file
+.env*
