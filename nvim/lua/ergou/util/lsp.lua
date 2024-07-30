@@ -445,7 +445,7 @@ M.get_servers = function()
       },
     },
     unocss = {},
-    -- theme_check = {},
+    shopify_theme_ls = {},
     prismals = {},
     -- jdtls = {},
     emmet_language_server = {
