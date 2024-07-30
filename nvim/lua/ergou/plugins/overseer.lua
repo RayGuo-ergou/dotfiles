@@ -1,6 +1,11 @@
 return {
   'stevearc/overseer.nvim',
-  opts = {},
+  opts = {
+    bindings = {
+      ['<C-l>'] = false,
+      ['<C-h>'] = false,
+    },
+  },
   cmd = {
     'OverseerOpen',
     'OverseerClose',
