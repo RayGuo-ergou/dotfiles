@@ -2,7 +2,13 @@ return {
   {
     'rachartier/tiny-inline-diagnostic.nvim',
     event = 'VeryLazy',
-    opts = {},
+    opts = {
+      options = {
+        overflow = {
+          mode = 'none',
+        },
+      },
+    },
   },
   {
     -- LSP Configuration & Plugins
