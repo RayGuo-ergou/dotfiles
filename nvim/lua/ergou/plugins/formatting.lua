@@ -1,4 +1,7 @@
 local timeout = 1500
+---@type conform.FiletypeFormatter
+local eslintFormat = { 'eslint_d' }
+-- local eslintFormat = { lsp_format = 'never' }
 return {
   {
     'stevearc/conform.nvim',
@@ -14,20 +17,20 @@ return {
           },
         },
         formatters_by_ft = {
-          vue = { 'eslint_d' },
-          javascript = { 'eslint_d' },
-          typescript = { 'eslint_d' },
-          javascriptreact = { 'eslint_d' },
-          typescriptreact = { 'eslint_d' },
-          css = { 'eslint_d' },
-          scss = { 'eslint_d' },
-          html = { 'eslint_d' },
-          json = { 'eslint_d' },
-          jsonc = { 'eslint_d' },
-          json5 = { 'eslint_d' },
-          yaml = { 'eslint_d' },
-          markdown = { 'eslint_d' },
-          graphql = { 'eslint_d' },
+          vue = eslintFormat,
+          javascript = eslintFormat,
+          typescript = eslintFormat,
+          javascriptreact = eslintFormat,
+          typescriptreact = eslintFormat,
+          css = eslintFormat,
+          scss = eslintFormat,
+          html = eslintFormat,
+          json = eslintFormat,
+          jsonc = eslintFormat,
+          json5 = eslintFormat,
+          yaml = eslintFormat,
+          markdown = eslintFormat,
+          graphql = eslintFormat,
           lua = { 'stylua' },
           python = { 'isort', 'black' },
           php = { 'pint', 'phpcbf', stop_after_first = true },
