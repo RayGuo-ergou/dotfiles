@@ -346,6 +346,9 @@ M.get_servers = function()
         typescript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
         javascript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
       },
+      on_attach = function(client, _)
+        client.server_capabilities.documentFormattingProvider = nil
+      end,
     },
     tsserver = {
       handlers = M.TYPESCRIPT.handlers,
@@ -365,6 +368,9 @@ M.get_servers = function()
           inlayHints = M.TYPESCRIPT.inlay_hints,
         },
       },
+      on_attach = function(client, _)
+        client.server_capabilities.documentFormattingProvider = nil
+      end,
     },
     html = { filetypes = { 'html', 'twig', 'hbs', 'blade' } },
     eslint = {
@@ -372,12 +378,6 @@ M.get_servers = function()
       settings = {
         rulesCustomizations = M.ESLINT.customizations,
       },
-      -- on_attach = function(_, bufnr)
-      --   vim.api.nvim_create_autocmd('BufWritePre', {
-      --     buffer = bufnr,
-      --     command = 'EslintFixAll',
-      --   })
-      -- end,
     },
     volar = {
       init_options = {
@@ -385,6 +385,9 @@ M.get_servers = function()
           hybridMode = true,
         },
       },
+      on_attach = function(client, _)
+        client.server_capabilities.documentFormattingProvider = nil
+      end,
     },
     -- intelephense is a node.js server, so it's pretty slow
     -- And can only running one thread
