@@ -23,9 +23,8 @@ return {
         changedelete = { text = '▎' },
         untracked = { text = '▎' },
       },
-      -- Higher than lsp diagnostics so I will see git changes first
-      -- I am okay for this to be top priority as the error will show in buffer anyway
-      sign_priority = 1000,
+      -- numhl enabled so can make diagnostic has high priority as will see both anyway
+      -- sign_priority = 1000,
       numhl = true,
       signs_staged = {
         add = { text = '▎' },
