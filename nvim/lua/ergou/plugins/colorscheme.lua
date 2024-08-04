@@ -7,7 +7,7 @@ return {
     priority = 1000,
     config = function()
       require('catppuccin').setup({
-        no_italic = true,
+        -- no_italic = true,
         transparent_background = true,
         integrations = {
           aerial = true,

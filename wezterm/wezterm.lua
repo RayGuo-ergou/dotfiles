@@ -71,5 +71,7 @@ config.font = font
 config.window_decorations = 'RESIZE'
 config.font_size = 14
 config.hide_tab_bar_if_only_one_tab = true
+config.underline_thickness = '1.5pt'
+config.underline_position = '200%'
 
 return config
