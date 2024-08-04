@@ -12,8 +12,10 @@ config.keys = {
 }
 config.color_scheme = color_scheme
 config.window_padding = {
-
-  bottom = 4,
+  left = 2,
+  right = 2,
+  top = 0,
+  bottom = 0,
 }
 config.background = {
   {
