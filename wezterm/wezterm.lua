@@ -6,6 +6,9 @@ local home_dir = os.getenv('HOME') or os.getenv('USERPROFILE')
 
 local act = wezterm.action
 local config = {}
+
+config.default_prog = { 'pwsh.exe', '-NoLogo' }
+
 config.keys = {
   -- paste from the clipboard
   { key = 'v', mods = 'CTRL', action = act.PasteFrom('Clipboard') },
