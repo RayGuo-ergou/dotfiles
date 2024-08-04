@@ -14,7 +14,8 @@ config.color_scheme = color_scheme
 config.window_padding = {
   left = 2,
   right = 2,
-  top = 0,
+  top = 2,
+  -- Bottom has tmux padding so set to 0
   bottom = 0,
 }
 config.background = {
