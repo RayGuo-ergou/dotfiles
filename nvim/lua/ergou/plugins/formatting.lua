@@ -1,7 +1,7 @@
 local timeout = 1500
 ---@type conform.FiletypeFormatter
--- local eslintFormat = { 'eslint_d' }
-local eslintFormat = { lsp_format = 'prefer' }
+local eslintFormat = { 'eslint_d', lsp_format = 'never' }
+-- local eslintFormat = { lsp_format = 'prefer' }
 return {
   {
     'stevearc/conform.nvim',
