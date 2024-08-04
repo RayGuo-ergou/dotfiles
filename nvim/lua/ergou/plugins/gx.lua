@@ -30,7 +30,7 @@ return {
       search = true, -- search the web/selection on the web if nothing else is found
     },
     handler_options = {
-      search_engine = 'google', -- you can select between google, bing, duckduckgo, and ecosia
+      search_engine = 'duckduckgo', -- you can select between google, bing, duckduckgo, and ecosia
     },
   },
 }
