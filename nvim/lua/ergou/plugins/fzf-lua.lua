@@ -108,8 +108,8 @@ return {
         })
       end,
       winopts = {
-        width = 0.8,
-        height = 0.8,
+        width = 0.9,
+        height = 0.9,
         row = 0.5,
         col = 0.5,
         preview = {
@@ -172,6 +172,11 @@ return {
       '<cmd>FzfLua lsp_workspace_symbols<cr>',
       mode = { 'n' },
       desc = 'Find workspace symbols',
+    },
+    {
+      '<leader><space>',
+      '<cmd>FzfLua buffers sort_mru=true<cr>',
+      desc = 'Find opened buffers',
     },
   },
 }

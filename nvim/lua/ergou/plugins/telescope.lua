@@ -17,11 +17,11 @@ return {
       { '<leader>fF', Util.telescope('files', { cwd = false }), desc = 'Find Files (cwd)' },
       { '<leader>gf', '<cmd>Telescope git_files<cr>', desc = 'Find Files (git-files)' },
       { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
-      {
-        '<leader><space>',
-        '<cmd>Telescope buffers sort_mru=true<cr>',
-        desc = 'Find Files (root dir)',
-      },
+      -- {
+      --   '<leader><space>',
+      --   '<cmd>Telescope buffers sort_mru=true<cr>',
+      --   desc = 'Find Files (root dir)',
+      -- },
       { '<leader>fc', Util.telescope.config_files(), desc = 'Find Config File' },
       { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
       { '<leader>fR', Util.telescope('oldfiles', { cwd = vim.uv.cwd() }), desc = 'Recent (cwd)' },
