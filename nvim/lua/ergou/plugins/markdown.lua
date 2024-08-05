@@ -12,7 +12,7 @@ return {
     },
   },
   {
-    'MeanderingProgrammer/markdown.nvim',
+    'MeanderingProgrammer/render-markdown.nvim',
     cmd = 'RenderMarkdown',
     ft = { 'markdown', 'norg', 'rmd', 'org' },
     keys = {
