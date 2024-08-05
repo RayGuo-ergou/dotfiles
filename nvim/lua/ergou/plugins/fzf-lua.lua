@@ -11,8 +11,8 @@ return {
     config.defaults.keymap.fzf['ctrl-x'] = 'jump'
     config.defaults.keymap.fzf['ctrl-f'] = 'preview-page-down'
     config.defaults.keymap.fzf['ctrl-b'] = 'preview-page-up'
-    config.defaults.keymap.builtin['<c-u>'] = 'preview-page-down'
-    config.defaults.keymap.builtin['<c-d>'] = 'preview-page-up'
+    config.defaults.keymap.builtin['<c-d>'] = 'preview-half-page-down'
+    config.defaults.keymap.builtin['<c-u>'] = 'preview-half-page-up'
 
     -- Trouble
     if ergou.has('trouble.nvim') then
@@ -108,8 +108,8 @@ return {
         })
       end,
       winopts = {
-        width = 0.9,
-        height = 0.9,
+        width = 0.85,
+        height = 0.8,
         row = 0.5,
         col = 0.5,
         preview = {
@@ -137,7 +137,6 @@ return {
           symbol_fmt = function(s)
             return s:lower() .. '\t'
           end,
-          child_prefix = false,
         },
         code_actions = {
           previewer = vim.fn.executable('delta') == 1 and 'codeaction_native' or nil,
