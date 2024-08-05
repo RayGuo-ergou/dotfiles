@@ -18,3 +18,8 @@ nix profile install nixpkgs#_7zz
 nix profile install nixpkgs#imagemagick
 nix profile install nixpkgs#chafa
 
+# ast-grep
+nix profile install nixpkgs#ast-grep
+# move linux sg
+sudo mv /usr/bin/sg{,.bak}
+

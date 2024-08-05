@@ -1,7 +1,11 @@
 return {
   'MagicDuck/grug-far.nvim',
   cmd = 'GrugFar',
-  opts = { headerMaxWidth = 80 },
+  ---@type GrugFarOptionsOverride
+  opts = {
+    headerMaxWidth = 80,
+    engine = 'astgrep',
+  },
   keys = {
     {
       '<leader>rr',
