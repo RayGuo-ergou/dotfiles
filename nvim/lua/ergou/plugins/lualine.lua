@@ -50,15 +50,14 @@ return {
           lualine_y = {
             {
               function()
+                return require('tinygit.statusline').branchState()
+              end,
+            },
+            {
+              function()
                 return require('tinygit.statusline').blame()
               end,
               color = ui.fg('Tag'),
-            },
-
-            {
-              function()
-                return require('tinygit.statusline').branchState()
-              end,
             },
           },
         },
