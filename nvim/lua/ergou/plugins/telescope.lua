@@ -13,21 +13,21 @@ return {
         '<cmd>Telescope buffers sort_mru=true<cr>',
         desc = 'Switch Buffer',
       },
-      { '<leader>ff', Util.telescope('files'), desc = 'Find Files (root dir)' },
-      { '<leader>fF', Util.telescope('files', { cwd = false }), desc = 'Find Files (cwd)' },
+      { '<leader>ff', Util.pick('files'), desc = 'Find Files (root dir)' },
+      { '<leader>fF', Util.pick('files', { root = false }), desc = 'Find Files (cwd)' },
       { '<leader>gf', '<cmd>Telescope git_files<cr>', desc = 'Find Files (git-files)' },
       { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
-      -- {
-      --   '<leader><space>',
-      --   '<cmd>Telescope buffers sort_mru=true<cr>',
-      --   desc = 'Find Files (root dir)',
-      -- },
-      { '<leader>fc', Util.telescope.config_files(), desc = 'Find Config File' },
+      {
+        '<leader><space>',
+        '<cmd>Telescope buffers sort_mru=true<cr>',
+        desc = 'Find Files (root dir)',
+      },
+      { '<leader>fc', Util.pick.config_files(), desc = 'Find Config File' },
       { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
-      { '<leader>fR', Util.telescope('oldfiles', { cwd = vim.uv.cwd() }), desc = 'Recent (cwd)' },
+      { '<leader>fR', Util.pick('oldfiles', { cwd = vim.uv.cwd() }), desc = 'Recent (cwd)' },
       -- git
       -- { '<leader>gc', '<cmd>Telescope git_commits<CR>', desc = 'commits' },
-      -- { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'status' },
+      { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'status' },
       -- search
       { '<leader>s"', '<cmd>Telescope registers<cr>', desc = 'Registers' },
       { '<leader>sc', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
@@ -45,12 +45,12 @@ return {
       { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Document diagnostics' },
       {
         '<leader>s/',
-        Util.telescope('live_grep', { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }),
+        Util.pick('live_grep', { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }),
         desc = 'Search in opened files',
       },
       { '<leader>sD', '<cmd>Telescope diagnostics<cr>', desc = 'Workspace diagnostics' },
-      { '<leader>sg', Util.telescope('live_grep'), desc = 'Grep (root dir)' },
-      { '<leader>sG', Util.telescope('live_grep', { cwd = false }), desc = 'Grep (cwd)' },
+      { '<leader>sg', Util.pick('live_grep'), desc = 'Grep (root dir)' },
+      { '<leader>sG', Util.pick('live_grep', { root = false }), desc = 'Grep (cwd)' },
       { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = 'Help Pages' },
       { '<leader>sH', '<cmd>Telescope highlights<cr>', desc = 'Search Highlight Groups' },
       { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'Key Maps' },
@@ -58,11 +58,11 @@ return {
       { '<leader>sM', '<cmd>Telescope man_pages<cr>', desc = 'Man Pages' },
       { '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
       { '<leader>sr', '<cmd>Telescope resume<cr>', desc = 'Resume' },
-      { '<leader>sw', Util.telescope('grep_string', { word_match = '-w' }), desc = 'Word (root dir)' },
-      { '<leader>sW', Util.telescope('grep_string', { cwd = false, word_match = '-w' }), desc = 'Word (cwd)' },
-      { '<leader>sw', Util.telescope('grep_string'), mode = 'v', desc = 'Selection (root dir)' },
-      { '<leader>sW', Util.telescope('grep_string', { cwd = false }), mode = 'v', desc = 'Selection (cwd)' },
-      { '<leader>uC', Util.telescope('colorscheme', { enable_preview = true }), desc = 'Colorscheme with preview' },
+      { '<leader>sw', Util.pick('grep_string', { word_match = '-w' }), desc = 'Word (root dir)' },
+      { '<leader>sW', Util.pick('grep_string', { root = false, word_match = '-w' }), desc = 'Word (cwd)' },
+      { '<leader>sw', Util.pick('grep_string'), mode = 'v', desc = 'Selection (root dir)' },
+      { '<leader>sW', Util.pick('grep_string', { root = false }), mode = 'v', desc = 'Selection (cwd)' },
+      { '<leader>uC', Util.pick('colorscheme', { enable_preview = true }), desc = 'Colorscheme with preview' },
       -- {
       --   '<leader>ss',
       --   function()
@@ -88,20 +88,20 @@ return {
       local actions = require('telescope.actions')
       local build_in = require('telescope.builtin')
       local open_with_trouble = function(...)
-        return require('trouble.providers.telescope').open_with_trouble(...)
+        return require('trouble.providers.pick').open_with_trouble(...)
       end
       local open_selected_with_trouble = function(...)
-        return require('trouble.providers.telescope').open_selected_with_trouble(...)
+        return require('trouble.providers.pick').open_selected_with_trouble(...)
       end
       local find_files_no_ignore = function()
         local action_state = require('telescope.actions.state')
         local line = action_state.get_current_line()
-        Util.telescope('find_files', { no_ignore = true, default_text = line })()
+        Util.pick('find_files', { no_ignore = true, default_text = line })()
       end
       local find_files_with_hidden = function()
         local action_state = require('telescope.actions.state')
         local line = action_state.get_current_line()
-        Util.telescope('find_files', { hidden = true, default_text = line })()
+        Util.pick('find_files', { hidden = true, default_text = line })()
       end
 
       telescope.setup({

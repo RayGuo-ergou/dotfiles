@@ -15,17 +15,16 @@ return {
       config.defaults.actions.files['ctrl-t'] = require('trouble.sources.fzf').actions.open
     end
 
-    -- TODO: pick uitl from Lazyvim
     -- -- Toggle root dir / cwd
-    -- config.defaults.actions.files['ctrl-r'] = function(_, ctx)
-    --   local o = vim.deepcopy(ctx.__call_opts)
-    --   o.root = o.root == false
-    --   o.cwd = nil
-    --   o.buf = ctx.__CTX.bufnr
-    --   ergou.pick.open(ctx.__INFO.cmd, o)
-    -- end
-    -- config.defaults.actions.files['alt-c'] = config.defaults.actions.files['ctrl-r']
-    -- config.set_action_helpstr(config.defaults.actions.files['ctrl-r'], 'toggle-root-dir')
+    config.defaults.actions.files['ctrl-r'] = function(_, ctx)
+      local o = vim.deepcopy(ctx.__call_opts)
+      o.root = o.root == false
+      o.cwd = nil
+      o.buf = ctx.__CTX.bufnr
+      ergou.pick.open(ctx.__INFO.cmd, o)
+    end
+    config.defaults.actions.files['alt-c'] = config.defaults.actions.files['ctrl-r']
+    config.set_action_helpstr(config.defaults.actions.files['ctrl-r'], 'toggle-root-dir')
 
     -- use the same prompt for all
     local defaults = require('fzf-lua.profiles.default-title')
@@ -106,7 +105,7 @@ return {
       end,
       winopts = {
         width = 0.85,
-        height = 0.8,
+        height = 0.85,
         row = 0.5,
         col = 0.5,
         preview = {
@@ -159,6 +158,11 @@ return {
   cmd = { 'FzfLua' },
   keys = {
     {
+      '<leader><space>',
+      '<cmd>FzfLua buffers sort_mru=true<cr>',
+      desc = 'Find opened buffers',
+    },
+    {
       '<leader>ss',
       '<cmd>FzfLua lsp_document_symbols<cr>',
       mode = { 'n' },
@@ -169,11 +173,6 @@ return {
       '<cmd>FzfLua lsp_workspace_symbols<cr>',
       mode = { 'n' },
       desc = 'Find workspace symbols',
-    },
-    {
-      '<leader><space>',
-      '<cmd>FzfLua buffers sort_mru=true<cr>',
-      desc = 'Find opened buffers',
     },
     { '<leader>gs', '<cmd>FzfLua git_status<CR>', desc = 'Status' },
   },
