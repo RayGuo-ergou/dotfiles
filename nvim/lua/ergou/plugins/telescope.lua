@@ -153,11 +153,10 @@ return {
               ['<C-Up>'] = actions.cycle_history_prev,
               ['<C-j>'] = actions.move_selection_next,
               ['<C-k>'] = actions.move_selection_previous,
-              ['<c-s>'] = flash,
+              ['<c-x>'] = flash,
             },
             n = {
               ['q'] = actions.close,
-              s = flash,
             },
           },
         },
