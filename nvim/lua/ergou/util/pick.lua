@@ -13,7 +13,7 @@ local M = setmetatable({}, {
 ---@field show_untracked? boolean
 
 ---@class ErgouPicker
----@field name string
+---@field name 'fzf'|'telescope'
 ---@field open fun(command:string, opts?:ergou.util.pick.Opts)
 ---@field commands table<string, string>
 

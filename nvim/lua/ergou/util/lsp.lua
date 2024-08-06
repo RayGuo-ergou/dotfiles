@@ -275,16 +275,39 @@ function M.lsp_autocmd()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end, 'Toggle Inlay Hint')
 
-      nmap('gd', function()
-        require('telescope.builtin').lsp_definitions({ reuse_win = true })
-      end, 'Goto Definition')
-      nmap('grr', require('telescope.builtin').lsp_references, 'Goto References')
-      nmap('gI', function()
-        require('telescope.builtin').lsp_implementations({ reuse_win = true })
-      end, 'Goto Implementation')
-      nmap('gy', function()
-        require('telescope.builtin').lsp_type_definitions({ reuse_win = true })
-      end, 'Goto Type')
+      if ergou.pick.picker.name == 'telescope' then
+        nmap('gd', function()
+          require('telescope.builtin').lsp_definitions({ reuse_win = true })
+        end, 'Goto Definition')
+        nmap('grr', require('telescope.builtin').lsp_references, 'Goto References')
+        nmap('gI', function()
+          require('telescope.builtin').lsp_implementations({ reuse_win = true })
+        end, 'Goto Implementation')
+        nmap('gy', function()
+          require('telescope.builtin').lsp_type_definitions({ reuse_win = true })
+        end, 'Goto Type')
+      elseif ergou.pick.picker.name == 'fzf' then
+        nmap(
+          'gd',
+          '<cmd>FzfLua lsp_definitions     jump_to_single_result=true ignore_current_line=true<cr>',
+          'Goto Definition'
+        )
+        nmap(
+          'grr',
+          '<cmd>FzfLua lsp_references      jump_to_single_result=true ignore_current_line=true<cr>',
+          'Goto References'
+        )
+        nmap(
+          'gI',
+          '<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>',
+          'Goto Implementation'
+        )
+        nmap(
+          'gy',
+          '<cmd>FzfLua lsp_typedefs        jump_to_single_result=true ignore_current_line=true<cr>',
+          'Goto Type'
+        )
+      end
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
 
