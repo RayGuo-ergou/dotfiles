@@ -6,11 +6,7 @@ return {
 
     -- Quickfix
     config.defaults.keymap.fzf['ctrl-q'] = 'select-all+accept'
-    config.defaults.keymap.fzf['ctrl-u'] = false
-    config.defaults.keymap.fzf['ctrl-d'] = false
     config.defaults.keymap.fzf['ctrl-x'] = 'jump'
-    config.defaults.keymap.fzf['ctrl-f'] = 'preview-page-down'
-    config.defaults.keymap.fzf['ctrl-b'] = 'preview-page-up'
     config.defaults.keymap.builtin['<c-d>'] = 'preview-half-page-down'
     config.defaults.keymap.builtin['<c-u>'] = 'preview-half-page-up'
 
