@@ -147,6 +147,7 @@ return {
   init = function()
     local ergou = require('ergou.util')
     ergou.on_very_lazy(function()
+      ---@diagnostic disable-next-line: duplicate-set-field
       vim.ui.select = function(...)
         require('lazy').load({ plugins = { 'fzf-lua' } })
         local opts = ergou.opts('fzf-lua') or {}
