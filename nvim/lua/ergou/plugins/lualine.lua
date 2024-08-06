@@ -34,9 +34,6 @@ return {
                 end
               end,
             },
-          },
-          lualine_c = {},
-          lualine_x = {
             {
               function()
                 return require('noice').api.status.mode.get()
@@ -47,6 +44,8 @@ return {
               color = ui.fg('Constant'),
             },
           },
+          lualine_c = {},
+          lualine_x = {},
           lualine_y = {
             {
               function()
