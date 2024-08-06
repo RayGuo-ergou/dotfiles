@@ -48,6 +48,9 @@ M.TYPESCRIPT.vtsls_typescript_javascript_config = {
     propertyDeclarationTypes = { enabled = true },
     variableTypes = { enabled = false },
   },
+  tsserver = {
+    maxTsServerMemory = 8192,
+  },
 }
 M.TYPESCRIPT.handlers = {
   ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
@@ -341,7 +344,6 @@ M.get_servers = function()
             globalPlugins = {
               vue_plugin,
             },
-            maxTsServerMemory = 8192,
           },
         },
         typescript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
