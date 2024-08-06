@@ -118,10 +118,10 @@ return {
       local actions = require('telescope.actions')
       local build_in = require('telescope.builtin')
       local open_with_trouble = function(...)
-        return require('trouble.providers.pick').open_with_trouble(...)
+        return require('trouble.providers.telescope').open_with_trouble(...)
       end
       local open_selected_with_trouble = function(...)
-        return require('trouble.providers.pick').open_selected_with_trouble(...)
+        return require('trouble.providers.telescope').open_selected_with_trouble(...)
       end
       local find_files_no_ignore = function()
         local action_state = require('telescope.actions.state')
