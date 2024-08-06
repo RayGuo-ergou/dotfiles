@@ -4,7 +4,7 @@ return {
   ---@type GrugFarOptionsOverride
   opts = {
     headerMaxWidth = 80,
-    engine = 'astgrep',
+    -- engine = 'astgrep',
   },
   keys = {
     {
