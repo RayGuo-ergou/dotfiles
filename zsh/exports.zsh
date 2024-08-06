@@ -73,13 +73,19 @@ export ESLINT_USE_FLAT_CONFIG=true
 # bat --list-themes
 export BAT_THEME="Catppuccin Macchiato"
 
+# https://github.com/catppuccin/fzf
+# Removed bg so it's transparent
 export FZF_DEFAULT_OPTS="
 --preview 'bat --style=numbers --color=always --line-range :300 {}'
 --bind ctrl-y:preview-up,ctrl-e:preview-down
 --bind ctrl-b:preview-page-up,ctrl-f:preview-page-down
 --bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down
 --bind shift-up:preview-top,shift-down:preview-bottom
---bind alt-up:half-page-up,alt-down:half-page-down"
+--bind alt-up:half-page-up,alt-down:half-page-down
+--color=spinner:#f4dbd6,hl:#ed8796
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6
+--color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796
+--multi"
 
 # CTRL-/ to toggle small preview window to see the full command
 # CTRL-Y to copy the command into clipboard using pbcopy
