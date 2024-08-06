@@ -341,6 +341,7 @@ M.get_servers = function()
             globalPlugins = {
               vue_plugin,
             },
+            maxTsServerMemory = 8192,
           },
         },
         typescript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
