@@ -56,6 +56,7 @@ return {
       fzf_opts = {
         ['--no-scrollbar'] = true,
         ['--cycle'] = true,
+        ['--layout'] = false,
       },
       defaults = {
         -- formatter = "path.filename_first",
