@@ -27,7 +27,7 @@ return {
       { '<leader>fR', Util.pick('oldfiles', { cwd = vim.uv.cwd() }), desc = 'Recent (cwd)' },
       -- git
       -- { '<leader>gc', '<cmd>Telescope git_commits<CR>', desc = 'commits' },
-      { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'status' },
+      -- { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'status' },
       -- search
       { '<leader>s"', '<cmd>Telescope registers<cr>', desc = 'Registers' },
       { '<leader>sc', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
