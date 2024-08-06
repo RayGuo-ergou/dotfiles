@@ -109,6 +109,10 @@ return {
           prompt_prefix = ' ',
           selection_caret = ' ',
           path_display = { 'truncate' },
+          sorting_strategy = 'ascending', -- display results top->bottom
+          layout_config = {
+            prompt_position = 'top',
+          },
           mappings = {
             i = {
               ['<c-t>'] = open_with_trouble,
