@@ -177,5 +177,6 @@ return {
       '<cmd>FzfLua buffers sort_mru=true<cr>',
       desc = 'Find opened buffers',
     },
+    { '<leader>gs', '<cmd>FzfLua git_status<CR>', desc = 'Status' },
   },
 }

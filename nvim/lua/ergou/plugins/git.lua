@@ -167,25 +167,11 @@ return {
         desc = 'Git push',
       },
       {
-        '<leader>gS',
-        function()
-          require('tinygit').searchFileHistory()
-        end,
-        desc = 'Git search file history',
-      },
-      {
         '<leader>gL',
         function()
           require('tinygit').lineHistory()
         end,
         desc = 'Git line history',
-      },
-      {
-        '<leader>gs',
-        function()
-          require('tinygit').interactiveStaging()
-        end,
-        desc = 'Git interactive staging',
       },
     },
   },
