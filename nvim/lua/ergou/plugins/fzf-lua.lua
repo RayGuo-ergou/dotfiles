@@ -10,6 +10,8 @@ return {
     config.defaults.keymap.fzf['ctrl-x'] = 'jump'
     config.defaults.keymap.builtin['<c-d>'] = 'preview-half-page-down'
     config.defaults.keymap.builtin['<c-u>'] = 'preview-half-page-up'
+    config.defaults.keymap.fzf['ctrl-d'] = 'preview-half-page-down'
+    config.defaults.keymap.fzf['ctrl-u'] = 'preview-half-page-up'
 
     -- Trouble
     if ergou.has('trouble.nvim') then
