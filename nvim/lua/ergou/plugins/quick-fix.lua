@@ -22,6 +22,7 @@ return {
   },
   {
     'stevearc/quicker.nvim',
+    event = 'LazyFile',
     ---@module "quicker"
     ---@type quicker.SetupOptions
     opts = {},

@@ -25,5 +25,5 @@ return {
       require('copilot').setup(opts)
     end,
   },
-  { 'AndreM222/copilot-lualine' },
+  { 'AndreM222/copilot-lualine', enabled = false },
 }

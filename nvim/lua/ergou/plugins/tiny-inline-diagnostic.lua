@@ -1,7 +1,7 @@
 return {
   {
     'rachartier/tiny-inline-diagnostic.nvim',
-    event = 'VeryLazy',
+    event = 'LspAttach',
     opts = {
       options = {
         overflow = {

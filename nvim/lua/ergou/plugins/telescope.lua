@@ -205,6 +205,7 @@ return {
   },
   {
     'debugloop/telescope-undo.nvim',
+    event = 'LazyFile',
     config = function()
       Util.on_load('telescope.nvim', function()
         require('telescope').load_extension('undo')
@@ -213,6 +214,7 @@ return {
   },
   {
     'nvim-telescope/telescope-live-grep-args.nvim',
+    event = 'LazyFile',
     -- This will not install any breaking changes.
     -- For major updates, this must be adjusted manually.
     config = function()
@@ -223,6 +225,7 @@ return {
   },
   {
     'crispgm/telescope-heading.nvim',
+    event = 'LazyFile',
     config = function()
       Util.on_load('telescope.nvim', function()
         require('telescope').load_extension('heading')
