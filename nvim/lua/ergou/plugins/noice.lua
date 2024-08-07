@@ -46,13 +46,10 @@ return {
   keys = {
     {
       '<leader>sn',
-      '<cmd>Noice telescope<CR>',
+      function()
+        require('noice').cmd('history')
+      end,
       desc = 'Notifications History',
-    },
-    {
-      '<leader>nh',
-      '<cmd>Noice History<CR>',
-      desc = 'Noice History in Quick fix list',
     },
   },
 }
