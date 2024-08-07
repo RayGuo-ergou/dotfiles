@@ -1,17 +1,5 @@
 return {
   {
-    enabled = false,
-    'OXY2DEV/markview.nvim',
-    ft = 'markdown',
-    keys = {
-      {
-        '<leader>mt',
-        '<cmd>Markview toggleAll<cr>',
-        desc = 'Toggle markview plugin',
-      },
-    },
-  },
-  {
     'MeanderingProgrammer/render-markdown.nvim',
     cmd = 'RenderMarkdown',
     ft = { 'markdown', 'norg', 'rmd', 'org' },
@@ -25,6 +13,10 @@ return {
     ---@type render.md.UserConfig
     opts = {
       file_types = { 'markdown', 'norg', 'rmd', 'org' },
+      code = {
+        width = 'block',
+        position = 'right',
+      },
     },
   },
 }
