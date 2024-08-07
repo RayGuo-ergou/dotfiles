@@ -160,6 +160,13 @@ return {
         desc = 'Git commit',
       },
       {
+        '<leader>gS',
+        function()
+          require('tinygit').interactiveStaging()
+        end,
+        desc = 'Git interactive staging',
+      },
+      {
         '<leader>gP',
         function()
           require('tinygit').push()
