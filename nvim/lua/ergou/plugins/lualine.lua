@@ -1,7 +1,9 @@
 return {
   {
     'nvim-lualine/lualine.nvim',
-    event = 'UIEnter',
+    -- event = 'UIEnter',
+    -- When enter shows alpha dashboard no need for lualine
+    event = 'LazyFile',
     opts = function()
       local icons = require('ergou.util.icons')
       local ui = require('ergou.util.ui')
