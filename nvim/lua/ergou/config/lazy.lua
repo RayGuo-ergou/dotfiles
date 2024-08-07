@@ -53,4 +53,14 @@ require('lazy').setup({
     colorscheme = { 'catppuccin-macchiato' },
   },
 })
+local group = vim.api.nvim_create_augroup('Ergou', { clear = true })
+vim.api.nvim_create_autocmd('User', {
+  group = group,
+  pattern = 'VeryLazy',
+  callback = function()
+    require('ergou.config.keymaps')
+    require('ergou.config.autocmds')
+  end,
+})
+
 _G.ergou = require('ergou.util')
