@@ -60,6 +60,5 @@ vim.api.nvim_create_autocmd('User', {
   pattern = 'VeryLazy',
   callback = function()
     require('ergou.config.keymaps')
-    require('ergou.config.autocmds')
   end,
 })
