@@ -58,7 +58,7 @@ return {
       vim.api.nvim_create_autocmd('User', {
         pattern = 'MiniFilesActionRename',
         callback = function(event)
-          require('ergou.util').lsp.on_rename(event.data.from, event.data.to)
+          ergou.lsp.on_rename(event.data.from, event.data.to)
         end,
       })
     end,

@@ -34,7 +34,6 @@ return {
         changedelete = { text = '▎' },
       },
       on_attach = function(bufnr)
-        local git_util = require('ergou.util.git')
         local gitsigns = require('gitsigns')
         local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 
@@ -72,7 +71,7 @@ return {
           gitsigns.toggle_deleted()
           gitsigns.toggle_linehl()
         end, 'toggle git show deleted')
-        map('n', '<leader>gb', git_util.blame_line, 'Git Blame Line')
+        map('n', '<leader>gb', ergou.git.blame_line, 'Git Blame Line')
 
         -- Jump to next/prev hunk
         local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()

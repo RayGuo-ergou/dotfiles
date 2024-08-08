@@ -1,10 +1,10 @@
-local icons = require('ergou.util.icons')
-
 --- @class ergou.util.buffer
 local M = {}
 
 function M.diagnostics_symbol(_, _, diagnostics_dict, _)
   local s = ' '
+  local icons = ergou.icons
+
   for e, n in pairs(diagnostics_dict) do
     local sym = e == 'error' and icons.diagnostics.Error
       or (

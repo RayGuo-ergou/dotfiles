@@ -33,7 +33,7 @@ return {
     },
     cmdline = {
       format = {
-        cmdline = { icon = require('ergou.util').icons.others.terminal },
+        cmdline = { icon = ergou.icons.others.terminal },
       },
     },
   },

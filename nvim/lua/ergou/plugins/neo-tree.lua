@@ -1,5 +1,3 @@
-local Util = require('ergou.util')
-
 return {
   {
     'nvim-neo-tree/neo-tree.nvim',
@@ -16,7 +14,7 @@ return {
       {
         '<leader>fe',
         function()
-          require('neo-tree.command').execute({ toggle = true, dir = Util.root() })
+          require('neo-tree.command').execute({ toggle = true, dir = ergou.root() })
         end,
         desc = 'Explorer NeoTree (root dir)',
       },
@@ -83,7 +81,7 @@ return {
           local node = state.tree:get_node()
           vim.fn.setreg('*', node.name, 'c')
         end,
-        diff_files = Util.neotree.diff,
+        diff_files = ergou.neotree.diff,
       },
 
       window = {
@@ -100,7 +98,7 @@ return {
           ['ot'] = 'none',
           ['e'] = 'none',
           ['Y'] = {
-            Util.neotree.copy_selector,
+            ergou.neotree.copy_selector,
             desc = 'copy path/filename to clipboard',
           },
           ['s'] = { 'show_help', nowait = false, config = { title = 'Order by', prefix_key = 's' } },
@@ -110,8 +108,8 @@ return {
           ['sn'] = { 'order_by_name', nowait = false },
           ['ss'] = { 'order_by_size', nowait = false },
           ['st'] = { 'order_by_type', nowait = false },
-          ['h'] = Util.neotree.left_movement,
-          ['l'] = Util.neotree.right_movement,
+          ['h'] = ergou.neotree.left_movement,
+          ['l'] = ergou.neotree.right_movement,
         },
       },
       default_component_configs = {
@@ -130,7 +128,7 @@ return {
     },
     config = function(_, opts)
       local function on_move(data)
-        Util.lsp.on_rename(data.source, data.destination)
+        ergou.lsp.on_rename(data.source, data.destination)
       end
 
       local events = require('neo-tree.events')

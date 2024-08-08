@@ -1,5 +1,4 @@
-local Util = require('ergou.util')
-local signs = Util.icons.diagnostics
+local signs = ergou.icons.diagnostics
 return {
   {
     -- LSP Configuration & Plugins
@@ -101,7 +100,7 @@ return {
     },
     ---@param opts PluginLspOpts
     config = function(_, opts)
-      local servers = Util.lsp.get_servers()
+      local servers = ergou.lsp.get_servers()
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
@@ -110,7 +109,7 @@ return {
       local ensure_install_servers = vim.tbl_keys(servers)
 
       local mason_lspconfig = require('mason-lspconfig')
-      Util.lsp.lsp_autocmd()
+      ergou.lsp.lsp_autocmd()
 
       mason_lspconfig.setup({
         ensure_installed = ensure_install_servers,

@@ -1,4 +1,3 @@
-local Util = require('ergou.util')
 return {
   'ibhagwan/fzf-lua',
   opts = function(_, opts)
@@ -147,7 +146,6 @@ return {
     require('fzf-lua').setup(opts)
   end,
   init = function()
-    local ergou = require('ergou.util')
     ergou.on_very_lazy(function()
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.ui.select = function(...)
@@ -160,7 +158,7 @@ return {
   end,
   cmd = { 'FzfLua' },
   keys = function()
-    if Util.pick.picker.name ~= 'fzf' then
+    if ergou.pick.picker.name ~= 'fzf' then
       return {}
     end
 
@@ -171,8 +169,8 @@ return {
         '<cmd>Telescope buffers sort_mru=true<cr>',
         desc = 'Switch Buffer',
       },
-      { '<leader>ff', Util.pick('files'), desc = 'Find Files (root dir)' },
-      { '<leader>fF', Util.pick('files', { root = false }), desc = 'Find Files (cwd)' },
+      { '<leader>ff', ergou.pick('files'), desc = 'Find Files (root dir)' },
+      { '<leader>fF', ergou.pick('files', { root = false }), desc = 'Find Files (cwd)' },
       { '<leader>gf', '<cmd>FzfLua git_files<cr>', desc = 'Find Files (git-files)' },
       { '<leader>:', '<cmd>FzfLua command_history<cr>', desc = 'Command History' },
       {
@@ -180,7 +178,7 @@ return {
         '<cmd>FzfLua buffers sort_mru=true<cr>',
         desc = 'Switch Buffer',
       },
-      { '<leader>fc', Util.pick.config_files(), desc = 'Find Config File' },
+      { '<leader>fc', ergou.pick.config_files(), desc = 'Find Config File' },
       { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
       -- git
       { '<leader>gs', '<cmd>FzfLua git_status<CR>', desc = 'Status' },
@@ -192,11 +190,11 @@ return {
       { '<leader>sD', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'Workspace Diagnostics' },
       {
         '<leader>s/',
-        Util.pick('live_grep', { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }),
+        ergou.pick('live_grep', { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }),
         desc = 'Search in opened files',
       },
-      { '<leader>sg', Util.pick('live_grep'), desc = 'Grep (root dir)' },
-      { '<leader>sG', Util.pick('live_grep', { root = false }), desc = 'Grep (cwd)' },
+      { '<leader>sg', ergou.pick('live_grep'), desc = 'Grep (root dir)' },
+      { '<leader>sG', ergou.pick('live_grep', { root = false }), desc = 'Grep (cwd)' },
       { '<leader>sh', '<cmd>FzfLua help_tags<cr>', desc = 'Help Pages' },
       { '<leader>sH', '<cmd>FzfLua highlights<cr>', desc = 'Search Highlight Groups' },
       { '<leader>sj', '<cmd>FzfLua jumps<cr>', desc = 'Jumplist' },
@@ -206,11 +204,11 @@ return {
       { '<leader>sm', '<cmd>FzfLua marks<cr>', desc = 'Jump to Mark' },
       { '<leader>sr', '<cmd>FzfLua resume<cr>', desc = 'Resume' },
       { '<leader>sq', '<cmd>FzfLua quickfix<cr>', desc = 'Quickfix List' },
-      { '<leader>sw', Util.pick('grep_cword'), desc = 'Word (Root Dir)' },
-      { '<leader>sW', Util.pick('grep_cword', { root = false }), desc = 'Word (cwd)' },
-      { '<leader>sw', Util.pick('grep_visual'), mode = 'v', desc = 'Selection (Root Dir)' },
-      { '<leader>sW', Util.pick('grep_visual', { root = false }), mode = 'v', desc = 'Selection (cwd)' },
-      { '<leader>uC', Util.pick('colorschemes'), desc = 'Colorscheme with Preview' },
+      { '<leader>sw', ergou.pick('grep_cword'), desc = 'Word (Root Dir)' },
+      { '<leader>sW', ergou.pick('grep_cword', { root = false }), desc = 'Word (cwd)' },
+      { '<leader>sw', ergou.pick('grep_visual'), mode = 'v', desc = 'Selection (Root Dir)' },
+      { '<leader>sW', ergou.pick('grep_visual', { root = false }), mode = 'v', desc = 'Selection (cwd)' },
+      { '<leader>uC', ergou.pick('colorschemes'), desc = 'Colorscheme with Preview' },
       {
         '<leader>ss',
         '<cmd>FzfLua lsp_document_symbols<cr>',

@@ -1,4 +1,3 @@
-local lazyUtil = require('ergou.util.lazy')
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -18,10 +17,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-lazyUtil.lazy_file()
-
+-- Init right after lazy init
 _G.ergou = require('ergou.util')
 
+ergou.lazy.lazy_file()
 require('lazy').setup({
   spec = {
     { import = 'ergou/plugins' },

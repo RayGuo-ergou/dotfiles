@@ -5,9 +5,6 @@ return {
     -- When enter shows alpha dashboard no need for lualine
     event = 'LazyFile',
     opts = function()
-      local icons = require('ergou.util.icons')
-      local ui = require('ergou.util.ui')
-
       return {
         options = {
           theme = 'catppuccin',
@@ -21,9 +18,9 @@ return {
             {
               'diff',
               symbols = {
-                added = icons.git.added,
-                modified = icons.git.modified,
-                removed = icons.git.removed,
+                added = ergou.icons.git.added,
+                modified = ergou.icons.git.modified,
+                removed = ergou.icons.git.removed,
               },
               source = function()
                 local gitsigns = vim.b.gitsigns_status_dict
@@ -61,7 +58,7 @@ return {
               function()
                 return require('tinygit.statusline').blame()
               end,
-              color = ui.fg('Tag'),
+              color = ergou.ui.fg('Tag'),
             },
           },
         },
@@ -77,7 +74,7 @@ return {
           lualine_x = {
             {
               function()
-                return vim.t.maximized and icons.others.maximize or ''
+                return vim.t.maximized and ergou.icons.others.maximize or ''
               end,
             },
             {
@@ -87,7 +84,7 @@ return {
               cond = function()
                 return package.loaded['noice'] and require('noice').api.status.search.has()
               end,
-              color = ui.fg('PreProc'),
+              color = ergou.ui.fg('PreProc'),
             },
             {
               function()
@@ -96,7 +93,7 @@ return {
               cond = function()
                 return package.loaded['noice'] and require('noice').api.status.command.has()
               end,
-              color = ui.fg('Statement'),
+              color = ergou.ui.fg('Statement'),
             },
             {
               function()
@@ -105,12 +102,12 @@ return {
               cond = function()
                 return package.loaded['dap'] and require('dap').status() ~= ''
               end,
-              color = ui.fg('Debug'),
+              color = ergou.ui.fg('Debug'),
             },
             {
               require('lazy.status').updates,
               cond = require('lazy.status').has_updates,
-              color = ui.fg('Special'),
+              color = ergou.ui.fg('Special'),
             },
             {
               'copilot',

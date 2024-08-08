@@ -1,4 +1,3 @@
-local Util = require('ergou.util')
 return {
   {
     'tpope/vim-dadbod',
@@ -7,7 +6,7 @@ return {
   {
     'kristijanhusak/vim-dadbod-completion',
     dependencies = 'vim-dadbod',
-    ft = Util.sql_ft,
+    ft = ergou.sql_ft,
   },
   {
     'kristijanhusak/vim-dadbod-ui',

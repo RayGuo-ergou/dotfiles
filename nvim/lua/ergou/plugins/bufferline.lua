@@ -1,4 +1,3 @@
-local bufferline_util = require('ergou.util.buffer')
 return {
   enabled = false,
   'akinsho/bufferline.nvim',
@@ -24,7 +23,7 @@ return {
           ergou.buffer.bufremove(n)
         end,
         diagnostics = 'nvim_lsp',
-        diagnostics_indicator = bufferline_util.diagnostics_symbol,
+        diagnostics_indicator = ergou.buffer.diagnostics_symbol,
         separator_style = 'thin',
         always_show_bufferline = false,
         offsets = {
