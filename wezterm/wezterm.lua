@@ -12,6 +12,7 @@ config.default_prog = { 'pwsh.exe', '-NoLogo' }
 config.keys = {
   -- paste from the clipboard
   { key = 'v', mods = 'CTRL', action = act.PasteFrom('Clipboard') },
+  { key = 'F11', mods = 'NONE', action = act.ToggleFullScreen },
 }
 config.color_scheme = color_scheme
 config.window_padding = {
