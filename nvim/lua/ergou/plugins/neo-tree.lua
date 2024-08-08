@@ -4,6 +4,14 @@ return {
   {
     'nvim-neo-tree/neo-tree.nvim',
     cmd = 'Neotree',
+    dependencies = {
+      {
+
+        's1n7ax/nvim-window-picker',
+        name = 'window-picker',
+        opts = { hint = 'floating-big-letter' },
+      },
+    },
     keys = {
       {
         '<leader>fe',
@@ -141,12 +149,5 @@ return {
         end,
       })
     end,
-  },
-  {
-
-    's1n7ax/nvim-window-picker',
-    name = 'window-picker',
-    event = 'VeryLazy',
-    opts = { hint = 'floating-big-letter' },
   },
 }

@@ -1,7 +1,8 @@
 return {
   {
     'folke/trouble.nvim',
-    keys = function()
+    config = function(_, opts)
+      local map = vim.keymap.set
       local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
       local trouble_next = function()
         if require('trouble').is_open() then
@@ -26,6 +27,12 @@ return {
       end
       local trouble_forward, trouble_backward = ts_repeat_move.make_repeatable_move_pair(trouble_next, trouble_prev)
 
+      map('n', '[q', trouble_backward, { desc = 'Previous trouble/quickfix item' })
+      map('n', ']q', trouble_forward, { desc = 'Next trouble/quickfix item' })
+
+      require('trouble').setup(opts)
+    end,
+    keys = function()
       return {
         {
           '<leader>xx',
@@ -60,16 +67,8 @@ return {
         { '<leader>xt', '<cmd>Trouble todo toggle<cr>', desc = 'Todo (Trouble)' },
         { '<leader>xT', '<cmd>Trouble todo toggle keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme (Trouble)' },
 
-        {
-          '[q',
-          trouble_backward,
-          desc = 'Previous trouble/quickfix item',
-        },
-        {
-          ']q',
-          trouble_forward,
-          desc = 'Next trouble/quickfix item',
-        },
+        { '[q' },
+        { ']q' },
       }
     end,
     opts = {}, -- for default options, refer to the configuration section for custom setup.
