@@ -20,6 +20,8 @@ vim.opt.rtp:prepend(lazypath)
 
 lazyUtil.lazy_file()
 
+_G.ergou = require('ergou.util')
+
 require('lazy').setup({
   spec = {
     { import = 'ergou/plugins' },
@@ -62,5 +64,3 @@ vim.api.nvim_create_autocmd('User', {
     require('ergou.config.autocmds')
   end,
 })
-
-_G.ergou = require('ergou.util')

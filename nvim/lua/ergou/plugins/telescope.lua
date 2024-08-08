@@ -1,4 +1,3 @@
-local Util = require('ergou.util')
 local function flash(prompt_bufnr)
   require('flash').jump({
     pattern = '^',
@@ -25,7 +24,7 @@ return {
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
     keys = function()
-      if Util.pick.picker.name ~= 'telescope' then
+      if ergou.pick.picker.name ~= 'telescope' then
         -- keys maps only exist in telescope
         return {
           { -- lazy style key map
@@ -43,8 +42,8 @@ return {
           '<cmd>Telescope buffers sort_mru=true<cr>',
           desc = 'Switch Buffer',
         },
-        { '<leader>ff', Util.pick('files'), desc = 'Find Files (root dir)' },
-        { '<leader>fF', Util.pick('files', { root = false }), desc = 'Find Files (cwd)' },
+        { '<leader>ff', ergou.pick('files'), desc = 'Find Files (root dir)' },
+        { '<leader>fF', ergou.pick('files', { root = false }), desc = 'Find Files (cwd)' },
         { '<leader>gf', '<cmd>Telescope git_files<cr>', desc = 'Find Files (git-files)' },
         { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
         {
@@ -52,9 +51,9 @@ return {
           '<cmd>Telescope buffers sort_mru=true<cr>',
           desc = 'Switch buffer',
         },
-        { '<leader>fc', Util.pick.config_files(), desc = 'Find Config File' },
+        { '<leader>fc', ergou.pick.config_files(), desc = 'Find Config File' },
         { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
-        { '<leader>fR', Util.pick('oldfiles', { cwd = vim.uv.cwd() }), desc = 'Recent (cwd)' },
+        { '<leader>fR', ergou.pick('oldfiles', { cwd = vim.uv.cwd() }), desc = 'Recent (cwd)' },
         -- git
         { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'status' },
         -- search
@@ -75,11 +74,11 @@ return {
         { '<leader>sD', '<cmd>Telescope diagnostics<cr>', desc = 'Workspace diagnostics' },
         {
           '<leader>s/',
-          Util.pick('live_grep', { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }),
+          ergou.pick('live_grep', { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }),
           desc = 'Search in opened files',
         },
-        { '<leader>sg', Util.pick('live_grep'), desc = 'Grep (root dir)' },
-        { '<leader>sG', Util.pick('live_grep', { root = false }), desc = 'Grep (cwd)' },
+        { '<leader>sg', ergou.pick('live_grep'), desc = 'Grep (root dir)' },
+        { '<leader>sG', ergou.pick('live_grep', { root = false }), desc = 'Grep (cwd)' },
         { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = 'Help Pages' },
         { '<leader>sH', '<cmd>Telescope highlights<cr>', desc = 'Search Highlight Groups' },
         { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'Key Maps' },
@@ -87,11 +86,11 @@ return {
         { '<leader>sM', '<cmd>Telescope man_pages<cr>', desc = 'Man Pages' },
         { '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
         { '<leader>sr', '<cmd>Telescope resume<cr>', desc = 'Resume' },
-        { '<leader>sw', Util.pick('grep_string', { word_match = '-w' }), desc = 'Word (root dir)' },
-        { '<leader>sW', Util.pick('grep_string', { root = false, word_match = '-w' }), desc = 'Word (cwd)' },
-        { '<leader>sw', Util.pick('grep_string'), mode = 'v', desc = 'Selection (root dir)' },
-        { '<leader>sW', Util.pick('grep_string', { root = false }), mode = 'v', desc = 'Selection (cwd)' },
-        { '<leader>uC', Util.pick('colorscheme', { enable_preview = true }), desc = 'Colorscheme with preview' },
+        { '<leader>sw', ergou.pick('grep_string', { word_match = '-w' }), desc = 'Word (root dir)' },
+        { '<leader>sW', ergou.pick('grep_string', { root = false, word_match = '-w' }), desc = 'Word (cwd)' },
+        { '<leader>sw', ergou.pick('grep_string'), mode = 'v', desc = 'Selection (root dir)' },
+        { '<leader>sW', ergou.pick('grep_string', { root = false }), mode = 'v', desc = 'Selection (cwd)' },
+        { '<leader>uC', ergou.pick('colorscheme', { enable_preview = true }), desc = 'Colorscheme with preview' },
         {
           '<leader>ss',
           function()
@@ -126,12 +125,12 @@ return {
       local find_files_no_ignore = function()
         local action_state = require('telescope.actions.state')
         local line = action_state.get_current_line()
-        Util.pick('find_files', { no_ignore = true, default_text = line })()
+        ergou.pick('find_files', { no_ignore = true, default_text = line })()
       end
       local find_files_with_hidden = function()
         local action_state = require('telescope.actions.state')
         local line = action_state.get_current_line()
-        Util.pick('find_files', { hidden = true, default_text = line })()
+        ergou.pick('find_files', { hidden = true, default_text = line })()
       end
 
       telescope.setup({
@@ -207,7 +206,7 @@ return {
     'debugloop/telescope-undo.nvim',
     event = 'LazyFile',
     config = function()
-      Util.on_load('telescope.nvim', function()
+      ergou.on_load('telescope.nvim', function()
         require('telescope').load_extension('undo')
       end)
     end,
@@ -218,7 +217,7 @@ return {
     -- This will not install any breaking changes.
     -- For major updates, this must be adjusted manually.
     config = function()
-      Util.on_load('telescope.nvim', function()
+      ergou.on_load('telescope.nvim', function()
         require('telescope').load_extension('live_grep_args')
       end)
     end,
@@ -227,7 +226,7 @@ return {
     'crispgm/telescope-heading.nvim',
     event = 'LazyFile',
     config = function()
-      Util.on_load('telescope.nvim', function()
+      ergou.on_load('telescope.nvim', function()
         require('telescope').load_extension('heading')
       end)
     end,
