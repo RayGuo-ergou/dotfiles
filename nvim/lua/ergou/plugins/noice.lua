@@ -47,6 +47,20 @@ return {
     {
       '<leader>sn',
       function()
+        local picker = ergou.pick.picker.name
+        if picker == 'fzf' then
+          require('noice').cmd('fzf')
+        elseif picker == 'telescope' then
+          require('noice').cmd('telescope')
+        else
+          ergou.error('No picker available', { title = 'Noice' })
+        end
+      end,
+      desc = 'Notifications History',
+    },
+    {
+      '<leader>sN',
+      function()
         require('noice').cmd('history')
       end,
       desc = 'Notifications History',
