@@ -95,6 +95,8 @@ return {
         'markdown',
         'markdown_inline',
         'java',
+        'ini',
+        'xml',
       },
       incremental_selection = {
         enable = true,
