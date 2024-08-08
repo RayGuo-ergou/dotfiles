@@ -181,7 +181,6 @@ return {
         desc = 'Switch Buffer',
       },
       { '<leader>fc', Util.pick.config_files(), desc = 'Find Config File' },
-      { '<leader>fR', '<cmd>FzfLua resume<cr>', desc = 'Resume' },
       { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
       -- git
       { '<leader>gs', '<cmd>FzfLua git_status<CR>', desc = 'Status' },
@@ -205,7 +204,7 @@ return {
       { '<leader>sl', '<cmd>FzfLua loclist<cr>', desc = 'Location List' },
       { '<leader>sM', '<cmd>FzfLua man_pages<cr>', desc = 'Man Pages' },
       { '<leader>sm', '<cmd>FzfLua marks<cr>', desc = 'Jump to Mark' },
-      { '<leader>sR', '<cmd>FzfLua resume<cr>', desc = 'Resume' },
+      { '<leader>sr', '<cmd>FzfLua resume<cr>', desc = 'Resume' },
       { '<leader>sq', '<cmd>FzfLua quickfix<cr>', desc = 'Quickfix List' },
       { '<leader>sw', Util.pick('grep_cword'), desc = 'Word (Root Dir)' },
       { '<leader>sW', Util.pick('grep_cword', { root = false }), desc = 'Word (cwd)' },
