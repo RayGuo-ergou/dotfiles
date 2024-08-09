@@ -38,19 +38,23 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     local modify = vim.fn.fnamemodify
     local filename = modify(vim.api.nvim_buf_get_name(event.buf), ':t')
     local buf = event.buf
-    if
-      vim.tbl_contains(exclude, vim.bo[buf].filetype)
-      or vim.b[buf].lazyvim_last_loc
-      or filename == 'COMMIT_EDITMSG'
-    then
+    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].ergou_last_loc or filename == 'COMMIT_EDITMSG' then
       return
     end
-    vim.b[buf].lazyvim_last_loc = true
+    vim.b[buf].ergou_last_loc = true
     local mark = vim.api.nvim_buf_get_mark(buf, '"')
     local lcount = vim.api.nvim_buf_line_count(buf)
     if mark[1] > 0 and mark[1] <= lcount then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = augroup('go_top_on_enter'),
+  pattern = 'COMMIT_EDITMSG',
+  callback = function()
+    vim.api.nvim_win_set_cursor(0, { 1, 0 })
   end,
 })
 
