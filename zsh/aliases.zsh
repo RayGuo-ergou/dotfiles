@@ -17,6 +17,7 @@ alias php7='/usr/bin/php7.4'
 alias windowsroot='wslpath "$(wslvar USERPROFILE)"'
 alias yy='yazi'
 alias lg='lazygit'
+alias cdlazyvim='cd ~/.local/share/nvim/lazy'
 
 vimf() {
   local file=$(fd --type f --hidden --exclude .git | fzf --reverse)
