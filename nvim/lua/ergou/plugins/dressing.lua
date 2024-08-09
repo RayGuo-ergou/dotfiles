@@ -14,5 +14,10 @@ return {
         return vim.ui.input(...)
       end
     end,
+    opts = {
+      select = {
+        enabled = false,
+      },
+    },
   },
 }
