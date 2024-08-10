@@ -75,5 +75,39 @@ config.hide_tab_bar_if_only_one_tab = true
 config.underline_thickness = '1.5pt'
 config.underline_position = '200%'
 config.max_fps = 120
+config.mouse_bindings = {
+  -- Bind 'Up' event of CTRL-Click to open hyperlinks
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'CTRL',
+    action = act.OpenLinkAtMouseCursor,
+  },
+  -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
+  {
+    event = { Down = { streak = 1, button = 'Left' } },
+    mods = 'CTRL',
+    action = act.Nop,
+  },
+  {
+    event = { Down = { streak = 1, button = 'Right' } },
+    mods = 'CTRL',
+    action = act.Nop,
+  },
+  {
+    event = { Down = { streak = 1, button = 'Right' } },
+    mods = 'NONE',
+    action = wezterm.action_callback(function(window, pane)
+      local has_selection = window:get_selection_text_for_pane(pane) ~= ''
+      if has_selection then
+        window:perform_action(act.CopyTo('ClipboardAndPrimarySelection'), pane)
+        window:perform_action(act.ClearSelection, pane)
+      else
+        window:perform_action(act({ PasteFrom = 'Clipboard' }), pane)
+      end
+    end),
+  },
+}
+
+config.bypass_mouse_reporting_modifiers = 'CTRL'
 
 return config
