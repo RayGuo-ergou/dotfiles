@@ -49,7 +49,7 @@ return {
       function()
         local picker = ergou.pick.picker.name
         if picker == 'fzf' then
-          -- FIXME: seems fzf intergration has an issue
+          -- FIXME: seems fzf integration has an issue
           -- require('noice').cmd('fzf')
           require('noice').cmd('telescope')
         elseif picker == 'telescope' then
