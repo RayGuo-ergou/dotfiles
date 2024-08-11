@@ -5,7 +5,7 @@ return {
     opts = {
       options = {
         overflow = {
-          mode = 'none',
+          mode = 'oneline',
         },
       },
     },
