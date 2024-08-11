@@ -33,6 +33,7 @@ return {
         topdelete = { text = '' },
         changedelete = { text = '▎' },
       },
+      attach_to_untracked = true,
       on_attach = function(bufnr)
         local gitsigns = require('gitsigns')
         local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
