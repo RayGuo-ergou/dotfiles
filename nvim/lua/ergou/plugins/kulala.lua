@@ -4,6 +4,12 @@ return {
     default_view = 'headers_body',
   },
   keys = {
-    { '<leader>RR', require('kulala').run, desc = 'Curl request' },
+    {
+      '<leader>RR',
+      function()
+        require('kulala').run()
+      end,
+      desc = 'Curl request',
+    },
   },
 }
