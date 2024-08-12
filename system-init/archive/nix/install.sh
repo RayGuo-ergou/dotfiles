@@ -23,3 +23,5 @@ nix profile install nixpkgs#ast-grep
 # move linux sg
 sudo mv /usr/bin/sg{,.bak}
 
+# xmllint
+nix profile install nixpkgs#libxml2

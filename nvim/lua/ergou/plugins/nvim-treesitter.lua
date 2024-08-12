@@ -180,7 +180,12 @@ return {
       local map = vim.keymap.set
 
       vim.filetype.add({
-        extension = { rasi = 'rasi', rofi = 'rasi', wofi = 'rasi' },
+        extension = {
+          rasi = 'rasi',
+          rofi = 'rasi',
+          wofi = 'rasi',
+          http = 'http',
+        },
         filename = {
           ['vifmrc'] = 'vim',
         },
