@@ -53,7 +53,6 @@ return {
     end
 
     return vim.tbl_deep_extend('force', defaults, {
-      fzf_colors = true,
       fzf_opts = {
         ['--no-scrollbar'] = true,
         ['--cycle'] = true,

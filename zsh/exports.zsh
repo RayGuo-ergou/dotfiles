@@ -82,7 +82,7 @@ export FZF_DEFAULT_OPTS="
 --bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down
 --bind shift-up:preview-top,shift-down:preview-bottom
 --bind alt-up:half-page-up,alt-down:half-page-down
---color=spinner:#f4dbd6,hl:#ed8796
+--color=bg+:#303347,spinner:#f4dbd6,hl:#ed8796
 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6
 --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796
 --multi"
