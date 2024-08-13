@@ -1,7 +1,7 @@
 # alias
 alias ls='eza -l --icons -h'
 alias cat='bat'
-alias pnd='pnpm dev'
+alias nd='ni dev'
 alias vim='nvim'
 alias configzsh='nvim ~/.zshrc'
 alias reload='source ~/.zshrc'
