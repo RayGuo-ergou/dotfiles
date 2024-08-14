@@ -28,7 +28,8 @@ gh
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # n node
-# sudo rm -rf /usr/local/bin/{npm,npx,corepack,node}
+# sudo rm -rf /usr/local/bin/{npm,npx,corepack,node,yarn,yarnpkg,pnpx,pnpm}
+# sudo rm -rf /usr/local/lib/node_modules
 export N_PREFIX=$HOME/.n
 export PATH=$N_PREFIX/bin:$PATH
 
