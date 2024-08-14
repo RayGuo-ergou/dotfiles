@@ -29,7 +29,7 @@ cdf() {
   local initial_dir="${1:-$PWD}" # Default to current dir if no dir is specified
   local dir
   # Note: No pattern is specified, so '.' is used to match everything in the specified directory.
-  dir=$(fd . "$initial_dir" --type d | fzf --height 40% --reverse)
+  dir=$(fd . "$initial_dir" --type d | fzf --height 40% --reverse --preview 'eza -l --icons -h --color always {}')
   if [ -n "$dir" ]; then
     cd "$dir"
   fi
@@ -39,7 +39,7 @@ cdh() {
   local initial_dir="${1:-$HOME}" # Default to current dir if no dir is specified
   local dir
   # Note: No pattern is specified, so '.' is used to match everything in the specified directory.
-  dir=$(fd . "$initial_dir" --type d | fzf --height 40% --reverse)
+  dir=$(fd . "$initial_dir" --type d | fzf --height 40% --reverse --preview 'eza -l --icons -h --color always {}')
   if [ -n "$dir" ]; then
     cd "$dir"
   fi
