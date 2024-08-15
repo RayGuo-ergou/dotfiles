@@ -101,6 +101,7 @@ map('n', '<leader>|', '<C-W>v', { desc = 'Split window right', remap = true })
 map('n', '<leader>bd', ergou.buffer.bufremove, { desc = 'Delete Buffer' })
 map('n', '<leader>bD', '<cmd>:bd<cr>', { desc = 'Delete Buffer and Window' })
 -- tabs
+map('n', '<leader><tab><tab>', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
 map('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
 map('n', '<leader><tab>o', '<cmd>tabonly<cr>', { desc = 'Close Other Tabs' })
 map('n', '<leader><tab>f', '<cmd>tabfirst<cr>', { desc = 'First Tab' })
