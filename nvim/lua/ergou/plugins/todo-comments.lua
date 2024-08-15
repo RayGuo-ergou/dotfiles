@@ -20,17 +20,17 @@ return {
         require('todo-comments.fzf').todo({ keywords = { 'TODO', 'FIX', 'FIXME' } })
       end, { desc = 'Todo/Fix/Fixme' })
     end
-    map('n', ']t', function()
+    map('n', ']T', function()
       todo_next()
     end, { desc = 'Next todo comment' })
-    map('n', '[t', function()
+    map('n', '[T', function()
       todo_prev()
     end, { desc = 'Previous todo comment' })
     require('todo-comments').setup(opts)
   end,
   keys = {
-    { ']t' },
-    { '[t' },
+    { ']T' },
+    { '[T' },
     { '<leader>st' },
     { '<leader>sT' },
   },
