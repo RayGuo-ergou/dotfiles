@@ -128,7 +128,7 @@ return {
       'LazyGitFilterCurrentFile',
     },
     keys = {
-      { '<leader>gl', '<cmd>LazyGit<cr>', mode = { 'n' }, desc = 'Open lazygit' },
+      { '<leader>lg', '<cmd>LazyGit<cr>', mode = { 'n' }, desc = 'Open lazygit' },
     },
   },
 

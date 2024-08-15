@@ -1,9 +1,12 @@
 -- key mapping
 local map = vim.keymap.set
 
+-- Lazy vim
+map('n', '<leader>lv', '<cmd>Lazy<cr>', { desc = 'Lazy Vim' })
+
 -- better left/right
-map({ 'o', 'v', 'n' }, '<leader>l', '$', { noremap = true, silent = true })
-map({ 'o', 'v', 'n' }, '<leader>h', '^', { noremap = true, silent = true })
+map({ 'o', 'v', 'n' }, 'L', '$', { noremap = true, silent = true })
+map({ 'o', 'v', 'n' }, 'H', '^', { noremap = true, silent = true })
 
 -- action on entire buffer
 map('n', 'dae', 'ggVGd', { noremap = true, silent = true, desc = 'Delete entire file' })
@@ -41,9 +44,9 @@ map({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = 
 map({ 'n', 'x' }, '<Up>', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
 
 -- buffers
-map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
-map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 map('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
+map('n', '<leader>bh', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
+map('n', '<leader>bl', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 map('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n

@@ -32,6 +32,9 @@ return {
 
         -- No icon
         { '<leader>r', group = 'rename/replace', icon = { icon = '󰬲 ', color = 'purple' } },
+        { '<leader>l', group = 'lazy', icon = { icon = '󰒲 ' } },
+        -- name kulala always remind me ウァラク・クララfrom 魔入りました！入間くん, so I will use a woman icon here :)
+        { '<leader>R', group = 'kulala', icon = { icon = '󱗎 ' } },
       },
     },
   },
