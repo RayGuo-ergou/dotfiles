@@ -7,7 +7,7 @@ return {
     local utils = require('yanky.utils')
     local mapping = require('yanky.telescope.mapping')
     return {
-      ring = { storage = 'sqlite' },
+      ring = { storage = 'shada' },
       picker = {
         telescope = {
           use_default_mappings = false,
