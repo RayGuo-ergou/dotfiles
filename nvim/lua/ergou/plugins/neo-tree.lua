@@ -25,8 +25,8 @@ return {
         end,
         desc = 'Explorer NeoTree (cwd)',
       },
-      { '<leader>e', '<leader>fe', desc = 'Explorer NeoTree (root dir)', remap = true },
-      { '<leader>E', '<leader>fE', desc = 'Explorer NeoTree (cwd)', remap = true },
+      -- { '<leader>e', '<leader>fe', desc = 'Explorer NeoTree (root dir)', remap = true },
+      -- { '<leader>E', '<leader>fE', desc = 'Explorer NeoTree (cwd)', remap = true },
       {
         '<leader>ge',
         function()
@@ -136,6 +136,12 @@ return {
       vim.list_extend(opts.event_handlers, {
         { event = events.FILE_MOVED, handler = on_move },
         { event = events.FILE_RENAMED, handler = on_move },
+        {
+          event = events.FILE_OPENED,
+          handler = function()
+            require('neo-tree.command').execute({ action = 'close' })
+          end,
+        },
       })
       require('neo-tree').setup(opts)
       vim.api.nvim_create_autocmd('TermClose', {
