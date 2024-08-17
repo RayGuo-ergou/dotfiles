@@ -1,5 +1,6 @@
 return {
   'folke/noice.nvim',
+  version = 'v4.4.7',
   event = 'VeryLazy',
   ---@type NoiceConfig
   opts = {
