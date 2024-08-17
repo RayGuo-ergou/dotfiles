@@ -1,8 +1,5 @@
 return {
   'gbprod/yanky.nvim',
-  dependencies = {
-    { 'kkharji/sqlite.lua' },
-  },
   opts = function()
     local utils = require('yanky.utils')
     local mapping = require('yanky.telescope.mapping')
