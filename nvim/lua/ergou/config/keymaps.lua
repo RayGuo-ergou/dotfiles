@@ -15,10 +15,10 @@ map('n', 'cae', 'ggVG"_c', { noremap = true, silent = true, desc = 'Change entir
 map('n', 'vae', 'ggVG', { noremap = true, silent = true, desc = 'Select entire file' })
 
 -- Move Lines
-map('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'Move Down', silence = true })
-map('n', '<A-k>', '<cmd>m .-2<cr>==', { desc = 'Move Up', silence = true })
-map('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down', silence = true })
-map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up', silence = true })
+map('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'Move Down', silent = true })
+map('n', '<A-k>', '<cmd>m .-2<cr>==', { desc = 'Move Up', silent = true })
+map('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down', silent = true })
+map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up', silent = true })
 map('v', '<A-j>', ':m \'>+1<cr>gv=gv', { desc = 'Move Down', silent = true })
 map('v', '<A-k>', ':m \'<-2<cr>gv=gv', { desc = 'Move Up', silent = true })
 
