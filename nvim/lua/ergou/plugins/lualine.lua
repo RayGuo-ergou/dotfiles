@@ -41,7 +41,7 @@ return {
               cond = function()
                 return package.loaded['noice'] and require('noice').api.status.mode.has()
               end,
-              color = ui.fg('Constant'),
+              color = ergou.ui.fg('Constant'),
             },
           },
           lualine_c = {},
