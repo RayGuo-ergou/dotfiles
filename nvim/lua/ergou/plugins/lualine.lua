@@ -33,18 +33,16 @@ return {
                 end
               end,
             },
-            -- {
-            --   -- marco state
-            --   function()
-            --     return require('noice').api.status.mode.get()
-            --   end,
-            --   cond = function()
-            --     return package.loaded['noice'] and require('noice').api.status.mode.has()
-            --   end,
-            --   color = ui.fg('Constant'),
-            -- },
-            { require('recorder').displaySlots },
-            { require('recorder').recordingStatus },
+            {
+              -- marco state
+              function()
+                return require('noice').api.status.mode.get()
+              end,
+              cond = function()
+                return package.loaded['noice'] and require('noice').api.status.mode.has()
+              end,
+              color = ui.fg('Constant'),
+            },
           },
           lualine_c = {},
           lualine_x = {},
