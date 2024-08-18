@@ -14,6 +14,14 @@ map('n', 'yae', 'ggVGy', { noremap = true, silent = true, desc = 'Yank entire fi
 map('n', 'cae', 'ggVG"_c', { noremap = true, silent = true, desc = 'Change entire file' })
 map('n', 'vae', 'ggVG', { noremap = true, silent = true, desc = 'Select entire file' })
 
+-- Move Lines
+map('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'Move Down' })
+map('n', '<A-k>', '<cmd>m .-2<cr>==', { desc = 'Move Up' })
+map('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
+map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
+map('v', '<A-j>', ':m \'>+1<cr>gv=gv', { desc = 'Move Down' })
+map('v', '<A-k>', ':m \'<-2<cr>gv=gv', { desc = 'Move Up' })
+
 -- Disable highlight for search
 map('n', '<C-n>', '<cmd>nohl<CR>', { noremap = true, silent = true })
 
