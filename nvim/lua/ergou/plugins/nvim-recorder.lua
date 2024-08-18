@@ -4,6 +4,7 @@ return {
     mapping = {
       -- I use c-q for visual block mode
       switchSlot = '<Nop>',
+      startStopRecording = 'qq',
     },
     clear = true,
   }, -- required even with default settings, since it calls `setup()`
