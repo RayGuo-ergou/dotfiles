@@ -1,5 +1,6 @@
 return {
   'folke/todo-comments.nvim',
+  event = 'LazyFile',
   cmd = { 'TodoTrouble', 'TodoTelescope' },
   config = function(_, opts)
     local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
