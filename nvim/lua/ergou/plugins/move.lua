@@ -1,7 +1,6 @@
 return {
   'fedepujol/move.nvim',
   config = true,
-  event = 'LazyFile',
   keys = {
     { '<M-j>', ':MoveLine(1)<CR>', mode = { 'n' }, noremap = true, silent = true, desc = 'Move line down' },
     { '<M-k>', ':MoveLine(-1)<CR>', mode = { 'n' }, noremap = true, silent = true, desc = 'Move line up' },

@@ -10,7 +10,6 @@ return {
         desc = 'Toggle minimap',
       },
     },
-    event = 'LazyFile',
     opts = {
       auto_enable = false,
       minimap_width = 20,

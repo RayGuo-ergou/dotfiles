@@ -1,9 +1,7 @@
 return {
   {
     'ThePrimeagen/harpoon',
-    enabled = false,
     branch = 'harpoon2',
-    event = 'LazyFile',
     opts = {
       menu = {
         width = vim.api.nvim_win_get_width(0) - 4,
@@ -22,7 +20,7 @@ return {
           desc = 'Harpoon File',
         },
         {
-          '<C-e>',
+          '<C-t>',
           function()
             local harpoon = require('harpoon')
             harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -45,15 +43,15 @@ return {
         },
       }
 
-      -- for i = 1, 5 do
-      --   table.insert(keys, {
-      --     '<leader>h' .. i,
-      --     function()
-      --       require('harpoon'):list():select(i)
-      --     end,
-      --     desc = 'Harpoon to File ' .. i,
-      --   })
-      -- end
+      for i = 1, 5 do
+        table.insert(keys, {
+          '<leader>h' .. i,
+          function()
+            require('harpoon'):list():select(i)
+          end,
+          desc = 'Harpoon to File ' .. i,
+        })
+      end
       return keys
     end,
   },
