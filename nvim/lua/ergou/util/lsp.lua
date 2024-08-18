@@ -83,10 +83,11 @@ M.TYPESCRIPT.handlers = {
 M.TYPESCRIPT.on_attach = function(client, _)
   local existing_capabilities = vim.deepcopy(client.server_capabilities)
 
-  existing_capabilities.documentFormattingProvider = nil
   if existing_capabilities == nil then
     return
   end
+
+  existing_capabilities.documentFormattingProvider = nil
 
   local existing_filters = existing_capabilities.workspace.fileOperations.didRename.filters or {}
   local new_glob = '**/*.{ts,cts,mts,tsx,js,cjs,mjs,jsx,vue}'
