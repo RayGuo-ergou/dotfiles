@@ -78,6 +78,18 @@ M.TYPESCRIPT.handlers = {
     vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
   end,
 }
+---@param client vim.lsp.Client
+---@param _ integer
+M.TYPESCRIPT.on_attach = function(client, _)
+  client.server_capabilities.documentFormattingProvider = nil
+  client.server_capabilities.workspace.fileOperations.didRename.filters = {
+    {
+      pattern = {
+        glob = '**/*.{ts,cts,mts,tsx,js,cjs,mjs,jsx,vue}',
+      },
+    },
+  }
+end
 
 -- ESLINT
 M.ESLINT = {}
@@ -372,9 +384,7 @@ M.get_servers = function()
         typescript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
         javascript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
       },
-      on_attach = function(client, _)
-        client.server_capabilities.documentFormattingProvider = nil
-      end,
+      on_attach = M.TYPESCRIPT.on_attach,
     },
     tsserver = {
       handlers = M.TYPESCRIPT.handlers,
@@ -394,9 +404,7 @@ M.get_servers = function()
           inlayHints = M.TYPESCRIPT.inlay_hints,
         },
       },
-      on_attach = function(client, _)
-        client.server_capabilities.documentFormattingProvider = nil
-      end,
+      on_attach = M.TYPESCRIPT.on_attach,
     },
     html = { filetypes = { 'html', 'twig', 'hbs', 'blade' } },
     eslint = {
