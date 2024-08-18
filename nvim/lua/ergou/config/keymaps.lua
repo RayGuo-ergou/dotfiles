@@ -32,7 +32,16 @@ map('n', '<leader>K', 'i<CR><esc>', { noremap = true, silent = true, desc = 'Add
 map('v', '<leader><leader>', '<esc>', { noremap = true, silent = true })
 
 -- Clear search highlight
-map('i', '<C-n>', '<esc><cmd>nohl<CR>', { noremap = true, silent = true })
+map('i', '<C-n>', '<esc><cmd>nohlsearch<CR>', { noremap = true, silent = true })
+
+-- Clear search, diff update and redraw
+-- taken from runtime/lua/_editor.lua
+map(
+  'n',
+  '<leader>ur',
+  '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>',
+  { desc = 'Redraw / Clear hlsearch / Diff Update' }
+)
 
 -- save file
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
