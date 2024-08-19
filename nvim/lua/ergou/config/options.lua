@@ -18,6 +18,7 @@ opt.clipboard = '' -- Sync with system clipboard
 vim.schedule(function()
   vim.opt.clipboard = vim.env.SSH_TTY and '' or 'unnamedplus'
 end)
+opt.comments = 's1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,fb:-,fb:•' ---@see https://neovim.io/doc/user/options.html#'comments'
 opt.completeopt = 'menu,menuone,noselect'
 opt.conceallevel = 0 -- Hide nothing in markdown files
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
