@@ -2,6 +2,11 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    -- ping commit due to textobjects has not merge new php treesitter node update
+    ---@see https://github.com/nvim-treesitter/nvim-treesitter/issues/7057
+    -- wait for this to be merged
+    ---@see https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/631
+    commit = '24ddf60d68daa921d4e909d2b6c5b03ef6bce8ce',
     -- event = { 'LazyFile', 'VeryLazy' },
     event = { 'LazyFile' },
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
