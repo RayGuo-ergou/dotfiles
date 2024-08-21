@@ -43,7 +43,7 @@ M.TYPESCRIPT.vtsls_typescript_javascript_config = {
   inlayHints = {
     enumMemberValues = { enabled = true },
     functionLikeReturnTypes = { enabled = true },
-    parameterNames = { enabled = 'literals' },
+    parameterNames = { enabled = 'all' },
     parameterTypes = { enabled = true },
     propertyDeclarationTypes = { enabled = true },
     variableTypes = { enabled = false },
