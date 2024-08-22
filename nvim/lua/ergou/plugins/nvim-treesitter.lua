@@ -119,8 +119,6 @@ return {
             ['if'] = '@function.inner',
             ['ac'] = '@call.outer',
             ['ic'] = '@call.inner',
-            ['ab'] = '@block.outer',
-            ['ib'] = '@block.inner',
             ['al'] = '@loop.outer',
             ['il'] = '@loop.inner',
             ['ai'] = '@conditional.outer',
@@ -132,7 +130,6 @@ return {
           goto_next_start = {
             [']f'] = '@function.outer',
             [']c'] = '@call.outer',
-            [']b'] = '@block.outer',
             [']a'] = '@assignment.outer',
             [']l'] = '@loop.outer',
             [']i'] = '@conditional.outer',
@@ -140,7 +137,6 @@ return {
           goto_next_end = {
             [']F'] = '@function.outer',
             [']C'] = '@call.outer',
-            [']B'] = '@block.outer',
             [']A'] = '@assignment.outer',
             [']L'] = '@loop.outer',
             [']I'] = '@conditional.outer',
@@ -148,7 +144,6 @@ return {
           goto_previous_start = {
             ['[f'] = '@function.outer',
             ['[c'] = '@call.outer',
-            ['[b'] = '@block.outer',
             ['[a'] = '@assignment.outer',
             ['[l'] = '@loop.outer',
             ['[i'] = '@conditional.outer',
@@ -156,7 +151,6 @@ return {
           goto_previous_end = {
             ['[F'] = '@function.outer',
             ['[C'] = '@call.outer',
-            ['[B'] = '@block.outer',
             ['[A'] = '@assignment.outer',
             ['[L'] = '@loop.outer',
             ['[I'] = '@conditional.outer',
