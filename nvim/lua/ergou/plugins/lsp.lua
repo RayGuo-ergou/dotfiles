@@ -123,4 +123,9 @@ return {
       })
     end,
   },
+  {
+    'yioneko/nvim-vtsls',
+    event = 'LspAttach',
+    enabled = ergou.lsp.TYPESCRIPT.server_to_use == 'vtsls',
+  },
 }
