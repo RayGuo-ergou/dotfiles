@@ -201,9 +201,7 @@ return {
       parser_config.liquid = {
         install_info = {
           -- From https://github.com/hankthetank27/tree-sitter-liquid
-          -- @see https://github.com/Shopify/tree-sitter-liquid/pull/11
-          -- switch to shopify's tree-sitter-liquid after merged
-          url = 'https://github.com/RayGuo-ergou/tree-sitter-liquid', -- local path or git repo
+          url = 'https://github.com/hankthetank27/tree-sitter-liquid', -- local path or git repo
           files = {
             'src/parser.c',
             'src/scanner.c',
