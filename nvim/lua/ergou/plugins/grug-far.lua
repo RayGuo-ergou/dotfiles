@@ -1,3 +1,5 @@
+---@note
+---When replacing string the escape char is $ not \.
 return {
   'MagicDuck/grug-far.nvim',
   cmd = 'GrugFar',
