@@ -500,7 +500,7 @@ M.get_servers = function()
       },
     },
     unocss = {},
-    -- shopify_theme_ls = {},
+    shopify_theme_ls = {},
     prismals = {},
     -- jdtls = {},
     emmet_language_server = {
@@ -516,6 +516,7 @@ M.get_servers = function()
         'scss',
         'typescriptreact',
         'blade',
+        'php',
       },
     },
     jsonls = {
