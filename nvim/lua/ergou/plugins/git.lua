@@ -6,7 +6,7 @@ return {
       'tpope/vim-fugitive',
     },
     keys = {
-      { '<leader>ghh', '<cmd>GBrowse<cr>', desc = 'Open current file on GitHub' },
+      { '<leader>grv', '<cmd>GBrowse<cr>', desc = 'Open current file on GitHub' },
     },
   },
   {
