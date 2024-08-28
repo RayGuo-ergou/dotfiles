@@ -127,5 +127,12 @@ return {
     'yioneko/nvim-vtsls',
     event = 'LspAttach',
     enabled = ergou.lsp.TYPESCRIPT.server_to_use == 'vtsls',
+    keys = {
+      {
+        'grR',
+        '<cmd>VtsExec file_references<cr>',
+        desc = 'Find file references',
+      },
+    },
   },
 }
