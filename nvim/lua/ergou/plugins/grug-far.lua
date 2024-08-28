@@ -7,6 +7,9 @@ return {
   opts = {
     headerMaxWidth = 80,
     -- engine = 'astgrep',
+    folding = {
+      foldcolumn = '0',
+    },
   },
   keys = {
     {
