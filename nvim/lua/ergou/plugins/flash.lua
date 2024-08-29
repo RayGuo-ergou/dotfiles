@@ -65,5 +65,15 @@ return {
       mode = { 'n' },
       desc = 'Find prev char',
     },
+    {
+      't',
+      mode = { 'n' },
+      desc = 'Find next char (before target char)',
+    },
+    {
+      'T',
+      mode = { 'n' },
+      desc = 'Find prev char (after target char)',
+    },
   },
 }
