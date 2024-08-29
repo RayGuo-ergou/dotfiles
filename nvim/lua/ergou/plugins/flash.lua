@@ -55,5 +55,15 @@ return {
       end,
       desc = 'Jump to a line',
     },
+    {
+      'f',
+      mode = { 'n' },
+      desc = 'Find next char',
+    },
+    {
+      'F',
+      mode = { 'n' },
+      desc = 'Find prev char',
+    },
   },
 }
