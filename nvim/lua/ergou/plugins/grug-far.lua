@@ -15,7 +15,7 @@ return {
     {
       '<leader>rr',
       function()
-        require('grug-far').grug_far({
+        require('grug-far').open({
           transient = true,
         })
       end,
@@ -27,7 +27,7 @@ return {
       function()
         local grug = require('grug-far')
         local ext = vim.bo.buftype == '' and vim.fn.expand('%:e')
-        grug.grug_far({
+        grug.open({
           transient = true,
           prefills = {
             filesFilter = ext and ext ~= '' and '*.' .. ext or nil,
@@ -40,7 +40,7 @@ return {
     {
       '<leader>rf',
       function()
-        require('grug-far').grug_far({
+        require('grug-far').open({
           transient = true,
           prefills = {
             flags = vim.fn.expand('%'),
@@ -53,7 +53,7 @@ return {
       '<leader>rF',
       function()
         local ext = vim.bo.buftype == '' and vim.fn.expand('%:e')
-        require('grug-far').grug_far({
+        require('grug-far').open({
           transient = true,
           prefills = {
             flags = vim.fn.expand('%'),
