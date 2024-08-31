@@ -13,3 +13,5 @@ jobs:
             version: latest
             # CLI arguments
             args: --check ./nvim --config-path ./nvim/stylua.toml
+        - name: Check spelling
+          uses: crate-ci/typos@master
