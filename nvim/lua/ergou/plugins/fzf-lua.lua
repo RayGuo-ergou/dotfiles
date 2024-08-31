@@ -1,6 +1,6 @@
 return {
   'ibhagwan/fzf-lua',
-  opts = function(_, opts)
+  opts = function()
     local config = require('fzf-lua.config')
     local actions = require('fzf-lua.actions')
 
@@ -26,6 +26,8 @@ return {
       ergou.pick.open(ctx.__INFO.cmd, o)
     end
     config.defaults.actions.files['alt-c'] = config.defaults.actions.files['ctrl-r']
+    -- ctrl-v is used for paste
+    config.defaults.actions.files['alt-v'] = config.defaults.actions.files['ctrl-v']
     config.set_action_helpstr(config.defaults.actions.files['ctrl-r'], 'toggle-root-dir')
 
     -- use the same prompt for all
