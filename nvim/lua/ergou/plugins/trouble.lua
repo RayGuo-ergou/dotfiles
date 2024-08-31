@@ -27,8 +27,8 @@ return {
       end
       local trouble_forward, trouble_backward = ts_repeat_move.make_repeatable_move_pair(trouble_next, trouble_prev)
 
-      map('n', '[q', trouble_backward, { desc = 'Previous trouble/quickfix item' })
-      map('n', ']q', trouble_forward, { desc = 'Next trouble/quickfix item' })
+      map('n', '[t', trouble_backward, { desc = 'Previous trouble/quickfix item' })
+      map('n', ']t', trouble_forward, { desc = 'Next trouble/quickfix item' })
 
       require('trouble').setup(opts)
     end,

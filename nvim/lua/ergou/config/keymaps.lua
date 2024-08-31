@@ -127,28 +127,6 @@ map('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
 map('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 
--- Toggle Quickfix
-map('n', '<leader>qf', function()
-  local qf_exists = false
-  for _, win in pairs(vim.fn.getwininfo()) do
-    if win['quickfix'] == 1 then
-      qf_exists = true
-    end
-  end
-  if qf_exists == true then
-    vim.cmd('cclose')
-    return
-  end
-  if not vim.tbl_isempty(vim.fn.getqflist()) then
-    vim.cmd('copen')
-  end
-end, { desc = 'Toggle Quickfix' })
-
--- Toggle wrap or unwrap
-map('n', '<leader>tw', function()
-  if vim.wo.wrap then
-    vim.wo.wrap = false
-  else
-    vim.wo.wrap = true
-  end
-end, { desc = 'Toggle Wrap' })
+-- Toggles
+-- map('n', '<leader>qf', ergou.toggle.quickfix, { desc = 'Toggle Quickfix' })
+map('n', '<leader>tw', ergou.toggle.wrap, { desc = 'Toggle Wrap' })

@@ -19,13 +19,57 @@ return {
         default_bindings = false,
       },
     },
-  },
-  {
-    'stevearc/quicker.nvim',
-    enabled = false,
-    event = 'LazyFile',
-    ---@module "quicker"
-    ---@type quicker.SetupOptions
-    opts = {},
+    config = function(_, opts)
+      local map = vim.keymap.set
+      local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
+
+      local qf_next = function()
+        vim.cmd([[QNext]])
+      end
+
+      local qf_prev = function()
+        vim.cmd([[QPrev]])
+      end
+      local qf_forward, qf_backward = ts_repeat_move.make_repeatable_move_pair(qf_next, qf_prev)
+
+      map('n', '[q', qf_backward, { desc = 'Previous quickfix item' })
+      map('n', ']q', qf_forward, { desc = 'Next quickfix item' })
+
+      require('qf_helper').setup(opts)
+    end,
+    keys = {
+      {
+        '<leader>qf',
+        '<cmd>QFToggle!<cr>',
+        mode = { 'n' },
+        desc = 'Toggle quick fix (keep cursor)',
+      },
+      {
+        '<leader>qF',
+        '<cmd>QFToggle<cr>',
+        mode = { 'n' },
+        desc = 'Toggle quick fix.',
+      },
+      {
+        '<leader>ll',
+        '<cmd>LLToggle!<cr>',
+        mode = { 'n' },
+        desc = 'Toggle loclist (keep cursor)',
+      },
+      {
+        '<leader>lL',
+        '<cmd>LLToggle<cr>',
+        mode = { 'n' },
+        desc = 'Toggle loclist.',
+      },
+      {
+        '[q',
+        desc = 'Previous quickfix item',
+      },
+      {
+        ']q',
+        desc = 'Next quickfix item',
+      },
+    },
   },
 }
