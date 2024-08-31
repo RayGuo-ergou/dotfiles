@@ -1,0 +1,6 @@
+[default.extend-words]
+# noice.nvim
+noice = "noice"
+
+[default]
+extend-ignore-re = ["\\['(.+)'\\]", "<cmd>.+<cr>"]
