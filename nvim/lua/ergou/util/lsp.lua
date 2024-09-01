@@ -1,3 +1,5 @@
+-- TODO: Detect vitepress in root, if exist add vitepress support, for now manually add markdown to volar if need write vitepress doc
+
 --- @class ergou.util.lsp
 local M = {}
 
