@@ -1,5 +1,7 @@
 return {
   'kevinhwang91/nvim-ufo',
+  url = 'https://github.com/RayGuo-ergou/nvim-ufo',
+  branch = 'feature/nvim_11_ts_breaking_change',
   dependencies = { 'kevinhwang91/promise-async' },
   event = 'LazyFile',
   init = function()
