@@ -31,9 +31,9 @@ local icons = {
   -- diagnostics = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' },
   diagnostics = { Error = '●', Warn = '●', Hint = '●', Info = '●' },
   git = {
-    added = ' ',
-    modified = ' ',
-    removed = ' ',
+    added = ' ',
+    modified = ' ',
+    removed = ' ',
   },
   file = {
     symbols = {
