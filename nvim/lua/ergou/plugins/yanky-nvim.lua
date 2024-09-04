@@ -49,13 +49,13 @@ return {
     },
     {
       'p',
-      '<Plug>(YankyPutAfter)',
+      '"0<Plug>(YankyPutAfter)',
       mode = { 'n', 'x' },
       desc = 'Put yanked text after cursor',
     },
     {
       'P',
-      '<Plug>(YankyPutBefore)',
+      '"0<Plug>(YankyPutBefore)',
       mode = { 'n', 'x' },
       desc = 'Put yanked text before cursor',
     },
