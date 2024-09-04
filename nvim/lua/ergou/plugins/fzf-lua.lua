@@ -190,11 +190,6 @@ return {
       { '<leader>sC', '<cmd>FzfLua commands<cr>', desc = 'Commands' },
       { '<leader>sd', '<cmd>FzfLua diagnostics_document<cr>', desc = 'Document Diagnostics' },
       { '<leader>sD', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'Workspace Diagnostics' },
-      {
-        '<leader>s/',
-        ergou.pick('live_grep', { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }),
-        desc = 'Search in opened files',
-      },
       { '<leader>sg', ergou.pick('live_grep'), desc = 'Grep (root dir)' },
       { '<leader>sG', ergou.pick('live_grep', { root = false }), desc = 'Grep (cwd)' },
       { '<leader>sh', '<cmd>FzfLua help_tags<cr>', desc = 'Help Pages' },
