@@ -51,7 +51,9 @@ return {
     opts = {
       highlight = { enable = true },
       -- For some reason, the indent act really weird with lua
-      indent = { enable = true, disable = { 'lua' } },
+      ---@see Issue: https://github.com/nvim-treesitter/nvim-treesitter/issues/7062
+      -- XXX: TS indent have issue with javascript, disable them for now
+      indent = { enable = true, disable = { 'lua', 'javascript', 'typescript', 'vue' } },
       ensure_installed = {
         'c',
         'git_rebase',
