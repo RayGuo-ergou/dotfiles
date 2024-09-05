@@ -1,5 +1,6 @@
 return {
   'stevearc/aerial.nvim',
+  url = 'https://github.com/RayGuo-ergou/aerial.nvim',
   config = function(_, opts)
     local aerial = require('aerial')
     -- local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
