@@ -1,5 +1,6 @@
 return {
   {
+    enabled = false,
     'nvim-neo-tree/neo-tree.nvim',
     cmd = 'Neotree',
     dependencies = {
