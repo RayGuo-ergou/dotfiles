@@ -117,6 +117,11 @@ return {
           function(server_name)
             server_name = server_name == 'tsserver' and 'ts_ls' or server_name
             local server = servers[server_name] or {}
+
+            -- Disable entirely if not enabled
+            if server.enabled == false then
+              return
+            end
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
