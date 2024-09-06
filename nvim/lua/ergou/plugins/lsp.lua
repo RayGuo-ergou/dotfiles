@@ -115,7 +115,7 @@ return {
         ensure_installed = ensure_install_servers,
         handlers = {
           function(server_name)
-            server_name = server_name == 'tsserver' and 'ts_ls' or server_name
+            -- server_name = server_name == 'tsserver' and 'ts_ls' or server_name
             local server = servers[server_name] or {}
 
             -- Disable entirely if not enabled
