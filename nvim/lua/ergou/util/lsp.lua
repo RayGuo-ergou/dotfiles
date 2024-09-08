@@ -403,8 +403,7 @@ M.get_servers = function()
       },
       on_attach = M.TYPESCRIPT.on_attach,
     },
-    -- TODO: Because the key is used to ensure install, so keep this for now, but change after mason changed to ts_ls
-    tsserver = {
+    ts_ls = {
       handlers = M.TYPESCRIPT.handlers,
       enabled = M.TYPESCRIPT.server_to_use == 'ts_ls',
       -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
