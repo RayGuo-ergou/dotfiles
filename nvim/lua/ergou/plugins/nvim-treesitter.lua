@@ -118,6 +118,8 @@ return {
             -- You can use the capture groups defined in textobjects.scm
             ['aa'] = '@parameter.outer',
             ['ia'] = '@parameter.inner',
+            ['aA'] = '@assignment.outer',
+            ['iA'] = '@assignment.inner',
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
             ['ac'] = '@call.outer',
