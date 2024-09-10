@@ -20,6 +20,12 @@ function M.bufremove(buf)
   buf = buf or 0
   buf = buf == 0 and vim.api.nvim_get_current_buf() or buf
 
+  -- If kulala, just force remove the buffer to avoid result buffer cannot show in split view
+  if vim.fn.bufname(buf) == 'kulala://ui' then
+    pcall(vim.cmd, 'bdelete! ' .. buf)
+    return
+  end
+
   if vim.bo.modified then
     local choice = vim.fn.confirm(('Save changes to %q?'):format(vim.fn.bufname()), '&Yes\n&No\n&Cancel')
     if choice == 0 or choice == 3 then -- 0 for <Esc>/<C-c> and 3 for Cancel
