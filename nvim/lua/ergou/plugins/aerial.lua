@@ -1,5 +1,12 @@
 return {
   'stevearc/aerial.nvim',
+  opts = {
+    lsp = {
+      priority = {
+        volar = 11,
+      },
+    },
+  },
   config = function(_, opts)
     local aerial = require('aerial')
     -- local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
