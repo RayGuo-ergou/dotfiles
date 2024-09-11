@@ -78,6 +78,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'grug-far',
     'dbout',
     'DressingInput',
+    'query',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
