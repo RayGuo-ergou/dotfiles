@@ -12,6 +12,16 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+  group = augroup('gitsigns_refresh'),
+  pattern = '*lazygit',
+  callback = function()
+    if package.loaded['gitsigns.actions'] then
+      require('gitsigns.actions').refresh()
+    end
+  end,
+})
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = augroup('highlight_yank'),

@@ -93,14 +93,6 @@ return {
         map({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat, 'jump to prev git hunk')
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'select git hunk')
-        vim.api.nvim_create_autocmd('TermClose', {
-          pattern = '*lazygit',
-          callback = function()
-            if package.loaded['gitsigns.actions'] then
-              require('gitsigns.actions').refresh()
-            end
-          end,
-        })
       end,
     },
   },
