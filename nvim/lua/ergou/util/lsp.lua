@@ -318,12 +318,12 @@ function M.lsp_autocmd()
       elseif ergou.pick.picker.name == 'fzf' then
         nmap(
           'gd',
-          '<cmd>FzfLua lsp_definitions     jump_to_single_result=true ignore_current_line=true<cr>',
+          '<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>',
           'Goto Definition'
         )
         nmap(
           'grr',
-          '<cmd>FzfLua lsp_references      jump_to_single_result=true ignore_current_line=true<cr>',
+          '<cmd>FzfLua lsp_references jump_to_single_result=true ignore_current_line=true<cr>',
           'Goto References'
         )
         nmap(
@@ -331,11 +331,7 @@ function M.lsp_autocmd()
           '<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>',
           'Goto Implementation'
         )
-        nmap(
-          'gy',
-          '<cmd>FzfLua lsp_typedefs        jump_to_single_result=true ignore_current_line=true<cr>',
-          'Goto Type'
-        )
+        nmap('gy', '<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>', 'Goto Type')
       end
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
