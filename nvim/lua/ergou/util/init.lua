@@ -12,7 +12,6 @@ local LazyUtil = require('lazy.core.util')
 ---@field public ui ergou.util.ui
 ---@field public git ergou.util.git
 ---@field public cmp ergou.util.cmp
----@field public tsformat ergou.util.tsformat
 ---@field public pick ergou.util.pick
 ---@field public toggle ergou.util.toggle
 local M = {}

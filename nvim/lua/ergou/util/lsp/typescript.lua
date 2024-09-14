@@ -53,7 +53,7 @@ M.handlers = {
     while idx <= #result.diagnostics do
       local entry = result.diagnostics[idx]
 
-      local formatter = ergou.tsformat[entry.code]
+      local formatter = ergou.lsp.tsformat[entry.code]
       entry.message = formatter and formatter(entry.message) or entry.message
 
       -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json

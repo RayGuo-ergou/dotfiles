@@ -21,7 +21,7 @@
 -- SOFTWARE.
 -- TODO: handle vue props to make it more readable
 
----@class ergou.util.tsformat
+---@class ergou.util.lsp.tsformat
 local M = {}
 
 M.format_object_type = function(o)
