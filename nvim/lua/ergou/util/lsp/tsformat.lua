@@ -63,7 +63,6 @@ M.line_parsers = {
     ---@diagnostic disable-next-line: unused-local
     local found, _ei, p1, prop, p2, ours, p3, theirs = line:find(M.pattern.threepat)
     if found then
-      print(p2)
       return (
         ('%s\n\n%s\n'):format(p1, M.format_object_type(prop))
         .. ('%s\n\n%s\n'):format(p2, M.format_object_type(ours))
