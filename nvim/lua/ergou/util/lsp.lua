@@ -64,13 +64,31 @@ M.TYPESCRIPT.handlers = {
       return
     end
 
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+
     -- ignore some tsserver diagnostics
     local idx = 1
     while idx <= #result.diagnostics do
       local entry = result.diagnostics[idx]
 
       local formatter = ergou.tsformat[entry.code]
-      entry.message = formatter and formatter(entry.message) or entry.message
+      entry.message = entry.message
+
+      local bufnr = vim.uri_to_bufnr(result.uri)
+      local filetype = vim.filetype.match({ filename = vim.uri_to_fname(result.uri) })
+      print(result.uri)
+      local ns_id = vim.api.nvim_create_namespace('lsp_diagnostics')
+      local line = entry.range.start.line
+      local char = entry.range.start.character
+      if line and char and client and client.name == 'vtsls' and filetype == 'vue' then
+        local severity_name = vim.diagnostic.severity[entry.severity]
+        local virt_text = string.format('[%s]', severity_name)
+        print('line is ', line)
+        print('buffer id', bufnr)
+        vim.api.nvim_buf_set_extmark(bufnr, ns_id, line, char, {
+          virt_text = { { entry.message } },
+        })
+      end
 
       -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
       if entry.code == 80001 then
