@@ -50,14 +50,20 @@ M.format_object_type = function(o)
   return obj
 end
 
+M.pattern = {
+  threepat = '(%S.-) \'(.-)\' (.- type) \'(.-)\' (.- type) \'(.-)\'.',
+  twopat = '(%S.-) \'(.-)\' (.- type) \'(.-)\'.',
+  missing_named_properties = '(%S.-) \'(.-)\' (.- type) \'(.-)\'',
+}
+
 M.line_parsers = {
 
   -- Property 'public_token' is missing in type '{}' but required in type 'ItemPublicTokenExchangeRequest'.
   threepat = function(line)
     ---@diagnostic disable-next-line: unused-local
-    local found, _ei, p1, prop, p2, ours, p3, theirs =
-      line:find('(%S.-) \'(.-)\' (.- type) \'(.-)\' (.- type) \'(.-)\'.')
+    local found, _ei, p1, prop, p2, ours, p3, theirs = line:find(M.pattern.threepat)
     if found then
+      print(p2)
       return (
         ('%s\n\n%s\n'):format(p1, M.format_object_type(prop))
         .. ('%s\n\n%s\n'):format(p2, M.format_object_type(ours))
@@ -70,7 +76,7 @@ M.line_parsers = {
   -- Argument of type '{}' is not assignable to parameter of type 'ItemPublicTokenExchangeRequest'.
   twopat = function(line)
     ---@diagnostic disable-next-line: unused-local
-    local found, _ei, p1, ours, p2, theirs = line:find('(%S.-) \'(.-)\' (.- type) \'(.-)\'.')
+    local found, _ei, p1, ours, p2, theirs = line:find(M.pattern.twopat)
     if found then
       return (
         ('%s\n\n%s\n'):format(p1, M.format_object_type(ours))
@@ -83,7 +89,7 @@ M.line_parsers = {
   -- Type '{}' is missing the following properties from type 'LinkTokenCreateRequest': client_name, language, country_codes, user
   missing_named_properties = function(line)
     ---@diagnostic disable-next-line: unused-local
-    local found, _ei, p1, ours, p2, theirs = line:find('(%S.-) \'(.-)\' (.- type) \'(.-)\'')
+    local found, _ei, p1, ours, p2, theirs = line:find(M.pattern.missing_named_properties)
     if found then
       ---@diagnostic disable-next-line: unused-local
       local _sj, _ej, named_csv = line:find(': ([^:]*)$')
