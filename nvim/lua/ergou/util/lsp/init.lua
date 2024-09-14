@@ -107,7 +107,7 @@ function M.lsp_autocmd()
         local client_name = client.name
         local file_type = vim.bo[bufnr].filetype
         if
-          not (file_type == 'vue' and vim.list_contains(ergou.lsp.typescript.servers, client_name))
+          not (file_type == 'vue' and vim.list_contains(M.typescript.servers, client_name))
           and client.supports_method('textDocument/documentSymbol')
         then
           require('nvim-navic').attach(client, bufnr)
@@ -163,7 +163,7 @@ function M.lsp_autocmd()
         if
           client.supports_method('workspace/didRenameFiles') or client.supports_method('workspace/willRenameFiles')
         then
-          nmap('<leader>cR', ergou.lsp.rename_file, 'Rename File')
+          nmap('<leader>cR', M.rename_file, 'Rename File')
         end
       end
 
@@ -247,9 +247,9 @@ M.get_servers = function()
     -- pyright = {},
     rust_analyzer = {},
     vtsls = {
-      handlers = ergou.lsp.typescript.handlers,
-      enabled = ergou.lsp.typescript.server_to_use == 'vtsls',
-      filetypes = ergou.lsp.typescript.filetypes,
+      handlers = M.typescript.handlers,
+      enabled = M.typescript.server_to_use == 'vtsls',
+      filetypes = M.typescript.filetypes,
       settings = {
         complete_function_calls = true,
         vtsls = {
@@ -266,36 +266,36 @@ M.get_servers = function()
             },
           },
         },
-        typescript = ergou.lsp.typescript.vtsls_typescript_javascript_config,
-        javascript = ergou.lsp.typescript.vtsls_typescript_javascript_config,
+        typescript = M.typescript.vtsls_typescript_javascript_config,
+        javascript = M.typescript.vtsls_typescript_javascript_config,
       },
-      on_attach = ergou.lsp.typescript.on_attach,
+      on_attach = M.typescript.on_attach,
     },
     ts_ls = {
-      handlers = ergou.lsp.typescript.handlers,
-      enabled = ergou.lsp.typescript.server_to_use == 'ts_ls',
+      handlers = M.typescript.handlers,
+      enabled = M.typescript.server_to_use == 'ts_ls',
       -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
       init_options = {
         plugins = {
           vue_plugin,
         },
       },
-      filetypes = ergou.lsp.typescript.filetypes,
+      filetypes = M.typescript.filetypes,
       settings = {
         javascript = {
-          inlayHints = ergou.lsp.typescript.inlay_hints,
+          inlayHints = M.typescript.inlay_hints,
         },
         typescript = {
-          inlayHints = ergou.lsp.typescript.inlay_hints,
+          inlayHints = M.typescript.inlay_hints,
         },
       },
-      on_attach = ergou.lsp.typescript.on_attach,
+      on_attach = M.typescript.on_attach,
     },
     html = { filetypes = { 'html', 'twig', 'hbs', 'blade' } },
     eslint = {
-      filetypes = ergou.lsp.eslint.filetypes,
+      filetypes = M.eslint.filetypes,
       settings = {
-        rulesCustomizations = ergou.lsp.eslint.customizations,
+        rulesCustomizations = M.eslint.customizations,
       },
     },
     volar = {
@@ -313,11 +313,11 @@ M.get_servers = function()
     -- Use phpactor instead for large files
     -- it's not as good as intelephense, but it's faster
     intelephense = {
-      enabled = not ergou.lsp.php.working_large_file,
+      enabled = not M.php.working_large_file,
     },
     -- To install phpactor, need php8
     phpactor = {
-      enabled = ergou.lsp.php.working_large_file,
+      enabled = M.php.working_large_file,
     },
     marksman = {},
     lua_ls = {
