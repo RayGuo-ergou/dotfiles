@@ -11,7 +11,7 @@ return {
 
       local cspellConfig = {
         find_json = function()
-          for _, file in ipairs(ergou.lsp.cspell_config_files) do
+          for _, file in ipairs(ergou.lsp.cspell.cspell_config_files) do
             local dotfiles_path = os.getenv('DOTFILES')
             if dotfiles_path then
               local path = ergou.root.find_file(file, dotfiles_path .. '/cspell')

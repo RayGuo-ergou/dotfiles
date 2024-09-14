@@ -132,7 +132,7 @@ return {
   {
     'yioneko/nvim-vtsls',
     event = 'LspAttach',
-    enabled = ergou.lsp.TYPESCRIPT.server_to_use == 'vtsls',
+    enabled = ergou.lsp.typescript.server_to_use == 'vtsls',
     keys = {
       {
         'grR',

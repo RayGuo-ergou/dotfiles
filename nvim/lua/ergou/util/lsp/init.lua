@@ -1,153 +1,19 @@
 -- TODO: Detect vitepress in root, if exist add vitepress support, for now manually add markdown to volar if need write vitepress doc
 
---- @class ergou.util.lsp
+---@class ergou.util.lsp
+---@field public typescript ergou.util.lsp.typescript
+---@field public php ergou.util.lsp.php
+---@field public eslint ergou.util.lsp.eslint
+---@field public cspell ergou.util.lsp.cspell
 local M = {}
 
---- @type string[]
-M.cspell_config_files = {
-  'cspell.json',
-  '.cspell.json',
-  'cSpell.json',
-  '.cSpell.json',
-  '.cspell.config.json',
-}
--- PHP
-M.PHP = {}
-M.PHP.working_large_file = false
-
--- TYPESCRIPT
-M.TYPESCRIPT = {}
-M.TYPESCRIPT.inlay_hints = {
-  includeInlayEnumMemberValueHints = true,
-  includeInlayFunctionLikeReturnTypeHints = true,
-  includeInlayFunctionParameterTypeHints = true,
-  includeInlayParameterNameHints = 'all',
-  includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-  includeInlayPropertyDeclarationTypeHints = true,
-  includeInlayVariableTypeHints = true,
-}
-M.TYPESCRIPT.filetypes = {
-  'javascript',
-  'javascriptreact',
-  'javascript.jsx',
-  'typescript',
-  'typescriptreact',
-  'typescript.tsx',
-  'vue',
-}
-M.TYPESCRIPT.servers = { 'vtsls', 'ts_ls' }
-M.TYPESCRIPT.server_to_use = 'vtsls'
-M.TYPESCRIPT.vtsls_typescript_javascript_config = {
-  updateImportsOnFileMove = { enabled = 'always' },
-  suggest = {
-    completeFunctionCalls = true,
-  },
-  inlayHints = {
-    enumMemberValues = { enabled = true },
-    functionLikeReturnTypes = { enabled = true },
-    parameterNames = { enabled = 'all' },
-    parameterTypes = { enabled = true },
-    propertyDeclarationTypes = { enabled = true },
-    variableTypes = { enabled = false },
-  },
-  tsserver = {
-    maxTsServerMemory = 8192,
-  },
-}
-M.TYPESCRIPT.handlers = {
-  ---@param _ lsp.ResponseError
-  ---@param result lsp.PublishDiagnosticsParams
-  ---@param ctx lsp.HandlerContext
-  ---@param config vim.diagnostic.Opts
-  ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
-    if result.diagnostics == nil then
-      return
-    end
-
-    -- ignore some tsserver diagnostics
-    local idx = 1
-    while idx <= #result.diagnostics do
-      local entry = result.diagnostics[idx]
-
-      local formatter = ergou.tsformat[entry.code]
-      entry.message = formatter and formatter(entry.message) or entry.message
-
-      -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
-      if entry.code == 80001 then
-        -- { message = "File is a CommonJS module; it may be converted to an ES module.", }
-        table.remove(result.diagnostics, idx)
-      else
-        idx = idx + 1
-      end
-    end
-
-    vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+setmetatable(M, {
+  __index = function(t, k)
+    ---@diagnostic disable-next-line: no-unknown
+    t[k] = require('ergou.util.lsp.' .. k)
+    return t[k]
   end,
-}
----@param client vim.lsp.Client
----@param _ integer
-M.TYPESCRIPT.on_attach = function(client, _)
-  local existing_capabilities = vim.deepcopy(client.server_capabilities)
-
-  if existing_capabilities == nil then
-    return
-  end
-
-  existing_capabilities.documentFormattingProvider = nil
-
-  if client.name == 'vtsls' then
-    local existing_filters = existing_capabilities.workspace.fileOperations.didRename.filters or {}
-    local new_glob = '**/*.{ts,cts,mts,tsx,js,cjs,mjs,jsx,vue}'
-
-    for _, filter in ipairs(existing_filters) do
-      if filter.pattern and filter.pattern.matches == 'file' then
-        filter.pattern.glob = new_glob
-        break
-      end
-    end
-
-    existing_capabilities.workspace.fileOperations.didRename.filters = existing_filters
-  end
-
-  client.server_capabilities = existing_capabilities
-end
-
--- ESLINT
-M.ESLINT = {}
-M.ESLINT.customizations = {
-  { rule = 'style/*', severity = 'off', fixable = true },
-  { rule = 'format/*', severity = 'off', fixable = true },
-  { rule = '*-indent', severity = 'off', fixable = true },
-  { rule = '*-spacing', severity = 'off', fixable = true },
-  { rule = '*-spaces', severity = 'off', fixable = true },
-  { rule = '*-order', severity = 'off', fixable = true },
-  { rule = '*-dangle', severity = 'off', fixable = true },
-  { rule = '*-newline', severity = 'off', fixable = true },
-  { rule = '*quotes', severity = 'off', fixable = true },
-  { rule = '*semi', severity = 'off', fixable = true },
-}
-M.ESLINT.filetypes = {
-  'javascript',
-  'javascriptreact',
-  'typescript',
-  'typescriptreact',
-  'vue',
-  'html',
-  'markdown',
-  'json',
-  'jsonc',
-  'yaml',
-  'toml',
-  'xml',
-  'gql',
-  'graphql',
-  'astro',
-  'css',
-  'less',
-  'scss',
-  'pcss',
-  'postcss',
-}
+})
 
 function M.get_clients(opts)
   local ret = {} ---@type vim.lsp.Client[]
@@ -239,7 +105,7 @@ function M.lsp_autocmd()
         local client_name = client.name
         local file_type = vim.bo[bufnr].filetype
         if
-          not (file_type == 'vue' and vim.list_contains(M.TYPESCRIPT.servers, client_name))
+          not (file_type == 'vue' and vim.list_contains(ergou.lsp.typescript.servers, client_name))
           and client.supports_method('textDocument/documentSymbol')
         then
           require('nvim-navic').attach(client, bufnr)
@@ -379,9 +245,9 @@ M.get_servers = function()
     -- pyright = {},
     rust_analyzer = {},
     vtsls = {
-      handlers = M.TYPESCRIPT.handlers,
-      enabled = M.TYPESCRIPT.server_to_use == 'vtsls',
-      filetypes = M.TYPESCRIPT.filetypes,
+      handlers = ergou.lsp.typescript.handlers,
+      enabled = ergou.lsp.typescript.server_to_use == 'vtsls',
+      filetypes = ergou.lsp.typescript.filetypes,
       settings = {
         complete_function_calls = true,
         vtsls = {
@@ -398,36 +264,36 @@ M.get_servers = function()
             },
           },
         },
-        typescript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
-        javascript = M.TYPESCRIPT.vtsls_typescript_javascript_config,
+        typescript = ergou.lsp.typescript.vtsls_typescript_javascript_config,
+        javascript = ergou.lsp.typescript.vtsls_typescript_javascript_config,
       },
-      on_attach = M.TYPESCRIPT.on_attach,
+      on_attach = ergou.lsp.typescript.on_attach,
     },
     ts_ls = {
-      handlers = M.TYPESCRIPT.handlers,
-      enabled = M.TYPESCRIPT.server_to_use == 'ts_ls',
+      handlers = ergou.lsp.typescript.handlers,
+      enabled = ergou.lsp.typescript.server_to_use == 'ts_ls',
       -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
       init_options = {
         plugins = {
           vue_plugin,
         },
       },
-      filetypes = M.TYPESCRIPT.filetypes,
+      filetypes = ergou.lsp.typescript.filetypes,
       settings = {
         javascript = {
-          inlayHints = M.TYPESCRIPT.inlay_hints,
+          inlayHints = ergou.lsp.typescript.inlay_hints,
         },
         typescript = {
-          inlayHints = M.TYPESCRIPT.inlay_hints,
+          inlayHints = ergou.lsp.typescript.inlay_hints,
         },
       },
-      on_attach = M.TYPESCRIPT.on_attach,
+      on_attach = ergou.lsp.typescript.on_attach,
     },
     html = { filetypes = { 'html', 'twig', 'hbs', 'blade' } },
     eslint = {
-      filetypes = M.ESLINT.filetypes,
+      filetypes = ergou.lsp.eslint.filetypes,
       settings = {
-        rulesCustomizations = M.ESLINT.customizations,
+        rulesCustomizations = ergou.lsp.eslint.customizations,
       },
     },
     volar = {
@@ -445,11 +311,11 @@ M.get_servers = function()
     -- Use phpactor instead for large files
     -- it's not as good as intelephense, but it's faster
     intelephense = {
-      enabled = not M.PHP.working_large_file,
+      enabled = not ergou.lsp.php.working_large_file,
     },
     -- To install phpactor, need php8
     phpactor = {
-      enabled = M.PHP.working_large_file,
+      enabled = ergou.lsp.php.working_large_file,
     },
     marksman = {},
     lua_ls = {
