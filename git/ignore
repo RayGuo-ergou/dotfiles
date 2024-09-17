@@ -17,3 +17,9 @@ vendor
 
 # output file
 out
+
+# copy file to wsl2 auto generated
+*.Identifier
+
+# Vite generated config file
+vite.config.*.timestamp-*
