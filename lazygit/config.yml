@@ -229,7 +229,6 @@ keybinding:
         moveDownCommit: '<c-j>' # move commit down one
         moveUpCommit: '<c-k>' # move commit up one
         amendToCommit: 'A'
-        amendAttributeMenu: 'a'
         pickCommit: 'p' # pick commit (when mid-rebase)
         revertCommit: 't'
         cherryPickCopy: 'C'
@@ -237,7 +236,7 @@ keybinding:
         tagCommit: 'T'
         checkoutCommit: '<space>'
         resetCherryPick: '<c-R>'
-        copyCommitMessageToClipboard: '<c-y>'
+        copyCommitAttributeToClipboard: y
         openLogMenu: '<c-l>'
         viewBisectOptions: 'b'
     stash:
