@@ -69,8 +69,11 @@ M.handlers = {
   end,
 }
 ---@param client vim.lsp.Client
----@param _ integer
-M.on_attach = function(client, _)
+---@param bufnr integer
+M.on_attach = function(client, bufnr)
+  if package.loaded['twoslash-queries'] then
+    require('twoslash-queries').attach(client, bufnr)
+  end
   local existing_capabilities = vim.deepcopy(client.server_capabilities)
 
   if existing_capabilities == nil then

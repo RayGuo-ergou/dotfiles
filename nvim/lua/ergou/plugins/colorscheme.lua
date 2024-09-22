@@ -36,6 +36,7 @@ return {
         custom_highlights = function(colors)
           return {
             CmpItemKindNpm = { fg = colors.red },
+            TypeVirtualText = { fg = colors.yellow },
           }
         end,
       })
