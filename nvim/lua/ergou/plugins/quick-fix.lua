@@ -32,8 +32,8 @@ return {
       end
       local qf_forward, qf_backward = ts_repeat_move.make_repeatable_move_pair(qf_next, qf_prev)
 
-      map('n', '[q', qf_backward, { desc = 'Previous quickfix item' })
-      map('n', ']q', qf_forward, { desc = 'Next quickfix item' })
+      map('n', '[Q', qf_backward, { desc = 'Previous quickfix item' })
+      map('n', ']Q', qf_forward, { desc = 'Next quickfix item' })
 
       require('qf_helper').setup(opts)
     end,
@@ -63,11 +63,11 @@ return {
         desc = 'Toggle loclist.',
       },
       {
-        '[q',
+        '[Q',
         desc = 'Previous quickfix item',
       },
       {
-        ']q',
+        ']Q',
         desc = 'Next quickfix item',
       },
     },
