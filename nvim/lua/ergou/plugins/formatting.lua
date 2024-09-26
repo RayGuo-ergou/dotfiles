@@ -42,6 +42,12 @@ return {
         format_on_save = function()
           local ft = vim.bo.filetype
 
+          -- Check if the file path includes 'templates'
+          local file_path = vim.fn.expand('%:p')
+          if string.find(file_path, 'templates') then
+            return nil
+          end
+
           ---@type conform.FormatOpts
           local config = {
             lsp_format = 'fallback',
