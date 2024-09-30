@@ -97,6 +97,7 @@ return {
         'ini',
         'xml',
         'liquid',
+        'powershell',
       },
       incremental_selection = {
         enable = true,
