@@ -1,6 +1,5 @@
 return {
   'ibhagwan/fzf-lua',
-  url = 'https://github.com/RayGuo-ergou/fzf-lua',
   opts = function()
     local config = require('fzf-lua.config')
     local actions = require('fzf-lua.actions')

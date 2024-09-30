@@ -1,5 +1,10 @@
 return {
   'rcarriga/nvim-notify',
+  -- If not using with noice, un-comment below
+  -- event = 'VeryLazy',
+  -- init = function()
+  --   vim.notify = require('notify')
+  -- end,
   keys = {
     {
       '<leader>un',
