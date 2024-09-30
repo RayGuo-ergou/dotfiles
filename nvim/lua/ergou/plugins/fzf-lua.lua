@@ -180,6 +180,7 @@ return {
         '<cmd>FzfLua buffers sort_mru=true<cr>',
         desc = 'Switch Buffer',
       },
+      { '<leader>fs', '<cmd>FzfLua treesitter<cr>', desc = 'Treesitter' },
       { '<leader>fc', ergou.pick.config_files(), desc = 'Find Config File' },
       { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
       -- git

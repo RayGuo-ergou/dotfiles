@@ -51,6 +51,7 @@ return {
           '<cmd>Telescope buffers sort_mru=true<cr>',
           desc = 'Switch buffer',
         },
+        { '<leader>fs', '<cmd>Telescope treesitter<cr>', desc = 'Treesitter' },
         { '<leader>fc', ergou.pick.config_files(), desc = 'Find Config File' },
         { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
         { '<leader>fR', ergou.pick('oldfiles', { cwd = vim.uv.cwd() }), desc = 'Recent (cwd)' },
