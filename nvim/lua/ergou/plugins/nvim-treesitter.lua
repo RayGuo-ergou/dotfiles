@@ -175,21 +175,6 @@ return {
       local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
       local map = vim.keymap.set
 
-      vim.filetype.add({
-        extension = {
-          rasi = 'rasi',
-          rofi = 'rasi',
-          wofi = 'rasi',
-          http = 'http',
-        },
-        filename = {
-          ['vifmrc'] = 'vim',
-        },
-        pattern = {
-          ['%.env%.[%w_.-]+'] = 'sh',
-        },
-      })
-
       -- Has to add query
       -- @see https://github.com/EmranMR/tree-sitter-blade/discussions/19
       parser_config.blade = {

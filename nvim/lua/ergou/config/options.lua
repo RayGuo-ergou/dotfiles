@@ -95,3 +95,20 @@ vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
 -- Disable deprecation messages
 -- vim.deprecate = function() end
+
+vim.filetype.add({
+  extension = {
+    rasi = 'rasi',
+    rofi = 'rasi',
+    wofi = 'rasi',
+    http = 'http',
+    zsh = 'bash',
+    sh = 'bash',
+  },
+  filename = {
+    ['vifmrc'] = 'vim',
+  },
+  pattern = {
+    ['%.env%.[%w_.-]+'] = 'bash',
+  },
+})
