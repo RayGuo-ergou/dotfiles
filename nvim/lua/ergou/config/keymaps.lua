@@ -128,5 +128,5 @@ map('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 
 -- Toggles
--- map('n', '<leader>qf', ergou.toggle.quickfix, { desc = 'Toggle Quickfix' })
+map('n', '<leader>qf', ergou.toggle.quickfix, { desc = 'Toggle Quickfix' })
 map('n', '<leader>tw', ergou.toggle.wrap, { desc = 'Toggle Wrap' })

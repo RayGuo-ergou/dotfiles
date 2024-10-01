@@ -39,30 +39,6 @@ return {
     end,
     keys = {
       {
-        '<leader>qf',
-        '<cmd>QFToggle!<cr>',
-        mode = { 'n' },
-        desc = 'Toggle quick fix (keep cursor)',
-      },
-      {
-        '<leader>qF',
-        '<cmd>QFToggle<cr>',
-        mode = { 'n' },
-        desc = 'Toggle quick fix.',
-      },
-      {
-        '<leader>ll',
-        '<cmd>LLToggle!<cr>',
-        mode = { 'n' },
-        desc = 'Toggle loclist (keep cursor)',
-      },
-      {
-        '<leader>lL',
-        '<cmd>LLToggle<cr>',
-        mode = { 'n' },
-        desc = 'Toggle loclist.',
-      },
-      {
         '[Q',
         desc = 'Previous quickfix item',
       },
