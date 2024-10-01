@@ -6,7 +6,8 @@ return {
       local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
       local trouble_next = function()
         if require('trouble').is_open() then
-          require('trouble').next({ skip_groups = true, jump = true })
+          ---@diagnostic disable-next-line: missing-fields, missing-parameter
+          require('trouble').next({ jump = true })
         else
           local ok, err = pcall(vim.cmd.cnext)
           if not ok then
@@ -17,7 +18,8 @@ return {
 
       local trouble_prev = function()
         if require('trouble').is_open() then
-          require('trouble').prev({ skip_groups = true, jump = true })
+          ---@diagnostic disable-next-line: missing-fields, missing-parameter
+          require('trouble').prev({ jump = true })
         else
           local ok, err = pcall(vim.cmd.cprev)
           if not ok then
