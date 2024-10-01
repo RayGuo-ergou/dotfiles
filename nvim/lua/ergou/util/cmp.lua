@@ -121,7 +121,7 @@ function M.cmp_sort()
 
   ---@param entry1 cmp.Entry
   ---@param entry2 cmp.Entry
-  local function custom_kind(entry1, entry2) -- sort by compare kind (Variable, Function etc)
+  local function custom_kind_sort(entry1, entry2) -- sort by compare kind (Variable, Function etc)
     local kind1 = modified_kind(entry1:get_kind())
     local kind2 = modified_kind(entry2:get_kind())
     if kind1 ~= kind2 then
@@ -129,7 +129,16 @@ function M.cmp_sort()
     end
   end
 
-  local i = 1
+  -- Respect LSP sortText
+  ---@param entry1 cmp.Entry
+  ---@param entry2 cmp.Entry
+  local function lsp_sort_text(entry1, entry2) -- score by lsp, if available
+    local t1 = entry1.completion_item.sortText
+    local t2 = entry2.completion_item.sortText
+    if t1 ~= nil and t2 ~= nil and t1 ~= t2 then
+      return t1 < t2
+    end
+  end
 
   ---@param entry1 cmp.Entry
   ---@param entry2 cmp.Entry
@@ -183,7 +192,8 @@ function M.cmp_sort()
       package_json_npm,
       compare.offset,
       compare.exact,
-      -- custom_kind,
+      lsp_sort_text,
+      -- custom_kind_sort,
       -- compare.scopes,
       compare.score,
       compare.recently_used,
