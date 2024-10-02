@@ -8,9 +8,7 @@ return {
       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
       override = {
         ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-        -- break due to upstream change(maybe? because not happening for all), and I'm too dumb to figure out🥲
-        -- I'm okay for now to not have treesitter applied for the lsp completion items detail
-        ['vim.lsp.util.stylize_markdown'] = false,
+        ['vim.lsp.util.stylize_markdown'] = true,
         ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
       },
       hover = {
