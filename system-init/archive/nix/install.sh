@@ -7,7 +7,7 @@ sudo ln -s $HOME/.nix-profile/bin/gh /usr/bin/gh
 # To upgrade all pkg
 nix profile upgrade --all
 
-nix profile install nixpkgs#delta nixpkgs#gh nixpkgs#git-extras nixpkgs#hyfetch nixpkgs#lazygit nixpkgs#tmux nixpkgs#typos nixpkgs#wslu nixpkgs#xsel nixpkgs#zoxide nixpkgs#fzf nixpkgs#ripgrep nixpkgs#yazi nixpkgs#eza nixpkgs#bat
+nix profile install nixpkgs#delta nixpkgs#gh nixpkgs#git-extras nixpkgs#hyfetch nixpkgs#lazygit nixpkgs#tmux nixpkgs#typos nixpkgs#wslu nixpkgs#xsel nixpkgs#zoxide nixpkgs#fzf nixpkgs#ripgrep nixpkgs#yazi nixpkgs#eza nixpkgs#bat nixpkgs#stripe-cli
 
 # WARNING: Use with caution
 # Remove all pkg and reinstall with flask above
