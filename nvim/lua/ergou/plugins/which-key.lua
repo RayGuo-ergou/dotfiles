@@ -19,7 +19,6 @@ return {
         { '<leader>gh', group = 'hunks' },
         { '<leader>q', group = 'quit/session' },
         { '<leader>s', group = 'search' },
-        { '<leader>n', group = 'noice' },
         { '<leader>t', group = 'toggle' },
         { '<leader>u', group = 'ui' },
         { '<leader>w', group = 'windows' },
@@ -33,6 +32,7 @@ return {
         -- No icon
         { '<leader>r', group = 'rename/replace', icon = { icon = '󰬲 ', color = 'purple' } },
         { '<leader>l', group = 'lazy', icon = { icon = '󰒲 ' } },
+        { '<leader>n', group = 'neotest', icon = { icon = '󰙨', color = 'yellow' } },
         -- name kulala always remind me ウァラク・クララfrom 魔入りました！入間くん, so I will use a woman icon here :)
         { '<leader>R', group = 'kulala', icon = { icon = '󱗎 ' } },
       },
