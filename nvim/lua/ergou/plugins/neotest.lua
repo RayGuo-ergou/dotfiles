@@ -107,14 +107,14 @@ return {
   end,
   keys = {
     {
-      '<leader>nt',
+      '<leader>nf',
       function()
         require('neotest').run.run(vim.fn.expand('%'))
       end,
       desc = 'Run File',
     },
     {
-      '<leader>nT',
+      '<leader>nF',
       function()
         require('neotest').run.run(vim.uv.cwd())
       end,
@@ -135,7 +135,7 @@ return {
       desc = 'Run Last',
     },
     {
-      '<leader>ns',
+      '<leader>nt',
       function()
         require('neotest').summary.toggle()
       end,
