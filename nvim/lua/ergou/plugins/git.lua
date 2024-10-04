@@ -80,15 +80,14 @@ return {
         end, function()
           gitsigns.nav_hunk('prev')
         end)
-        -- Jump to first/last hunk
-        map('n', ']H', function()
+        local last_hunk_repeat, first_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()
           gitsigns.nav_hunk('last')
-        end, 'jump to last git hunk')
-
-        map('n', '[H', function()
+        end, function()
           gitsigns.nav_hunk('first')
-        end, 'jump to first git hunk')
-
+        end)
+        -- Jump to first/last hunk
+        map({ 'n', 'x', 'o' }, ']H', last_hunk_repeat, 'jump to last git hunk')
+        map({ 'n', 'x', 'o' }, '[H', first_hunk_repeat, 'jump to first git hunk')
         map({ 'n', 'x', 'o' }, ']h', next_hunk_repeat, 'jump to next git hunk')
         map({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat, 'jump to prev git hunk')
         -- Text object

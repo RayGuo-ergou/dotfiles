@@ -291,7 +291,7 @@ M.get_servers = function()
       },
       on_attach = M.typescript.on_attach,
     },
-    html = { filetypes = { 'html', 'twig', 'hbs', 'blade' } },
+    html = { filetypes = { 'html', 'twig', 'hbs', 'blade', 'vue' } },
     eslint = {
       filetypes = M.eslint.filetypes,
       settings = {

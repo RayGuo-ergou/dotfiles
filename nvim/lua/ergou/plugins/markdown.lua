@@ -12,7 +12,6 @@ return {
     },
     ---@type render.md.UserConfig
     opts = {
-      file_types = { 'markdown', 'norg', 'rmd', 'org' },
       code = {
         width = 'block',
         position = 'right',
