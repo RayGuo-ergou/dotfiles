@@ -79,5 +79,3 @@ fi
 
 # disable autocd
 unsetopt autocd
-
-autoload -Uz compinit && compinit -i
