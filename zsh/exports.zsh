@@ -10,8 +10,8 @@ ubuntu
 bun
 tmux
 zsh-autosuggestions
-# zsh-syntax-highlighting
-fast-syntax-highlighting
+zsh-syntax-highlighting
+# fast-syntax-highlighting
 # zsh-vi-mode
 you-should-use
 vi-mode
