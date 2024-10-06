@@ -29,4 +29,5 @@ gui:
 
   authorColors:
     'Ray Guo': '#b7bdf8'
+    'ergou': '#b7bdf8'
     '*': '#ed8796'
