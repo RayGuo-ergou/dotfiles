@@ -99,6 +99,9 @@ return {
         'liquid',
         'powershell',
       },
+      ignore_install = {
+        'blade',
+      },
       incremental_selection = {
         enable = true,
         keymaps = {
