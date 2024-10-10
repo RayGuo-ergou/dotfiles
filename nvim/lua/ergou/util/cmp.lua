@@ -193,7 +193,7 @@ function M.cmp_sort()
       compare.offset,
       compare.exact,
       lsp_sort_text,
-      -- custom_kind_sort,
+      custom_kind_sort,
       -- compare.scopes,
       compare.score,
       compare.recently_used,
