@@ -129,17 +129,6 @@ function M.cmp_sort()
     end
   end
 
-  -- Respect LSP sortText
-  ---@param entry1 cmp.Entry
-  ---@param entry2 cmp.Entry
-  local function lsp_sort_text(entry1, entry2) -- score by lsp, if available
-    local t1 = entry1.completion_item.sortText
-    local t2 = entry2.completion_item.sortText
-    if t1 ~= nil and t2 ~= nil and t1 ~= t2 then
-      return t1 < t2
-    end
-  end
-
   ---@param entry1 cmp.Entry
   ---@param entry2 cmp.Entry
   local function package_json_npm(entry1, entry2)
@@ -192,7 +181,6 @@ function M.cmp_sort()
       package_json_npm,
       compare.offset,
       compare.exact,
-      lsp_sort_text,
       custom_kind_sort,
       -- compare.scopes,
       compare.score,
