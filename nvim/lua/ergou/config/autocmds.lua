@@ -170,3 +170,15 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     end)
   end,
 })
+
+---@see Issue https://github.com/folke/noice.nvim/issues/892#issuecomment-2260017355
+-- HACK: Hacky fix for cmdline and search in noice
+vim.api.nvim_create_autocmd('CmdlineChanged', {
+  group = augroup('update_search_redraw'),
+  desc = 'Update cmdline redraw',
+  callback = function()
+    vim.schedule(function()
+      vim.cmd('redraw')
+    end)
+  end,
+})
