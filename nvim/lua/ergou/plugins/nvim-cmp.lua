@@ -1,6 +1,8 @@
 return {
   {
     'hrsh7th/nvim-cmp',
+    url = 'https://github.com/yioneko/nvim-cmp',
+    branch = 'perf-up',
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       'hrsh7th/cmp-buffer', -- source for text in buffer
