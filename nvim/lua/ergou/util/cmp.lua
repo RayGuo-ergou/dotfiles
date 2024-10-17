@@ -122,6 +122,12 @@ function M.cmp_sort()
   ---@param entry1 cmp.Entry
   ---@param entry2 cmp.Entry
   local function custom_kind_sort(entry1, entry2) -- sort by compare kind (Variable, Function etc)
+    local entry1_is_tailwind = entry1.source.source.client and entry1.source.source.client.name == 'tailwindcss'
+    local entry2_is_tailwind = entry2.source.source.client and entry2.source.source.client.name == 'tailwindcss'
+
+    if entry1_is_tailwind or entry2_is_tailwind then
+      return nil
+    end
     local kind1 = modified_kind(entry1:get_kind())
     local kind2 = modified_kind(entry2:get_kind())
     if kind1 ~= kind2 then
