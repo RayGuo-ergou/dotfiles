@@ -182,3 +182,26 @@ vim.api.nvim_create_autocmd('CmdlineChanged', {
     end)
   end,
 })
+
+-- After this PR merged, can get win id from ev
+---@see PR https://github.com/neovim/neovim/pull/26430
+vim.api.nvim_create_autocmd('WinNew', {
+  pattern = { '*.vue', '*.ts', '*.js' },
+  group = augroup('TS_lsp_float_vue'),
+  callback = function(ev)
+    local new_win = ergou.get_float_win_from_buf(ev.buf)
+
+    if not new_win then
+      return
+    end
+
+    -- Use schedule to wait for the window to be open
+    vim.schedule(function()
+      -- Get the buf to change filetype
+      local new_win_buf = vim.bo[vim.api.nvim_win_get_buf(new_win)]
+      if new_win_buf.filetype == 'vue' then
+        new_win_buf.filetype = 'typescript'
+      end
+    end)
+  end,
+})

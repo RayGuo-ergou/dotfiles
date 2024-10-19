@@ -147,6 +147,19 @@ function M.table_walk(table, keys)
   return result
 end
 
+--- @param bufnr number
+function M.get_float_win_from_buf(bufnr)
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_buf(win) == bufnr then
+      local win_config = vim.api.nvim_win_get_config(win)
+      if win_config.relative ~= '' then
+        return win
+      end
+    end
+  end
+  return nil
+end
+
 M.CREATE_UNDO = vim.api.nvim_replace_termcodes('<c-G>u', true, true, true)
 function M.create_undo()
   if vim.api.nvim_get_mode().mode == 'i' then
