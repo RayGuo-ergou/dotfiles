@@ -23,3 +23,6 @@ out
 
 # Vite generated config file
 vite.config.*.timestamp-*
+
+# Nuxt output file
+.nuxt
