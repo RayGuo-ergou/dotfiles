@@ -15,14 +15,62 @@ return {
       },
     },
     keys = {
-      { '<C-j>', mode = { 'n', 'i' }, '<cmd>lua require("tmux").move_bottom()<cr>' },
-      { '<C-l>', mode = { 'n', 'i' }, '<cmd>lua require("tmux").move_right()<cr>' },
-      { '<C-h>', mode = { 'n', 'i' }, '<cmd>lua require("tmux").move_left()<cr>' },
-      { '<C-k>', mode = { 'n', 'i' }, '<cmd>lua require("tmux").move_top()<cr>' },
-      { '<C-down>', mode = { 'n', 'i' }, '<cmd>lua require("tmux").resize_bottom()<cr>' },
-      { '<C-up>', mode = { 'n', 'i' }, '<cmd>lua require("tmux").resize_top()<cr>' },
-      { '<C-right>', mode = { 'n', 'i' }, '<cmd>lua require("tmux").resize_right()<cr>' },
-      { '<C-left>', mode = { 'n', 'i' }, '<cmd>lua require("tmux").resize_left()<cr>' },
+      {
+        '<C-j>',
+        mode = { 'n', 'i' },
+        function()
+          require('tmux').move_bottom()
+        end,
+      },
+      {
+        '<C-l>',
+        mode = { 'n', 'i' },
+        function()
+          require('tmux').move_right()
+        end,
+      },
+      {
+        '<C-h>',
+        mode = { 'n', 'i' },
+        function()
+          require('tmux').move_left()
+        end,
+      },
+      {
+        '<C-k>',
+        mode = { 'n', 'i' },
+        function()
+          require('tmux').move_top()
+        end,
+      },
+      {
+        '<C-down>',
+        mode = { 'n', 'i' },
+        function()
+          require('tmux').resize_bottom()
+        end,
+      },
+      {
+        '<C-up>',
+        mode = { 'n', 'i' },
+        function()
+          require('tmux').resize_top()
+        end,
+      },
+      {
+        '<C-right>',
+        mode = { 'n', 'i' },
+        function()
+          require('tmux').resize_right()
+        end,
+      },
+      {
+        '<C-left>',
+        mode = { 'n', 'i' },
+        function()
+          require('tmux').resize_left()
+        end,
+      },
     },
   },
 }
