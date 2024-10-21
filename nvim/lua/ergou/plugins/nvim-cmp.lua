@@ -52,8 +52,6 @@ return {
               if copilot.is_visible() then
                 copilot.accept()
               end
-            -- elseif luasnip.expand_or_jumpable() then
-            --   luasnip.expand_or_jump()
             elseif ergou.cmp.visible() then
               cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             else
@@ -65,6 +63,9 @@ return {
             return fallback()
           end,
           ['<C-n>'] = function(fallback)
+            if luasnip.expand_or_jumpable() then
+              return luasnip.expand_or_jump()
+            end
             return fallback()
           end,
         }),
