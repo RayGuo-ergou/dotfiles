@@ -1,7 +1,6 @@
 return {
   {
     'hrsh7th/nvim-cmp',
-    commit = '82bd4b59432d44cf5e2a5ce3a40a037a575a6623',
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       'hrsh7th/cmp-buffer', -- source for text in buffer
