@@ -69,8 +69,8 @@ return {
               if copilot.is_visible() then
                 copilot.accept()
               end
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
+            -- elseif luasnip.expand_or_jumpable() then
+            --   luasnip.expand_or_jump()
             else
               cmp_select_next_item(fallback)
             end
