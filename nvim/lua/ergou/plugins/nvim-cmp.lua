@@ -21,26 +21,9 @@ return {
 
       local luasnip = require('luasnip')
 
-      local cmp_select_next_item = function(fallback)
-        if ergou.cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          fallback()
-        end
-      end
-
-      local cmp_select_prev_item = function(fallback)
-        if ergou.cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          fallback()
-        end
-      end
-
       -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
       require('luasnip.loaders.from_vscode').lazy_load()
       ergou.snips.setup_snipes()
-
       cmp.setup({
         snippet = { -- configure how nvim-cmp interacts with snippet engine
           expand = function(args)
@@ -48,8 +31,8 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ['<C-k>'] = cmp.mapping(cmp_select_prev_item),
-          ['<C-j>'] = cmp.mapping(cmp_select_next_item),
+          ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+          ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
@@ -71,11 +54,13 @@ return {
               end
             -- elseif luasnip.expand_or_jumpable() then
             --   luasnip.expand_or_jump()
+            elseif ergou.cmp.visible() then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             else
-              cmp_select_next_item(fallback)
+              fallback()
             end
           end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(cmp_select_prev_item),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
           ['<C-p>'] = function(fallback)
             return fallback()
           end,
