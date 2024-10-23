@@ -1,6 +1,7 @@
 return {
   {
     'rachartier/tiny-inline-diagnostic.nvim',
+    enabled = false,
     event = 'LspAttach',
     opts = {
       options = {
@@ -15,7 +16,7 @@ return {
     'neovim/nvim-lspconfig',
     opts = {
       diagnostics = {
-        virtual_text = false,
+        -- virtual_text = false,
       },
     },
   },
