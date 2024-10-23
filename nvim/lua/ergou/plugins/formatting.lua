@@ -5,6 +5,7 @@ local eslintFormat = { 'eslint_d' }
 return {
   {
     'stevearc/conform.nvim',
+    commit = 'f5bd8419f8a29451e20bdb1061a54fe13d5c8de3',
     event = 'LazyFile',
     cmd = 'ConformInfo',
     config = function()
