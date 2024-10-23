@@ -433,6 +433,7 @@ M.get_servers = function()
       },
     },
     taplo = {},
+    nil_ls = {},
   }
 
   return servers

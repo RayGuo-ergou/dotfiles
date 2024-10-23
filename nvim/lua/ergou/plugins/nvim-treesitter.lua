@@ -98,6 +98,7 @@ return {
         'xml',
         'liquid',
         'powershell',
+        'nix',
       },
       ignore_install = {
         'blade',
