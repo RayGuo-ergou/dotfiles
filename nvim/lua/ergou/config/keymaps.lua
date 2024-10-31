@@ -8,6 +8,9 @@ map('n', '<leader>lv', '<cmd>Lazy<cr>', { desc = 'Lazy Vim' })
 map({ 'o', 'v', 'n' }, 'L', '$', { noremap = true, silent = true })
 map({ 'o', 'v', 'n' }, 'H', '^', { noremap = true, silent = true })
 
+-- Normal mode <tab> to find pair
+map('n', '<tab>', '%', { noremap = true })
+
 -- action on entire buffer
 map('n', 'dae', 'ggVGd', { noremap = true, silent = true, desc = 'Delete entire file' })
 map('n', 'yae', 'ggVGy', { noremap = true, silent = true, desc = 'Yank entire file' })
