@@ -4,7 +4,10 @@ return {
     local utils = require('yanky.utils')
     local mapping = require('yanky.telescope.mapping')
     return {
-      ring = { storage = 'shada' },
+      ring = {
+        storage = 'shada',
+        permanent_wrapper = require('yanky.wrappers').remove_carriage_return,
+      },
       picker = {
         telescope = {
           use_default_mappings = false,
