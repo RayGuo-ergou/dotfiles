@@ -9,8 +9,8 @@ return {
     local map = vim.keymap.set
 
     if ergou.pick.picker.name == 'telescope' then
-      map('n', '<leader>st', '<cmd>TodoTelescope<cr>', { desc = 'Todo' })
-      map('n', '<leader>sT', '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>', { desc = 'Todo/Fix/Fixme' })
+      map('n', '<leader>st', '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>', { desc = 'Todo/Fix/Fixme' })
+      map('n', '<leader>sT', '<cmd>TodoTelescope<cr>', { desc = 'Todo Comments' })
     end
     if ergou.pick.picker.name == 'fzf' then
       map('n', '<leader>st', function()
