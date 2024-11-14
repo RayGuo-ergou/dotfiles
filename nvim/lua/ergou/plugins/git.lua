@@ -72,7 +72,6 @@ return {
           gitsigns.toggle_deleted()
           gitsigns.toggle_linehl()
         end, 'toggle git show deleted')
-        map('n', '<leader>gb', ergou.git.blame_line, 'Git Blame Line')
 
         -- Jump to next/prev hunk
         local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()
@@ -163,13 +162,6 @@ return {
           require('tinygit').push()
         end,
         desc = 'Git push',
-      },
-      {
-        '<leader>gL',
-        function()
-          require('tinygit').lineHistory()
-        end,
-        desc = 'Git line history',
       },
     },
   },

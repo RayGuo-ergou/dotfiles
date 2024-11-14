@@ -112,7 +112,6 @@ map('n', '<leader>-', '<C-W>s', { desc = 'Split window below', remap = true })
 map('n', '<leader>|', '<C-W>v', { desc = 'Split window right', remap = true })
 
 --buffer
-map('n', '<leader>bd', ergou.buffer.bufremove, { desc = 'Delete Buffer' })
 map('n', '<leader>bD', '<cmd>:bd<cr>', { desc = 'Delete Buffer and Window' })
 -- tabs
 map('n', '<leader><tab><tab>', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
