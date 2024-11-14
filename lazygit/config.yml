@@ -1,33 +1,31 @@
 git:
-
-    paging:
-      pager: delta --dark --paging=never
-
+  paging:
+    pager: delta --dark --paging=never
 gui:
-
   theme:
-    activeBorderColor:
-    - '#00a381'
-    - bold
-    inactiveBorderColor:
-    - '#a5adcb'
-    optionsTextColor:
-    - '#8aadf4'
-    selectedLineBgColor:
-    # 天鵞絨 びろうど
-    - '#2f5d50'
-    cherryPickedCommitBgColor:
-    - '#494d64'
-    cherryPickedCommitFgColor:
-    - '#00a381'
-    unstagedChangesColor:
-    - '#ed8796'
     defaultFgColor:
-    - '#cad3f5'
+      - "#cad3f5"
+    cherryPickedCommitFgColor:
+      - "#8aadf4"
+    cherryPickedCommitBgColor:
+      - "#f0c6c6"
+    activeBorderColor:
+      - "#f5a97f"
+      - "bold"
+    unstagedChangesColor:
+      - "#ed8796"
+    selectedLineBgColor:
+      - "#494d64"
     searchingActiveBorderColor:
-    - '#eed49f'
+      - "#f5a97f"
+      - "bold"
+    optionsTextColor:
+      - "#8aadf4"
+    inactiveBorderColor:
+      - "#8aadf4"
+
 
   authorColors:
-    'Ray Guo': '#b7bdf8'
-    'ergou': '#b7bdf8'
+    'Ray Guo': '#8aadf4'
+    'ergou': '#8aadf4'
     '*': '#ed8796'
