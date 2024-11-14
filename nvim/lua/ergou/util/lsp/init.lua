@@ -69,11 +69,6 @@ function M.lsp_autocmd()
         end
       end
 
-      -- map for toggle inlay hint
-      nmap('<leader>ih', function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      end, 'Toggle Inlay Hint')
-
       if ergou.pick.picker.name == 'telescope' then
         nmap('gd', function()
           require('telescope.builtin').lsp_definitions({ reuse_win = true })

@@ -2,27 +2,73 @@
 local M = {}
 
 M.quickfix = function()
-  local qf_exists = false
-  for _, win in pairs(vim.fn.getwininfo()) do
-    if win['quickfix'] == 1 then
-      qf_exists = true
-    end
-  end
-  if qf_exists == true then
-    vim.cmd('cclose')
-    return
-  end
-  if not vim.tbl_isempty(vim.fn.getqflist()) then
-    vim.cmd('copen')
-  end
+  return Snacks.toggle({
+    name = 'Quick Fix',
+    get = function()
+      for _, win in pairs(vim.fn.getwininfo()) do
+        if win['quickfix'] == 1 then
+          return false
+        end
+      end
+      return true
+    end,
+    set = function(state)
+      if state then
+        vim.cmd('cclose')
+      else
+        vim.cmd('copen')
+      end
+    end,
+  })
+end
+
+M.inlay_hints = function()
+  return Snacks.toggle.inlay_hints()
 end
 
 M.wrap = function()
-  if vim.wo.wrap then
-    vim.wo.wrap = false
-  else
-    vim.wo.wrap = true
-  end
+  return Snacks.toggle.option('wrap', { name = 'Wrap' })
+end
+
+M.maximize = function()
+  ---@type {k:string, v:any}[]?
+  local maximized = nil
+  return Snacks.toggle({
+    name = 'Maximize',
+    get = function()
+      return maximized ~= nil
+    end,
+    set = function(state)
+      if state then
+        maximized = {}
+        local function set(k, v)
+          table.insert(maximized, 1, { k = k, v = vim.o[k] })
+          vim.o[k] = v
+        end
+        set('winwidth', 999)
+        set('winheight', 999)
+        set('winminwidth', 10)
+        set('winminheight', 4)
+        vim.cmd('wincmd =')
+        -- `QuitPre` seems to be executed even if we quit a normal window, so we don't want that
+        -- `VimLeavePre` might be another consideration? Not sure about differences between the 2
+        vim.api.nvim_create_autocmd('ExitPre', {
+          once = true,
+          group = vim.api.nvim_create_augroup('lazyvim_restore_max_exit_pre', { clear = true }),
+          desc = 'Restore width/height when close Neovim while maximized',
+          callback = function()
+            M.maximize.set(false)
+          end,
+        })
+      else
+        for _, opt in ipairs(maximized) do
+          vim.o[opt.k] = opt.v
+        end
+        maximized = nil
+        vim.cmd('wincmd =')
+      end
+    end,
+  })
 end
 
 return M
