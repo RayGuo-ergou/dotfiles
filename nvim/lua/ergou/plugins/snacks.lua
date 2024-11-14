@@ -55,6 +55,13 @@ return {
       desc = 'Git Blame Line',
     },
     {
+      '<leader>lg',
+      function()
+        Snacks.lazygit()
+      end,
+      desc = 'Lazygit',
+    },
+    {
       '<leader>gl',
       function()
         Snacks.lazygit.log_file()

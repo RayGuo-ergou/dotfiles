@@ -95,34 +95,6 @@ return {
     },
   },
   {
-    'NeogitOrg/neogit',
-    config = true,
-    keys = {
-      {
-        '<leader>gn',
-        function()
-          local neogit = require('neogit')
-          neogit.open()
-        end,
-        desc = 'Open Neogit',
-      },
-    },
-  },
-  {
-    'kdheepak/lazygit.nvim',
-    cmd = {
-      'LazyGit',
-      'LazyGitConfig',
-      'LazyGitCurrentFile',
-      'LazyGitFilter',
-      'LazyGitFilterCurrentFile',
-    },
-    keys = {
-      { '<leader>lg', '<cmd>LazyGit<cr>', mode = { 'n' }, desc = 'Open lazygit' },
-    },
-  },
-
-  {
     'chrisgrieser/nvim-tinygit',
     opts = {
       statusline = {
