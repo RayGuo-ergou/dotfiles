@@ -5,9 +5,9 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    -- Handled by noice, maybe can keep this and drop notify, check back later
     notifier = {
-      enabled = false,
+      enabled = true,
+      top_down = false, -- place notifications from top to bottom
     },
     quickfile = { enabled = true },
     statuscolumn = { enabled = false },
@@ -19,13 +19,13 @@ return {
     },
   },
   keys = {
-    -- {
-    --   '<leader>un',
-    --   function()
-    --     Snacks.notifier.hide()
-    --   end,
-    --   desc = 'Dismiss All Notifications',
-    -- },
+    {
+      '<leader>un',
+      function()
+        Snacks.notifier.hide()
+      end,
+      desc = 'Dismiss All Notifications',
+    },
     {
       '<leader>bd',
       function()

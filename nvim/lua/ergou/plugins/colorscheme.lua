@@ -16,7 +16,6 @@ return {
           mason = true,
           neotest = true,
           noice = true,
-          notify = true,
           grug_far = true,
           navic = {
             enabled = true,
