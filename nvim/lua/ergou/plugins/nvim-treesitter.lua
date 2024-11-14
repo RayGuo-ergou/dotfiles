@@ -258,11 +258,6 @@ return {
         function()
           local tsc = require('treesitter-context')
           tsc.toggle()
-          if ergou.inject.get_upvalue(tsc.toggle, 'enabled') then
-            ergou.info('Enabled Treesitter Context', { title = 'Option' })
-          else
-            ergou.warn('Disabled Treesitter Context', { title = 'Option' })
-          end
         end,
         desc = 'Toggle Treesitter Context',
       },

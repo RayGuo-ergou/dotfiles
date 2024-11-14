@@ -3,7 +3,6 @@ local LazyUtil = require('lazy.core.util')
 ---@class ergou.util: LazyUtilCore
 ---@field public buffer ergou.util.buffer
 ---@field public icons ergou.util.icons
----@field public inject ergou.util.inject
 ---@field public lazy ergou.util.lazy
 ---@field public lsp ergou.util.lsp
 ---@field public root ergou.util.root
