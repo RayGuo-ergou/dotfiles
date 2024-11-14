@@ -38,14 +38,14 @@ return {
       function()
         Snacks.bufdelete.other()
       end,
-      desc = 'Delete Buffer',
+      desc = 'Delete Other Buffers',
     },
     {
       '<leader>ba',
       function()
         Snacks.bufdelete.all()
       end,
-      desc = 'Delete Buffer',
+      desc = 'Delete All Buffers',
     },
     {
       '<leader>gb',
