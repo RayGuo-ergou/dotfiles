@@ -7,16 +7,16 @@ M.quickfix = function()
     get = function()
       for _, win in pairs(vim.fn.getwininfo()) do
         if win['quickfix'] == 1 then
-          return false
+          return true
         end
       end
-      return true
+      return false
     end,
     set = function(state)
       if state then
-        vim.cmd('cclose')
-      else
         vim.cmd('copen')
+      else
+        vim.cmd('cclose')
       end
     end,
   })
