@@ -34,6 +34,20 @@ return {
       desc = 'Delete Buffer',
     },
     {
+      '<leader>bo',
+      function()
+        Snacks.bufdelete.other()
+      end,
+      desc = 'Delete Buffer',
+    },
+    {
+      '<leader>ba',
+      function()
+        Snacks.bufdelete.all()
+      end,
+      desc = 'Delete Buffer',
+    },
+    {
       '<leader>gb',
       function()
         Snacks.git.blame_line()
