@@ -95,6 +95,50 @@ return {
       cyclic = true,
     })
 
+    local tailwind_color = augend.user.new({
+      find = require('dial.augend.common').find_pattern('%a+%-%a+%-%d?%d%d'),
+      add = function(text, addend, cursor)
+        local _, _, prefix, color = string.find(text, '(%a+%-%a+%-)(%d?%d%d)')
+        ---@type number
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        color = tonumber(color)
+
+        if addend > 0 then
+          for _ = 1, addend do
+            if color >= 950 then
+              break
+            end
+
+            if color == 50 then
+              color = 100
+            elseif color == 900 then
+              color = 950
+            elseif math.fmod(color, 100) == 0 then
+              color = color + 100
+            end
+          end
+        elseif addend < 0 then
+          for _ = 1, math.abs(addend) do
+            if color <= 50 then
+              break
+            end
+
+            if color == 100 then
+              color = 50
+            elseif color == 950 then
+              color = 900
+            elseif math.fmod(color, 100) == 0 then
+              color = color - 100
+            end
+          end
+        end
+        text = prefix .. color
+        cursor = #text
+        ---@diagnostic disable-next-line: redundant-return-value
+        return { text = text, cursor = cursor }
+      end,
+    })
+
     return {
       dials_by_ft = {
         css = 'css',
@@ -122,6 +166,7 @@ return {
           capitalized_boolean,
           augend.constant.alias.bool, -- boolean value (true <-> false)
           logical_alias,
+          tailwind_color,
         },
         vue = {
           augend.integer.alias.decimal_int, -- nonnegative and negative decimal number
@@ -130,12 +175,14 @@ return {
           augend.constant.new({ elements = { 'let', 'const' } }),
           augend.hexcolor.new({ case = 'lower' }),
           augend.hexcolor.new({ case = 'upper' }),
+          tailwind_color,
         },
         typescript = {
           augend.integer.alias.decimal_int, -- nonnegative and negative decimal number
           augend.constant.alias.bool, -- boolean value (true <-> false)
           logical_alias,
           augend.constant.new({ elements = { 'let', 'const' } }),
+          tailwind_color,
         },
         yaml = {
           augend.integer.alias.decimal_int, -- nonnegative and negative decimal number
