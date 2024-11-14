@@ -57,7 +57,7 @@ return {
     {
       '<leader>cR',
       function()
-        Snacks.rename()
+        Snacks.rename.rename_file()
       end,
       desc = 'Rename File',
     },
