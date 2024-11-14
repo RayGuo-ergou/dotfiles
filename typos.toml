@@ -3,4 +3,4 @@
 noice = "noice"
 
 [default]
-extend-ignore-re = ["\\['(.+)'\\]", "<cmd>.+<cr>"]
+extend-ignore-re = ["\\['(.+)'\\]", "<cmd>.+<cr>", "<leader>ba"]
