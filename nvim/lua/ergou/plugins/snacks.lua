@@ -17,6 +17,9 @@ return {
         wo = { wrap = true }, -- Wrap notifications
       },
     },
+    dashboard = {
+      enabled = true,
+    },
   },
   keys = {
     {

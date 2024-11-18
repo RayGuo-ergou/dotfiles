@@ -181,3 +181,14 @@ vim.api.nvim_create_autocmd('WinNew', {
     end)
   end,
 })
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  group = augroup('snacks_dashboard'),
+  pattern = '*',
+  nested = true,
+  callback = function()
+    if vim.fn.argc() == 0 then
+      Snacks.dashboard()
+    end
+  end,
+})

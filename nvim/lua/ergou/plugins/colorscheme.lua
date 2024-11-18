@@ -37,6 +37,8 @@ return {
           return {
             CmpItemKindNpm = { fg = colors.red },
             TypeVirtualText = { fg = colors.yellow },
+            SnacksDashboardDesc = { fg = colors.lavender },
+            SnacksDashboardIcon = { fg = colors.blue },
           }
         end,
       })
