@@ -9,7 +9,7 @@ return {
         options = {
           theme = 'catppuccin',
           globalstatus = true,
-          disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'starter' } },
+          disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'starter', 'snacks_dashboard' } },
         },
         tabline = {
           lualine_a = {},
