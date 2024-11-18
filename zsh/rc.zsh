@@ -11,3 +11,4 @@ source_if_exists $DOTFILES/zsh/.p10k.zsh
 source_if_exists $DOTFILES/zsh/omz.zsh
 source_if_exists $DOTFILES/zsh/init.zsh
 source_if_exists $DOTFILES/zsh/aliases.zsh
+source_if_exists $DOTFILES/zsh/post_init.zsh
