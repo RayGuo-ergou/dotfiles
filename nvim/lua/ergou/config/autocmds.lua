@@ -182,17 +182,6 @@ vim.api.nvim_create_autocmd('WinNew', {
   end,
 })
 
-vim.api.nvim_create_autocmd('VimEnter', {
-  group = augroup('snacks_dashboard'),
-  pattern = '*',
-  nested = true,
-  callback = function()
-    if vim.fn.argc() == 0 then
-      Snacks.dashboard()
-    end
-  end,
-})
-
 -- Remove keymap from /usr/local/share/nvim/runtime/ftplugin/php.vim
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'php',
