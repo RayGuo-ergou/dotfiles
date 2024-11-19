@@ -198,9 +198,15 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'php',
   group = augroup('php_unset_keymap'),
   callback = function()
+    -- When use `nvim foo.php`, the keymap will not set
+    -- so safe delete it
+    local function safe_del_keymap(buf, mode, key)
+      pcall(vim.api.nvim_buf_del_keymap, buf, mode, key)
+    end
+
     for _, mode in ipairs({ 'n', 'x', 'o' }) do
       for _, key in ipairs({ '[[', ']]' }) do
-        vim.api.nvim_buf_del_keymap(0, mode, key)
+        safe_del_keymap(0, mode, key)
       end
     end
   end,
