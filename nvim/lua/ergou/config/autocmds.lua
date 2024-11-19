@@ -192,3 +192,16 @@ vim.api.nvim_create_autocmd('VimEnter', {
     end
   end,
 })
+
+-- Remove keymap from /usr/local/share/nvim/runtime/ftplugin/php.vim
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'php',
+  group = augroup('php_unset_keymap'),
+  callback = function()
+    for _, mode in ipairs({ 'n', 'x', 'o' }) do
+      for _, key in ipairs({ '[[', ']]' }) do
+        vim.api.nvim_buf_del_keymap(0, mode, key)
+      end
+    end
+  end,
+})
