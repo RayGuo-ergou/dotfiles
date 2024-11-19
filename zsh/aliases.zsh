@@ -16,7 +16,7 @@ alias x-www-browser='wslview'
 alias php7='/usr/bin/php7.4'
 alias windowsroot='wslpath "$(wslvar USERPROFILE)"'
 alias yy='yazi'
-alias lg='lazygit'
+alias lg='TERM=screen-256color lazygit'
 alias cdlazyvim='cd ~/.local/share/nvim/lazy'
 
 vimf() {
