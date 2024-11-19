@@ -54,7 +54,7 @@ return {
     },
     dashboard = {
       enabled = true,
-      -- preset = { header = logo },
+      preset = { header = logo },
     },
   },
   keys = {
