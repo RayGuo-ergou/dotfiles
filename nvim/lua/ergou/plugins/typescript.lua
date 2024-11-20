@@ -19,6 +19,7 @@ return {
     'dmmulroy/tsc.nvim',
     opts = {
       bin_path = find_tsc_bin(),
+      enable_progress_notifications = false,
     },
     cmd = { 'TSC' },
   },
