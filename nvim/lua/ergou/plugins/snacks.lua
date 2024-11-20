@@ -36,7 +36,6 @@ local logo = [[
 return {
   'folke/snacks.nvim',
   priority = 1000,
-  commit = 'cf72c06ee61f3102bf828ee7e8dde20316310374',
   lazy = false,
   ---@type snacks.Config
   opts = {
