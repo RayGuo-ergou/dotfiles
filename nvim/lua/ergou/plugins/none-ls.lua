@@ -24,6 +24,7 @@ return {
         end,
       }
 
+      -- XXX: code actions stop working in neovim nightly
       null_ls.setup({
         sources = {
           cspell.diagnostics.with({
