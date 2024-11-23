@@ -96,6 +96,7 @@ return {
   },
   {
     'chrisgrieser/nvim-tinygit',
+    ---@type Tinygit.Config
     opts = {
       statusline = {
         blame = {
@@ -109,8 +110,10 @@ return {
           },
         },
       },
-      backdrop = {
-        enabled = false,
+      appearance = {
+        backdrop = {
+          enabled = false,
+        },
       },
     },
     keys = {
