@@ -32,13 +32,12 @@ return {
               ok = { 'undercurl' },
             },
           },
+          snacks = true,
         },
         custom_highlights = function(colors)
           return {
             CmpItemKindNpm = { fg = colors.red },
             TypeVirtualText = { fg = colors.yellow },
-            SnacksDashboardDesc = { fg = colors.lavender },
-            SnacksDashboardIcon = { fg = colors.blue },
           }
         end,
       })
