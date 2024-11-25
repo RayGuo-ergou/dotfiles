@@ -100,10 +100,10 @@ return {
         end
       end)
 
-      -- seems I already got the documentation for snippets
-      -- cmp.event:on('menu_opened', function(event)
-      --   ergou.cmp.add_missing_snippet_docs(event.window)
-      -- end)
+      -- Add LSP snippet docs if exist
+      cmp.event:on('menu_opened', function(event)
+        ergou.cmp.add_missing_snippet_docs(event.window)
+      end)
 
       -- Reset the cache at the start of each completion session
       cmp.event:on('menu_closed', function()

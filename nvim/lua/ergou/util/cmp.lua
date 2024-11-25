@@ -28,16 +28,24 @@ function M.snippet_replace(snippet, fn)
 end
 
 -- This function resolves nested placeholders in a snippet.
-function M.snippet_resolve(snippet)
-  return M.snippet_replace(snippet, function(placeholder)
-    return M.snippet_resolve(placeholder.text)
-  end):gsub('%$0', '')
+---@param snippet string
+---@return string
+function M.snippet_preview(snippet)
+  local ok, parsed = pcall(function()
+    return vim.lsp._snippet_grammar.parse(snippet)
+  end)
+  return ok and tostring(parsed)
+    or M.snippet_replace(snippet, function(placeholder)
+      return M.snippet_preview(placeholder.text)
+    end):gsub('%$0', '')
 end
 
 -- This function replaces nested placeholders in a snippet with LSP placeholders.
 function M.snippet_fix(snippet)
+  local texts = {} ---@type table<number, string>
   return M.snippet_replace(snippet, function(placeholder)
-    return '${' .. placeholder.n .. ':' .. M.snippet_resolve(placeholder.text) .. '}'
+    texts[placeholder.n] = texts[placeholder.n] or M.snippet_preview(placeholder.text)
+    return '${' .. placeholder.n .. ':' .. texts[placeholder.n] .. '}'
   end)
 end
 
@@ -50,11 +58,11 @@ function M.add_missing_snippet_docs(window)
   local entries = window:get_entries()
   for _, entry in ipairs(entries) do
     if entry:get_kind() == Kind.Snippet then
-      local item = entry:get_completion_item()
+      local item = entry.completion_item
       if not item.documentation and item.insertText then
         item.documentation = {
           kind = cmp.lsp.MarkupKind.Markdown,
-          value = string.format('```%s\n%s\n```', vim.bo.filetype, M.snippet_resolve(item.insertText)),
+          value = string.format('```%s\n%s\n```', vim.bo.filetype, M.snippet_preview(item.insertText)),
         }
       end
     end
