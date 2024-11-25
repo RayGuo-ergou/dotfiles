@@ -24,12 +24,12 @@ function M.copy_selector()
   }
 
   local items = {
-    '1. Absolute path: ' .. results[1],
-    '2. Path relative to CWD: ' .. results[2],
-    '3. Path relative to HOME: ' .. results[3],
-    '4. Filename: ' .. results[4],
-    '5. Filename without extension: ' .. results[5],
-    '6. Extension of the filename: ' .. results[6],
+    'Absolute path: ' .. results[1],
+    'Path relative to CWD: ' .. results[2],
+    'Path relative to HOME: ' .. results[3],
+    'Filename: ' .. results[4],
+    'Filename without extension: ' .. results[5],
+    'Extension of the filename: ' .. results[6],
   }
 
   vim.ui.select(items, {
