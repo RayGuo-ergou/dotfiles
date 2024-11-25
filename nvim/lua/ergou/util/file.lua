@@ -1,7 +1,7 @@
 ---@class ergou.util.file
 local M = {}
 
-function M.copy_selector()
+function M.copy_filename()
   -- Get current buffer's full path
   local filepath = vim.fn.expand('%:p')
   -- Get just the filename
