@@ -123,6 +123,9 @@ map('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
 map('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 
+-- Copy file name
+map('n', '<leader>cy', ergou.file.copy_selector, { desc = 'Previous Tab' })
+
 -- Toggles
 ergou.toggle.quickfix():map('<leader>qf')
 ergou.toggle.maximize():map('<leader>z')

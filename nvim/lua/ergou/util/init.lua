@@ -11,6 +11,7 @@ local LazyUtil = require('lazy.core.util')
 ---@field public cmp ergou.util.cmp
 ---@field public pick ergou.util.pick
 ---@field public toggle ergou.util.toggle
+---@field public file ergou.util.file
 local M = {}
 
 setmetatable(M, {
