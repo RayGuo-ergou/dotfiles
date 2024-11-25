@@ -6,7 +6,7 @@ local M = {}
 function M.auto_brackets(entry)
   local cmp = require('cmp')
   local Kind = cmp.lsp.CompletionItemKind
-  local item = entry:get_completion_item()
+  local item = entry.completion_item
   if vim.tbl_contains({ Kind.Function, Kind.Method }, item.kind) then
     local cursor = vim.api.nvim_win_get_cursor(0)
     local prev_char = vim.api.nvim_buf_get_text(0, cursor[1] - 1, cursor[2], cursor[1] - 1, cursor[2] + 1, {})[1]
