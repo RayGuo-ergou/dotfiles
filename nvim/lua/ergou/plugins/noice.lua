@@ -49,7 +49,7 @@ return {
         elseif picker == 'telescope' then
           require('noice').cmd('telescope')
         else
-          ergou.error('No picker available', { title = 'Noice' })
+          Snacks.notify.error('No picker available', { title = 'Noice' })
         end
       end,
       desc = 'Notifications History',

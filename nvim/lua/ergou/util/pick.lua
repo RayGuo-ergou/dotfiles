@@ -80,7 +80,7 @@ M.picker = fzf_picker
 ---@param opts? ergou.util.pick.Opts
 function M.open(command, opts)
   if not M.picker then
-    return ergou.error('ergou.pick: picker not set')
+    return Snacks.notify.error('ergou.pick: picker not set')
   end
 
   command = command ~= 'auto' and command or 'files'
@@ -89,7 +89,7 @@ function M.open(command, opts)
   opts = vim.deepcopy(opts)
 
   if type(opts.cwd) == 'boolean' then
-    ergou.warn('ergou.pick: opts.cwd should be a string or nil')
+    Snacks.notify.warn('ergou.pick: opts.cwd should be a string or nil')
     opts.cwd = nil
   end
 
