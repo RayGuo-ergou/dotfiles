@@ -18,12 +18,22 @@ return {
       local auto_brackets_fts = { 'lua' }
 
       local cmp = require('cmp')
-
       local luasnip = require('luasnip')
+      local parse = require('cmp.utils.snippet').parse
 
       -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
       require('luasnip.loaders.from_vscode').lazy_load()
+
+      -- Snippet
       ergou.snips.setup_snipes()
+      require('cmp.utils.snippet').parse = function(input)
+        local ok, ret = pcall(parse, input)
+        if ok then
+          return ret
+        end
+        return ergou.cmp.snippet_preview(input)
+      end
+
       cmp.setup({
         snippet = { -- configure how nvim-cmp interacts with snippet engine
           expand = function(args)
