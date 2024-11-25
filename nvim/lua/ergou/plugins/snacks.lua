@@ -68,6 +68,12 @@ return {
     {
       '<leader>bd',
       function()
+        local filename = vim.api.nvim_buf_get_name(0)
+        if filename == 'kulala://ui' then
+          pcall(vim.cmd, 'bdelete!')
+          return
+        end
+
         Snacks.bufdelete()
       end,
       desc = 'Delete Buffer',
