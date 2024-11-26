@@ -327,6 +327,11 @@ M.get_servers = function()
     },
     taplo = {},
     nil_ls = {},
+    typos_lsp = {
+      init_options = {
+        diagnosticSeverity = 'Hint',
+      },
+    },
   }
 
   return servers
