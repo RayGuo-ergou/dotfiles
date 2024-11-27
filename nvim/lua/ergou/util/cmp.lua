@@ -214,7 +214,6 @@ function M.cmp_sort()
   return {
     priority_weight = default_config().sorting.priority_weight,
     comparators = {
-      package_json_npm,
       compare.offset,
       compare.exact,
       custom_kind_sort,
@@ -226,6 +225,7 @@ function M.cmp_sort()
       compare.sort_text,
       compare.length,
       compare.order,
+      package_json_npm,
     },
   }
 end
