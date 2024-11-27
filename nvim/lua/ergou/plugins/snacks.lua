@@ -35,6 +35,7 @@ local logo = [[
 ]]
 return {
   'folke/snacks.nvim',
+  commit = 'cc484d5279b5761afb813c4b5ee48ff8c6c88cd7',
   priority = 1000,
   lazy = false,
   ---@type snacks.Config
