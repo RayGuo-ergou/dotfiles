@@ -147,18 +147,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
----@see Issue https://github.com/folke/noice.nvim/issues/892#issuecomment-2260017355
--- HACK: Hacky fix for cmdline and search in noice
-vim.api.nvim_create_autocmd('CmdlineChanged', {
-  group = augroup('update_search_redraw'),
-  desc = 'Update cmdline redraw',
-  callback = function()
-    vim.schedule(function()
-      vim.cmd('redraw')
-    end)
-  end,
-})
-
 -- After this PR merged, can get win id from ev
 ---@see PR https://github.com/neovim/neovim/pull/26430
 vim.api.nvim_create_autocmd('WinNew', {
