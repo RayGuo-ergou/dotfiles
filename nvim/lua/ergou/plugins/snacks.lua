@@ -59,6 +59,13 @@ return {
   },
   keys = {
     {
+      '<leader>sN',
+      function()
+        Snacks.notifier.show_history()
+      end,
+      desc = 'Notification History',
+    },
+    {
       '<leader>un',
       function()
         Snacks.notifier.hide()

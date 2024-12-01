@@ -54,12 +54,5 @@ return {
       end,
       desc = 'Notifications History',
     },
-    {
-      '<leader>sN',
-      function()
-        require('noice').cmd('history')
-      end,
-      desc = 'Notifications History',
-    },
   },
 }
