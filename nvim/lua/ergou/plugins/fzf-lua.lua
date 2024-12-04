@@ -1,5 +1,8 @@
 return {
   'ibhagwan/fzf-lua',
+  dependencies = {
+    'MeanderingProgrammer/render-markdown.nvim',
+  },
   opts = function()
     local config = require('fzf-lua.config')
     local actions = require('fzf-lua.actions')
