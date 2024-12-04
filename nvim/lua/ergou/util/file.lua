@@ -34,16 +34,11 @@ function M.copy_filename()
 
   vim.ui.select(items, {
     prompt = 'Choose to copy to clipboard:',
-  }, function(choice)
-    if choice then
-      local i = tonumber(choice:sub(1, 1))
-      if i then
-        local result = results[i]
-        vim.fn.setreg('+', result)
-        vim.notify('Copied: ' .. result)
-      else
-        vim.notify('Invalid selection', vim.log.levels.WARN)
-      end
+  }, function(_, int)
+    if int then
+      local result = results[int]
+      vim.fn.setreg('+', result)
+      vim.notify('Copied: ' .. result)
     else
       vim.notify('Selection cancelled', vim.log.levels.INFO)
     end
