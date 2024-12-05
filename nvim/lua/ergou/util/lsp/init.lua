@@ -16,6 +16,20 @@ setmetatable(M, {
   end,
 })
 
+M.action = setmetatable({}, {
+  __index = function(_, action)
+    return function()
+      vim.lsp.buf.code_action({
+        apply = true,
+        context = {
+          only = { action },
+          diagnostics = {},
+        },
+      })
+    end
+  end,
+})
+
 function M.get_clients(opts)
   local ret = {} ---@type vim.lsp.Client[]
   if vim.lsp.get_clients then
@@ -100,6 +114,7 @@ function M.lsp_autocmd()
       end
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
+      nmap('grA', ergou.lsp.action.source, 'Source Action')
 
       -- Lesser used LSP functionality
       nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
