@@ -1,15 +1,19 @@
+local opt = vim.opt
+local g = vim.g
+
 -- This file is automatically loaded by plugins.core
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+g.mapleader = ' '
+g.maplocalleader = '\\'
 
 -- LazyVim root dir detection
 -- Each entry can be:
 -- * the name of a detector function like `lsp` or `cwd`
 -- * a pattern or array of patterns like `.git` or `lua`.
 -- * a function with signature `function(buf) -> string|string[]`
-vim.g.root_spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
+g.root_spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
 
-local opt = vim.opt
+-- Fix markdown indentation settings
+g.markdown_recommended_style = 0
 
 opt.autowrite = true -- Enable auto write
 opt.clipboard = '' -- Sync with system clipboard
@@ -83,15 +87,6 @@ opt.foldlevel = 99
 opt.foldmethod = 'indent'
 opt.foldlevelstart = 99
 opt.foldenable = true
-
--- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
-
--- Set filetype to `bigfile` for files larger than 1.5 MB
--- Only vim syntax will be enabled (with the correct filetype)
--- LSP, treesitter and other ft plugins will be disabled.
--- mini.animate will also be disabled.
-vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
 -- Disable deprecation messages
 -- vim.deprecate = function() end
