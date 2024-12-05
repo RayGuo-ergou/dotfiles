@@ -15,6 +15,9 @@ g.root_spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
 -- Fix markdown indentation settings
 g.markdown_recommended_style = 0
 
+-- Fix php [[ and ]] key map
+g.no_php_maps = 1
+
 opt.autowrite = true -- Enable auto write
 opt.clipboard = '' -- Sync with system clipboard
 -- Set clipboard after nvim start
