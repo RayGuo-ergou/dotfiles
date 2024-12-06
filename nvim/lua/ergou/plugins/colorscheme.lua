@@ -5,44 +5,44 @@ return {
     enabled = true,
     name = 'catppuccin',
     priority = 1000,
-    config = function()
-      require('catppuccin').setup({
-        -- no_italic = true,
-        transparent_background = true,
-        integrations = {
-          aerial = true,
-          diffview = true,
-          neotree = true,
-          mason = true,
-          neotest = true,
-          noice = true,
-          grug_far = true,
-          navic = {
-            enabled = true,
-          },
-          which_key = true,
-          lsp_trouble = true,
-          native_lsp = {
-            enabled = true,
-            underlines = {
-              errors = { 'undercurl' },
-              hints = { 'undercurl' },
-              warnings = { 'undercurl' },
-              information = { 'undercurl' },
-              ok = { 'undercurl' },
-            },
-          },
-          snacks = true,
+    opts = {
+      -- no_italic = true,
+      transparent_background = true,
+      integrations = {
+        aerial = true,
+        diffview = true,
+        neotree = true,
+        mason = true,
+        neotest = true,
+        noice = true,
+        grug_far = true,
+        navic = {
+          enabled = true,
         },
-        custom_highlights = function(colors)
-          return {
-            CmpItemKindNpm = { fg = colors.red },
-            TypeVirtualText = { fg = colors.yellow },
-            SnacksDashboardIcon = { fg = colors.blue },
-          }
-        end,
-      })
-
+        which_key = true,
+        lsp_trouble = true,
+        native_lsp = {
+          enabled = true,
+          underlines = {
+            errors = { 'undercurl' },
+            hints = { 'undercurl' },
+            warnings = { 'undercurl' },
+            information = { 'undercurl' },
+            ok = { 'undercurl' },
+          },
+        },
+        snacks = true,
+      },
+      custom_highlights = function(colors)
+        return {
+          CmpItemKindNpm = { fg = colors.red },
+          TypeVirtualText = { fg = colors.yellow },
+          SnacksDashboardIcon = { fg = colors.blue },
+        }
+      end,
+    },
+    config = function(_, opts)
+      require('catppuccin').setup(opts)
       vim.cmd.colorscheme('catppuccin-macchiato')
     end,
   },
