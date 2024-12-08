@@ -2,6 +2,7 @@ return {
   'ibhagwan/fzf-lua',
   dependencies = {
     'MeanderingProgrammer/render-markdown.nvim',
+    'nvim-treesitter/nvim-treesitter-context',
   },
   opts = function()
     local config = require('fzf-lua.config')
@@ -66,6 +67,9 @@ return {
             ['svg'] = { 'imgcat' },
           },
           ueberzug_scaler = 'fit_contain',
+          treesitter = {
+            context = true,
+          },
         },
       },
       -- Custom ergou option to configure vim.ui.select
