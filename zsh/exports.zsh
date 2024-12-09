@@ -60,7 +60,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # tmux
 # Make sure the tmux omz plugin is installed
-export ZSH_TMUX_AUTOSTART=false
+export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_DEFAULT_SESSION_NAME='至人無己，神人無功，聖人無名'
 
 # To tell pnpm not to check packageManager
