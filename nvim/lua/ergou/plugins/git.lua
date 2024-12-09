@@ -66,13 +66,6 @@ return {
           gitsigns.diffthis('~')
         end, 'git diff against last commit')
 
-        -- Toggles
-        map('n', '<leader>gB', gitsigns.toggle_current_line_blame, 'toggle git blame line')
-        map('n', '<leader>gd', function()
-          gitsigns.toggle_deleted()
-          gitsigns.toggle_linehl()
-        end, 'toggle git show deleted')
-
         -- Jump to next/prev hunk
         local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()
           gitsigns.nav_hunk('next')
@@ -93,6 +86,42 @@ return {
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'select git hunk')
       end,
     },
+  },
+  {
+    'gitsigns.nvim',
+    opts = function()
+      Snacks.toggle({
+        name = 'Git Signs',
+        get = function()
+          return require('gitsigns.config').config.signcolumn
+        end,
+        set = function(state)
+          require('gitsigns').toggle_signs(state)
+        end,
+      }):map('<leader>uG')
+
+      Snacks.toggle({
+        name = 'Git Signs Diff',
+        get = function()
+          -- HACK: I seriously don't have a better way, so keep this for now. I guess?
+          return require('gitsigns.config').config.linehl and require('gitsigns.config').config.show_deleted
+        end,
+        set = function(state)
+          require('gitsigns').toggle_deleted(state)
+          require('gitsigns').toggle_linehl(state)
+        end,
+      }):map('<leader>gd')
+
+      Snacks.toggle({
+        name = 'Git Signs Current Line Blame',
+        get = function()
+          return require('gitsigns.config').config.current_line_blame
+        end,
+        set = function(state)
+          require('gitsigns').toggle_current_line_blame(state)
+        end,
+      }):map('<leader>gb')
+    end,
   },
   {
     'chrisgrieser/nvim-tinygit',
