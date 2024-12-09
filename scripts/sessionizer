@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+# Source: https://github.com/ThePrimeagen/tmux-sessionizer
 switch_to() {
     if [[ -z $TMUX ]]; then
         tmux attach-session -t $1
