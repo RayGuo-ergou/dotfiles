@@ -60,6 +60,10 @@ export NVM_DIR="$HOME/.nvm"
 
 # tmux
 # Make sure the tmux omz plugin is installed
+# This also make sure sessionizer works as expected
+# E.g. zsh plugin will set the color to (tmux/screen) I guess?
+# Otherwise when paste with ctrl-v, plain text for the color like [27;5;106~
+# Will also be pasted
 export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_DEFAULT_SESSION_NAME='至人無己，神人無功，聖人無名'
 
