@@ -110,5 +110,6 @@ config.mouse_bindings = {
 
 config.bypass_mouse_reporting_modifiers = 'CTRL'
 config.adjust_window_size_when_changing_font_size = false
+config.audible_bell = 'Disabled'
 
 return config
