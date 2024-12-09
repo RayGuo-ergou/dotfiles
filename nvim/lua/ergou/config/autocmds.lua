@@ -89,8 +89,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'dbout',
     'DressingInput',
     'query',
-    'snacks_win',
-    'snacks_notif',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
