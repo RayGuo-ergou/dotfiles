@@ -86,6 +86,7 @@ return {
             name = 'lazydev',
             group_index = 0, -- set group index to 0 to skip loading LuaLS completions
           },
+          { name = 'render-markdown' },
         }),
         -- configure lspkind for vs-code like pictograms in completion menu
         formatting = {
