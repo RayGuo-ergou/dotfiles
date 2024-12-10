@@ -33,6 +33,8 @@ local logo = [[
 ⠀⠀⠳⣄⠀⠀⠀⠹⣿⣿⣿⡿⠛⣠⠾⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠳⣄⠙⠛⠿⠿⠛⠉⠀⠀⣀⠜⠁⠀⠀⠀⠀
 ⠀⠀⠀⠈⠑⠢⠤⠤⠬⠭⠥⠖⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠒⠢⠤⠤⠤⠒⠊⠁⠀⠀⠀⠀⠀⠀
 ]]
+-- With snack browse or any feature that will open a web page
+-- Don't forget to link `wslopen` to `xdg-open` if using wsl
 return {
   'folke/snacks.nvim',
   priority = 1000,
@@ -119,6 +121,13 @@ return {
         Snacks.git.blame_line()
       end,
       desc = 'Git Blame Line',
+    },
+    {
+      '<leader>grv',
+      function()
+        Snacks.gitbrowse()
+      end,
+      desc = 'Git Browse',
     },
     {
       '<leader>lg',

@@ -1,14 +1,4 @@
 return {
-  -- Open file on github
-  {
-    'tpope/vim-rhubarb',
-    dependencies = {
-      'tpope/vim-fugitive',
-    },
-    keys = {
-      { '<leader>grv', '<cmd>GBrowse<cr>', desc = 'Open current file on GitHub' },
-    },
-  },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -120,7 +110,7 @@ return {
         set = function(state)
           require('gitsigns').toggle_current_line_blame(state)
         end,
-      }):map('<leader>gb')
+      }):map('<leader>gtb')
     end,
   },
   {
