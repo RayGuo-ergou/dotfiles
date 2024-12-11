@@ -158,6 +158,14 @@ return {
       desc = 'Rename File',
     },
     {
+      '<leader>tz',
+      function()
+        Snacks.zen.zen()
+      end,
+      desc = 'Zen mode',
+      mode = { 'n', 't' },
+    },
+    {
       ']]',
       function()
         Snacks.words.jump(vim.v.count1)
