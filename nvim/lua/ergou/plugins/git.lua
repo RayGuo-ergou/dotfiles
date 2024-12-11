@@ -144,6 +144,13 @@ return {
         desc = 'Git commit',
       },
       {
+        '<leader>gC',
+        function()
+          require('tinygit').amendNoEdit()
+        end,
+        desc = 'Git commit',
+      },
+      {
         '<leader>gS',
         function()
           require('tinygit').interactiveStaging()
