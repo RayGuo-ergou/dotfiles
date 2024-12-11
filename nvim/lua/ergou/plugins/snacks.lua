@@ -74,6 +74,18 @@ return {
     },
     indent = {
       enabled = true,
+      -- Rainbow indent
+      -- indent = {
+      --   hl = {
+      --     'SnacksIndentRed',
+      --     'SnacksIndentYellow',
+      --     'SnacksIndentBlue',
+      --     'SnacksIndentOrange',
+      --     'SnacksIndentGreen',
+      --     'SnacksIndentViolet',
+      --     'SnacksIndentCyan',
+      --   },
+      -- },
       scope = {
         animate = {
           enabled = false,

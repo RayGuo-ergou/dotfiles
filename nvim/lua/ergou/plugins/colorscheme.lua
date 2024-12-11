@@ -41,6 +41,14 @@ return {
           SnacksDashboardIcon = { fg = colors.blue },
           SnacksIndentScope = { fg = colors.text },
           SnacksIndent = { fg = colors.surface0 },
+
+          SnacksIndentRed = { fg = colors.red },
+          SnacksIndentYellow = { fg = colors.yellow },
+          SnacksIndentBlue = { fg = colors.blue },
+          SnacksIndentOrange = { fg = colors.peach },
+          SnacksIndentGreen = { fg = colors.green },
+          SnacksIndentViolet = { fg = colors.mauve },
+          SnacksIndentCyan = { fg = colors.teal },
         }
       end,
     },
