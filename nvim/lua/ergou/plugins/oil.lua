@@ -28,5 +28,6 @@ return {
       '<cmd>Oil<CR>',
       desc = 'Open Oil',
     },
+    { 'gf' },
   },
 }
