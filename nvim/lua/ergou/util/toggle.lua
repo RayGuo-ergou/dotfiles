@@ -42,6 +42,10 @@ M.spelling = function()
   return Snacks.toggle.option('spell', { name = 'Spelling' })
 end
 
+M.zen = function()
+  return Snacks.toggle.zen()
+end
+
 function M.maximize()
   ---@type {k:string, v:any}[]?
   local maximized = nil
