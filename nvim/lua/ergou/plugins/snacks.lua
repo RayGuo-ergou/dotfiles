@@ -58,6 +58,9 @@ return {
       enabled = true,
       preset = { header = logo },
     },
+    dim = {
+      animate = false,
+    },
   },
   keys = {
     {
