@@ -6,6 +6,7 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
+    enabled = false,
     event = 'LazyFile',
     main = 'ibl',
     ---@module "ibl"

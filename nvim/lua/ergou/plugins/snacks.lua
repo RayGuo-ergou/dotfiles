@@ -72,6 +72,14 @@ return {
         },
       },
     },
+    indent = {
+      enabled = true,
+      scope = {
+        animate = {
+          enabled = false,
+        },
+      },
+    },
   },
   keys = {
     {

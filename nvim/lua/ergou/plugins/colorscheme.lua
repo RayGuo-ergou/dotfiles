@@ -39,7 +39,8 @@ return {
           CmpItemKindNpm = { fg = colors.red },
           TypeVirtualText = { fg = colors.yellow },
           SnacksDashboardIcon = { fg = colors.blue },
-          SnacksIndentScope = { fg = colors.crust },
+          SnacksIndentScope = { fg = colors.text },
+          SnacksIndent = { fg = colors.surface0 },
         }
       end,
     },
