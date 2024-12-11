@@ -63,6 +63,15 @@ return {
         enabled = false,
       },
     },
+    scroll = {
+      enabled = true,
+      animate = {
+        duration = {
+          step = 10,
+          total = 100,
+        },
+      },
+    },
   },
   keys = {
     {
