@@ -30,6 +30,18 @@ M.wrap = function()
   return Snacks.toggle.option('wrap', { name = 'Wrap' })
 end
 
+M.diagnostics = function()
+  return Snacks.toggle.diagnostics()
+end
+
+M.treesitter = function()
+  return Snacks.toggle.treesitter()
+end
+
+M.spelling = function()
+  return Snacks.toggle.option('spell', { name = 'Spelling' })
+end
+
 function M.maximize()
   ---@type {k:string, v:any}[]?
   local maximized = nil
