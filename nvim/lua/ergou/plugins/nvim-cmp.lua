@@ -10,7 +10,14 @@ return {
       'hrsh7th/cmp-calc',
       'L3MON4D3/LuaSnip', -- snippet engine
       'saadparwaiz1/cmp_luasnip', -- for autocompletion
-      'rafamadriz/friendly-snippets', -- useful snippets
+      {
+        'rafamadriz/friendly-snippets',
+        config = function()
+          -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
+          require('luasnip.loaders.from_vscode').lazy_load()
+          require('luasnip.loaders.from_vscode').lazy_load({ paths = { vim.fn.stdpath('config') .. '/snippets' } })
+        end,
+      },
       'onsails/lspkind.nvim', -- vs-code like pictograms
       'hrsh7th/cmp-nvim-lsp-document-symbol', -- source for document symbols
     },
@@ -20,9 +27,6 @@ return {
       local cmp = require('cmp')
       local luasnip = require('luasnip')
       local parse = require('cmp.utils.snippet').parse
-
-      -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-      require('luasnip.loaders.from_vscode').lazy_load()
 
       -- Snippet
       ergou.snips.setup_snipes()
