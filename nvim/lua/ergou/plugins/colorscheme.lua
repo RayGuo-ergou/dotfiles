@@ -5,6 +5,7 @@ return {
     enabled = true,
     name = 'catppuccin',
     priority = 1000,
+    ---@type CatppuccinOptions
     opts = {
       -- no_italic = true,
       transparent_background = true,
@@ -38,6 +39,7 @@ return {
           CmpItemKindNpm = { fg = colors.red },
           TypeVirtualText = { fg = colors.yellow },
           SnacksDashboardIcon = { fg = colors.blue },
+          SnacksIndentScope = { fg = colors.crust },
         }
       end,
     },

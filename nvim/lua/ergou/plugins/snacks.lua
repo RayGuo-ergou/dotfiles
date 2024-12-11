@@ -59,7 +59,9 @@ return {
       preset = { header = logo },
     },
     dim = {
-      animate = false,
+      animate = {
+        enabled = false,
+      },
     },
   },
   keys = {
