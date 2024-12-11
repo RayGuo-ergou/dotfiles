@@ -6,7 +6,6 @@ local LazyUtil = require('lazy.core.util')
 ---@field public lsp ergou.util.lsp
 ---@field public root ergou.util.root
 ---@field public snips ergou.util.snips
----@field public ui ergou.util.ui
 ---@field public cmp ergou.util.cmp
 ---@field public pick ergou.util.pick
 ---@field public toggle ergou.util.toggle

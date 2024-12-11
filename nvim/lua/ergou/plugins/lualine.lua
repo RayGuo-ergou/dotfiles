@@ -41,7 +41,7 @@ return {
               cond = function()
                 return package.loaded['noice'] and require('noice').api.status.mode.has()
               end,
-              color = ergou.ui.fg('Constant'),
+              color = { fg = Snacks.util.color('Constant') },
             },
           },
           lualine_c = {},
@@ -56,7 +56,7 @@ return {
               function()
                 return require('tinygit.statusline').blame()
               end,
-              color = ergou.ui.fg('Tag'),
+              color = { fg = Snacks.util.color('Tag') },
             },
           },
         },
@@ -82,7 +82,7 @@ return {
               cond = function()
                 return package.loaded['noice'] and require('noice').api.status.search.has()
               end,
-              color = ergou.ui.fg('PreProc'),
+              color = { fg = Snacks.util.color('PreProc') },
             },
             {
               function()
@@ -91,7 +91,7 @@ return {
               cond = function()
                 return package.loaded['noice'] and require('noice').api.status.command.has()
               end,
-              color = ergou.ui.fg('Statement'),
+              color = { fg = Snacks.util.color('Statement') },
             },
             {
               function()
@@ -100,12 +100,12 @@ return {
               cond = function()
                 return package.loaded['dap'] and require('dap').status() ~= ''
               end,
-              color = ergou.ui.fg('Debug'),
+              color = { fg = Snacks.util.color('Debug') },
             },
             {
               require('lazy.status').updates,
               cond = require('lazy.status').has_updates,
-              color = ergou.ui.fg('Special'),
+              color = { fg = Snacks.util.color('Special') },
             },
             {
               'copilot',
