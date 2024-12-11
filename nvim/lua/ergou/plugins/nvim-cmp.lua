@@ -22,8 +22,6 @@ return {
       'hrsh7th/cmp-nvim-lsp-document-symbol', -- source for document symbols
     },
     config = function()
-      local auto_brackets_fts = { 'lua' }
-
       local cmp = require('cmp')
       local luasnip = require('luasnip')
       local parse = require('cmp.utils.snippet').parse
@@ -102,7 +100,7 @@ return {
         sorting = ergou.cmp.cmp_sort(),
       })
       cmp.event:on('confirm_done', function(event)
-        if vim.tbl_contains(auto_brackets_fts, vim.bo.filetype) then
+        if vim.tbl_contains(ergou.cmp.AUTO_BRACKETS_FILETYPES, vim.bo.filetype) then
           ergou.cmp.auto_brackets(event.entry)
         end
       end)

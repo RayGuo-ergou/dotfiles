@@ -2,6 +2,8 @@
 --- @class ergou.util.cmp
 local M = {}
 
+M.AUTO_BRACKETS_FILETYPES = { 'lua' }
+
 ---@param entry cmp.Entry
 function M.auto_brackets(entry)
   local cmp = require('cmp')
@@ -279,7 +281,10 @@ end
 function M.visible()
   ---@module 'cmp'
   local cmp = package.loaded['cmp']
-  return cmp and cmp.core.view:visible()
+  if cmp then
+    return cmp.core.view:visible()
+  end
+  return false
 end
 
 return M
