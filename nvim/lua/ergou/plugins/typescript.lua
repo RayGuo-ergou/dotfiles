@@ -17,7 +17,6 @@ return {
   { 'dmmulroy/ts-error-translator.nvim', opts = {}, ft = { 'typescript', 'vue' } },
   {
     'dmmulroy/tsc.nvim',
-    url = 'https://github.com/RayGuo-ergou/tsc.nvim',
     opts = {
       bin_path = find_tsc_bin(),
       -- enable_progress_notifications = false,
