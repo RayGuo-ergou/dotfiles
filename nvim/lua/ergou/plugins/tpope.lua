@@ -5,4 +5,11 @@ return {
     'tpope/vim-sleuth',
     event = 'LazyFile',
   },
+  {
+    'tpope/vim-fugitive',
+    cmd = {
+      'Git',
+      'G',
+    },
+  },
 }
