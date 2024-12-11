@@ -47,11 +47,13 @@ return {
       top_down = false, -- place notifications from top to bottom
     },
     quickfile = { enabled = true },
-    statuscolumn = { enabled = false },
+    statuscolumn = { enabled = true },
     words = { enabled = true },
     styles = {
       notification = {
-        wo = { wrap = true }, -- Wrap notifications
+        wo = {
+          wrap = true,
+        }, -- Wrap notifications
       },
     },
     dashboard = {
@@ -91,6 +93,9 @@ return {
           enabled = false,
         },
       },
+    },
+    input = {
+      enabled = false,
     },
   },
   keys = {
