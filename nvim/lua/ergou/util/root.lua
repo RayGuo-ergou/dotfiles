@@ -6,7 +6,7 @@ local M = setmetatable({}, {
   end,
 })
 
----@class ErgouRoot
+---@class LazyRoot
 ---@field paths string[]
 ---@field spec LazyRootSpec
 
