@@ -100,7 +100,7 @@ return {
     },
     ---@param opts PluginLspOpts
     config = function(_, opts)
-      local servers = ergou.lsp.get_servers()
+      local servers = ergou.lsp.servers.get()
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
