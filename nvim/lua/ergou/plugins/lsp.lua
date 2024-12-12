@@ -109,7 +109,7 @@ return {
       local ensure_install_servers = vim.tbl_keys(servers)
 
       local mason_lspconfig = require('mason-lspconfig')
-      ergou.lsp.lsp_autocmd()
+      ergou.lsp.setup()
 
       mason_lspconfig.setup({
         ensure_installed = ensure_install_servers,
