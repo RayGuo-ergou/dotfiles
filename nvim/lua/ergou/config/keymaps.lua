@@ -128,10 +128,10 @@ map('n', '<leader>cy', ergou.file.copy_filename, { desc = 'Previous Tab' })
 
 -- Toggles
 ergou.toggle.quickfix():map('<leader>qf')
-ergou.toggle.maximize():map('<leader>z')
 ergou.toggle.inlay_hints():map('<leader>ih')
 ergou.toggle.wrap():map('<leader>tw')
 ergou.toggle.diagnostics():map('<leader>ud')
 ergou.toggle.treesitter():map('<leader>uT')
 ergou.toggle.spelling():map('<leader>us')
-ergou.toggle.zen():map('<leader>tz')
+ergou.toggle.zen():map('<leader>z')
+ergou.toggle.zoom():map('<leader>wm'):map('<leader>Z')
