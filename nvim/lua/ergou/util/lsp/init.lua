@@ -6,8 +6,11 @@
 ---@field public eslint ergou.util.lsp.eslint
 ---@field public cspell ergou.util.lsp.cspell
 ---@field public tsformat ergou.util.lsp.tsformat
+---@field public keymap ergou.util.lsp.keymap
 local M = {}
 
+---@alias lsp.Client.filter {id?: number, bufnr?: number, name?: string, method?: string, filter?:fun(client: vim.lsp.Client):boolean}
+---
 setmetatable(M, {
   __index = function(t, k)
     ---@diagnostic disable-next-line: no-unknown
@@ -30,6 +33,7 @@ M.action = setmetatable({}, {
   end,
 })
 
+---@param opts? lsp.Client.filter
 function M.get_clients(opts)
   local ret = {} ---@type vim.lsp.Client[]
   if vim.lsp.get_clients then
@@ -40,7 +44,7 @@ function M.get_clients(opts)
     if opts and opts.method then
       ---@param client vim.lsp.Client
       ret = vim.tbl_filter(function(client)
-        return client.supports_method(opts.method, { bufnr = opts.bufnr })
+        return client:supports_method(opts.method, opts.bufnr)
       end, ret)
     end
   end
@@ -52,18 +56,14 @@ function M.lsp_autocmd()
     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
     callback = function(event)
       local bufnr = event.buf
-
-      local nmap = function(keys, func, desc)
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = 'LSP: ' .. desc })
-      end
-
       local client = vim.lsp.get_client_by_id(event.data.client_id)
+
       if client then
         local client_name = client.name
         local file_type = vim.bo[bufnr].filetype
         if
           not (file_type == 'vue' and vim.list_contains(M.typescript.servers, client_name))
-          and client.supports_method('textDocument/documentSymbol')
+          and client:supports_method('textDocument/documentSymbol')
         then
           require('nvim-navic').attach(client, bufnr)
         end
@@ -83,41 +83,7 @@ function M.lsp_autocmd()
         end
       end
 
-      if ergou.pick.picker.name == 'telescope' then
-        nmap('gd', function()
-          require('telescope.builtin').lsp_definitions({ reuse_win = true })
-        end, 'Goto Definition')
-        nmap('grr', require('telescope.builtin').lsp_references, 'Goto References')
-        nmap('gI', function()
-          require('telescope.builtin').lsp_implementations({ reuse_win = true })
-        end, 'Goto Implementation')
-        nmap('gy', function()
-          require('telescope.builtin').lsp_type_definitions({ reuse_win = true })
-        end, 'Goto Type')
-      elseif ergou.pick.picker.name == 'fzf' then
-        nmap(
-          'gd',
-          '<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>',
-          'Goto Definition'
-        )
-        nmap(
-          'grr',
-          '<cmd>FzfLua lsp_references jump_to_single_result=true ignore_current_line=true<cr>',
-          'Goto References'
-        )
-        nmap(
-          'gI',
-          '<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>',
-          'Goto Implementation'
-        )
-        nmap('gy', '<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>', 'Goto Type')
-      end
-      nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-      nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
-      nmap('grA', ergou.lsp.action.source, 'Source Action')
-
-      -- Lesser used LSP functionality
-      nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
+      ergou.lsp.keymap(bufnr)
 
       -- Create a command `:Format` local to the LSP buffer
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
