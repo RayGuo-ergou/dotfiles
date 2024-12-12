@@ -18,6 +18,9 @@ g.markdown_recommended_style = 0
 -- Fix php [[ and ]] key map
 g.no_php_maps = 1
 
+-- Lsp auto inlay hint
+g.auto_inlay_hint = false
+
 opt.autowrite = true -- Enable auto write
 opt.clipboard = '' -- Sync with system clipboard
 -- Set clipboard after nvim start

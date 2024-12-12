@@ -67,10 +67,9 @@ function M.lsp_autocmd()
         require('nvim-navic').attach(client, bufnr)
       end
 
-      -- If want to enable inlay hint on lsp attach
-      -- if client.supports_method('textDocument/inlayHint') then
-      --   vim.lsp.inlay_hint.enable()
-      -- end
+      if client:supports_method('textDocument/inlayHint') and vim.g.auto_inlay_hint then
+        vim.lsp.inlay_hint.enable()
+      end
     end,
   })
 end
