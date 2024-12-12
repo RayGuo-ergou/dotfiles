@@ -15,18 +15,18 @@ function M.copy_filename()
   end
 
   local results = {
-    filepath,
     modify(filepath, ':.'),
     modify(filepath, ':~'),
+    filepath,
     filename,
     modify(filename, ':r'),
     modify(filename, ':e'),
   }
 
   local items = {
-    'Absolute path: ' .. results[1],
-    'Path relative to CWD: ' .. results[2],
-    'Path relative to HOME: ' .. results[3],
+    'Path relative to CWD: ' .. results[1],
+    'Path relative to HOME: ' .. results[2],
+    'Absolute path: ' .. results[3],
     'Filename: ' .. results[4],
     'Filename without extension: ' .. results[5],
     'Extension of the filename: ' .. results[6],
