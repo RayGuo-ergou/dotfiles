@@ -71,15 +71,6 @@ function M.lsp_autocmd()
       -- if client.supports_method('textDocument/inlayHint') then
       --   vim.lsp.inlay_hint.enable()
       -- end
-
-      -- Highlight references
-      local handler = vim.lsp.handlers['textDocument/documentHighlight']
-      vim.lsp.handlers['textDocument/documentHighlight'] = function(err, result, ctx, config)
-        if not vim.api.nvim_buf_is_loaded(ctx.bufnr) then
-          return
-        end
-        return handler(err, result, ctx, config)
-      end
     end,
   })
 end
