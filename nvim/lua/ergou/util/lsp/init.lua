@@ -9,8 +9,9 @@
 ---@field public keymap ergou.util.lsp.keymap
 local M = {}
 
----@alias lsp.Client.filter {id?: number, bufnr?: number, name?: string, method?: string, filter?:fun(client: vim.lsp.Client):boolean}
----
+---@class LspClientFilterOpts: vim.lsp.get_clients.Filter
+---@field public filter fun(client: vim.lsp.Client):boolean
+
 setmetatable(M, {
   __index = function(t, k)
     ---@diagnostic disable-next-line: no-unknown
@@ -33,21 +34,9 @@ M.action = setmetatable({}, {
   end,
 })
 
----@param opts? lsp.Client.filter
+---@param opts? LspClientFilterOpts
 function M.get_clients(opts)
-  local ret = {} ---@type vim.lsp.Client[]
-  if vim.lsp.get_clients then
-    ret = vim.lsp.get_clients(opts)
-  else
-    ---@diagnostic disable-next-line: deprecated
-    ret = vim.lsp.get_active_clients(opts)
-    if opts and opts.method then
-      ---@param client vim.lsp.Client
-      ret = vim.tbl_filter(function(client)
-        return client:supports_method(opts.method, opts.bufnr)
-      end, ret)
-    end
-  end
+  local ret = vim.lsp.get_clients(opts)
   return opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
 end
 
@@ -58,37 +47,39 @@ function M.lsp_autocmd()
       local bufnr = event.buf
       local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-      if client then
-        local client_name = client.name
-        local file_type = vim.bo[bufnr].filetype
-        if
-          not (file_type == 'vue' and vim.list_contains(M.typescript.servers, client_name))
-          and client:supports_method('textDocument/documentSymbol')
-        then
-          require('nvim-navic').attach(client, bufnr)
-        end
-
-        -- If want to enable inlay hint on lsp attach
-        -- if client.supports_method('textDocument/inlayHint') then
-        --   vim.lsp.inlay_hint.enable()
-        -- end
-
-        -- Highlight references
-        local handler = vim.lsp.handlers['textDocument/documentHighlight']
-        vim.lsp.handlers['textDocument/documentHighlight'] = function(err, result, ctx, config)
-          if not vim.api.nvim_buf_is_loaded(ctx.bufnr) then
-            return
-          end
-          return handler(err, result, ctx, config)
-        end
-      end
-
       ergou.lsp.keymap(bufnr)
 
       -- Create a command `:Format` local to the LSP buffer
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
+
+      if not client then
+        return
+      end
+
+      local client_name = client.name
+      local file_type = vim.bo[bufnr].filetype
+      if
+        not (file_type == 'vue' and vim.list_contains(M.typescript.servers, client_name))
+        and client:supports_method('textDocument/documentSymbol')
+      then
+        require('nvim-navic').attach(client, bufnr)
+      end
+
+      -- If want to enable inlay hint on lsp attach
+      -- if client.supports_method('textDocument/inlayHint') then
+      --   vim.lsp.inlay_hint.enable()
+      -- end
+
+      -- Highlight references
+      local handler = vim.lsp.handlers['textDocument/documentHighlight']
+      vim.lsp.handlers['textDocument/documentHighlight'] = function(err, result, ctx, config)
+        if not vim.api.nvim_buf_is_loaded(ctx.bufnr) then
+          return
+        end
+        return handler(err, result, ctx, config)
+      end
     end,
   })
 end
