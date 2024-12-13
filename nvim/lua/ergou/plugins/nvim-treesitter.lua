@@ -2,8 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    -- event = { 'LazyFile', 'VeryLazy' },
-    event = { 'LazyFile' },
+    event = { 'LazyFile', 'VeryLazy' },
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     init = function(plugin)
       -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
