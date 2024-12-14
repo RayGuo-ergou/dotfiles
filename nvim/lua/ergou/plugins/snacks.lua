@@ -88,10 +88,8 @@ return {
       --     'SnacksIndentCyan',
       --   },
       -- },
-      scope = {
-        animate = {
-          enabled = false,
-        },
+      animate = {
+        enabled = false,
       },
     },
     input = {
