@@ -23,7 +23,7 @@ map('v', '<A-j>', ':m \'>+1<cr>gv=gv', { desc = 'Move Down', silent = true })
 map('v', '<A-k>', ':m \'<-2<cr>gv=gv', { desc = 'Move Up', silent = true })
 
 -- Disable highlight for search
-map({ 'n', 'i' }, '<C-n>', '<cmd>nohlsearch<CR>', { noremap = true, silent = true })
+map('n', '<C-n>', '<cmd>nohlsearch<CR>', { noremap = true, silent = true })
 
 -- Change without yanking
 map({ 'n', 'x' }, 'c', '"_c', { noremap = true, silent = true })
