@@ -135,3 +135,13 @@ ergou.toggle.treesitter():map('<leader>uT')
 ergou.toggle.spelling():map('<leader>us')
 ergou.toggle.zen():map('<leader>z')
 ergou.toggle.zoom():map('<leader>wm'):map('<leader>Z')
+
+Snacks.util.on_key('<esc>', function()
+  local luasnip = require('luasnip')
+  if luasnip.expand_or_jumpable() then
+    luasnip.unlink_current()
+  end
+  if vim.snippet then
+    vim.snippet.stop()
+  end
+end)
