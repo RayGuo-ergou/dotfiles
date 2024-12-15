@@ -52,26 +52,34 @@ return {
           ['<CR>'] = ergou.cmp.confirm({ select = false }),
           ['<Tab>'] = cmp.mapping(function(fallback)
             local has_copilot, copilot = pcall(require, 'copilot.suggestion')
-            if has_copilot then
-              if copilot.is_visible() then
-                copilot.accept()
-              end
-            elseif ergou.cmp.visible() then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            else
-              fallback()
+            -- copilot
+            if has_copilot and copilot.is_visible() then
+              return copilot.accept()
             end
-          end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-          ['<C-p>'] = function(fallback)
-            return fallback()
-          end,
-          ['<C-n>'] = function(fallback)
+
+            -- Snippet
             if luasnip.expand_or_jumpable() then
               return luasnip.expand_or_jump()
             end
-            return fallback()
-          end,
+
+            -- Cmp select
+            if ergou.cmp.visible() then
+              return cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            end
+
+            fallback()
+          end, { 'i', 's' }),
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if luasnip.expand_or_jumpable() then
+              return luasnip.jump(-1)
+            end
+
+            if ergou.cmp.visible() then
+              return cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+            end
+
+            fallback()
+          end, { 'i', 's' }),
         }),
         -- sources for autocompletion
         sources = cmp.config.sources({
