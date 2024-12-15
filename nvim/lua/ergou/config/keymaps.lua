@@ -133,8 +133,8 @@ ergou.toggle.wrap():map('<leader>tw')
 ergou.toggle.diagnostics():map('<leader>ud')
 ergou.toggle.treesitter():map('<leader>uT')
 ergou.toggle.spelling():map('<leader>us')
-ergou.toggle.zen():map('<leader>z')
-ergou.toggle.zoom():map('<leader>wm'):map('<leader>Z')
+ergou.toggle.zen():map('<leader>Z')
+ergou.toggle.zoom():map('<leader>wm'):map('<leader>z')
 
 -- Clear search and stop snippet on escape
 map({ 'i', 'n', 's' }, '<esc>', function()
