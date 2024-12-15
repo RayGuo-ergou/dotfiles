@@ -126,7 +126,7 @@ map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 -- Copy file name
 map('n', '<leader>cy', ergou.file.copy_filename, { desc = 'Previous Tab' })
 
--- Toggles
+---Toggles---
 ergou.toggle.quickfix():map('<leader>qf')
 ergou.toggle.inlay_hints():map('<leader>ih')
 ergou.toggle.wrap():map('<leader>tw')
@@ -136,6 +136,7 @@ ergou.toggle.spelling():map('<leader>us')
 ergou.toggle.zen():map('<leader>z')
 ergou.toggle.zoom():map('<leader>wm'):map('<leader>Z')
 
+---On key events---
 Snacks.util.on_key('<esc>', function()
   local luasnip = require('luasnip')
   if luasnip.expand_or_jumpable() then
