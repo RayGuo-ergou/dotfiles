@@ -45,6 +45,7 @@ return {
     notifier = {
       enabled = true,
       top_down = false, -- place notifications from top to bottom
+      sort = { 'added' }, -- sort by level and time
     },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
