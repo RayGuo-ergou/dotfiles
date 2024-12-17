@@ -77,7 +77,7 @@ return {
       },
     },
     indent = {
-      enabled = true,
+      enabled = false,
       -- Rainbow indent
       -- indent = {
       --   hl = {
