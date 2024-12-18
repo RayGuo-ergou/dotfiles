@@ -88,6 +88,9 @@ if vim.fn.has('nvim-0.10') == 1 then
   opt.smoothscroll = true
 end
 
+-- No cursor blink in termnial mode
+opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
+
 -- Folding
 opt.foldlevel = 99
 opt.foldmethod = 'indent'
