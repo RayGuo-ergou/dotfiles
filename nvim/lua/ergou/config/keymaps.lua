@@ -138,6 +138,7 @@ ergou.toggle.zoom():map('<leader>wm'):map('<leader>z')
 
 -- Clear search and stop snippet on escape
 map({ 'i', 'n', 's' }, '<esc>', function()
+  vim.cmd('nohlsearch')
   local luasnip = require('luasnip')
   if luasnip.expand_or_jumpable() then
     luasnip.unlink_current()
