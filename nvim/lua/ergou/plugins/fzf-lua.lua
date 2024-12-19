@@ -49,7 +49,6 @@ return {
     return {
       'default-title',
       fzf_opts = {
-        ['--no-scrollbar'] = true,
         ['--cycle'] = true,
       },
       defaults = {
@@ -79,6 +78,9 @@ return {
           winopts = {
             title = ' ' .. vim.trim((fzf_opts.prompt or 'Select'):gsub('%s*:%s*$', '')) .. ' ',
             title_pos = 'center',
+            preview = {
+              scrollbar = false,
+            },
           },
         }, fzf_opts.kind == 'codeaction' and {
           winopts = {
