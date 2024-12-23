@@ -164,7 +164,14 @@ return {
     {
       '<leader>grv',
       function()
-        Snacks.gitbrowse()
+        Snacks.gitbrowse({ what = 'branch', notify = false })
+      end,
+      desc = 'Git Browse Branch',
+    },
+    {
+      '<leader>grV',
+      function()
+        Snacks.gitbrowse({ what = 'file', notify = false })
       end,
       desc = 'Git Browse',
     },
