@@ -186,9 +186,13 @@ function M.cmp_sort()
     end
     local kind1 = modified_kind(entry1:get_kind())
     local kind2 = modified_kind(entry2:get_kind())
-    if kind1 ~= kind2 then
-      return kind1 - kind2 < 0
+    local diff = kind1 - kind2
+    if diff < 0 then
+      return true
+    elseif diff > 0 then
+      return false
     end
+    return nil
   end
 
   ---@param entry1 cmp.Entry
@@ -242,12 +246,12 @@ function M.cmp_sort()
     comparators = {
       compare.offset,
       compare.exact,
-      custom_kind_sort,
       -- compare.scopes,
       compare.score,
       compare.recently_used,
       compare.locality,
-      compare.kind,
+      custom_kind_sort,
+      -- compare.kind,
       compare.sort_text,
       compare.length,
       compare.order,
