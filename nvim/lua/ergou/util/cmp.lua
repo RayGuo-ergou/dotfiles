@@ -144,9 +144,33 @@ function M.cmp_sort()
   ---@see https://github.com/pysan3/dotfiles/blob/9d3ca30baecefaa2a6453d8d6d448d62b5614ff2/nvim/lua/plugins/70-nvim-cmp.lua
   ---@type table<integer, integer>
   local modified_priority = {
-    [types.lsp.CompletionItemKind.Variable] = types.lsp.CompletionItemKind.Method,
-    [types.lsp.CompletionItemKind.Text] = 100, -- bottom
+    [types.lsp.CompletionItemKind.Field] = 1,
+    [types.lsp.CompletionItemKind.Property] = 2,
+    [types.lsp.CompletionItemKind.Keyword] = 3,
+    [types.lsp.CompletionItemKind.Method] = 4,
+    [types.lsp.CompletionItemKind.Function] = 5,
+    [types.lsp.CompletionItemKind.Constructor] = 6,
+    [types.lsp.CompletionItemKind.Variable] = 7,
+    [types.lsp.CompletionItemKind.Class] = 8,
+    [types.lsp.CompletionItemKind.Interface] = 9,
+    [types.lsp.CompletionItemKind.Module] = 10,
+    [types.lsp.CompletionItemKind.Unit] = 11,
+    [types.lsp.CompletionItemKind.Value] = 12,
+    [types.lsp.CompletionItemKind.Enum] = 13,
+    [types.lsp.CompletionItemKind.Snippet] = 14,
+    [types.lsp.CompletionItemKind.Color] = 15,
+    [types.lsp.CompletionItemKind.File] = 16,
+    [types.lsp.CompletionItemKind.Reference] = 17,
+    [types.lsp.CompletionItemKind.Folder] = 18,
+    [types.lsp.CompletionItemKind.EnumMember] = 19,
+    [types.lsp.CompletionItemKind.Constant] = 20,
+    [types.lsp.CompletionItemKind.Struct] = 21,
+    [types.lsp.CompletionItemKind.Event] = 22,
+    [types.lsp.CompletionItemKind.Operator] = 23,
+    [types.lsp.CompletionItemKind.TypeParameter] = 24,
+    [types.lsp.CompletionItemKind.Text] = 25,
   }
+
   local function modified_kind(kind)
     return modified_priority[kind] or kind
   end
