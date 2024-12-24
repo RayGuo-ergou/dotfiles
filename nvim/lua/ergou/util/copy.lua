@@ -69,17 +69,14 @@ function M.copy_git_branch()
 
   -- Prepare a table for branches with display names and actual values
   local items = {}
-  local branches_data = {}
 
   -- Add current branch as the first option
-  table.insert(items, 'Current branch: ' .. current_branch)
-  table.insert(branches_data, { name = current_branch, value = current_branch })
+  table.insert(items, current_branch)
 
   -- Add other branches
   for _, branch in ipairs(branches) do
     if branch ~= current_branch then
       table.insert(items, branch)
-      table.insert(branches_data, { name = branch, value = branch })
     end
   end
 
@@ -88,8 +85,7 @@ function M.copy_git_branch()
     prompt = 'Choose a branch to copy to clipboard:',
   }, function(_, int)
     if int then
-      local selected_data = branches_data[int]
-      local selected_branch = selected_data.value
+      local selected_branch = items[int]
       vim.fn.setreg('+', selected_branch)
       vim.notify('Copied: ' .. selected_branch)
     else
