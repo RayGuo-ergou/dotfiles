@@ -1,6 +1,6 @@
 ---@class ergou.util.lsp.typescript
 local M = {}
-M = {}
+
 M.inlay_hints = {
   includeInlayEnumMemberValueHints = true,
   includeInlayFunctionLikeReturnTypeHints = true,
@@ -68,6 +68,27 @@ M.handlers = {
     vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
   end,
 }
+
+M.get_vue_plugin = function()
+  -- Define vue plugin
+  local mason_registry = require('mason-registry')
+  local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
+  local vue_ts_plugin_path = volar:get_install_path() .. '/node_modules/@vue/language-server'
+  local vue_plugin = {}
+  if has_volar then
+    vue_plugin = {
+      name = '@vue/typescript-plugin',
+      -- Maybe a function to get the location of the plugin is better?
+      -- e.g. pnpm fallback to nvm fallback to default node path
+      location = vue_ts_plugin_path,
+      languages = { 'vue' },
+      configNamespace = 'typescript',
+      enableForWorkspaceTypeScriptVersions = true,
+    }
+  end
+  return vue_plugin
+end
+
 ---@param client vim.lsp.Client
 ---@param bufnr integer
 M.on_attach = function(client, bufnr)

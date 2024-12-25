@@ -2,22 +2,7 @@
 local M = {}
 
 M.get = function()
-  -- Define vue plugin
-  local mason_registry = require('mason-registry')
-  local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
-  local vue_ts_plugin_path = volar:get_install_path() .. '/node_modules/@vue/language-server'
-  local vue_plugin = {}
-  if has_volar then
-    vue_plugin = {
-      name = '@vue/typescript-plugin',
-      -- Maybe a function to get the location of the plugin is better?
-      -- e.g. pnpm fallback to nvm fallback to default node path
-      location = vue_ts_plugin_path,
-      languages = { 'vue' },
-      configNamespace = 'typescript',
-      enableForWorkspaceTypeScriptVersions = true,
-    }
-  end
+  local vue_plugin = ergou.lsp.typescript.get_vue_plugin()
 
   --- @type table<string, lspconfig.Config>
   local servers = {
