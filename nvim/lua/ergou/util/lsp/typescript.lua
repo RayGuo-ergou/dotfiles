@@ -41,9 +41,7 @@ M.vtsls_typescript_javascript_config = {
 M.handlers = {
   ---@param _ lsp.ResponseError
   ---@param result lsp.PublishDiagnosticsParams
-  ---@param ctx lsp.HandlerContext
-  ---@param config vim.diagnostic.Opts
-  ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
+  ['textDocument/publishDiagnostics'] = function(_, result, ...)
     if result.diagnostics == nil then
       return
     end
@@ -65,7 +63,7 @@ M.handlers = {
       end
     end
 
-    vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+    vim.lsp.diagnostic.on_publish_diagnostics(_, result, ...)
   end,
 }
 
