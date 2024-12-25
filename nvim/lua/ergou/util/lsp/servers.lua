@@ -4,6 +4,10 @@ local M = {}
 M.get = function()
   local vue_plugin = ergou.lsp.typescript.get_vue_plugin()
 
+  if vim.tbl_isempty(vue_plugin) then
+    vim.notify('Cannot find vue typescript plugin', vim.log.levels.ERROR)
+  end
+
   --- @type table<string, lspconfig.Config>
   local servers = {
     clangd = { cmd = {
