@@ -70,22 +70,25 @@ M.handlers = {
 }
 
 M.get_vue_plugin = function()
-  -- Define vue plugin
-  local mason_registry = require('mason-registry')
-  local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
-  local vue_ts_plugin_path = volar:get_install_path() .. '/node_modules/@vue/language-server'
   local vue_plugin = {}
-  if has_volar then
-    vue_plugin = {
-      name = '@vue/typescript-plugin',
-      -- Maybe a function to get the location of the plugin is better?
-      -- e.g. pnpm fallback to nvm fallback to default node path
-      location = vue_ts_plugin_path,
-      languages = { 'vue' },
-      configNamespace = 'typescript',
-      enableForWorkspaceTypeScriptVersions = true,
-    }
+  local has_mason, mason_registry = pcall(require, 'mason-registry')
+
+  if has_mason then
+    local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
+    if has_volar then
+      local vue_ts_plugin_path = volar:get_install_path() .. '/node_modules/@vue/language-server'
+      vue_plugin = {
+        name = '@vue/typescript-plugin',
+        -- Maybe a function to get the location of the plugin is better?
+        -- e.g. pnpm fallback to nvm fallback to default node path
+        location = vue_ts_plugin_path,
+        languages = { 'vue' },
+        configNamespace = 'typescript',
+        enableForWorkspaceTypeScriptVersions = true,
+      }
+    end
   end
+
   return vue_plugin
 end
 
