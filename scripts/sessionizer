@@ -21,6 +21,14 @@ hydrate() {
     fi
 }
 
+# Set the updated_at environment variable to the current timestamp
+set_updated_at() {
+    local session=$1
+    local timestamp
+    timestamp=$(date +"%Y-%m-%dT%H:%M:%S")
+    tmux set-environment -t "$session" updated_at "$timestamp"
+}
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
@@ -38,13 +46,17 @@ tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected
+    set_updated_at $selected_name
     hydrate $selected_name $selected
     exit 0
 fi
 
 if ! has_session $selected_name; then
     tmux new-session -ds $selected_name -c $selected
+    set_updated_at $selected_name
     hydrate $selected_name $selected
 fi
 
+set_updated_at $selected_name
 switch_to $selected_name
+
