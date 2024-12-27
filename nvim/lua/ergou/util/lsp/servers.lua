@@ -112,7 +112,7 @@ M.get = function()
         tailwindCSS = {
           experimental = {
             classRegex = {
-              ---@see https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list?tab=readme-ov-file#plain-javascript-object
+              ---@see doc https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list?tab=readme-ov-file#plain-javascript-object
               ---All javascript object, only enable when needed e.g. long object
               -- ':\\s*?["\'`]([^"\'`]*).*?,',
               '\\/\\*\\s*tw\\s*\\*\\/\\s*[`\'"](.*)[`\'"];?',
@@ -124,12 +124,17 @@ M.get = function()
               { 'ui:\\s*{([^)]*)\\s*}', '["\'`]([^"\'`]*).*?["\'`]' },
               { '/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}', ':\\s*["\'`]([^"\'`]*).*?["\'`]' },
               'class\\s*:\\s*["\'`]([^"\'`]*)["\'`]',
-              ---@see https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list?tab=readme-ov-file#dom
+              ---@see doc https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list?tab=readme-ov-file#dom
               { 'classList.(?:add|remove)\\(([^)]*)\\)', '(?:\'|"|`)([^"\'`]*)(?:\'|"|`)' },
-              ---@see https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list?tab=readme-ov-file#typescript-or-javascript-variables-strings-or-arrays-with-keyword
+              ---@see doc https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list?tab=readme-ov-file#typescript-or-javascript-variables-strings-or-arrays-with-keyword
               { 'Styles\\s*(?::\\s*[^=]+)?\\s*=\\s*([^;]*);', '[\'"`]([^\'"`]*)[\'"`]' },
-              ---@see https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list?tab=readme-ov-file#headlessui-transition-react
+              ---@see doc https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list?tab=readme-ov-file#headlessui-transition-react
               '(?:enter|leave)(?:From|To)?=\\s*(?:"|\'|{`)([^(?:"|\'|`})]*)',
+              ---@see doc https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list/tree/main?tab=readme-ov-file#tagged-template-literals
+              {
+                '(tw`(?:(?:(?:[^`]*\\$\\{[^]*?\\})[^`]*)+|[^`]*`))',
+                '((?:(?<=`)(?:[^"\'`]*)(?=\\${|`))|(?:(?<=\\})(?:[^"\'`]*)(?=\\${))|(?:(?<=\\})(?:[^"\'`]*)(?=`))|(?:(?<=\')(?:[^"\'`]*)(?=\'))|(?:(?<=")(?:[^"\'`]*)(?="))|(?:(?<=`)(?:[^"\'`]*)(?=`)))',
+              },
             },
           },
           classAttributes = {
