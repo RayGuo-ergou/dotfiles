@@ -3,9 +3,9 @@
 # Source: https://github.com/ThePrimeagen/tmux-sessionizer
 switch_to() {
     if [[ -z $TMUX ]]; then
-        tmux attach-session -t $1
+        tmux attach-session -t "$1"
     else
-        tmux switch-client -t $1
+        tmux switch-client -t "$1"
     fi
 }
 
@@ -14,10 +14,10 @@ has_session() {
 }
 
 hydrate() {
-    if [ -f $2/.tmux-sessionizer ]; then
-        tmux send-keys -t $1 "source $2/.tmux-sessionizer" c-M
-    elif [ -f $HOME/.tmux-sessionizer ]; then
-        tmux send-keys -t $1 "source $HOME/.tmux-sessionizer" c-M
+    if [ -f "$2"/.tmux-sessionizer ]; then
+        tmux send-keys -t "$1" "source $2/.tmux-sessionizer" c-M
+    elif [ -f "$HOME"/.tmux-sessionizer ]; then
+        tmux send-keys -t "$1" "source $HOME/.tmux-sessionizer" c-M
     fi
 }
 
@@ -45,18 +45,18 @@ selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
-    set_updated_at $selected_name
-    hydrate $selected_name $selected
+    tmux new-session -s "$selected_name" -c "$selected"
+    set_updated_at "$selected_name"
+    hydrate "$selected_name" "$selected"
     exit 0
 fi
 
-if ! has_session $selected_name; then
-    tmux new-session -ds $selected_name -c $selected
-    set_updated_at $selected_name
-    hydrate $selected_name $selected
+if ! has_session "$selected_name"; then
+    tmux new-session -ds "$selected_name" -c "$selected"
+    set_updated_at "$selected_name"
+    hydrate "$selected_name" "$selected"
 fi
 
-set_updated_at $selected_name
-switch_to $selected_name
+set_updated_at "$selected_name"
+switch_to "$selected_name"
 
