@@ -40,6 +40,34 @@ local function javascript()
   })
 end
 
+local function typescript()
+  ls.add_snippets('typescript', {
+    s(
+      'pinia-setup',
+      fmt(
+        [[
+import {{ defineStore, acceptHMRUpdate }} from 'pinia'
+
+export const use{}Store = defineStore('{}', () => {{
+  {}
+  return {{}}
+}})
+
+if (import.meta.hot) {{
+  import.meta.hot.accept(acceptHMRUpdate(use{}Store, import.meta.hot))
+}}
+]],
+        {
+          i(1, 'Store'),
+          i(2, 'store'),
+          i(3),
+          rep(1),
+        }
+      )
+    ),
+  })
+end
+
 local function vue()
   ls.add_snippets('vue', {
     s(
@@ -70,6 +98,7 @@ function M.setup_snipes()
 
   javascript()
   vue()
+  typescript()
 end
 
 return M
