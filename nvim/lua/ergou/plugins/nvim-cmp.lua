@@ -27,7 +27,7 @@ return {
       local parse = require('cmp.utils.snippet').parse
 
       -- Snippet
-      ergou.snips.setup_snipes()
+      ergou.snippet.setup_snipes()
       require('cmp.utils.snippet').parse = function(input)
         local ok, ret = pcall(parse, input)
         if ok then

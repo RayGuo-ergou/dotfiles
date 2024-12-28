@@ -26,7 +26,7 @@ local parse = require('luasnip.util.parser').parse_snippet
 local ms = ls.multi_snippet
 local k = require('luasnip.nodes.key_indexer').new_key
 
---- @class ergou.util.snips
+--- @class ergou.util.snippet
 local M = {}
 -- luasnip.lua
 
