@@ -41,6 +41,7 @@ local function javascript()
 end
 
 local function typescript()
+  ---@see doc https://pinia.vuejs.org/cookbook/vscode-snippets.html#VS-Code-Snippets
   ls.add_snippets('typescript', {
     s(
       'pinia-setup',
