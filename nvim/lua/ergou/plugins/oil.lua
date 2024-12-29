@@ -1,5 +1,7 @@
 return {
   'stevearc/oil.nvim',
+  -- Load earlier with path, for `gf` and yazi
+  lazy = vim.fn.argc(-1) == 0,
   opts = {
     delete_to_trash = true,
     columns = {
@@ -21,13 +23,11 @@ return {
       ['g\\'] = 'actions.toggle_trash',
     },
   },
-  cmd = { 'Oil' },
   keys = {
     {
       '-',
       '<cmd>Oil<CR>',
       desc = 'Open Oil',
     },
-    { 'gf' },
   },
 }
