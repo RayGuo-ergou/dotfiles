@@ -1,6 +1,6 @@
 return {
   'stevearc/oil.nvim',
-  -- Load earlier with path, for `gf` and yazi
+  -- Load earlier with path, and yazi and `nvim ./dir`
   lazy = vim.fn.argc(-1) == 0,
   opts = {
     delete_to_trash = true,
@@ -23,11 +23,13 @@ return {
       ['g\\'] = 'actions.toggle_trash',
     },
   },
+  cmd = { 'Oil' },
   keys = {
     {
       '-',
       '<cmd>Oil<CR>',
       desc = 'Open Oil',
     },
+    { 'gf' },
   },
 }
