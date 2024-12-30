@@ -86,7 +86,8 @@ export BAT_THEME="Catppuccin Macchiato"
 # https://github.com/catppuccin/fzf
 # Removed bg so it's transparent
 export FZF_DEFAULT_OPTS="
---preview 'bat --style=numbers --color=always --line-range :300 {}'
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always --line-range :300 {})) || ([[ -f $PWD/{} ]] && (bat --style=numbers --color=always --line-range :300 $PWD/{})) || echo {}'
+--preview-window wrap
 --bind 'ctrl-y:execute-silent(readlink -f {} | xsel -b)'
 --bind ctrl-b:preview-page-up,ctrl-f:preview-page-down
 --bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down
