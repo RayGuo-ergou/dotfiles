@@ -6,6 +6,9 @@ execute_if_command_exists "zoxide" "$(zoxide init zsh)"
 
 # fzf initialization
 execute_if_command_exists "fzf" "source <(fzf --zsh)"
+# Remove alt-c for vi mode
+# see: https://github.com/junegunn/fzf/issues/1238#issuecomment-381083777
+[[ $- =~ i ]] && bindkey -M vicmd -r '\ec'
 
 # nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm

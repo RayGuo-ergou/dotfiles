@@ -1,3 +1,4 @@
+# Doc: https://zsh.sourceforge.io/Doc/Release/
 source $HOME/.env.sh
 source $DOTFILES/zsh/utils.zsh
 
