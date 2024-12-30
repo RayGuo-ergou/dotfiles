@@ -12,6 +12,7 @@ return {
       },
       navigation = {
         enable_default_keybindings = false,
+        persist_zoom = true,
       },
     },
     keys = {
