@@ -127,16 +127,6 @@ map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 map('n', '<leader>cy', ergou.copy.copy_filename, { desc = 'Copy Filename' })
 map('n', '<leader>gy', ergou.copy.copy_git_branch, { desc = 'Copy Branch Name' })
 
----Toggles---
-ergou.toggle.quickfix():map('<leader>qf')
-ergou.toggle.inlay_hints():map('<leader>ih')
-ergou.toggle.wrap():map('<leader>tw')
-ergou.toggle.diagnostics():map('<leader>ud')
-ergou.toggle.treesitter():map('<leader>uT')
-ergou.toggle.spelling():map('<leader>us')
-ergou.toggle.zen():map('<leader>Z')
-ergou.toggle.zoom():map('<leader>wm'):map('<leader>z')
-
 -- Clear search and stop snippet on escape
 map({ 'i', 'n', 's' }, '<esc>', function()
   vim.cmd('nohlsearch')
@@ -149,3 +139,21 @@ map({ 'i', 'n', 's' }, '<esc>', function()
   end
   return '<esc>'
 end, { expr = true, desc = 'Escape and clear snippet' })
+
+-- Vue split
+map('n', '<leader>vs', function()
+  ergou.fold.split_vue_components({
+    split_direction = 'vertical',
+    template_first = true,
+  })
+end, { desc = 'Split Vue components' })
+
+---Toggles---
+ergou.toggle.quickfix():map('<leader>qf')
+ergou.toggle.inlay_hints():map('<leader>ih')
+ergou.toggle.wrap():map('<leader>tw')
+ergou.toggle.diagnostics():map('<leader>ud')
+ergou.toggle.treesitter():map('<leader>uT')
+ergou.toggle.spelling():map('<leader>us')
+ergou.toggle.zen():map('<leader>Z')
+ergou.toggle.zoom():map('<leader>wm'):map('<leader>z')
