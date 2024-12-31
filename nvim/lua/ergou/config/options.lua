@@ -80,22 +80,21 @@ opt.fillchars = {
   -- diff = "╱",
   eob = ' ',
 }
+
+-- Fold
+opt.foldlevel = 99
+opt.foldmethod = 'expr'
+opt.foldexpr = 'v:lua.require\'ergou.util\'.fold.foldexpr()'
+opt.foldtext = ''
+
 -- Set pumblend to 0 so the cmp menu is not transparent
 -- The transparent menu caused the icon not showing properly if any text is under that row
 opt.pumblend = 0
 
-if vim.fn.has('nvim-0.10') == 1 then
-  opt.smoothscroll = true
-end
+opt.smoothscroll = true
 
 -- No cursor blink in termnial mode
 opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
-
--- Folding
-opt.foldlevel = 99
-opt.foldmethod = 'indent'
-opt.foldlevelstart = 99
-opt.foldenable = true
 
 -- Disable deprecation messages
 -- vim.deprecate = function() end

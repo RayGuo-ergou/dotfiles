@@ -10,6 +10,7 @@ local LazyUtil = require('lazy.core.util')
 ---@field public pick ergou.util.pick
 ---@field public toggle ergou.util.toggle
 ---@field public copy ergou.util.copy
+---@field public fold ergou.util.fold
 local M = {}
 
 setmetatable(M, {
