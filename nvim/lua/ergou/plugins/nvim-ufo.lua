@@ -12,6 +12,11 @@ return {
     provider_selector = function()
       return { 'treesitter', 'indent' }
     end,
+    preview = {
+      win_config = {
+        winblend = 0,
+      },
+    },
   },
   keys = {
     {
