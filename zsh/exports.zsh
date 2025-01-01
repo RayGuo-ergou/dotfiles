@@ -121,5 +121,9 @@ export FZF_ALT_C_OPTS="
 # vi-mode config
 export VI_MODE_SET_CURSOR=true
 
+# Fix run time dir for wsl with fzf-lua
+# see: https://github.com/ibhagwan/fzf-lua/issues/1243#issuecomment-2554289014
+export XDG_RUNTIME_DIR=~/.xdg_runtime
+
 # Add zsh-completions
 fpath=($HOME/.zsh-complete $fpath)
