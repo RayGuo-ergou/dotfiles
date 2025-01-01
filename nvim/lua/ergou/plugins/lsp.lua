@@ -20,6 +20,7 @@ return {
             'cspell',
             'phpcs',
             'prettierd',
+            'blade-formatter',
           },
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}

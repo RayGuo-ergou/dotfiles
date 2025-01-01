@@ -38,6 +38,7 @@ return {
           sh = { 'shfmt' },
           bash = { 'shfmt' },
           liquid = { 'prettierd' },
+          blade = { 'blade-formatter' },
         },
         format_on_save = function()
           local ft = vim.bo.filetype
