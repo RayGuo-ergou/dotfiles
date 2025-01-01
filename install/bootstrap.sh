@@ -146,8 +146,18 @@ create_env_file () {
     fi
 }
 
+create_xdg_dirs () {
+    if test -d "$HOME/.xdg_runtime"; then
+        success "$HOME/.xdg_runtime directory already exists, skipping"
+    else
+        mkdir -p "$HOME/.xdg_runtime"
+        success 'created ~/.xdg_runtime'
+    fi
+}
+
 install_dotfiles
 create_env_file
+create_xdg_dirs
 
 echo ''
 echo ''
