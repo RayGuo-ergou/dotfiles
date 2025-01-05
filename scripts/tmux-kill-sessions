@@ -13,7 +13,7 @@ sorted_sessions=$(while read -r session; do
 done <<< "$sessions" | sort -r | awk '{print $2}')
 
 # Present the sorted list, excluding the current session
-selected_session=$(echo "$sorted_sessions" | grep -v "^$current_session$" | fzf --no-preview)
+selected_session=$(echo "$sorted_sessions" | grep -v "^$current_session$" | fzf --no-preview --header-first --header "Delete Session")
 
 # Kill the selected session if one is chosen
 if [ -n "$selected_session" ]; then
