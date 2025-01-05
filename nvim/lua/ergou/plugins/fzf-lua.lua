@@ -111,7 +111,6 @@ return {
         preview = {
           scrollchars = { '┃', '' },
         },
-        treesitter = true,
       },
       files = {
         cwd_prompt = false,
