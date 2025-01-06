@@ -14,11 +14,11 @@ return {
     end
     if ergou.pick.picker.name == 'fzf' then
       map('n', '<leader>st', function()
-        require('todo-comments.fzf').todo()
-      end, { desc = 'Todo' })
-      map('n', '<leader>sT', function()
         require('todo-comments.fzf').todo({ keywords = { 'TODO', 'FIX', 'FIXME' } })
       end, { desc = 'Todo/Fix/Fixme' })
+      map('n', '<leader>sT', function()
+        require('todo-comments.fzf').todo()
+      end, { desc = 'Todo Comments' })
     end
     map('n', ']t', function()
       todo_next()
