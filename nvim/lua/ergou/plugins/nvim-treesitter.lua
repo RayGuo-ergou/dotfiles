@@ -98,6 +98,7 @@ return {
         'liquid',
         'powershell',
         'nix',
+        'zig',
       },
       ignore_install = {
         'blade',

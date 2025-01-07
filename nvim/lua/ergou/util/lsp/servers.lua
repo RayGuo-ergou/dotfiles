@@ -215,6 +215,7 @@ M.get = function()
         diagnosticSeverity = 'Hint',
       },
     },
+    zls = {},
   }
 
   return servers
