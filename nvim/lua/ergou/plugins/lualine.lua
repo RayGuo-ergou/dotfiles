@@ -118,7 +118,7 @@ return {
             { 'progress', separator = ' ', padding = { left = 1, right = 1 } },
           },
         },
-        extensions = { 'neo-tree', 'lazy' },
+        extensions = { 'neo-tree', 'lazy', 'fzf' },
       }
     end,
   },
