@@ -65,7 +65,7 @@ export NVM_DIR="$HOME/.nvm"
 # Otherwise when paste with ctrl-v, plain text for the color like [27;5;106~
 # Will also be pasted
 export ZSH_TMUX_AUTOSTART=true
-export ZSH_TMUX_DEFAULT_SESSION_NAME='至人無己，神人無功，聖人無名'
+export ZSH_TMUX_DEFAULT_SESSION_NAME='main'
 
 # To tell pnpm not to check packageManager
 # export COREPACK_ROOT="E"
