@@ -127,3 +127,6 @@ export XDG_RUNTIME_DIR=~/.xdg_runtime
 
 # Add zsh-completions
 fpath=($HOME/.zsh-complete $fpath)
+
+# gpg see https://stackoverflow.com/a/42265848
+export GPG_TTY=$(tty)
