@@ -13,7 +13,7 @@ local M = setmetatable({}, {
 ---@field show_untracked? boolean
 
 ---@class ErgouPicker
----@field name 'fzf'|'telescope'
+---@field name 'fzf'|'telescope'|'snacks'
 ---@field open fun(command:string, opts?:ergou.util.pick.Opts)
 ---@field commands table<string, string>
 
@@ -70,6 +70,21 @@ local telescope_picker = {
     end
 
     require('telescope.builtin')[builtin](opts)
+  end,
+}
+
+---@type ErgouPicker
+local snacks_picker = {
+  name = 'snacks',
+  commands = {
+    files = 'files',
+    live_grep = 'grep',
+    oldfiles = 'recent',
+  },
+  ---@param source string
+  ---@param opts? snacks.picker.Config
+  open = function(source, opts)
+    return Snacks.picker.pick(source, opts)
   end,
 }
 
