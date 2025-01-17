@@ -167,12 +167,3 @@ vim.api.nvim_create_autocmd('WinNew', {
     end)
   end,
 })
-
--- HACK: hack to fix sending <c-j> without converted to the control code
--- https://github.com/neovim/neovim/pull/31932/files#diff-c2479a51ee4281c955dc37990de6edf0187eed5d1e8f1e88657b17a63dc585acR1521
-vim.api.nvim_create_autocmd('TermOpen', {
-  pattern = '*',
-  callback = function()
-    vim.keymap.set('t', '<C-j>', '<C-j>', { buffer = true, remap = false })
-  end,
-})
