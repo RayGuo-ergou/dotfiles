@@ -117,19 +117,20 @@ return {
           enable = true,
           lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
           keymaps = {
+            -- use mini.ai
             -- You can use the capture groups defined in textobjects.scm
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
-            ['aA'] = '@assignment.outer',
-            ['iA'] = '@assignment.inner',
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['ac'] = '@call.outer',
-            ['ic'] = '@call.inner',
-            ['al'] = '@loop.outer',
-            ['il'] = '@loop.inner',
-            ['ai'] = '@conditional.outer',
-            ['ii'] = '@conditional.inner',
+            -- ['aa'] = '@parameter.outer',
+            -- ['ia'] = '@parameter.inner',
+            -- ['aA'] = '@assignment.outer',
+            -- ['iA'] = '@assignment.inner',
+            -- ['af'] = '@function.outer',
+            -- ['if'] = '@function.inner',
+            -- ['ac'] = '@call.outer',
+            -- ['ic'] = '@call.inner',
+            -- ['al'] = '@loop.outer',
+            -- ['il'] = '@loop.inner',
+            -- ['ai'] = '@conditional.outer',
+            -- ['ii'] = '@conditional.inner',
           },
         },
         move = {
