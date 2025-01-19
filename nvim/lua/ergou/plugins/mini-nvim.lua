@@ -54,7 +54,7 @@ return {
       return {
         custom_textobjects = {
           -- HACK: for html tags, see: https://github.com/echasnovski/mini.nvim/issues/110#issuecomment-1212277863
-          t = spec_treesitter({ a = '@function.outer', i = '@function.inner' }),
+          t = false,
           a = spec_treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
           A = spec_treesitter({ a = '@assignment.outer', i = '@assignment.inner' }),
           f = spec_treesitter({ a = '@function.outer', i = '@function.inner' }),
