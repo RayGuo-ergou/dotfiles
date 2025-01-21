@@ -44,7 +44,6 @@ return {
         map('n', '<leader>ghs', gitsigns.stage_hunk, 'git stage hunk')
         map('n', '<leader>ghr', gitsigns.reset_hunk, 'git reset hunk')
         map('n', '<leader>ghS', gitsigns.stage_buffer, 'git Stage buffer')
-        map('n', '<leader>ghu', gitsigns.undo_stage_hunk, 'undo stage hunk')
         map('n', '<leader>ghR', gitsigns.reset_buffer, 'git Reset buffer')
         map('n', '<leader>ghp', gitsigns.preview_hunk_inline, 'preview git hunk')
         map('n', '<leader>ghP', gitsigns.preview_hunk, 'preview git hunk')
