@@ -26,7 +26,7 @@ return {
   cmd = { 'Oil' },
   keys = {
     {
-      '-',
+      '<backspace>',
       '<cmd>Oil<CR>',
       desc = 'Open Oil',
     },
