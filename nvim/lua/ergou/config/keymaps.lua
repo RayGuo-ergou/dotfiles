@@ -5,8 +5,8 @@ local map = vim.keymap.set
 map('n', '<leader>lv', '<cmd>Lazy<cr>', { desc = 'Lazy Vim' })
 
 -- better left/right
-map({ 'o', 'v', 'n' }, 'L', '$', { noremap = true, silent = true })
-map({ 'o', 'v', 'n' }, 'H', '^', { noremap = true, silent = true })
+-- map({ 'o', 'v', 'n' }, 'L', '$', { noremap = true, silent = true })
+-- map({ 'o', 'v', 'n' }, 'H', '^', { noremap = true, silent = true })
 
 -- action on entire buffer
 map('n', 'dae', 'ggVGd', { noremap = true, silent = true, desc = 'Delete entire file' })
