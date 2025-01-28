@@ -30,6 +30,31 @@ local k = require('luasnip.nodes.key_indexer').new_key
 local M = {}
 -- luasnip.lua
 
+local function filename_dependent_snippet()
+  return s(
+    'fnf',
+    fmt(
+      [[
+export function {}({}) {{
+  {}
+}}
+]],
+      {
+        f(function()
+          local filename = vim.fn.expand('%:t:r')
+          if filename == 'index' then
+            return vim.fn.expand('%:p:h:t')
+          else
+            return filename or 'defaultFunction'
+          end
+        end),
+        i(1, 'args'),
+        i(0),
+      }
+    )
+  )
+end
+
 local function javascript()
   ls.add_snippets('javascript', {
     s('clg', {
@@ -37,6 +62,7 @@ local function javascript()
       i(0),
       t(')'),
     }),
+    filename_dependent_snippet(),
   })
 end
 
