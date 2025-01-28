@@ -119,8 +119,9 @@ local function vue()
 end
 
 function M.setup_snipes()
+  ls.filetype_extend('javascript', { 'jsdoc' })
+  ls.filetype_extend('typescript', { 'javascript', 'tsdoc' })
   ls.filetype_extend('vue', { 'javascript' })
-  ls.filetype_extend('typescript', { 'javascript' })
   ls.filetype_extend('php', { 'javascript', 'html' })
 
   javascript()
