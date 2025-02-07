@@ -143,7 +143,7 @@ end, { expr = true, desc = 'Escape and clear snippet' })
 map('n', '<leader>vs', function()
   ergou.fold.split_vue_components({
     split_direction = 'vertical',
-    template_first = true,
+    template_first = false,
   })
 end, { desc = 'Split Vue components' })
 
