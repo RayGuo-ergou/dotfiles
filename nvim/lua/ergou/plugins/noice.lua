@@ -41,14 +41,15 @@ return {
     {
       '<leader>sn',
       function()
-        local picker = ergou.pick.picker.name
-        if picker == 'fzf' then
-          require('noice').cmd('fzf')
-        elseif picker == 'telescope' then
-          require('noice').cmd('telescope')
-        else
-          Snacks.notify.error('No picker available', { title = 'Noice' })
-        end
+        require('noice').cmd('telescope')
+        -- local picker = ergou.pick.picker.name
+        -- if picker == 'fzf' then
+        --   require('noice').cmd('fzf')
+        -- elseif picker == 'telescope' then
+        --   require('noice').cmd('telescope')
+        -- else
+        --   Snacks.notify.error('No picker available', { title = 'Noice' })
+        -- end
       end,
       desc = 'Notifications History',
     },
