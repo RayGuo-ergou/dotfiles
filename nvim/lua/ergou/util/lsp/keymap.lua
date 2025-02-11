@@ -37,7 +37,7 @@ M.setup = function(bufnr)
   nmap('grA', ergou.lsp.action.source, 'Source Action')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
+  nmap('grD', vim.lsp.buf.declaration, 'Goto Declaration')
 end
 
 return M

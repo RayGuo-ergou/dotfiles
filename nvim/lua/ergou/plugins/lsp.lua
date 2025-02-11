@@ -142,4 +142,32 @@ return {
       },
     },
   },
+  {
+    'dnlhc/glance.nvim',
+    cmd = 'Glance',
+    keys = {
+      { 'gD', '<cmd>Glance definitions<cr>', desc = 'Find Definitions Glance' },
+      { 'gR', '<cmd>Glance references<cr>', desc = 'Find References Glance' },
+      { 'gY', '<cmd>Glance type_definitions<cr>', desc = 'Find Type Definitions Glance' },
+      { 'gM', '<cmd>Glance implementations<cr>', desc = 'Find Implementations Glance' },
+    },
+    opts = function()
+      local glance = require('glance')
+      local actions = glance.actions
+      return {
+        mappings = {
+          list = {
+            ['<leader>l'] = false,
+            ['<C-h>'] = actions.enter_win('preview'), -- Focus preview window
+            ['<C-l>'] = actions.enter_win('preview'), -- Focus preview window
+          },
+          preview = {
+            ['<leader>l'] = false,
+            ['<C-l>'] = actions.enter_win('list'), -- Focus list window
+            ['<C-h>'] = actions.enter_win('list'), -- Focus list window
+          },
+        },
+      }
+    end,
+  },
 }
