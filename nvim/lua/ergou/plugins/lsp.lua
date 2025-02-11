@@ -155,6 +155,9 @@ return {
       local glance = require('glance')
       local actions = glance.actions
       return {
+        border = {
+          enable = true,
+        },
         mappings = {
           list = {
             ['<leader>l'] = false,
