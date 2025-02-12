@@ -193,7 +193,6 @@ return {
         '<cmd>FzfLua buffers sort_mru=true<cr>',
         desc = 'Switch Buffer',
       },
-      { '<leader>fs', '<cmd>FzfLua treesitter<cr>', desc = 'Treesitter' },
       { '<leader>fc', ergou.pick.config_files(), desc = 'Find Config File' },
       { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
       { '<leader>/', '<cmd>FzfLua search_history<cr>', desc = 'Search History' },
@@ -220,7 +219,6 @@ return {
       { '<leader>sW', ergou.pick('grep_cword', { root = false }), desc = 'Word (cwd)' },
       { '<leader>sw', ergou.pick('grep_visual'), mode = 'v', desc = 'Selection (Root Dir)' },
       { '<leader>sW', ergou.pick('grep_visual', { root = false }), mode = 'v', desc = 'Selection (cwd)' },
-      { '<leader>uC', ergou.pick('colorschemes'), desc = 'Colorscheme with Preview' },
       {
         '<leader>ss',
         '<cmd>FzfLua lsp_document_symbols<cr>',
@@ -233,6 +231,8 @@ return {
         mode = { 'n' },
         desc = 'Find workspace symbols',
       },
+      -- UI
+      { '<leader>uC', ergou.pick('colorschemes'), desc = 'Colorscheme with Preview' },
     }
   end,
 }

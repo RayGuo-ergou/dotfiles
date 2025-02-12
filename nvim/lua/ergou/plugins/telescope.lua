@@ -51,7 +51,7 @@ return {
           '<cmd>Telescope buffers sort_mru=true<cr>',
           desc = 'Switch buffer',
         },
-        { '<leader>fs', '<cmd>Telescope treesitter<cr>', desc = 'Treesitter' },
+        { '<leader>ft', '<cmd>Telescope treesitter<cr>', desc = 'Treesitter' },
         { '<leader>fc', ergou.pick.config_files(), desc = 'Find Config File' },
         { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
         { '<leader>fR', ergou.pick('oldfiles', { cwd = vim.uv.cwd() }), desc = 'Recent (cwd)' },
@@ -91,7 +91,6 @@ return {
         { '<leader>sW', ergou.pick('grep_string', { root = false, word_match = '-w' }), desc = 'Word (cwd)' },
         { '<leader>sw', ergou.pick('grep_string'), mode = 'v', desc = 'Selection (root dir)' },
         { '<leader>sW', ergou.pick('grep_string', { root = false }), mode = 'v', desc = 'Selection (cwd)' },
-        { '<leader>uC', ergou.pick('colorscheme', { enable_preview = true }), desc = 'Colorscheme with preview' },
         {
           '<leader>ss',
           function()
@@ -111,6 +110,8 @@ return {
           '<cmd>Telescope undo<cr>',
           desc = 'undo history',
         },
+        -- UI
+        { '<leader>uC', ergou.pick('colorscheme', { enable_preview = true }), desc = 'Colorscheme with preview' },
       }
     end,
     config = function()
