@@ -21,6 +21,9 @@ g.no_php_maps = 1
 -- Lsp auto inlay hint
 g.auto_inlay_hint = false
 
+-- Disable the (slow) builtin query linter
+g.query_lint_on = {}
+
 opt.autowrite = true -- Enable auto write
 opt.clipboard = '' -- Sync with system clipboard
 -- Set clipboard after nvim start

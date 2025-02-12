@@ -1,8 +1,6 @@
-;; extends
+; extends
 
 ((variable_name) @variable.builtin
- (#eq? @variable.builtin "this"))
+  (#eq? @variable.builtin "this"))
 
-[
- "$"
-] @keyword
+"$" @keyword
