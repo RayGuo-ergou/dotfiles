@@ -25,11 +25,7 @@ M.setup = function(bufnr)
   elseif ergou.pick.picker.name == 'fzf' then
     nmap('gd', '<cmd>FzfLua lsp_definitions jump1=true ignore_current_line=true<cr>', 'Goto Definition')
     nmap('grr', '<cmd>FzfLua lsp_references jump1=true ignore_current_line=true<cr>', 'Goto References')
-    nmap(
-      'gI',
-      '<cmd>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>',
-      'Goto Implementation'
-    )
+    nmap('gI', '<cmd>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>', 'Goto Implementation')
     nmap('gy', '<cmd>FzfLua lsp_typedefs jump1=true ignore_current_line=true<cr>', 'Goto Type')
   end
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
