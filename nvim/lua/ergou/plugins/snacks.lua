@@ -1,3 +1,357 @@
+---@type LazyKeys[]
+local keys = {
+  {
+    '<leader>.',
+    function()
+      Snacks.scratch()
+    end,
+    desc = 'Toggle Scratch Buffer',
+  },
+  {
+    '<leader>S',
+    function()
+      Snacks.scratch.select()
+    end,
+    desc = 'Select Scratch Buffer',
+  },
+  {
+    '<leader>sN',
+    function()
+      Snacks.notifier.show_history()
+    end,
+    desc = 'Notification History',
+  },
+  {
+    '<leader>un',
+    function()
+      Snacks.notifier.hide()
+    end,
+    desc = 'Dismiss All Notifications',
+  },
+  {
+    '<leader>bd',
+    function()
+      local filename = vim.api.nvim_buf_get_name(0)
+      if filename == 'kulala://ui' then
+        pcall(vim.cmd, 'bdelete!')
+        return
+      end
+
+      Snacks.bufdelete()
+    end,
+    desc = 'Delete Buffer',
+  },
+  {
+    '<leader>bo',
+    function()
+      Snacks.bufdelete.other()
+    end,
+    desc = 'Delete Other Buffers',
+  },
+  {
+    '<leader>ba',
+    function()
+      Snacks.bufdelete.all()
+    end,
+    desc = 'Delete All Buffers',
+  },
+  {
+    '<leader>gb',
+    function()
+      Snacks.git.blame_line()
+    end,
+    desc = 'Git Blame Line',
+  },
+  {
+    '<leader>grv',
+    function()
+      Snacks.gitbrowse({ what = 'branch', notify = false })
+    end,
+    desc = 'Git Browse Branch',
+  },
+  {
+    '<leader>grV',
+    function()
+      Snacks.gitbrowse({ what = 'file', notify = false })
+    end,
+    desc = 'Git Browse',
+  },
+  {
+    '<leader>lg',
+    function()
+      Snacks.lazygit()
+    end,
+    desc = 'Lazygit',
+  },
+  {
+    '<leader>gl',
+    function()
+      Snacks.lazygit.log_file()
+    end,
+    desc = 'Lazygit Current File History',
+  },
+  {
+    '<leader>gL',
+    function()
+      Snacks.lazygit.log()
+    end,
+    desc = 'Lazygit Log (cwd)',
+  },
+  {
+    '<leader>cR',
+    function()
+      Snacks.rename.rename_file()
+    end,
+    desc = 'Rename File',
+  },
+  {
+    ']]',
+    function()
+      Snacks.words.jump(vim.v.count1)
+    end,
+    desc = 'Next Reference',
+    mode = { 'n', 't' },
+  },
+  {
+    '[[',
+    function()
+      Snacks.words.jump(-vim.v.count1)
+    end,
+    desc = 'Prev Reference',
+    mode = { 'n', 't' },
+  },
+  {
+    '<leader>N',
+    desc = 'Neovim News',
+    function()
+      Snacks.win({
+        file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
+        width = 0.8,
+        height = 0.8,
+        wo = {
+          spell = false,
+          wrap = false,
+          signcolumn = 'yes',
+          statuscolumn = ' ',
+          conceallevel = 3,
+        },
+      })
+    end,
+  },
+  {
+    '<leader>cl',
+    function()
+      Snacks.picker.lsp_config()
+    end,
+    desc = 'Lsp Info',
+  },
+}
+
+if ergou.pick.picker.name == 'snacks' then
+  local pickerKeys = {
+    -- find
+    {
+      '<leader>,',
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = 'Switch Buffer',
+    },
+    { '<leader>ff', ergou.pick('files'), desc = 'Find Files (root dir)' },
+    { '<leader>fF', ergou.pick('files', { root = false }), desc = 'Find Files (cwd)' },
+    {
+      '<leader>gf',
+      function()
+        Snacks.picker.git_files()
+      end,
+      desc = 'Find Files (git-files)',
+    },
+    {
+      '<leader>ft',
+      function()
+        Snacks.picker.treesitter()
+      end,
+      desc = 'Find Treesitter',
+    },
+    {
+      '<leader>:',
+      function()
+        Snacks.picker.command_history()
+      end,
+      desc = 'Command History',
+    },
+    {
+      '<leader><space>',
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = 'Switch Buffer',
+    },
+    { '<leader>fc', ergou.pick('oldfiles'), desc = 'Find Config File' },
+    { '<leader>fr', ergou.pick('oldfiles'), desc = 'Recent' },
+    {
+      '<leader>fR',
+      function()
+        Snacks.picker.recent({ filter = { cwd = true } })
+      end,
+      desc = 'Recent (cwd)',
+    },
+    {
+      '<leader>/',
+      function()
+        Snacks.picker.search_history()
+      end,
+      desc = 'Search History',
+    },
+    -- git
+    {
+      '<leader>gs',
+      function()
+        Snacks.picker.git_status()
+      end,
+      desc = 'Status',
+    },
+    --search
+    {
+      '<leader>s"',
+      function()
+        Snacks.picker.registers()
+      end,
+      desc = 'Registers',
+    },
+    {
+      '<leader>sc',
+      function()
+        Snacks.picker.command_history()
+      end,
+      desc = 'Command History',
+    },
+    {
+      '<leader>sC',
+      function()
+        Snacks.picker.commands()
+      end,
+      desc = 'Commands',
+    },
+    {
+      '<leader>sd',
+      function()
+        Snacks.picker.diagnostics_buffer()
+      end,
+      desc = 'Document Diagnostics',
+    },
+    {
+      '<leader>sD',
+      function()
+        Snacks.picker.diagnostics()
+      end,
+      desc = 'Workspace Diagnostics',
+    },
+    {
+      '<leader>sg',
+      ergou.pick('live_grep'),
+      desc = 'Grep (root dir)',
+    },
+    { '<leader>sG', ergou.pick('live_grep', { root = false }), desc = 'Grep (cwd)' },
+    {
+      '<leader>sh',
+      function()
+        Snacks.picker.help()
+      end,
+      desc = 'Help Pages',
+    },
+    {
+      '<leader>sH',
+      function()
+        Snacks.picker.highlights()
+      end,
+      desc = 'Search Highlight Groups',
+    },
+    {
+      '<leader>sj',
+      function()
+        Snacks.picker.jumps()
+      end,
+      desc = 'Jumplist',
+    },
+    {
+      '<leader>sk',
+      function()
+        Snacks.picker.keymaps()
+      end,
+      desc = 'Key Maps',
+    },
+    {
+      '<leader>sl',
+      function()
+        Snacks.picker.loclist()
+      end,
+      desc = 'Location List',
+    },
+    {
+      '<leader>sM',
+      function()
+        Snacks.picker.man()
+      end,
+      desc = 'Man Pages',
+    },
+    {
+      '<leader>sm',
+      function()
+        Snacks.picker.marks()
+      end,
+      desc = 'Jump to Mark',
+    },
+    {
+      '<leader>sr',
+      function()
+        Snacks.picker.resume()
+      end,
+      desc = 'Resume',
+    },
+    {
+      '<leader>sq',
+      function()
+        Snacks.picker.qflist()
+      end,
+      desc = 'Quickfix List',
+    },
+    { '<leader>sw', ergou.pick('grep_word'), desc = 'Word (Root Dir)' },
+    { '<leader>sW', ergou.pick('grep_word', { root = false }), desc = 'Word (cwd)' },
+    {
+      '<leader>uC',
+
+      function()
+        Snacks.picker.colorschemes()
+      end,
+      desc = 'Colorscheme with Preview',
+    },
+    {
+      '<leader>ss',
+      function()
+        Snacks.picker.lsp_symbols()
+      end,
+      desc = 'LSP Symbols',
+    },
+    {
+      '<leader>sS',
+      function()
+        Snacks.picker.lsp_workspace_symbols()
+      end,
+      desc = 'LSP Workspace Symbols',
+    },
+    {
+      '<leader>su',
+      function()
+        Snacks.picker.undo()
+      end,
+      desc = 'Undotree',
+    },
+  }
+
+  keys = vim.list_extend(keys, pickerKeys)
+end
+
 --       local logo = [[
 -- ⠄⠄⠄⠄⢠⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⣿⣿⣿⣯⢻⣿⣿⣿⣿⣆⠄⠄⠄
 -- ⠄⠄⣼⢀⣿⣿⣿⣿⣏⡏⠄⠹⣿⣿⣿⣿⣿⣿⣿⣿⣧⢻⣿⣿⣿⣿⡆⠄⠄
@@ -149,153 +503,7 @@ return {
       },
     },
   },
-  keys = {
-    {
-      '<leader>.',
-      function()
-        Snacks.scratch()
-      end,
-      desc = 'Toggle Scratch Buffer',
-    },
-    {
-      '<leader>S',
-      function()
-        Snacks.scratch.select()
-      end,
-      desc = 'Select Scratch Buffer',
-    },
-    {
-      '<leader>sN',
-      function()
-        Snacks.notifier.show_history()
-      end,
-      desc = 'Notification History',
-    },
-    {
-      '<leader>un',
-      function()
-        Snacks.notifier.hide()
-      end,
-      desc = 'Dismiss All Notifications',
-    },
-    {
-      '<leader>bd',
-      function()
-        local filename = vim.api.nvim_buf_get_name(0)
-        if filename == 'kulala://ui' then
-          pcall(vim.cmd, 'bdelete!')
-          return
-        end
-
-        Snacks.bufdelete()
-      end,
-      desc = 'Delete Buffer',
-    },
-    {
-      '<leader>bo',
-      function()
-        Snacks.bufdelete.other()
-      end,
-      desc = 'Delete Other Buffers',
-    },
-    {
-      '<leader>ba',
-      function()
-        Snacks.bufdelete.all()
-      end,
-      desc = 'Delete All Buffers',
-    },
-    {
-      '<leader>gb',
-      function()
-        Snacks.git.blame_line()
-      end,
-      desc = 'Git Blame Line',
-    },
-    {
-      '<leader>grv',
-      function()
-        Snacks.gitbrowse({ what = 'branch', notify = false })
-      end,
-      desc = 'Git Browse Branch',
-    },
-    {
-      '<leader>grV',
-      function()
-        Snacks.gitbrowse({ what = 'file', notify = false })
-      end,
-      desc = 'Git Browse',
-    },
-    {
-      '<leader>lg',
-      function()
-        Snacks.lazygit()
-      end,
-      desc = 'Lazygit',
-    },
-    {
-      '<leader>gl',
-      function()
-        Snacks.lazygit.log_file()
-      end,
-      desc = 'Lazygit Current File History',
-    },
-    {
-      '<leader>gL',
-      function()
-        Snacks.lazygit.log()
-      end,
-      desc = 'Lazygit Log (cwd)',
-    },
-    {
-      '<leader>cR',
-      function()
-        Snacks.rename.rename_file()
-      end,
-      desc = 'Rename File',
-    },
-    {
-      ']]',
-      function()
-        Snacks.words.jump(vim.v.count1)
-      end,
-      desc = 'Next Reference',
-      mode = { 'n', 't' },
-    },
-    {
-      '[[',
-      function()
-        Snacks.words.jump(-vim.v.count1)
-      end,
-      desc = 'Prev Reference',
-      mode = { 'n', 't' },
-    },
-    {
-      '<leader>N',
-      desc = 'Neovim News',
-      function()
-        Snacks.win({
-          file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
-          width = 0.8,
-          height = 0.8,
-          wo = {
-            spell = false,
-            wrap = false,
-            signcolumn = 'yes',
-            statuscolumn = ' ',
-            conceallevel = 3,
-          },
-        })
-      end,
-    },
-    {
-      '<leader>cl',
-      function()
-        Snacks.picker.lsp_config()
-      end,
-      desc = 'Lsp Info',
-    },
-  },
+  keys = keys,
   init = function()
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
