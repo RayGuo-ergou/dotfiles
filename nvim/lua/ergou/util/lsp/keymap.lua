@@ -18,6 +18,13 @@ function M.get()
     { '<leader>k', vim.lsp.buf.signature_help, desc = 'Signature Documentation' },
     { 'grA', ergou.lsp.action.source, desc = 'Source Action' },
     { 'grD', vim.lsp.buf.declaration, desc = 'Goto Declaration' },
+    {
+      '<leader>cl',
+      function()
+        Snacks.picker.lsp_config()
+      end,
+      desc = 'Lsp Info',
+    },
   }
 
   -- Add picker-specific keymaps

@@ -138,13 +138,6 @@ local keys = {
       })
     end,
   },
-  {
-    '<leader>cl',
-    function()
-      Snacks.picker.lsp_config()
-    end,
-    desc = 'Lsp Info',
-  },
 }
 
 if ergou.pick.picker.name == 'snacks' then
