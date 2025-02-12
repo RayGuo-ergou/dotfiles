@@ -139,6 +139,8 @@ return {
           sorting_strategy = 'ascending', -- display results top->bottom
           layout_config = {
             prompt_position = 'top',
+            width = 0.9,
+            height = 0.9,
           },
           mappings = {
             i = {
