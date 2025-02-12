@@ -97,6 +97,51 @@ return {
     input = {
       enabled = false,
     },
+    picker = {
+      win = {
+        input = {
+          keys = {
+            ['<a-c>'] = {
+              'toggle_cwd',
+              mode = { 'n', 'i' },
+            },
+            ['<a-x>'] = { 'flash', mode = { 'n', 'i' } },
+            ['s'] = { 'flash' },
+            ['<c-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+            ['<c-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+            ['<c-f>'] = { 'list_scroll_down', mode = { 'i', 'n' } },
+            ['<c-b>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
+          },
+        },
+      },
+      actions = {
+        toggle_cwd = function(p)
+          local root = ergou.root({ buf = p.input.filter.current_buf, normalize = true })
+          local cwd = vim.fs.normalize((vim.uv or vim.loop).cwd() or '.')
+          local current = p:cwd()
+          p:set_cwd(current == root and cwd or root)
+          p:find()
+        end,
+        flash = function(picker)
+          require('flash').jump({
+            pattern = '^',
+            label = { after = { 0, 0 } },
+            search = {
+              mode = 'search',
+              exclude = {
+                function(win)
+                  return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'snacks_picker_list'
+                end,
+              },
+            },
+            action = function(match)
+              local idx = picker.list:row2idx(match.pos[1])
+              picker.list:_move(idx, true, true)
+            end,
+          })
+        end,
+      },
+    },
   },
   keys = {
     {

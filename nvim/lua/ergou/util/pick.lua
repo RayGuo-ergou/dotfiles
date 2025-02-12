@@ -89,7 +89,7 @@ local snacks_picker = {
 }
 
 ---@type ErgouPicker?
-M.picker = fzf_picker
+M.picker = snacks_picker
 
 ---@param command? string
 ---@param opts? ergou.util.pick.Opts

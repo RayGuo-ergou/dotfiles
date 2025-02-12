@@ -4,6 +4,8 @@ local M = setmetatable({}, {
     return t.setup(...)
   end,
 })
+---@type LazyKeys[]|nil
+M._keys = nil
 
 ---@param bufnr integer
 ---TODO: @see https://github.com/LazyVim/LazyVim/blob/45d94b3197eaf3f35754b8ecb7adebfcebe5160d/lua/lazyvim/plugins/lsp/keymaps.lua#L16
