@@ -221,4 +221,17 @@ M.get = function()
   return servers
 end
 
+--- Servers that cannot be setup via lsp mason
+M.get_native = function()
+  --- @type table<string, lspconfig.Config>
+  local servers = {}
+
+  local query_ls = ergou.lsp.query.config()
+  if query_ls then
+    servers.ts_query_ls = query_ls
+  end
+
+  return servers
+end
+
 return M

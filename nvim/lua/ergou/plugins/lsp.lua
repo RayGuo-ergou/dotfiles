@@ -63,6 +63,7 @@ return {
     ---@param opts PluginLspOpts
     config = function(_, opts)
       local servers = ergou.lsp.servers.get()
+      local native_servers = ergou.lsp.servers.get_native()
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
@@ -89,6 +90,15 @@ return {
           end,
         },
       })
+
+      for server_name, server in pairs(native_servers) do
+        -- Disable entirely if not enabled
+        if server.enabled == false then
+          return
+        end
+        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+        require('lspconfig')[server_name].setup(server)
+      end
     end,
   },
   {
