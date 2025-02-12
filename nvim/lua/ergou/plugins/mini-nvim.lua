@@ -60,7 +60,6 @@ return {
           A = spec_treesitter({ a = '@assignment.outer', i = '@assignment.inner' }),
           c = spec_treesitter({ a = '@call.outer', i = '@call.inner' }),
           l = spec_treesitter({ a = '@loop.outer', i = '@loop.inner' }),
-          i = spec_treesitter({ a = '@conditional.outer', i = '@conditional.inner' }),
         },
       }
     end,
