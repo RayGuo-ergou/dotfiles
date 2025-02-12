@@ -414,7 +414,10 @@ return {
     },
     dashboard = {
       enabled = true,
-      preset = { header = logo },
+      preset = {
+        header = logo,
+        pick = ergou.pick.open,
+      },
     },
     dim = {
       animate = {
