@@ -3,7 +3,7 @@ local g = vim.g
 
 -- This file is automatically loaded by plugins.core
 g.mapleader = ' '
-g.maplocalleader = '\\'
+g.maplocalleader = '|'
 
 -- LazyVim root dir detection
 -- Each entry can be:

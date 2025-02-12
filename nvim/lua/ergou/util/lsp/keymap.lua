@@ -23,14 +23,14 @@ M.setup = function(bufnr)
       require('telescope.builtin').lsp_type_definitions({ reuse_win = true })
     end, 'Goto Type')
   elseif ergou.pick.picker.name == 'fzf' then
-    nmap('gd', '<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>', 'Goto Definition')
-    nmap('grr', '<cmd>FzfLua lsp_references jump_to_single_result=true ignore_current_line=true<cr>', 'Goto References')
+    nmap('gd', '<cmd>FzfLua lsp_definitions jump1=true ignore_current_line=true<cr>', 'Goto Definition')
+    nmap('grr', '<cmd>FzfLua lsp_references jump1=true ignore_current_line=true<cr>', 'Goto References')
     nmap(
       'gI',
-      '<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>',
+      '<cmd>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>',
       'Goto Implementation'
     )
-    nmap('gy', '<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>', 'Goto Type')
+    nmap('gy', '<cmd>FzfLua lsp_typedefs jump1=true ignore_current_line=true<cr>', 'Goto Type')
   end
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
