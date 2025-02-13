@@ -543,4 +543,43 @@ return {
       return _keys
     end,
   },
+  {
+    'neovim/nvim-lspconfig',
+    opts = function()
+      local Keys = ergou.lsp.keymap.get()
+
+      if ergou.pick.picker.name == 'snacks' then
+        vim.list_extend(Keys, {
+          {
+            'gd',
+            function()
+              Snacks.picker.lsp_definitions()
+            end,
+            desc = 'Goto Definition',
+          },
+          {
+            'grr',
+            function()
+              Snacks.picker.lsp_references()
+            end,
+            desc = 'References',
+          },
+          {
+            'gI',
+            function()
+              Snacks.picker.lsp_implementations()
+            end,
+            desc = 'Goto Implementation',
+          },
+          {
+            'gy',
+            function()
+              Snacks.picker.lsp_type_definitions()
+            end,
+            desc = 'Goto T[y]pe Definition',
+          },
+        })
+      end
+    end,
+  },
 }

@@ -252,4 +252,38 @@ return {
       return _keys
     end,
   },
+
+  {
+    'neovim/nvim-lspconfig',
+    opts = function()
+      local Keys = ergou.lsp.keymap.get()
+
+      if ergou.pick.picker.name == 'telescope' then
+        vim.list_extend(Keys, {
+          {
+            'gd',
+            function()
+              require('telescope.builtin').lsp_definitions({ reuse_win = true })
+            end,
+            desc = 'Goto Definition',
+          },
+          { 'grr', require('telescope.builtin').lsp_references, desc = 'Goto References' },
+          {
+            'gI',
+            function()
+              require('telescope.builtin').lsp_implementations({ reuse_win = true })
+            end,
+            desc = 'Goto Implementation',
+          },
+          {
+            'gy',
+            function()
+              require('telescope.builtin').lsp_type_definitions({ reuse_win = true })
+            end,
+            desc = 'Goto Type',
+          },
+        })
+      end
+    end,
+  },
 }
