@@ -404,9 +404,6 @@ return {
           wrap = true,
         }, -- Wrap notifications
       },
-      input = {
-        relative = 'cursor',
-      },
     },
     dashboard = {
       enabled = true,
@@ -448,7 +445,7 @@ return {
       },
     },
     input = {
-      enabled = true,
+      enabled = false,
     },
     picker = {
       ui_select = ergou.pick.picker.name == 'snacks',
