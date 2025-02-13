@@ -451,6 +451,7 @@ return {
       enabled = true,
     },
     picker = {
+      ui_select = ergou.pick.picker.name == 'snacks',
       layout = {
         layout = {
           width = 0.9,

@@ -114,6 +114,7 @@ return {
   },
   {
     'chrisgrieser/nvim-tinygit',
+    dependencies = 'stevearc/dressing.nvim',
     ---@type Tinygit.Config
     opts = {
       statusline = {

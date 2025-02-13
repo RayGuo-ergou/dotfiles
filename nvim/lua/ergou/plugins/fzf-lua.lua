@@ -223,6 +223,9 @@ return {
     require('fzf-lua').setup(opts)
   end,
   init = function()
+    if ergou.pick.picker.name ~= 'fzf' then
+      return
+    end
     ergou.on_very_lazy(function()
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.ui.select = function(...)
