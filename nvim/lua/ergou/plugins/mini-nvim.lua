@@ -50,16 +50,21 @@ return {
   {
     'echasnovski/mini.ai',
     opts = function()
-      local spec_treesitter = require('mini.ai').gen_spec.treesitter
+      local ai = require('mini.ai')
       return {
         custom_textobjects = {
           -- HACK: for html tags, see: https://github.com/echasnovski/mini.nvim/issues/110#issuecomment-1212277863
           t = false,
           b = false,
-          a = spec_treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
-          A = spec_treesitter({ a = '@assignment.outer', i = '@assignment.inner' }),
-          c = spec_treesitter({ a = '@call.outer', i = '@call.inner' }),
-          l = spec_treesitter({ a = '@loop.outer', i = '@loop.inner' }),
+          a = ai.gen_spec.treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
+          A = ai.gen_spec.treesitter({ a = '@assignment.outer', i = '@assignment.inner' }),
+          c = ai.gen_spec.treesitter({ a = '@call.outer', i = '@call.inner' }),
+          o = ai.gen_spec.treesitter({ -- code block
+            a = { '@block.outer', '@conditional.outer', '@loop.outer' },
+            i = { '@block.inner', '@conditional.inner', '@loop.inner' },
+          }),
+          u = ai.gen_spec.function_call(), -- u for "Usage"
+          U = ai.gen_spec.function_call({ name_pattern = '[%w_]' }), -- without dot in function name
         },
       }
     end,
