@@ -87,7 +87,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'neotest-output-panel',
     'grug-far',
     'dbout',
-    'DressingInput',
     'query',
   },
   callback = function(event)

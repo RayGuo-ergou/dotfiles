@@ -404,6 +404,9 @@ return {
           wrap = true,
         }, -- Wrap notifications
       },
+      input = {
+        relative = 'cursor',
+      },
     },
     dashboard = {
       enabled = true,
@@ -445,7 +448,7 @@ return {
       },
     },
     input = {
-      enabled = false,
+      enabled = true,
     },
     picker = {
       layout = {
