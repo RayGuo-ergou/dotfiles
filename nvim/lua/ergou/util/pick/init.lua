@@ -25,7 +25,6 @@ local M = setmetatable({}, {
 ---@field open fun(command:string, opts?:ergou.util.pick.Opts)
 ---@field commands table<string, string>
 
-
 ---@type ErgouPicker?
 M.picker = M.fzf.picker
 
