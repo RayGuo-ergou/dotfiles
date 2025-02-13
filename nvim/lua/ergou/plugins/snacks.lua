@@ -383,137 +383,164 @@ local logo = [[
 -- With snack browse or any feature that will open a web page
 -- Don't forget to link `wslopen` to `xdg-open` if using wsl
 return {
-  'folke/snacks.nvim',
-  priority = 1000,
-  lazy = false,
-  ---@type snacks.Config
-  opts = {
-    bigfile = { enabled = true },
-    notifier = {
-      enabled = true,
-      top_down = false, -- place notifications from top to bottom
-      sort = { 'added' }, -- sort by level and time
-    },
-    quickfile = { enabled = true },
-    statuscolumn = { enabled = true },
-    words = { enabled = true },
-    styles = {
-      notification = {
-        wo = {
-          winblend = 0,
-          wrap = true,
-        }, -- Wrap notifications
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      bigfile = { enabled = true },
+      notifier = {
+        enabled = true,
+        top_down = false, -- place notifications from top to bottom
+        sort = { 'added' }, -- sort by level and time
       },
-    },
-    dashboard = {
-      enabled = true,
-      preset = {
-        header = logo,
-        pick = ergou.pick.open,
-      },
-    },
-    dim = {
-      animate = {
-        enabled = false,
-      },
-    },
-    scroll = {
-      enabled = false,
-      animate = {
-        duration = {
-          step = 10,
-          total = 100,
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = true },
+      words = { enabled = true },
+      styles = {
+        notification = {
+          wo = {
+            winblend = 0,
+            wrap = true,
+          }, -- Wrap notifications
         },
       },
-    },
-    indent = {
-      enabled = true,
-      -- Rainbow indent
-      -- indent = {
-      --   hl = {
-      --     'SnacksIndentRed',
-      --     'SnacksIndentYellow',
-      --     'SnacksIndentBlue',
-      --     'SnacksIndentOrange',
-      --     'SnacksIndentGreen',
-      --     'SnacksIndentViolet',
-      --     'SnacksIndentCyan',
-      --   },
-      -- },
-      animate = {
-        enabled = false,
-      },
-    },
-    input = {
-      enabled = false,
-    },
-    picker = {
-      ui_select = ergou.pick.picker.name == 'snacks',
-      layout = {
-        layout = {
-          width = 0.9,
-          height = 0.9,
+      dashboard = {
+        enabled = true,
+        preset = {
+          header = logo,
+          pick = ergou.pick.open,
         },
       },
-      win = {
-        input = {
-          keys = {
-            ['<a-c>'] = {
-              'toggle_cwd',
-              mode = { 'n', 'i' },
-            },
-            ['<a-x>'] = { 'flash', mode = { 'n', 'i' } },
-            ['s'] = { 'flash' },
-            ['<c-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
-            ['<c-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
-            ['<c-f>'] = { 'list_scroll_down', mode = { 'i', 'n' } },
-            ['<c-b>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
+      dim = {
+        animate = {
+          enabled = false,
+        },
+      },
+      scroll = {
+        enabled = false,
+        animate = {
+          duration = {
+            step = 10,
+            total = 100,
           },
         },
       },
-      actions = {
-        toggle_cwd = function(p)
-          local root = ergou.root({ buf = p.input.filter.current_buf, normalize = true })
-          local cwd = vim.fs.normalize((vim.uv or vim.loop).cwd() or '.')
-          local current = p:cwd()
-          p:set_cwd(current == root and cwd or root)
-          p:find()
-        end,
-        flash = function(picker)
-          require('flash').jump({
-            pattern = '^',
-            label = { after = { 0, 0 } },
-            search = {
-              mode = 'search',
-              exclude = {
-                function(win)
-                  return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'snacks_picker_list'
-                end,
+      indent = {
+        enabled = true,
+        -- Rainbow indent
+        -- indent = {
+        --   hl = {
+        --     'SnacksIndentRed',
+        --     'SnacksIndentYellow',
+        --     'SnacksIndentBlue',
+        --     'SnacksIndentOrange',
+        --     'SnacksIndentGreen',
+        --     'SnacksIndentViolet',
+        --     'SnacksIndentCyan',
+        --   },
+        -- },
+        animate = {
+          enabled = false,
+        },
+      },
+      input = {
+        enabled = false,
+      },
+      picker = {
+        ui_select = ergou.pick.picker.name == 'snacks',
+        layout = {
+          layout = {
+            width = 0.9,
+            height = 0.9,
+          },
+        },
+        win = {
+          input = {
+            keys = {
+              ['<a-c>'] = {
+                'toggle_cwd',
+                mode = { 'n', 'i' },
               },
+              ['<a-x>'] = { 'flash', mode = { 'n', 'i' } },
+              ['s'] = { 'flash' },
+              ['<c-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+              ['<c-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+              ['<c-f>'] = { 'list_scroll_down', mode = { 'i', 'n' } },
+              ['<c-b>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
             },
-            action = function(match)
-              local idx = picker.list:row2idx(match.pos[1])
-              picker.list:_move(idx, true, true)
-            end,
-          })
-        end,
+          },
+        },
+        actions = {
+          toggle_cwd = function(p)
+            local root = ergou.root({ buf = p.input.filter.current_buf, normalize = true })
+            local cwd = vim.fs.normalize((vim.uv or vim.loop).cwd() or '.')
+            local current = p:cwd()
+            p:set_cwd(current == root and cwd or root)
+            p:find()
+          end,
+          flash = function(picker)
+            require('flash').jump({
+              pattern = '^',
+              label = { after = { 0, 0 } },
+              search = {
+                mode = 'search',
+                exclude = {
+                  function(win)
+                    return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'snacks_picker_list'
+                  end,
+                },
+              },
+              action = function(match)
+                local idx = picker.list:row2idx(match.pos[1])
+                picker.list:_move(idx, true, true)
+              end,
+            })
+          end,
+        },
       },
     },
+    keys = keys,
+    init = function()
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'VeryLazy',
+        callback = function()
+          -- Setup some globals for debugging (lazy-loaded)
+          _G.dd = function(...)
+            Snacks.debug.inspect(...)
+          end
+          _G.bt = function()
+            Snacks.debug.backtrace()
+          end
+          vim.print = _G.dd -- Override print to use snacks for `:=` command
+        end,
+      })
+    end,
   },
-  keys = keys,
-  init = function()
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'VeryLazy',
-      callback = function()
-        -- Setup some globals for debugging (lazy-loaded)
-        _G.dd = function(...)
-          Snacks.debug.inspect(...)
-        end
-        _G.bt = function()
-          Snacks.debug.backtrace()
-        end
-        vim.print = _G.dd -- Override print to use snacks for `:=` command
-      end,
-    })
-  end,
+  {
+    'folke/todo-comments.nvim',
+    keys = function(_, ks)
+      local _keys = ks or {}
+      if ergou.pick.picker.name == 'snacks' then
+        vim.list_extend(_keys, {
+          {
+            '<leader>st',
+            function()
+              Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } })
+            end,
+            desc = 'Todo/Fix/Fixme',
+          },
+          {
+            '<leader>sT',
+            function()
+              Snacks.picker.todo_comments()
+            end,
+            desc = 'Todo',
+          },
+        })
+      end
+      return _keys
+    end,
+  },
 }

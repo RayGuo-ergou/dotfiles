@@ -8,27 +8,6 @@ return {
     local todo_next, todo_prev = ts_repeat_move.make_repeatable_move_pair(todo.jump_next, todo.jump_prev)
     local map = vim.keymap.set
 
-    -- TODO: add these keys in picker file for better management
-    if ergou.pick.picker.name == 'telescope' then
-      map('n', '<leader>st', '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>', { desc = 'Todo/Fix/Fixme' })
-      map('n', '<leader>sT', '<cmd>TodoTelescope<cr>', { desc = 'Todo Comments' })
-    end
-    if ergou.pick.picker.name == 'fzf' then
-      map('n', '<leader>st', function()
-        require('todo-comments.fzf').todo({ keywords = { 'TODO', 'FIX', 'FIXME' } })
-      end, { desc = 'Todo/Fix/Fixme' })
-      map('n', '<leader>sT', function()
-        require('todo-comments.fzf').todo()
-      end, { desc = 'Todo Comments' })
-    end
-    if ergou.pick.picker.name == 'snacks' then
-      map('n', '<leader>st', function()
-        Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } })
-      end, { desc = 'Todo/Fix/Fixme' })
-      map('n', '<leader>sT', function()
-        Snacks.picker.todo_comments()
-      end, { desc = 'Todo Comments' })
-    end
     map('n', ']t', function()
       todo_next()
     end, { desc = 'Next todo comment' })
@@ -40,7 +19,5 @@ return {
   keys = {
     { ']t', desc = 'Next todo comment' },
     { '[t', desc = 'Previous todo comment' },
-    { '<leader>st', 'Todo' },
-    { '<leader>sT', 'Todo/Fix/FIxme' },
   },
 }

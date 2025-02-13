@@ -231,4 +231,25 @@ return {
       end)
     end,
   },
+  {
+    'folke/todo-comments.nvim',
+    keys = function(_, ks)
+      local _keys = ks or {}
+      if ergou.pick.picker.name == 'telescope' then
+        vim.list_extend(_keys, {
+          {
+            '<leader>st',
+            '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>',
+            desc = 'Todo/Fix/Fixme',
+          },
+          {
+            '<leader>sT',
+            '<cmd>TodoTelescope<cr>',
+            desc = 'Todo',
+          },
+        })
+      end
+      return _keys
+    end,
+  },
 }
