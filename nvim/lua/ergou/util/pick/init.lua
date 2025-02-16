@@ -1,4 +1,4 @@
----@class ergou.util.picky
+---@class ergou.util.pick
 ---@field public telescope ergou.util.pick.telescope
 ---@field public fzf ergou.util.pick.fzf
 ---@field public snacks ergou.util.pick.snacks
