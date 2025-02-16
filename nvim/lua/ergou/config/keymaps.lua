@@ -4,15 +4,9 @@ local map = vim.keymap.set
 -- Lazy vim
 map('n', '<leader>lv', '<cmd>Lazy<cr>', { desc = 'Lazy Vim' })
 
--- better left/right
--- map({ 'o', 'v', 'n' }, 'L', '$', { noremap = true, silent = true })
--- map({ 'o', 'v', 'n' }, 'H', '^', { noremap = true, silent = true })
-
 -- action on entire buffer
-map('n', 'dae', 'ggVGd', { noremap = true, silent = true, desc = 'Delete entire file' })
-map('n', 'yae', 'ggVGy', { noremap = true, silent = true, desc = 'Yank entire file' })
-map('n', 'cae', 'ggVG"_c', { noremap = true, silent = true, desc = 'Change entire file' })
-map('n', 'vae', 'ggVG', { noremap = true, silent = true, desc = 'Select entire file' })
+map('v', 'ae', '<Esc>ggVG', { noremap = true, silent = true, desc = 'Select entire file' })
+map('o', 'ae', ':<C-u>normal! ggVG<CR>', { noremap = true, silent = true, desc = 'Operate on entire file' })
 
 -- Move Lines
 map('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'Move Down', silent = true })
