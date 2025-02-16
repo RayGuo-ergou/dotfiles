@@ -248,6 +248,13 @@ return {
         enabled = false,
       },
       picker = {
+        sources = {
+          select = {
+            config = function(opts)
+              opts.layout.layout.height = ergou.pick.select_height(#opts.items)
+            end,
+          },
+        },
         ui_select = ergou.pick.picker.name == 'snacks',
         layout = {
           layout = {

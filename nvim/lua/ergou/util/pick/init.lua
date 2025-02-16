@@ -70,4 +70,9 @@ function M.config_files()
   return M.wrap('files', { cwd = vim.fn.stdpath('config') })
 end
 
+---@param count integer select menu item count
+function M.select_height(count)
+  return math.floor(math.min(vim.o.lines * 0.8 - 16, count + 2) + 0.5) + 16
+end
+
 return M
