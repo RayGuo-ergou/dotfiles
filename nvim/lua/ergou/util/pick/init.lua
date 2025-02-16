@@ -1,4 +1,4 @@
----@class ergou.util.pick
+---@class ergou.util.picky
 ---@field public telescope ergou.util.pick.telescope
 ---@field public fzf ergou.util.pick.fzf
 ---@field public snacks ergou.util.pick.snacks
@@ -13,6 +13,7 @@ local M = setmetatable({}, {
     return t[k]
   end,
 })
+---@alias ErgouPickerName 'fzf'|'telescope'|'snacks'
 
 ---@class ergou.util.pick.picker
 ---@field picker ErgouPicker
@@ -25,7 +26,7 @@ local M = setmetatable({}, {
 ---@field show_untracked? boolean
 
 ---@class ErgouPicker
----@field name 'fzf'|'telescope'|'snacks'
+---@field name ErgouPickerName
 ---@field open fun(command:string, opts?:ergou.util.pick.Opts)
 ---@field commands table<string, string>
 
@@ -73,6 +74,17 @@ end
 ---@param count integer select menu item count
 function M.select_height(count)
   return math.floor(math.min(vim.o.lines * 0.8 - 16, count + 2) + 0.5) + 16
+end
+
+---@param ks LazyKeys[]
+---@param picker_name ErgouPickerName
+function M.set_keymaps(ks, picker_name)
+  local _keys = ks or {}
+
+  if picker_name == M.picker.name then
+    vim.list_extend(_keys, M[picker_name].get())
+  end
+  return _keys
 end
 
 return M

@@ -1,16 +1,3 @@
----@type Lazykeys[]
-local keys = {
-  {
-    '<leader>su',
-    '<cmd>Telescope undo<cr>',
-    desc = 'undo history',
-  },
-  { '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
-}
-
-if ergou.pick.picker.name == 'telescope' then
-  vim.list_extend(keys, ergou.pick.telescope.get())
-end
 local function flash(prompt_bufnr)
   require('flash').jump({
     pattern = '^',
@@ -36,7 +23,14 @@ return {
     dependencies = {
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
-    keys = keys,
+    keys = {
+      {
+        '<leader>su',
+        '<cmd>Telescope undo<cr>',
+        desc = 'undo history',
+      },
+      { '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
+    },
     config = function()
       local telescope = require('telescope')
       local actions = require('telescope.actions')
@@ -127,6 +121,14 @@ return {
       vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
       vim.keymap.set('n', '<leader>fg', telescope.extensions.live_grep_args.live_grep_args, { desc = 'Live grep args' })
+    end,
+  },
+
+  {
+    'nvim-telescope/telescope.nvim',
+
+    keys = function(_, k)
+      return ergou.pick.set_keymaps(k, 'telescope')
     end,
   },
   {

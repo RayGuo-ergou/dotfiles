@@ -1,9 +1,3 @@
----@type LazyKeys[]
-local keys = {}
-
-if ergou.pick.picker.name == 'fzf' then
-  keys = ergou.pick.fzf.get()
-end
 return {
   {
     'ibhagwan/fzf-lua',
@@ -181,7 +175,9 @@ return {
       end)
     end,
     cmd = { 'FzfLua' },
-    keys = keys,
+    keys = function(_, k)
+      return ergou.pick.set_keymaps(k, 'fzf')
+    end,
   },
   {
     'folke/todo-comments.nvim',
