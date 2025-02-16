@@ -31,7 +31,7 @@ local M = setmetatable({}, {
 ---@field commands table<string, string>
 
 ---@type ErgouPicker?
-M.picker = M.snacks.picker
+M.picker = M.fzf.picker
 
 ---@param command? string
 ---@param opts? ergou.util.pick.Opts
