@@ -1,30 +1,17 @@
 return {
   'chrisgrieser/nvim-various-textobjs',
+  events = 'LazyFile',
   opts = {
     keymaps = {
-      useDefaults = false,
-    },
-  },
-  keys = {
-    {
-      'ik',
-      '<cmd>lua require("various-textobjs").key("inner")<cr>',
-      mode = { 'o', 'x' },
-    },
-    {
-      'ak',
-      '<cmd>lua require("various-textobjs").key("outer")<cr>',
-      mode = { 'o', 'x' },
-    },
-    {
-      'iv',
-      '<cmd>lua require("various-textobjs").value("inner")<cr>',
-      mode = { 'o', 'x' },
-    },
-    {
-      'av',
-      '<cmd>lua require("various-textobjs").value("outer")<cr>',
-      mode = { 'o', 'x' },
+      useDefaults = true,
+      disabledDefaults = {
+        -- aI and iI are still set for indent
+        'ai',
+        'ii',
+
+        'al',
+        'il',
+      },
     },
   },
 }
