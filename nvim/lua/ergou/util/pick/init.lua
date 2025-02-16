@@ -13,6 +13,10 @@ local M = setmetatable({}, {
     return t[k]
   end,
 })
+
+---@type ErgouPicker?
+M.picker = M.fzf.picker
+
 ---@alias ErgouPickerName 'fzf'|'telescope'|'snacks'
 
 ---@class ergou.util.pick.picker
@@ -29,9 +33,6 @@ local M = setmetatable({}, {
 ---@field name ErgouPickerName
 ---@field open fun(command:string, opts?:ergou.util.pick.Opts)
 ---@field commands table<string, string>
-
----@type ErgouPicker?
-M.picker = M.fzf.picker
 
 ---@param command? string
 ---@param opts? ergou.util.pick.Opts
