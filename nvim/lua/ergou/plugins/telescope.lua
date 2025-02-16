@@ -1,4 +1,4 @@
----@type LazyKeys[]
+---@type Lazykeys[]
 local keys = {
   {
     '<leader>su',
@@ -9,80 +9,7 @@ local keys = {
 }
 
 if ergou.pick.picker.name == 'telescope' then
-  local pickerKeys = {
-    -- find
-    {
-      '<leader>,',
-      '<cmd>Telescope buffers sort_mru=true<cr>',
-      desc = 'Switch Buffer',
-    },
-    { '<leader>ff', ergou.pick('files'), desc = 'Find Files (root dir)' },
-    { '<leader>fF', ergou.pick('files', { root = false }), desc = 'Find Files (cwd)' },
-    { '<leader>gf', '<cmd>Telescope git_files<cr>', desc = 'Find Files (git-files)' },
-    { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
-    {
-      '<leader><space>',
-      '<cmd>Telescope buffers sort_mru=true<cr>',
-      desc = 'Switch buffer',
-    },
-    { '<leader>ft', '<cmd>Telescope treesitter<cr>', desc = 'Treesitter' },
-    { '<leader>fc', ergou.pick.config_files(), desc = 'Find Config File' },
-    { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
-    { '<leader>fR', ergou.pick('oldfiles', { cwd = vim.uv.cwd() }), desc = 'Recent (cwd)' },
-    -- git
-    { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'status' },
-    -- search
-    { '<leader>s"', '<cmd>Telescope registers<cr>', desc = 'Registers' },
-    { '<leader>sc', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
-    { '<leader>sC', '<cmd>Telescope commands<cr>', desc = 'Commands' },
-    {
-      '<leader>/',
-      function()
-        -- You can pass additional configuration to telescope to change theme, layout, etc.
-        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy({
-          previewer = false,
-        }))
-      end,
-      desc = 'Buffer',
-    },
-    { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Document diagnostics' },
-    { '<leader>sD', '<cmd>Telescope diagnostics<cr>', desc = 'Workspace diagnostics' },
-    {
-      '<leader>s/',
-      ergou.pick('live_grep', { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }),
-      desc = 'Search in opened files',
-    },
-    { '<leader>sg', ergou.pick('live_grep'), desc = 'Grep (root dir)' },
-    { '<leader>sG', ergou.pick('live_grep', { root = false }), desc = 'Grep (cwd)' },
-    { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = 'Help Pages' },
-    { '<leader>sH', '<cmd>Telescope highlights<cr>', desc = 'Search Highlight Groups' },
-    { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'Key Maps' },
-    { '<leader>sm', '<cmd>Telescope marks<cr>', desc = 'Jump to Mark' },
-    { '<leader>sM', '<cmd>Telescope man_pages<cr>', desc = 'Man Pages' },
-    { '<leader>sr', '<cmd>Telescope resume<cr>', desc = 'Resume' },
-    { '<leader>sw', ergou.pick('grep_string', { word_match = '-w' }), desc = 'Word (root dir)' },
-    { '<leader>sW', ergou.pick('grep_string', { root = false, word_match = '-w' }), desc = 'Word (cwd)' },
-    { '<leader>sw', ergou.pick('grep_string'), mode = 'v', desc = 'Selection (root dir)' },
-    { '<leader>sW', ergou.pick('grep_string', { root = false }), mode = 'v', desc = 'Selection (cwd)' },
-    {
-      '<leader>ss',
-      function()
-        require('telescope.builtin').lsp_document_symbols()
-      end,
-      desc = 'Goto Symbol',
-    },
-    {
-      '<leader>sS',
-      function()
-        require('telescope.builtin').lsp_dynamic_workspace_symbols()
-      end,
-      desc = 'Goto Symbol (Workspace)',
-    },
-    -- UI
-    { '<leader>uC', ergou.pick('colorscheme', { enable_preview = true }), desc = 'Colorscheme with preview' },
-  }
-
-  keys = vim.list_extend(keys, pickerKeys)
+  vim.list_extend(keys, ergou.pick.telescope.get())
 end
 local function flash(prompt_bufnr)
   require('flash').jump({

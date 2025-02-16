@@ -49,6 +49,7 @@ return {
   },
   {
     'echasnovski/mini.ai',
+    enabled = false,
     opts = function()
       local ai = require('mini.ai')
       return {

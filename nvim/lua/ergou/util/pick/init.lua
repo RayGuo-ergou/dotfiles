@@ -14,6 +14,10 @@ local M = setmetatable({}, {
   end,
 })
 
+---@class ergou.util.pick.picker
+---@field picker ErgouPicker
+---@field get fun(): LazyKeys[]
+
 ---@class ergou.util.pick.Opts: table<string, any>
 ---@field root? boolean
 ---@field cwd? string
@@ -26,7 +30,7 @@ local M = setmetatable({}, {
 ---@field commands table<string, string>
 
 ---@type ErgouPicker?
-M.picker = M.fzf.picker
+M.picker = M.snacks.picker
 
 ---@param command? string
 ---@param opts? ergou.util.pick.Opts
