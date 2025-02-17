@@ -39,8 +39,6 @@ return {
           CmpItemKindNpm = { fg = C.red },
           TypeVirtualText = { fg = C.yellow },
           SnacksDashboardIcon = { fg = C.blue },
-          SnacksIndentScope = { fg = C.text },
-          SnacksIndent = { fg = C.surface0 },
 
           SnacksIndentRed = { fg = C.red },
           SnacksIndentYellow = { fg = C.yellow },
