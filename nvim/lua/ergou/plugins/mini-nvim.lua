@@ -49,17 +49,17 @@ return {
   },
   {
     'echasnovski/mini.ai',
-    enabled = false,
     opts = function()
       local ai = require('mini.ai')
       return {
         custom_textobjects = {
           -- HACK: for html tags, see: https://github.com/echasnovski/mini.nvim/issues/110#issuecomment-1212277863
           t = false,
+          -- Brackets not very good when nested
           b = false,
-          a = ai.gen_spec.treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
-          A = ai.gen_spec.treesitter({ a = '@assignment.outer', i = '@assignment.inner' }),
-          c = ai.gen_spec.treesitter({ a = '@call.outer', i = '@call.inner' }),
+          ['{'] = false,
+          ['['] = false,
+          ['<'] = false,
           o = ai.gen_spec.treesitter({ -- code block
             a = { '@block.outer', '@conditional.outer', '@loop.outer' },
             i = { '@block.inner', '@conditional.inner', '@loop.inner' },

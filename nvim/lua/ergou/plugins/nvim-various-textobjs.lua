@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   'chrisgrieser/nvim-various-textobjs',
   events = 'LazyFile',
   opts = {
