@@ -1,5 +1,0 @@
-{ { "<leader>st", <function 1>,
-    desc = "Todo/Fix/Fixme"
-  }, { "<leader>sT", <function 2>,
-    desc = "Todo"
-  } }
