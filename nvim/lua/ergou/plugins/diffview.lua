@@ -30,5 +30,23 @@ return {
       end,
       desc = 'Toggle Diffview',
     },
+    {
+      '<leader>dh',
+      function()
+        if next(require('diffview.lib').views) == nil then
+          if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' or vim.fn.mode() == '\22' then
+            local start_line = vim.fn.line('\'<')
+            local end_line = vim.fn.line('\'>')
+            vim.cmd(string.format('%d,%dDiffviewFileHistory', start_line, end_line))
+          else
+            vim.cmd('DiffviewFileHistory')
+          end
+        else
+          vim.cmd('DiffviewClose')
+        end
+      end,
+      mode = { 'n', 'v' },
+      desc = 'Toggle Diffview Current File History',
+    },
   },
 }
