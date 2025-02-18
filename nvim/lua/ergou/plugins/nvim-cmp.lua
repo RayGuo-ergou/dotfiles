@@ -20,6 +20,9 @@ return {
       },
       'onsails/lspkind.nvim', -- vs-code like pictograms
       'hrsh7th/cmp-nvim-lsp-document-symbol', -- source for document symbols
+      {
+        'xzbdmw/colorful-menu.nvim',
+      },
     },
     config = function()
       local cmp = require('cmp')

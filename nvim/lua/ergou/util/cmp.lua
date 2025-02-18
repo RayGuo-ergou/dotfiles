@@ -118,6 +118,15 @@ function M.cmp_format(entry, vim_item)
   if vim.tbl_contains(ergou.sql_ft, filetype) then
     return item_with_kind
   end
+  local highlights_info = require('colorful-menu').cmp_highlights(entry)
+
+  -- highlight_info is nil means we are missing the ts parser, it's
+  -- better to fallback to use default `vim_item.abbr`. What this plugin
+  -- offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
+  if highlights_info ~= nil then
+    item_with_kind.abbr_hl_group = highlights_info.highlights
+    item_with_kind.abbr = highlights_info.text
+  end
 
   local completion_item = entry.completion_item
   local completion_context = completion_item.detail
