@@ -210,6 +210,16 @@ return {
       {
         '<leader>bo',
         function()
+          local tab_buflist = vim.fn.tabpagebuflist()
+          Snacks.bufdelete(function(buf)
+            return not vim.list_contains(tab_buflist, buf)
+          end)
+        end,
+        desc = 'Delete Buffers other than the current layout',
+      },
+      {
+        '<leader>bO',
+        function()
           Snacks.bufdelete.other()
         end,
         desc = 'Delete Other Buffers',
