@@ -123,7 +123,8 @@ return {
                 'toggle_cwd',
                 mode = { 'n', 'i' },
               },
-              ['<a-x>'] = { 'flash', mode = { 'n', 'i' } },
+              ['<a-x>'] = { 'flash', mode = { 'i', 'n' } },
+              ['<c-t>'] = { 'trouble_open', mode = { 'i', 'n' } },
               ['s'] = { 'flash' },
               ['<c-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
               ['<c-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
@@ -157,6 +158,9 @@ return {
                 picker.list:_move(idx, true, true)
               end,
             })
+          end,
+          trouble_open = function(...)
+            return require('trouble.sources.snacks').actions.trouble_open.action(...)
           end,
         },
       },
