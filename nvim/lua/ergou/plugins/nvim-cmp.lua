@@ -61,8 +61,8 @@ return {
             end
 
             -- Snippet
-            if luasnip.expand_or_jumpable() then
-              return luasnip.expand_or_jump()
+            if luasnip.locally_jumpable(1) then
+              return luasnip.jump(1)
             end
 
             -- Cmp select
@@ -73,7 +73,7 @@ return {
             fallback()
           end, { 'i', 's' }),
           ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
+            if luasnip.locally_jumpable(-1) then
               return luasnip.jump(-1)
             end
 
