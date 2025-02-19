@@ -22,6 +22,11 @@ return {
       'hrsh7th/cmp-nvim-lsp-document-symbol', -- source for document symbols
       {
         'xzbdmw/colorful-menu.nvim',
+        opts = {
+          ls = {
+            fallback = false,
+          },
+        },
       },
     },
     config = function()
