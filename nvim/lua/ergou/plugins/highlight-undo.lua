@@ -1,6 +1,7 @@
 return {
   {
     'y3owk1n/undo-glow.nvim',
+    url = 'https://github.com/RayGuo-ergou/undo-glow.nvim',
     ---@class UndoGlow.Config
     opts = {
       animation = false,
