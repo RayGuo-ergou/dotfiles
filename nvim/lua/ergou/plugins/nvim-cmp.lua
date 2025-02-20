@@ -25,6 +25,12 @@ return {
         opts = {
           ls = {
             fallback = false,
+            vtsls = {
+              extra_info_hl = false,
+            },
+            ts_ls = {
+              extra_info_hl = false,
+            },
           },
         },
       },
