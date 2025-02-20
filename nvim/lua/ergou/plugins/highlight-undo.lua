@@ -12,6 +12,7 @@ return {
         opts.undo_hl_color = { bg = colors.surface2 }
         opts.redo_hl_color = { bg = colors.surface2 }
       end
+      opts.animation = false
     end,
     ---@param _ any
     ---@param opts UndoGlow.Config
