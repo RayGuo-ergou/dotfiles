@@ -47,6 +47,9 @@ return {
           SnacksIndentGreen = { fg = C.green },
           SnacksIndentViolet = { fg = C.mauve },
           SnacksIndentCyan = { fg = C.teal },
+
+          UgUndo = { bg = C.surface2 },
+          UgRedo = { bg = C.surface2 },
         }
       end,
     },

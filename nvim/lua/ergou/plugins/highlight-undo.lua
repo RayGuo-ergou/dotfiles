@@ -1,19 +1,10 @@
 return {
   {
     'y3owk1n/undo-glow.nvim',
-    ---@param _ any
-    ---@param opts UndoGlow.Config
-    opts = function(_, opts)
-      local has_catppuccin, catppuccin = pcall(require, 'catppuccin.palettes')
-
-      if has_catppuccin then
-        ---@type CtpColors<string>
-        local colors = catppuccin.get_palette()
-        opts.undo_hl_color = { bg = colors.surface2 }
-        opts.redo_hl_color = { bg = colors.surface2 }
-      end
-      opts.animation = false
-    end,
+    ---@class UndoGlow.Config
+    opts = {
+      animation = false,
+    },
     ---@param _ any
     ---@param opts UndoGlow.Config
     config = function(_, opts)
