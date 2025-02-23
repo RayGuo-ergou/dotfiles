@@ -3,7 +3,9 @@ return {
     'y3owk1n/undo-glow.nvim',
     ---@class UndoGlow.Config
     opts = {
-      animation = false,
+      animation = {
+        animation = false,
+      },
     },
     keys = {
       {
