@@ -13,15 +13,16 @@ return {
     'echasnovski/mini.align',
     keys = {
       {
-        'ga',
+        'gA',
         desc = 'align start',
       },
-      {
-        'gA',
-        desc = 'align preview start',
+    },
+    opts = {
+      mappings = {
+        start = 'gA',
+        start_with_preview = '',
       },
     },
-    opts = {},
   },
   {
     'echasnovski/mini.hipatterns',
