@@ -58,6 +58,13 @@ return {
             wrap = true,
           }, -- Wrap notifications
         },
+        input = {
+          relative = 'cursor',
+          title_pos = 'left',
+          width = 40,
+          row = -3,
+          col = 0,
+        },
       },
       dashboard = {
         enabled = true,
@@ -99,7 +106,7 @@ return {
         },
       },
       input = {
-        enabled = false,
+        enabled = true,
       },
       picker = {
         sources = {

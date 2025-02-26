@@ -48,6 +48,11 @@ return {
           SnacksIndentViolet = { fg = C.mauve },
           SnacksIndentCyan = { fg = C.teal },
 
+          SnacksInputIcon = { fg = C.blue },
+          SnacksInputTitle = { fg = C.subtext0 },
+          SnacksInputBorder = { fg = C.blue },
+          SnacksInputPrompt = { fg = C.blue },
+
           UgUndo = { bg = C.surface2 },
           UgRedo = { bg = C.surface2 },
         }
