@@ -1,4 +1,4 @@
-local enabled = true
+local enabled = false
 return {
   {
     'rachartier/tiny-inline-diagnostic.nvim',
