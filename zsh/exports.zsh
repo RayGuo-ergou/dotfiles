@@ -50,6 +50,10 @@ export PATH="$PNPM_HOME:$PATH"
 export ERGOU_SCRIPTS="$DOTFILES/scripts"
 export PATH="$ERGOU_SCRIPTS:$PATH"
 
+# Local bin
+export LOCAL_BIN="$HOME/.local/bin"
+export PATH="$LOCAL_BIN:$PATH"
+
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 
