@@ -114,18 +114,6 @@ return {
   },
   {
     'chrisgrieser/nvim-tinygit',
-    dependencies = {
-      {
-        'stevearc/dressing.nvim',
-        -- To load before snacks nvim so vim.ui.input can be override by snacks
-        lazy = false,
-        opts = {
-          select = {
-            enabled = false,
-          },
-        },
-      },
-    },
     ---@type Tinygit.Config
     opts = {
       statusline = {
