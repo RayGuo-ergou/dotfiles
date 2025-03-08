@@ -43,7 +43,7 @@ return {
         require('grug-far').open({
           transient = true,
           prefills = {
-            flags = vim.fn.expand('%'),
+            paths = vim.fn.expand('%'),
           },
         })
       end,
@@ -56,7 +56,6 @@ return {
         require('grug-far').open({
           transient = true,
           prefills = {
-            flags = vim.fn.expand('%'),
             filesFilter = ext and ext ~= '' and '*.' .. ext or nil,
           },
         })
