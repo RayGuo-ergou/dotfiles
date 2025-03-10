@@ -142,8 +142,6 @@ function M.cmp_format(entry, vim_item)
   return item_with_kind
 end
 
-M.json_filename = ''
-
 function M.cmp_sort()
   local types = require('cmp.types')
   local cmp = require('cmp')
@@ -212,11 +210,7 @@ function M.cmp_sort()
       return nil
     end
 
-    if M.json_filename == '' then
-      M.json_filename = vim.fn.expand('%:t')
-    end
-
-    if M.json_filename == 'package.json' then
+    if vim.fn.expand('%:t') == 'package.json' then
       local source1 = entry1.source.name
       local source2 = entry2.source.name
 
@@ -250,22 +244,28 @@ function M.cmp_sort()
     return nil
   end
 
+  local comparators = {
+    compare.offset,
+    compare.exact,
+    -- compare.scopes,
+    compare.score,
+    compare.recently_used,
+    compare.locality,
+    custom_kind_sort,
+    -- compare.kind,
+    compare.sort_text,
+    compare.length,
+    compare.order,
+  }
+
+  -- Add package_json_npm as first comparator only if we're in package.json
+  if vim.fn.expand('%:t') == 'package.json' then
+    table.insert(comparators, 1, package_json_npm)
+  end
+
   return {
     priority_weight = default_config().sorting.priority_weight,
-    comparators = {
-      compare.offset,
-      compare.exact,
-      -- compare.scopes,
-      compare.score,
-      compare.recently_used,
-      compare.locality,
-      custom_kind_sort,
-      -- compare.kind,
-      compare.sort_text,
-      compare.length,
-      compare.order,
-      package_json_npm,
-    },
+    comparators = comparators,
   }
 end
 
