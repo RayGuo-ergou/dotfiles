@@ -136,6 +136,10 @@ return {
       cmp.event:on('menu_closed', function()
         local filetype = vim.bo.filetype
 
+        if filetype == 'json' then
+          ergou.cmp.json_filename = ''
+        end
+
         if filetype == 'vue' then
           local bufnr = vim.api.nvim_get_current_buf()
           vim.b[bufnr]._vue_ts_cached_is_in_start_tag = nil
