@@ -109,6 +109,11 @@ return {
         enabled = true,
       },
       picker = {
+        previewers = {
+          diff = {
+            native = true,
+          },
+        },
         sources = {
           select = {
             config = function(opts)
@@ -320,6 +325,13 @@ return {
             },
           })
         end,
+      },
+      {
+        '<leader>gS',
+        function()
+          Snacks.picker.git_diff()
+        end,
+        desc = 'Git interactive staging',
       },
     },
     init = function()
