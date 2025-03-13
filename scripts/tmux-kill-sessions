@@ -3,17 +3,8 @@
 # Get the current session name
 current_session=$(tmux display-message -p '#S')
 
-# List all sessions and their updated_at values
-sessions=$(tmux list-sessions -F "#{session_name}")
-
-# Process sessions to include their updated_at timestamps or fallback to a default value
-sorted_sessions=$(while read -r session; do
-  updated_at=$(tmux show-environment -t "$session" updated_at 2>/dev/null | grep -oP 'updated_at=\K.*' || echo "1970-01-01T00:00:00")
-  echo "$updated_at $session"
-done <<< "$sessions" | sort -r | awk '{print $2}')
-
 # Present the sorted list, excluding the current session
-selected_session=$(echo "$sorted_sessions" | grep -v "^$current_session$" | fzf --no-preview --cycle --header-first --header "Delete Session")
+selected_session=$(_get_sessions | grep -v "^$current_session$" | fzf --no-preview --cycle --header-first --header "Delete Session")
 
 # Kill the selected session if one is chosen
 if [ -n "$selected_session" ]; then
