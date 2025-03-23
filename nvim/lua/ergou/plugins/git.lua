@@ -114,7 +114,6 @@ return {
   },
   {
     'chrisgrieser/nvim-tinygit',
-    commit = 'c62f886cb87b9665300c34c0ff3a12d6e080655f',
     ---@type Tinygit.Config
     opts = {
       statusline = {
