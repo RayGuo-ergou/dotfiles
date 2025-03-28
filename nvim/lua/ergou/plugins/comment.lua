@@ -20,4 +20,9 @@ return {
 
     require('Comment').setup(opts)
   end,
+  keys = {
+    {
+      'gcc',
+    },
+  },
 }
