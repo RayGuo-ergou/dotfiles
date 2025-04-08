@@ -46,7 +46,7 @@ return {
           -- Check if the file path includes 'templates'
           -- Only for tools templates
           local file_path = vim.fn.expand('%:p')
-          if string.find(file_path, 'templates') and string.find(file_path, 'rmvfy-tools') then
+          if string.find(file_path, 'templates') and string.find(file_path, 'rmvfy%-tools') then
             return nil
           end
 
