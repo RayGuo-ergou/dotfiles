@@ -101,7 +101,8 @@ return {
           return
         end
         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-        require('lspconfig')[server_name].setup(server)
+        vim.lsp.config(server_name, server)
+        vim.lsp.enable(server_name)
       end
     end,
   },
