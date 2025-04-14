@@ -175,6 +175,9 @@ return {
           augend.constant.new({ elements = { 'let', 'const' } }),
           tailwind_color,
         },
+        php = {
+          tailwind_color,
+        },
         css = {
           augend.hexcolor.new({
             case = 'lower',
