@@ -27,6 +27,8 @@ gh
 
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 
+export MANPAGER='nvim +Man!'
+
 # n node
 # sudo rm -rf /usr/local/bin/{npm,npx,corepack,node,yarn,yarnpkg,pnpx,pnpm}
 # sudo rm -rf /usr/local/lib/node_modules
