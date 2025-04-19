@@ -1,7 +1,7 @@
 return {
   enabled = false,
   'chrisgrieser/nvim-various-textobjs',
-  events = 'LazyFile',
+  event = 'LazyFile',
   opts = {
     keymaps = {
       useDefaults = true,
