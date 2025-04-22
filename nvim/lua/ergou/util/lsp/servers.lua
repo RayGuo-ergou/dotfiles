@@ -148,7 +148,11 @@ M.get = function()
         },
       },
     },
-    unocss = {},
+    unocss = {
+      --- XXX: Having error when start lsp with new `vim.lsp.config`
+      --- Disable for now
+      enabled = false,
+    },
     shopify_theme_ls = {},
     prismals = {},
     -- jdtls = {},
