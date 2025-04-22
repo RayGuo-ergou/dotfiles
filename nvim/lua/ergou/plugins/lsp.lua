@@ -86,11 +86,8 @@ return {
               return
             end
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            -- TODO: Migrate to new config but has to wait for the upstream first
-            -- @see https://github.com/neovim/nvim-lspconfig/issues/3705
-            -- vim.lsp.config(server_name, server)
-            -- vim.lsp.enable(server_name)
-            require('lspconfig')[server_name].setup(server)
+            vim.lsp.config(server_name, server)
+            vim.lsp.enable(server_name)
           end,
         },
       })
