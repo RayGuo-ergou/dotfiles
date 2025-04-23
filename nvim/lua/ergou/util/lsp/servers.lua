@@ -149,9 +149,8 @@ M.get = function()
       },
     },
     unocss = {
-      --- XXX: Having error when start lsp with new `vim.lsp.config`
-      --- Disable for now
-      enabled = false,
+      ---@see PR https://github.com/neovim/nvim-lspconfig/pull/3764
+      workspace_required = true,
     },
     shopify_theme_ls = {},
     prismals = {},
