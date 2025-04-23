@@ -148,10 +148,7 @@ M.get = function()
         },
       },
     },
-    unocss = {
-      ---@see PR https://github.com/neovim/nvim-lspconfig/pull/3764
-      workspace_required = true,
-    },
+    unocss = {},
     shopify_theme_ls = {},
     prismals = {},
     -- jdtls = {},
