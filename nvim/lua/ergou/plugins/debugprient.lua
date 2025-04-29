@@ -13,7 +13,6 @@ return {
     },
   },
   opts = {
-    print_tag = 'Debug',
     highlight_lines = false,
   },
 }
