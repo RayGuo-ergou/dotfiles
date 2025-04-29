@@ -1,6 +1,12 @@
 return {
   'andrewferrier/debugprint.nvim',
-  cmd = { 'DeleteDebugPrints', 'ToggleCommentDebugPrints', 'ResetDebugPrintsCounter' },
+  cmd = {
+    'DeleteDebugPrints',
+    'ToggleCommentDebugPrints',
+    'ResetDebugPrintsCounter',
+    'SearchDebugPrints',
+    'DebugPrintQFList',
+  },
   keys = {
     {
       'g?',
