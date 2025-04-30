@@ -2,8 +2,6 @@ return {
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
-    commit = '3d01bad517a9cd8d6b1ac6871e16188375c2853b',
-    event = 'LazyFile',
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
