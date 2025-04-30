@@ -2,7 +2,6 @@ return {
   {
     'nvimtools/none-ls.nvim',
     event = 'LazyFile',
-    url = 'https://github.com/RayGuo-ergou/none-ls.nvim',
     -- Without sql treesitter plugin seems fine with even 10k lines of code
     -- enabled = not ergou.lsp.PHP.working_large_file,
     dependencies = { 'davidmh/cspell.nvim' },
