@@ -3,7 +3,7 @@ return {
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
-    event = 'LazyFile',
+    event = 'VeryLazy',
     dependencies = {
       'mason.nvim',
       { 'williamboman/mason-lspconfig.nvim', config = function() end },
