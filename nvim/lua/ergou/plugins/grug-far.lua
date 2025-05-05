@@ -2,7 +2,7 @@
 ---When replacing string the escape char is $ not \.
 return {
   'MagicDuck/grug-far.nvim',
-  cmd = 'GrugFar',
+  cmd = { 'GrugFar', 'GrugFarWithin' },
   ---@type GrugFarOptionsOverride
   opts = {
     headerMaxWidth = 80,
