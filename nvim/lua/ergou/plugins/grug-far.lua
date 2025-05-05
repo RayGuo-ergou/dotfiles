@@ -23,6 +23,14 @@ return {
       desc = 'Search and Replace',
     },
     {
+      '<leader>rV',
+      function()
+        require('grug-far').open({ visualSelectionUsage = 'operate-within-range' })
+      end,
+      mode = { 'v' },
+      desc = 'grug-far: Search within range',
+    },
+    {
       '<leader>rR',
       function()
         local grug = require('grug-far')
