@@ -8,6 +8,7 @@ return {
       code = {
         width = 'block',
         position = 'right',
+        style = 'language',
       },
     },
   },
