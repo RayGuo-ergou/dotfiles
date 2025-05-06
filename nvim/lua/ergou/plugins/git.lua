@@ -2,6 +2,9 @@ return {
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
+    ---@see issue https://github.com/lewis6991/gitsigns.nvim/issues/1312
+    commit = '7ce11abbb8b038a9de4fb6f75d8289c58d81aed7',
+
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
