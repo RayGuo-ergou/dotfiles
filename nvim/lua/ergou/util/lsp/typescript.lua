@@ -72,9 +72,9 @@ M.get_vue_plugin = function()
   local has_mason, mason_registry = pcall(require, 'mason-registry')
 
   if has_mason then
-    local has_volar, volar = pcall(mason_registry.get_package, 'vue-language-server')
+    local has_volar = pcall(mason_registry.get_package, 'vue-language-server')
     if has_volar then
-      local vue_ts_plugin_path = volar:get_install_path() .. '/node_modules/@vue/language-server'
+      local vue_ts_plugin_path = vim.fn.expand('$MASON/packages/vue-language-server/node_modules/@vue/language-server')
       vue_plugin = {
         name = '@vue/typescript-plugin',
         -- Maybe a function to get the location of the plugin is better?

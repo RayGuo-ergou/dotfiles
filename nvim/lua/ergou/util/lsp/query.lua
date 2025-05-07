@@ -9,12 +9,12 @@ M.config = function()
     vim.notify('Mason not installed for ts_query_ls.', vim.log.levels.ERROR)
     return
   end
-  local has_ts_query, ts_query = pcall(mason_registry.get_package, 'ts_query_ls')
+  local has_ts_query = pcall(mason_registry.get_package, 'ts_query_ls')
   if not has_ts_query then
     vim.notify('ts_query_ls not installed from mason.', vim.log.levels.ERROR)
     return
   end
-  local ts_query_exe_path = ts_query:get_install_path() .. '/ts_query_ls'
+  local ts_query_exe_path = vim.fn.exepath('ts_query_ls')
   --- @type lspconfig.Config
   local server = {
     cmd = { ts_query_exe_path },

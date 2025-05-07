@@ -6,7 +6,7 @@ return {
     event = 'VeryLazy',
     dependencies = {
       'mason.nvim',
-      { 'williamboman/mason-lspconfig.nvim', config = function() end },
+      { 'mason-org/mason-lspconfig.nvim', config = function() end },
       {
         'utilyre/barbecue.nvim',
         name = 'barbecue',
@@ -63,44 +63,16 @@ return {
     ---@param opts PluginLspOpts
     config = function(_, opts)
       local servers = ergou.lsp.servers.get()
-      local native_servers = ergou.lsp.servers.get_native()
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      local ensure_install_servers = vim.tbl_keys(servers)
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-
-      local ensure_install_servers = vim.tbl_keys(servers)
 
       local mason_lspconfig = require('mason-lspconfig')
       ergou.lsp.setup()
 
       mason_lspconfig.setup({
         ensure_installed = ensure_install_servers,
-        handlers = {
-          function(server_name)
-            -- server_name = server_name == 'tsserver' and 'ts_ls' or server_name
-            local server = servers[server_name] or {}
-
-            -- Disable entirely if not enabled
-            if server.enabled == false then
-              return
-            end
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            vim.lsp.config(server_name, server)
-            vim.lsp.enable(server_name)
-          end,
-        },
       })
-
-      for server_name, server in pairs(native_servers) do
-        -- Disable entirely if not enabled
-        if server.enabled == false then
-          return
-        end
-        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-        vim.lsp.config(server_name, server)
-        vim.lsp.enable(server_name)
-      end
     end,
   },
   {
