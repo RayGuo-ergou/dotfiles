@@ -40,7 +40,7 @@ function M.get_clients(opts)
   return opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
 end
 
-local function configServers()
+local function config_servers()
   local servers = ergou.lsp.servers.get()
   local native_servers = ergou.lsp.servers.get_native()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -48,10 +48,8 @@ local function configServers()
   capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
   for server_name, server in pairs(servers) do
-    if server.enabled ~= false then
-      server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-      vim.lsp.config(server_name, server)
-    end
+    server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+    vim.lsp.config(server_name, server)
   end
 
   for server_name, server in pairs(native_servers) do
@@ -65,7 +63,7 @@ local function configServers()
 end
 
 function M.setup()
-  configServers()
+  config_servers()
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
     callback = function(event)

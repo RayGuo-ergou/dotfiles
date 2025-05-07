@@ -64,6 +64,12 @@ return {
     config = function(_, opts)
       local servers = ergou.lsp.servers.get()
       local ensure_install_servers = vim.tbl_keys(servers)
+      local disabled_servers = {}
+      for server_name, server in pairs(servers) do
+        if server.enabled == false then
+          table.insert(disabled_servers, server_name)
+        end
+      end
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
@@ -72,6 +78,9 @@ return {
 
       mason_lspconfig.setup({
         ensure_installed = ensure_install_servers,
+        automatic_enable = {
+          exclude = disabled_servers,
+        },
       })
     end,
   },
