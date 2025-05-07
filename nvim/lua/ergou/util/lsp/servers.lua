@@ -74,7 +74,19 @@ M.get = function()
         vue = {
           hybridMode = true,
         },
+        typescript = {
+          tsserverRequestCommand = 'tsserverRequest',
+        },
       },
+      on_init = function(client)
+        dd(client.handlers)
+        client.handlers['tsserverRequest'] = function(err, result, context, config)
+          dd(result)
+          dd(err)
+          dd(context)
+          dd(config)
+        end
+      end,
       on_attach = function(client, _)
         client.server_capabilities.documentFormattingProvider = nil
       end,
