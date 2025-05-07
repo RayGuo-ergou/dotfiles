@@ -1,6 +1,6 @@
 ---@see lazyvim https://github.com/LazyVim/LazyVim/blob/6f91b406ddf2b298efe43f6467ca0a9103881a88/lua/lazyvim/plugins/lsp/init.lua#L259-L296
 return {
-  'williamboman/mason.nvim',
+  'mason-org/mason.nvim',
   cmd = 'Mason',
   keys = { { '<leader>cm', '<cmd>Mason<cr>', desc = 'Mason' } },
   build = ':MasonUpdate',
