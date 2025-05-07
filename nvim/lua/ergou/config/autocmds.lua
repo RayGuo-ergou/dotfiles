@@ -105,6 +105,14 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*',
+  group = vim.api.nvim_create_augroup('remove_format_option_o', { clear = true }),
+  callback = function()
+    vim.opt_local.formatoptions = vim.opt_local.formatoptions - 'o'
+  end,
+})
+
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('wrap_spell'),
