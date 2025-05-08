@@ -107,7 +107,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*',
-  group = vim.api.nvim_create_augroup('remove_format_option_o', { clear = true }),
+  group = augroup('remove_format_option_o'),
   callback = function()
     vim.opt_local.formatoptions = vim.opt_local.formatoptions - 'o'
   end,
