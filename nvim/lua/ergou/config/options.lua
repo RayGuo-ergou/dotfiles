@@ -1,6 +1,9 @@
 local opt = vim.opt
 local g = vim.g
 
+-- Deprecated message
+g.hide_deprecated_message = true
+
 -- This file is automatically loaded by plugins.core
 g.mapleader = ' '
 g.maplocalleader = '|'
@@ -99,8 +102,10 @@ opt.smoothscroll = true
 -- No cursor blink in termnial mode
 opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 
--- Disable deprecation messages
--- vim.deprecate = function() end
+if g.hide_deprecated_message then
+  ---@diagnostic disable-next-line: duplicate-set-field
+  vim.deprecate = function() end
+end
 
 vim.filetype.add({
   extension = {
