@@ -19,5 +19,11 @@ return {
     'OXY2DEV/markview.nvim',
     -- XXX: Even tho in the doc it says should not lazy load but I don't see any issue with event `VeryLazy`
     event = 'VeryLazy',
+    opts = {
+      preview = {
+        hybrid_modes = { 'n' },
+        debounce = 0,
+      },
+    },
   },
 }
