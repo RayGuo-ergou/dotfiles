@@ -128,6 +128,9 @@ return {
             ['il'] = '@loop.inner',
             ['ai'] = '@conditional.outer',
             ['ii'] = '@conditional.inner',
+            --- FIXME: conflict with delete whole file
+            -- ['ae'] = '@custom_array_element.inner',
+            ['aE'] = '@custom_array_element.outer',
           },
         },
         move = {
