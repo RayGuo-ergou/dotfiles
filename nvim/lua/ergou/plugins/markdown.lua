@@ -17,12 +17,7 @@ return {
   -- TODO: https://github.com/catppuccin/nvim/pull/854
   {
     'OXY2DEV/markview.nvim',
-    lazy = false,
-
-    -- For blink.cmp's completion
-    -- source
-    -- dependencies = {
-    --     "saghen/blink.cmp"
-    -- },
+    -- XXX: Even tho in the doc it says should not lazy load but I don't see any issue with event `VeryLazy`
+    event = 'VeryLazy',
   },
 }
