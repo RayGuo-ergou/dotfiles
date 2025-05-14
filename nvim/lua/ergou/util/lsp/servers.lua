@@ -78,6 +78,9 @@ M.get = function()
           tsserverRequestCommand = 'tsserverRequest',
         },
       },
+      -- Manually modify this file
+      -- ~/.local/share/nvim/mason/packages/vtsls/node_modules/@vtsls/language-server/node_modules/@vtsls/language-service/dist/index.js
+      -- For a workaround
       on_init = function(client)
         dd(client.handlers)
         client.handlers['tsserverRequest'] = function(err, result, context, config)
