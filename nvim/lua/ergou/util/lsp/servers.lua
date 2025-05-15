@@ -216,6 +216,18 @@ M.get = function()
       },
     },
     zls = {},
+    ts_query_ls = {
+      settings = {
+        parser_install_directories = {
+          -- If using nvim-treesitter with lazy.nvim
+          vim.fs.joinpath(vim.fn.stdpath('data'), '/lazy/nvim-treesitter/parser/'),
+        },
+        -- E.g. zed support
+        language_retrieval_patterns = {
+          'languages/src/([^/]+)/[^/]+\\.scm$',
+        },
+      },
+    },
   }
 
   return servers
@@ -225,11 +237,6 @@ end
 M.get_native = function()
   --- @type table<string, lspconfig.Config>
   local servers = {}
-
-  local query_ls = ergou.lsp.query.config()
-  if query_ls then
-    servers.ts_query_ls = query_ls
-  end
 
   return servers
 end

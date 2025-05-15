@@ -6,7 +6,6 @@
 ---@field public tsformat ergou.util.lsp.tsformat
 ---@field public keymap ergou.util.lsp.keymap
 ---@field public servers ergou.util.lsp.servers
----@field public query ergou.util.lsp.query
 local M = {}
 
 ---@class LspClientFilterOpts: vim.lsp.get_clients.Filter
