@@ -18,6 +18,8 @@ return {
   {
     'OXY2DEV/markview.nvim',
     -- XXX: Even tho in the doc it says should not lazy load but I don't see any issue with event `VeryLazy`
+    -- see https://github.com/OXY2DEV/markview.nvim/issues/332 for an issue caused by load after treesitter
+    -- But I dont really care if the icon shows on state col
     event = 'VeryLazy',
     opts = {
       preview = {

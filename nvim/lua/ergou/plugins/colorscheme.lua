@@ -14,6 +14,7 @@ return {
         diffview = true,
         neotree = true,
         mason = true,
+        -- markview = true,
         neotest = true,
         noice = true,
         grug_far = true,
@@ -55,6 +56,9 @@ return {
 
           UgUndo = { bg = C.surface2 },
           UgRedo = { bg = C.surface2 },
+
+          -- something wrong with the integrations for me, for me only set the bg for code
+          MarkviewCode = { bg = C.mantle },
         }
       end,
     },
