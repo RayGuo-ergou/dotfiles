@@ -14,7 +14,7 @@ return {
         diffview = true,
         neotree = true,
         mason = true,
-        -- markview = true,
+        markview = true,
         neotest = true,
         noice = true,
         grug_far = true,
@@ -36,7 +36,8 @@ return {
         snacks = true,
       },
       custom_highlights = function(C)
-        return {
+        local U = require('catppuccin.utils.colors')
+        local groups = {
           CmpItemKindNpm = { fg = C.red },
           TypeVirtualText = { fg = C.yellow },
           SnacksDashboardIcon = { fg = C.blue },
@@ -56,10 +57,27 @@ return {
 
           UgUndo = { bg = C.surface2 },
           UgRedo = { bg = C.surface2 },
-
-          -- something wrong with the integrations for me, for me only set the bg for code
-          MarkviewCode = { bg = C.mantle },
         }
+        local rainbow = {
+          [0] = C.overlay2,
+          [1] = C.red,
+          [2] = C.peach,
+          [3] = C.yellow,
+          [4] = C.green,
+          [5] = C.sapphire,
+          [6] = C.lavender,
+          [7] = C.mauve,
+        }
+
+        for i = 0, 7 do
+          local color = rainbow[i]
+          local bg = U.darken(color, 0.3, nil)
+          groups['MarkviewPalette' .. i] = { fg = color, bg = bg }
+          groups['MarkviewPalette' .. i .. 'Fg'] = { fg = color }
+          groups['MarkviewPalette' .. i .. 'Bg'] = { bg = bg }
+          groups['MarkviewIcon' .. i] = { fg = color, bg = C.mantle }
+        end
+        return groups
       end,
     },
     config = function(_, opts)
