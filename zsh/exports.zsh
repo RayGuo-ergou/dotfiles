@@ -70,7 +70,7 @@ export NVM_DIR="$HOME/.nvm"
 # E.g. zsh plugin will set the color to (tmux/screen) I guess?
 # Otherwise when paste with ctrl-v, plain text for the color like [27;5;106~
 # Will also be pasted
-export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOSTART=false
 export ZSH_TMUX_DEFAULT_SESSION_NAME='main'
 
 # To tell pnpm not to check packageManager
@@ -129,7 +129,10 @@ export VI_MODE_SET_CURSOR=true
 
 # Fix run time dir for wsl with fzf-lua
 # see: https://github.com/ibhagwan/fzf-lua/issues/1243#issuecomment-2554289014
-export XDG_RUNTIME_DIR=~/.xdg_runtime
+if [[ $(grep -i Microsoft /proc/version) ]]; then
+  export XDG_RUNTIME_DIR=~/.xdg_runtime
+fi
+
 
 # Add zsh-completions
 fpath=($HOME/.zsh-complete $fpath)
