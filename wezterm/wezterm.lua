@@ -7,7 +7,8 @@ local home_dir = os.getenv('HOME') or os.getenv('USERPROFILE')
 local act = wezterm.action
 local config = {}
 
-config.default_prog = { 'pwsh.exe', '-NoLogo' }
+-- Only for wsl
+-- config.default_prog = { 'pwsh.exe', '-NoLogo' }
 
 config.keys = {
   -- paste from the clipboard
