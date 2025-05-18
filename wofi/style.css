@@ -53,8 +53,8 @@
 @define-color crust-rgb      rgb(24, 25, 38);
 
 * {
-  font-family: 'Inconsolata Nerd Font', monospace;
-  font-size: 14px;
+  font-family: 'FiraCode Nerd Font', monospace;
+  font-size: 24px;
 }
 
 /* Window */
