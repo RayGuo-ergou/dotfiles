@@ -1,0 +1,60 @@
+#!/bin/bash
+
+declare -a fonts=(
+    # BitstreamVeraSansMono
+    # CodeNewRoman
+    # DroidSansMono
+    FiraCode
+    # FiraMono
+    # Go-Mono
+    # Hack
+    # Hermit
+    # JetBrainsMono
+    # Meslo
+    # Noto
+    # Overpass
+    # ProggyClean
+    # RobotoMono
+    # SourceCodePro
+    # SpaceMono
+    # Ubuntu
+    # UbuntuMono
+)
+
+# Fetch the latest version of Nerd Fonts from the GitHub API
+latest_version=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r .tag_name)
+
+if [ -z "$latest_version" ]; then
+    echo "Error: Unable to fetch the latest version."
+    exit 1
+fi
+
+echo "Latest version: $latest_version"
+
+fonts_dir="${HOME}/.local/share/fonts"
+
+# Create the fonts directory if it doesn't exist
+if [[ ! -d "$fonts_dir" ]]; then
+    mkdir -p "$fonts_dir"
+fi
+
+# Download and install the selected fonts
+for font in "${fonts[@]}"; do
+    zip_file="${font}.zip"
+    download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/${latest_version}/${zip_file}"
+    echo "Downloading $download_url"
+    
+    # Download and unzip the font
+    wget -q "$download_url"
+    unzip -q "$zip_file" -d "$fonts_dir"
+    rm "$zip_file"
+done
+
+# Remove any files related to Windows compatibility
+find "$fonts_dir" -name '*Windows Compatible*' -delete
+
+# Refresh the font cache
+fc-cache -fv
+
+echo "Fonts installation complete."
+
