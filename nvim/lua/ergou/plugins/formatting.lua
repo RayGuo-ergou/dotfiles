@@ -41,6 +41,10 @@ return {
           blade = { 'blade-formatter' },
         },
         format_on_save = function()
+          if not vim.g.autoformat_enabled then
+            return nil
+          end
+
           local ft = vim.bo.filetype
 
           -- Check if the file path includes 'templates'

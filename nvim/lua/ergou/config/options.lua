@@ -27,6 +27,9 @@ g.auto_inlay_hint = false
 -- Disable the (slow) builtin query linter
 g.query_lint_on = {}
 
+-- For auto formatting
+g.autoformat_enabled = true
+
 opt.autowrite = true -- Enable auto write
 opt.clipboard = '' -- Sync with system clipboard
 -- Set clipboard after nvim start
