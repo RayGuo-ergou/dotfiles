@@ -1,6 +1,10 @@
 # Switch to bash in raw TTY
 if [[ $(tty) == /dev/tty* ]]; then
-    exec bash
+	if uwsm check may-start; then
+		exec uwsm start hyprland.desktop
+	else
+		exec bash
+	fi
 fi
 
 # Doc: https://zsh.sourceforge.io/Doc/Release/
