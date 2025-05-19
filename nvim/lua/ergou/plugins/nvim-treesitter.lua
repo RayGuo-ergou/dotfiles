@@ -116,8 +116,8 @@ return {
           lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
+            ['aa'] = { query = { '@parameter.outer' }, desc = 'Function params/array elements outer' },
+            ['ia'] = { query = { '@parameter.inner' }, desc = 'Function params/array elements inner' },
             ['aA'] = '@assignment.outer',
             ['iA'] = '@assignment.inner',
             ['af'] = '@function.outer',
@@ -128,9 +128,6 @@ return {
             ['il'] = '@loop.inner',
             ['ai'] = '@conditional.outer',
             ['ii'] = '@conditional.inner',
-            --- FIXME: conflict with delete whole file
-            -- ['ae'] = '@custom_array_element.inner',
-            ['aE'] = '@custom_array_element.outer',
           },
         },
         move = {
