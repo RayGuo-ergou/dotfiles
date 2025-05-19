@@ -40,34 +40,34 @@ return {
           liquid = { 'prettierd' },
           blade = { 'blade-formatter' },
         },
-        -- format_on_save = function()
-        --   local ft = vim.bo.filetype
-        --
-        --   -- Check if the file path includes 'templates'
-        --   -- Only for tools templates
-        --   local file_path = vim.fn.expand('%:p')
-        --   if string.find(file_path, 'templates') and string.find(file_path, 'rmvfy%-tools') then
-        --     return nil
-        --   end
-        --
-        --   ---@type conform.FormatOpts
-        --   local config = {
-        --     lsp_format = 'fallback',
-        --     async = false,
-        --     timeout_ms = timeout,
-        --   }
-        --
-        --   if ft == 'php' then
-        --     config.lsp_format = 'first'
-        --   end
-        --
-        --   -- do not format blade file with html lsp
-        --   if ft == 'blade' then
-        --     config.lsp_format = 'never'
-        --   end
-        --
-        --   return config
-        -- end,
+        format_on_save = function()
+          local ft = vim.bo.filetype
+
+          -- Check if the file path includes 'templates'
+          -- Only for tools templates
+          local file_path = vim.fn.expand('%:p')
+          if string.find(file_path, 'templates') and string.find(file_path, 'rmvfy%-tools') then
+            return nil
+          end
+
+          ---@type conform.FormatOpts
+          local config = {
+            lsp_format = 'fallback',
+            async = false,
+            timeout_ms = timeout,
+          }
+
+          if ft == 'php' then
+            config.lsp_format = 'first'
+          end
+
+          -- do not format blade file with html lsp
+          if ft == 'blade' then
+            config.lsp_format = 'never'
+          end
+
+          return config
+        end,
       })
 
       vim.keymap.set({ 'n', 'v' }, '<leader>cF', function()
