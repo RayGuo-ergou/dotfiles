@@ -123,5 +123,6 @@ vim.filetype.add({
     ['%.env%.[%w_.-]+'] = 'bash',
     ['.*/git/config'] = 'gitconfig',
     ['.*/git/ignore'] = 'gitignore',
+    ['.*/waybar/.*%.css'] = 'less'
   },
 })
