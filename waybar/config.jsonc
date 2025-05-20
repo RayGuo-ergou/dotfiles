@@ -112,7 +112,7 @@
 	},
 	"custom/lock": {
 		"tooltip": false,
-		"on-click": "hyprlock &",
+		"on-click": "1password --lock & hyprlock &",
 		"format": ""
 	},
 	"custom/power": {
