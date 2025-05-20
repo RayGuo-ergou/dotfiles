@@ -127,5 +127,6 @@ vim.filetype.add({
     ['.*/git/config'] = 'gitconfig',
     ['.*/git/ignore'] = 'gitignore',
     ['.*/waybar/.*%.css'] = 'less',
+    ['.*/wofi/.*%.css'] = 'less',
   },
 })
