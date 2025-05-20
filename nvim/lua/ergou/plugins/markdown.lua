@@ -25,6 +25,7 @@ return {
       preview = {
         hybrid_modes = { 'n' },
         debounce = 0,
+        map_gx = false,
       },
     },
   },
