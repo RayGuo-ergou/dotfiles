@@ -2,7 +2,7 @@
 
 * {
   font-family: "FiraCode Nerd Font";
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   min-height: 0;
 }
@@ -33,10 +33,14 @@
 }
 
 #workspaces button:hover {
-  box-shadow: none; /* Remove predefined box-shadow */
-  text-shadow: none; /* Remove predefined text-shadow */
-  background: none; /* Remove predefined background color (white) */
-  transition: none; /* Disable predefined animations */
+  /* Remove predefined box-shadow */
+  box-shadow: none;
+  /* Remove predefined text-shadow */
+  text-shadow: none;
+  /* Remove predefined background color (white) */
+  background: none;
+  /* Disable predefined animations */
+  transition: none;
   border-color: transparent;
 }
 
@@ -111,4 +115,5 @@
 }
 
 #workspaces button.urgent {
-  color: @red;}
+  color: @red;
+}
