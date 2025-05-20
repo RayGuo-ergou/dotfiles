@@ -1,8 +1,11 @@
+-- TODO: detect wsl utils
 local function detect_browser()
   if vim.fn.executable('wslview') == 1 then
     return 'wslview', {}
   elseif vim.fn.executable('wsl.exe') == 1 then
     return 'powershell.exe', { 'Start-Process' }
+  elseif vim.fn.executable('xdg-open') == 1 then
+    return 'xdg-open', {}
   else
     return 'x-www-browser', {}
   end

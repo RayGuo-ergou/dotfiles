@@ -14,3 +14,7 @@ source_if_exists() {
     fi
 }
 
+is_wsl() {
+    grep -qi microsoft /proc/version
+}
+

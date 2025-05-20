@@ -12,7 +12,9 @@ alias fe='ESLINT_USE_FLAT_CONFIG=true $HOME/.local/share/nvim/mason/bin/eslint_d
 alias ufe='ESLINT_USE_FLAT_CONFIG= $HOME/.local/share/nvim/mason/bin/eslint_d restart'
 alias rcd='\cd'
 alias resetlazy='rm -rf $HOME/.local/share/nvim/*'
-alias x-www-browser='wslview'
+if is_wsl; then
+  alias x-www-browser='wslview'
+fi
 alias php7='/usr/bin/php7.4'
 alias windowsroot='wslpath "$(wslvar USERPROFILE)"'
 alias yy='yazi'

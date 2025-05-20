@@ -129,7 +129,7 @@ export VI_MODE_SET_CURSOR=true
 
 # Fix run time dir for wsl with fzf-lua
 # see: https://github.com/ibhagwan/fzf-lua/issues/1243#issuecomment-2554289014
-if [[ $(grep -i Microsoft /proc/version) ]]; then
+if is_wsl; then
   export XDG_RUNTIME_DIR=~/.xdg_runtime
 fi
 
