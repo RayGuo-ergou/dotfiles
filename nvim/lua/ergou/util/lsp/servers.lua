@@ -74,7 +74,32 @@ M.get = function()
         vue = {
           hybridMode = true,
         },
+        typescript = {
+          tsserverRequestCommand = 'tsserverRequest',
+        },
       },
+      on_init = function(client)
+        client.handlers['tsserverRequest'] = function(_, result, context)
+          local clients = ergou.lsp.get_clients({ bufnr = context.bufnr, name = ergou.lsp.typescript.server_to_use })
+
+          if #clients == 0 then
+            return
+          end
+          local ts_client = clients[1]
+
+          local params = {
+            command = 'typescript.tsserverRequest',
+            -- First element is the arguments
+            arguments = unpack(result),
+          }
+
+          local res = ts_client:request_sync('workspace/executeCommand', params)
+          if res == nil or res.result == nil or res.err then
+            return
+          end
+          return res.result.body
+        end
+      end,
       on_attach = function(client, _)
         client.server_capabilities.documentFormattingProvider = nil
       end,
