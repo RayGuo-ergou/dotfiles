@@ -92,7 +92,7 @@ export BAT_THEME="Catppuccin Macchiato"
 # https://github.com/catppuccin/fzf
 # Removed bg so it's transparent
 export FZF_DEFAULT_OPTS="
---preview '([[ -f {} ]] && (bat --style=numbers --color=always --line-range :300 {})) || ([[ -f $PWD/{} ]] && (bat --style=numbers --color=always --line-range :300 $PWD/{})) || echo {}'
+--preview 'fzf-preview {}'
 --preview-window wrap
 --bind 'ctrl-y:execute-silent(readlink -f {} | xsel -b)'
 --bind ctrl-b:preview-page-up,ctrl-f:preview-page-down
@@ -116,7 +116,7 @@ export FZF_CTRL_R_OPTS="
   # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target
-  --preview 'bat -n --color=always {}'
+  --preview 'fzf-preview {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
   # Print tree structure in the preview window
