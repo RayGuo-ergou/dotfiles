@@ -149,6 +149,9 @@ return {
           },
         },
       },
+      image = {
+        enabled = true,
+      },
       indent = {
         enabled = true,
         -- Rainbow indent
