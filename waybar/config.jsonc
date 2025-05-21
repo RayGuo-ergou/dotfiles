@@ -8,12 +8,12 @@
 		"custom/music"
 	],
 	"modules-right": [
-		"pulseaudio",
-		"backlight",
-		"clock",
 		"tray",
 		"hyprland/language",
-		"custom/notification"
+		"custom/notification",
+		"pulseaudio",
+		"backlight",
+		"clock"
 	],
 	"hyprland/workspaces": {
 		"on-click": "activate",
