@@ -17,7 +17,7 @@
   border-radius: 1rem;
   margin: 5px;
   background-color: @surface0;
-  margin-left: 1rem;
+  margin-left: 2rem;
   padding: 4px;
   margin-top: 16px;
 }
@@ -56,6 +56,11 @@
   padding: 0.5rem 1rem;
   margin: 5px 0;
   margin-top: 16px;
+}
+
+#custom-notification {
+  margin-right: 1rem;
+  border-radius: 0px 1rem 1rem 0px;
 }
 
 #clock {
