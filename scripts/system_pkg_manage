@@ -1,0 +1,94 @@
+#!/bin/bash
+
+PKG_FILE="pkgs.txt"
+EXCLUDE_PATTERNS=(
+    # PHP7 has to manually installed
+    "php74*" 
+    # Not always a amd machine
+    "amd-ucode"
+    # Will need paru to install, so no need to reinstall it self
+    "paru*"
+    # Well, my working machine should not have steam
+    "steam"
+    # If not dual boot windows with arch, no need
+    "os-prober"
+)
+
+# Ensure paru is installed
+function ensure_paru() {
+    if ! command -v paru &> /dev/null; then
+        echo "Paru is not installed. Installing paru..."
+
+        # Ensure base-devel and git are installed
+        sudo pacman -Sy --needed --noconfirm base-devel git
+
+        # Create temp directory and clone paru
+        tmpdir=$(mktemp -d)
+        git clone https://aur.archlinux.org/paru.git "$tmpdir/paru"
+        pushd "$tmpdir/paru" > /dev/null || exit 1
+        makepkg -si --noconfirm
+        popd > /dev/null
+        rm -rf "$tmpdir"
+
+        echo "Paru installed successfully."
+    else
+        echo "Paru is already installed."
+    fi
+}
+
+function save_packages() {
+    echo "Saving explicitly installed packages..."
+
+    local all_pkgs
+    mapfile -t all_pkgs < <(pacman -Qqe)
+
+    local filtered_pkgs=()
+    for pkg in "${all_pkgs[@]}"; do
+        local skip=false
+        for pattern in "${EXCLUDE_PATTERNS[@]}"; do
+            if [[ $pkg == $pattern ]]; then
+                echo "Excluding package: $pkg"
+                skip=true
+                break
+            fi
+        done
+        if ! $skip; then
+            filtered_pkgs+=("$pkg")
+        fi
+    done
+
+    printf "%s\n" "${filtered_pkgs[@]}" > "$PKG_FILE"
+    echo "Saved $(wc -l < "$PKG_FILE") packages to $PKG_FILE (excludes: ${EXCLUDE_PATTERNS[*]})."
+}
+
+function install_packages() {
+    if [[ ! -f "$PKG_FILE" ]]; then
+        echo "Error: $PKG_FILE not found. Please run with 'save' first."
+        exit 1
+    fi
+    ensure_paru
+    echo "Installing packages from $PKG_FILE using paru..."
+    paru -S --needed --noconfirm $(< "$PKG_FILE")
+    echo "Packages installed successfully."
+}
+
+function usage() {
+    echo "Usage: $0 {save|install}"
+    echo "  save    - Save explicitly installed packages to $PKG_FILE, excluding patterns"
+    echo "  install - Install packages listed in $PKG_FILE using paru (auto-installs paru if needed)"
+}
+
+# Main
+case "$1" in
+    save)
+        save_packages
+        ;;
+    install)
+        install_packages
+        ;;
+    *)
+        usage
+        exit 1
+        ;;
+esac
+
