@@ -56,7 +56,7 @@
 	"clock": {
 		"timezone": "Australia/Melbourne",
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-		"format": "{:%a %h %m, %H:%M}"
+		"format": "{:%a %h %d, %H:%M}"
 	},
 	"backlight": {
 		"device": "nvidia_0",
