@@ -28,7 +28,7 @@
 }
 
 #workspaces button.active {
-  color: @sky;
+  color: @green;
   border-radius: 1rem;
 }
 
@@ -48,7 +48,6 @@
 #tray,
 #backlight,
 #clock,
-#battery,
 #pulseaudio,
 #language,
 #custom-notification {
@@ -69,24 +68,11 @@
   margin-right: 1rem;
 }
 
-#battery {
-  color: @green;
-}
-
-#battery.charging {
-  color: @green;
-}
-
-#battery.warning:not(.charging) {
-  color: @red;
-}
-
 #backlight {
   color: @yellow;
 }
 
-#backlight,
-#battery {
+#backlight {
   border-radius: 0;
 }
 

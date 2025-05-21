@@ -10,7 +10,6 @@
 	"modules-right": [
 		"pulseaudio",
 		"backlight",
-		"battery",
 		"clock",
 		"tray",
 		"hyprland/language",
@@ -76,23 +75,6 @@
 			"",
 			"",
 			""
-		]
-	},
-	"battery": {
-		"states": {
-			"warning": 30,
-			"critical": 15
-		},
-		"format": "{icon}",
-		"format-charging": "󰂄",
-		"format-plugged": "",
-		"format-alt": "{icon}",
-		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
 		]
 	},
 	"pulseaudio": {
