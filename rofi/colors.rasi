@@ -1,0 +1,18 @@
+
+/**
+ *
+ * Author : Levi Lacoss (fishyfishfish55)
+ * Github : @fishyfishfish55
+ *
+ * Also see https://github.com/catppuccin/rofi
+ * Colors
+ **/
+
+* {
+    background:     #24283BFF;
+    background-alt: #1F2032FF;
+    foreground:     #C0CAF5FF;
+    selected:       #8aadf4FF;
+    active:         #414868FF;
+    urgent:         #F7768EFF;
+}
