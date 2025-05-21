@@ -50,10 +50,8 @@
 #clock,
 #battery,
 #pulseaudio,
-#custom-lock,
 #language,
-#custom-notification,
-#custom-power {
+#custom-notification {
   background-color: @surface0;
   padding: 0.5rem 1rem;
   margin: 5px 0;
@@ -101,12 +99,6 @@
 #language {
   border-radius: 1rem 0px 0px 1rem;
   color: @lavender;
-}
-
-#custom-power {
-  margin-right: 1rem;
-  border-radius: 0px 1rem 1rem 0px;
-  color: @red;
 }
 
 #tray {

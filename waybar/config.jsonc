@@ -14,9 +14,7 @@
 		"clock",
 		"tray",
 		"hyprland/language",
-		"custom/notification",
-		"custom/lock",
-		"custom/power"
+		"custom/notification"
 	],
 	"hyprland/workspaces": {
 		"on-click": "activate",
@@ -109,16 +107,6 @@
 			]
 		},
 		"on-click": "pavucontrol"
-	},
-	"custom/lock": {
-		"tooltip": false,
-		"on-click": "~/.config/hypr/scripts/lock1password & hyprlock &",
-		"format": ""
-	},
-	"custom/power": {
-		"tooltip": false,
-		"on-click": "wlogout &",
-		"format": "⏻"
 	},
 	"hyprland/language": {
 		"format": "  {}",
