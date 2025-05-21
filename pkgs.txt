@@ -58,7 +58,6 @@ noto-fonts-emoji
 nvidia
 nvidia-settings
 openssh
-os-prober
 pavucontrol
 php
 pipewire
@@ -71,7 +70,6 @@ reflector
 slack-desktop
 slurp
 sof-firmware
-steam
 sudo
 swaync-git
 texinfo
