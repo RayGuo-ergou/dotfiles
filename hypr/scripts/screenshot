@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Directory to save screenshots
+save_dir=~/Pictures/Screenshots
+
+# Create the directory if it doesn't exist
+mkdir -p "$save_dir"
+
+# Filename with timestamp
+filename="$save_dir/$(date +%Y-%m-%d_%H-%M-%S).png"
+
+# Select region with slurp, capture with grim, save and copy to clipboard
+region=$(slurp -d -b '#000000b0' -c '#00000000')
+if [ -n "$region" ]; then
+    grim -g "$region" "$filename" && \
+    wl-copy < "$filename" && \
+    notify-send "Screenshot Taken" "$filename"
+fi
+
