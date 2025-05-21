@@ -112,7 +112,7 @@
 	},
 	"custom/lock": {
 		"tooltip": false,
-		"on-click": "1password --lock & hyprlock &",
+		"on-click": "~/.config/hypr/scripts/lock1password & hyprlock &",
 		"format": ""
 	},
 	"custom/power": {
