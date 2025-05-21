@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PKG_FILE="pkgs.txt"
+PKG_FILE="$DOTFILES/pkgs.txt"
 EXCLUDE_PATTERNS=(
     # PHP7 has to manually installed
     "php74*" 

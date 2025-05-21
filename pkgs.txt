@@ -85,7 +85,6 @@ vim
 waybar
 wget
 wl-clip-persist
-wlogout
 wofi
 xdg-desktop-portal-hyprland
 xdg-user-dirs
