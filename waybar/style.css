@@ -49,7 +49,6 @@
 #backlight,
 #clock,
 #pulseaudio,
-#language,
 #custom-notification {
   background-color: @surface0;
   padding: 0.5rem 1rem;
@@ -58,8 +57,8 @@
 }
 
 #custom-notification {
+  border-radius: 1rem;
   margin-right: 1rem;
-  border-radius: 0px 1rem 1rem 0px;
 }
 
 #clock {
@@ -79,17 +78,11 @@
 #pulseaudio {
   color: @maroon;
   border-radius: 1rem 0px 0px 1rem;
-  margin-left: 1rem;
 }
 
 #custom-music {
   color: @sky;
   border-radius: 1rem;
-}
-
-#language {
-  border-radius: 1rem 0px 0px 1rem;
-  color: @lavender;
 }
 
 #tray {

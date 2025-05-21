@@ -9,7 +9,6 @@
 	],
 	"modules-right": [
 		"tray",
-		"hyprland/language",
 		"custom/notification",
 		"pulseaudio",
 		"backlight",
@@ -89,13 +88,5 @@
 			]
 		},
 		"on-click": "pavucontrol"
-	},
-	"hyprland/language": {
-		"format": "  {}",
-		"format-en": "en",
-		"format-fa": "fa",
-		"interval": 1,
-		"keyboard-name": "gaming-keyboard",
-		"on-click": "hyprctl switchxkblayout gaming-keyboard next"
 	}
 }
