@@ -1,1 +1,2 @@
 $DOTFILES/fcitx5/classicui.conf=$HOME/.config/fcitx5/conf/classicui.conf
+$DOTFILES/fcitx5/rime.conf=$HOME/.config/fcitx5/conf/rime.conf
