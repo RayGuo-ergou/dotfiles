@@ -33,7 +33,13 @@ return {
 
       ---@see https://github.com/kristijanhusak/vim-dadbod-ui?tab=readme-ov-file#databases
       vim.g.dbs = {
-        { name = 'dev', url = 'postgres://postgres:mysecretpassword@localhost:5432' },
+        { name = 'local', url = 'postgres://postgres:mysecretpassword@localhost:5432' },
+        {
+          name = 'removify-dev',
+          url = function()
+            return vim.fn.getenv('REMOVIFY_DEV_DB_URI')
+          end,
+        },
       }
     end,
   },
