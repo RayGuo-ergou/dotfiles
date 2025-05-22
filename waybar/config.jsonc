@@ -5,7 +5,8 @@
 		"hyprland/workspaces"
 	],
 	"modules-center": [
-		"custom/music"
+		"custom/music",
+		"hyprland/submap"
 	],
 	"modules-right": [
 		"tray",
@@ -88,5 +89,9 @@
 			]
 		},
 		"on-click": "pavucontrol"
+	},
+	"hyprland/submap": {
+		"format": "{}",
+		"tooltip": false
 	}
 }
