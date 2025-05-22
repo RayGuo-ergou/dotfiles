@@ -3,7 +3,7 @@ return {
   opts = {
     lsp = {
       priority = {
-        volar = 11,
+        vue_ls = 11,
       },
     },
   },

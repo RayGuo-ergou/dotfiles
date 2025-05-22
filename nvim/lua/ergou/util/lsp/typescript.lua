@@ -72,8 +72,8 @@ M.get_vue_plugin = function()
   local has_mason, mason_registry = pcall(require, 'mason-registry')
 
   if has_mason then
-    local has_volar = pcall(mason_registry.get_package, 'vue-language-server')
-    if has_volar then
+    local has_vue_lsp = pcall(mason_registry.get_package, 'vue-language-server')
+    if has_vue_lsp then
       local vue_ts_plugin_path = vim.fn.expand('$MASON/packages/vue-language-server/node_modules/@vue/language-server')
       vue_plugin = {
         name = '@vue/typescript-plugin',
