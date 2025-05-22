@@ -18,8 +18,8 @@ configuration {
   drun-display-format:        "{name}";
 	kb-accept-entry: "Control+m,Return,KP_Enter";
 	kb-remove-to-eol: "";
-  kb-row-down: "Control+j";
-  kb-row-up: "Control+k";
+  kb-row-down: "Control+j,Down";
+  kb-row-up: "Control+k,Up";
 	kb-mode-complete: "";
 }
 
