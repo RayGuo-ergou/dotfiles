@@ -94,7 +94,7 @@ export BAT_THEME="Catppuccin Macchiato"
 export FZF_DEFAULT_OPTS="
 --preview 'fzf-preview {}'
 --preview-window wrap
---bind 'ctrl-y:execute-silent(readlink -f {} | xsel -b)'
+--bind 'ctrl-y:execute-silent(readlink -f {} | wl-copy)'
 --bind ctrl-b:preview-page-up,ctrl-f:preview-page-down
 --bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down
 --bind shift-up:preview-top,shift-down:preview-bottom
@@ -109,7 +109,7 @@ export FZF_DEFAULT_OPTS="
 export FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
   --bind 'ctrl-/:toggle-preview'
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | xsel -b)'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)'
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
 
