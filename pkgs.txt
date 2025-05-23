@@ -10,9 +10,9 @@ bat
 bazecor
 bluez
 bluez-utils
-btop
 btrfs-progs
 cliphist
+composer
 discord
 dolphin
 efibootmgr
@@ -28,6 +28,7 @@ gnome-themes-extra
 grim
 grub
 grub-btrfs
+htop
 hypridle
 hyprland
 hyprlock
@@ -45,6 +46,7 @@ linux-firmware
 linux-headers
 man-db
 man-pages
+mariadb
 meson
 mkcert
 mkinitcpio-numlock
@@ -57,6 +59,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 nvidia
 nvidia-settings
+nvtop
 openssh
 pavucontrol
 php
@@ -67,11 +70,13 @@ pipewire-jack
 pipewire-pulse
 qt5-wayland
 reflector
+rofi-wayland
 slack-desktop
 slurp
 sof-firmware
 sudo
 swaync-git
+systemd-ui
 texinfo
 timeshift
 timeshift-autosnap
@@ -88,6 +93,7 @@ wl-clip-persist
 wofi
 xdg-desktop-portal-hyprland
 xdg-user-dirs
+yazi
 zen-browser-bin
 zoxide
 zsh

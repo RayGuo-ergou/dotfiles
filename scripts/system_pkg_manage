@@ -12,6 +12,9 @@ EXCLUDE_PATTERNS=(
     "steam"
     # If not dual boot windows with arch, no need
     "os-prober"
+    # Working PC no need chinese keyboard
+    "*rime*"
+    "*fcitx5*"
 )
 
 # Ensure paru is installed
