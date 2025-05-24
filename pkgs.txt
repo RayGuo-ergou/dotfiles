@@ -1,5 +1,6 @@
 1password
 1password-cli
+7zip
 acpid
 adwaita-qt5-git
 adwaita-qt6-git
@@ -11,10 +12,10 @@ bazecor
 bluez
 bluez-utils
 btrfs-progs
+chromium
 cliphist
 composer
 discord
-dolphin
 efibootmgr
 eza
 fastfetch
@@ -25,6 +26,7 @@ git
 git-delta
 github-cli
 gnome-themes-extra
+go
 grim
 grub
 grub-btrfs
@@ -78,6 +80,7 @@ sudo
 swaync-git
 systemd-ui
 texinfo
+thunar
 timeshift
 timeshift-autosnap
 tmux-git
@@ -94,6 +97,7 @@ wofi
 xdg-desktop-portal-hyprland
 xdg-user-dirs
 yazi
+ydotool
 zen-browser-bin
 zoxide
 zsh
