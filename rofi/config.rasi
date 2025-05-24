@@ -9,13 +9,12 @@
 
 /*****----- Configuration -----*****/
 configuration {
-  modi:                       "drun,window";
   /* If need icon explicitly add -show-icons */
   show-icons:                 false;
   display-drun:               " ";
   display-window:             " ";
   font:                  "FiraCode Mono Nerd Font 18";
-  drun-display-format:        "{name}";
+  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
 	kb-accept-entry: "Control+m,Return,KP_Enter";
 	kb-remove-to-eol: "";
   kb-row-down: "Control+j,Down";
