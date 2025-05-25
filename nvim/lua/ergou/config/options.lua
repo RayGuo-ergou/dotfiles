@@ -128,5 +128,6 @@ vim.filetype.add({
     ['.*/git/ignore'] = 'gitignore',
     ['.*/waybar/.*%.css'] = 'less',
     ['.*/wofi/.*%.css'] = 'less',
+    ['.*/hypr/.*%.conf'] = 'hyprlang',
   },
 })

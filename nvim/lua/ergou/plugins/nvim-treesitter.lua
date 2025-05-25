@@ -100,6 +100,7 @@ return {
         'nix',
         'zig',
         'blade',
+        'hyprlang',
       },
       incremental_selection = {
         enable = true,
