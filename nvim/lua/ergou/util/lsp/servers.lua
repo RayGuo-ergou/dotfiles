@@ -263,6 +263,7 @@ M.get = function()
         },
       },
     },
+    hyprls = {},
   }
 
   return servers
