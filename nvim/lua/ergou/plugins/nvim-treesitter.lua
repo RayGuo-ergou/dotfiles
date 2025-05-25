@@ -185,7 +185,6 @@ return {
     ---@param opts TSConfig
     config = function(_, opts)
       local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
-      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
       local map = vim.keymap.set
 
       if type(opts.ensure_installed) == 'table' then
