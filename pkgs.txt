@@ -12,7 +12,6 @@ bazecor
 bluez
 bluez-utils
 btrfs-progs
-chromium
 cliphist
 composer
 discord

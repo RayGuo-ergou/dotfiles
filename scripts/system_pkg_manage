@@ -15,6 +15,10 @@ EXCLUDE_PATTERNS=(
     # Working PC no need chinese keyboard
     "*rime*"
     "*fcitx5*"
+    # No need all the browsers
+    "chromium"
+    "firefox"
+    "chrome"
 )
 
 # Ensure paru is installed
