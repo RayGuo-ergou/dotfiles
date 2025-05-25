@@ -1,0 +1,10 @@
+create_if_not_exists() {
+    local filepath="$DOTFILES/hypr/$1"
+    if test -r "$filepath"; then
+        echo "File already exists: $filepath"
+    else
+        touch "$filepath"
+    fi
+}
+
+create_if_not_exists "monitors.conf"
