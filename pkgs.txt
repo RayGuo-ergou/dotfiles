@@ -14,6 +14,8 @@ bluez-utils
 btrfs-progs
 cliphist
 composer
+datagrip
+datagrip-jre
 discord
 efibootmgr
 eza
@@ -29,6 +31,7 @@ go
 grim
 grub
 grub-btrfs
+hblock
 htop
 hypridle
 hyprland
@@ -39,6 +42,7 @@ hyprpolkitagent
 hyprsysteminfo
 imagemagick
 ipset
+jdk-openjdk
 jq
 kitty
 lazygit
@@ -52,6 +56,7 @@ meson
 mkcert
 mkinitcpio-numlock
 mtools
+ncdu
 network-manager-applet
 networkmanager
 ninja
