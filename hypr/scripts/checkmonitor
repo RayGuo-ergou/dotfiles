@@ -1,0 +1,12 @@
+#!/bin/bash
+
+connected_monitors=$(hyprctl monitors -j | jq -r '.[].name')
+
+monitor_count=$(echo "$connected_monitors" | wc -l)
+
+if echo "$connected_monitors" | grep -q "eDP-1" && [ "$monitor_count" -gt 1 ]; then
+    echo "Disabling eDP-1 because more than one monitor is connected."
+    hyprctl keyword monitor "eDP-1,disable"
+else
+    echo "eDP-1 not disabled (either not connected or it's the only monitor)."
+fi
