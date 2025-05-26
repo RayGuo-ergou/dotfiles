@@ -16,7 +16,13 @@ return {
       'vim-dadbod',
     },
     keys = {
-      { '<leader>D', '<cmd>DBUIToggle<CR>', desc = 'Toggle DBUI' },
+      {
+        '<leader>D',
+        function()
+          vim.cmd('DBUIToggle')
+        end,
+        desc = 'Toggle DBUI',
+      },
     },
     init = function()
       local data_path = vim.fn.stdpath('data')
@@ -41,12 +47,6 @@ return {
           name = 'removify-dev',
           url = function()
             return vim.fn.getenv('REMOVIFY_DEV_DB_URI')
-          end,
-        },
-        {
-          name = 'removify-prod',
-          url = function()
-            return vim.fn.getenv('REMOVIFY_PROD_DB_URI')
           end,
         },
       }
