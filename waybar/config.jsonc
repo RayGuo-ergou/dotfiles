@@ -88,7 +88,7 @@
 				" "
 			]
 		},
-		"on-click": "pavucontrol"
+		"on-click": "GTK_THEME=Adwaita-dark pavucontrol"
 	},
 	"hyprland/submap": {
 		"format": "{}",
