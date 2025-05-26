@@ -9,6 +9,7 @@
 		"hyprland/submap"
 	],
 	"modules-right": [
+		"systemd-failed-units",
 		"tray",
 		"custom/notification",
 		"pulseaudio",
@@ -93,5 +94,10 @@
 	"hyprland/submap": {
 		"format": "{}",
 		"tooltip": false
+	},
+	"systemd-failed-units": {
+		"hide-on-ok": false, // Do not hide if there is zero failed units.
+		"format": "✗ {nr_failed}",
+		"format-ok": "✓"
 	}
 }

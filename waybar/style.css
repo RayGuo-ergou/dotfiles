@@ -8,6 +8,7 @@
 }
 
 #custom-music,
+#systemd-failed-units,
 #workspaces,
 #tray,
 #backlight,
@@ -15,33 +16,30 @@
 #pulseaudio,
 #submap,
 #custom-notification {
+  border-radius: 1rem;
   background-color: @surface0;
   opacity: 0.75;
   padding: 0.5rem 1rem;
-  margin: 5px 0;
+  margin: 5px;
   margin-top: 16px;
 }
 
 #waybar {
   background: transparent;
   color: @text;
-  margin: 5px 5px;
 }
 
 #workspaces {
-  border-radius: 1rem;
   margin-left: 2rem;
   padding: 4px;
 }
 
 #workspaces button {
   color: @lavender;
-  border-radius: 1rem;
 }
 
 #workspaces button.active {
   color: @blue;
-  border-radius: 1rem;
 }
 
 #workspaces button:hover {
@@ -58,12 +56,10 @@
 
 
 #custom-notification {
-  border-radius: 1rem;
   margin-right: 1rem;
 }
 
 #submap {
-  border-radius: 1rem;
   margin-left: 1rem;
   color: @red;
 }
@@ -71,7 +67,8 @@
 #clock {
   color: @blue;
   border-radius: 0px 1rem 1rem 0px;
-  margin-right: 1rem;
+  margin-left: 0;
+  margin-right: 2rem;
 }
 
 #backlight {
@@ -85,18 +82,25 @@
 #pulseaudio {
   color: @maroon;
   border-radius: 1rem 0px 0px 1rem;
+  margin-right: 0;
 }
 
 #custom-music {
   color: @sky;
-  border-radius: 1rem;
 }
 
 #tray {
   margin-right: 1rem;
-  border-radius: 1rem;
 }
 
 #workspaces button.urgent {
+  color: @red;
+}
+
+#systemd-failed-units.ok {
+  color: @green;
+}
+
+#systemd-failed-units.degraded {
   color: @red;
 }
