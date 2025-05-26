@@ -11,7 +11,10 @@ return {
   {
     'kristijanhusak/vim-dadbod-ui',
     cmd = { 'DBUI', 'DBUIToggle', 'DBUIAddConnection', 'DBUIFindBuffer' },
-    dependencies = 'vim-dadbod',
+    dependencies = {
+      { 'eslam-allam/vim-dadbod-ssh' },
+      'vim-dadbod',
+    },
     keys = {
       { '<leader>D', '<cmd>DBUIToggle<CR>', desc = 'Toggle DBUI' },
     },
@@ -38,6 +41,12 @@ return {
           name = 'removify-dev',
           url = function()
             return vim.fn.getenv('REMOVIFY_DEV_DB_URI')
+          end,
+        },
+        {
+          name = 'removify-prod',
+          url = function()
+            return vim.fn.getenv('REMOVIFY_PROD_DB_URI')
           end,
         },
       }
