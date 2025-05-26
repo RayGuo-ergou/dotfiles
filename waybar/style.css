@@ -7,6 +7,21 @@
   min-height: 0;
 }
 
+#custom-music,
+#workspaces,
+#tray,
+#backlight,
+#clock,
+#pulseaudio,
+#submap,
+#custom-notification {
+  background-color: @surface0;
+  opacity: 0.75;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+  margin-top: 16px;
+}
+
 #waybar {
   background: transparent;
   color: @text;
@@ -15,11 +30,8 @@
 
 #workspaces {
   border-radius: 1rem;
-  margin: 5px;
-  background-color: @surface0;
   margin-left: 2rem;
   padding: 4px;
-  margin-top: 16px;
 }
 
 #workspaces button {
@@ -44,19 +56,6 @@
   border-color: transparent;
 }
 
-#custom-music,
-#tray,
-#backlight,
-#clock,
-#pulseaudio,
-#submap,
-#custom-notification {
-  background-color: @surface0;
-  opacity: 0.75;
-  padding: 0.5rem 1rem;
-  margin: 5px 0;
-  margin-top: 16px;
-}
 
 #custom-notification {
   border-radius: 1rem;
