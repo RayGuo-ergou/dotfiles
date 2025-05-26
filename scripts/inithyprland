@@ -7,4 +7,4 @@ create_if_not_exists() {
     fi
 }
 
-create_if_not_exists "monitors.conf"
+create_if_not_exists "machine.conf"
