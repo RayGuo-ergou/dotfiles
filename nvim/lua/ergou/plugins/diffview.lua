@@ -1,3 +1,11 @@
+local toggle = function()
+  if next(require('diffview.lib').views) == nil then
+    vim.cmd('DiffviewOpen')
+  else
+    vim.cmd('DiffviewClose')
+  end
+end
+
 return {
   'sindrets/diffview.nvim',
   opts = function()
@@ -21,13 +29,12 @@ return {
   keys = {
     {
       '<leader>dv',
-      function()
-        if next(require('diffview.lib').views) == nil then
-          vim.cmd('DiffviewOpen')
-        else
-          vim.cmd('DiffviewClose')
-        end
-      end,
+      toggle,
+      desc = 'Toggle Diffview',
+    },
+    {
+      '<leader>gd',
+      toggle,
       desc = 'Toggle Diffview',
     },
     {
