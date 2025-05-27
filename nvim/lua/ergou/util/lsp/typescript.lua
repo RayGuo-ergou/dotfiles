@@ -119,6 +119,37 @@ M.on_attach = function(client, bufnr)
   end
 
   client.server_capabilities = existing_capabilities
+
+  local function setup_lsp_recursive()
+    local max_retries = 5
+    local retry_delay = 500
+
+    local function attempt_setup(current_attempt)
+      if current_attempt > max_retries then
+        return
+      end
+
+      local params = {
+        command = 'typescript.tsserverRequest',
+        arguments = {
+          'status',
+        },
+      }
+
+      client:exec_cmd(params, { bufnr = bufnr }, function(_, result)
+        if result then
+          vim.lsp.enable('vue_ls')
+        else
+          vim.defer_fn(function()
+            attempt_setup(current_attempt + 1)
+          end, retry_delay)
+        end
+      end)
+    end
+
+    attempt_setup(1)
+  end
+  setup_lsp_recursive()
 end
 
 return M

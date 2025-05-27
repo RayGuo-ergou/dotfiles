@@ -70,6 +70,8 @@ M.get = function()
       },
     },
     vue_ls = {
+      -- Will manual start
+      enabled = false,
       init_options = {
         vue = {
           hybridMode = true,
@@ -78,6 +80,7 @@ M.get = function()
           tsserverRequestCommand = 'tsserverRequest',
         },
       },
+      ---XXX: will block ui
       on_init = function(client)
         client.handlers['tsserverRequest'] = function(_, result, context)
           local clients = ergou.lsp.get_clients({ bufnr = context.bufnr, name = ergou.lsp.typescript.server_to_use })
