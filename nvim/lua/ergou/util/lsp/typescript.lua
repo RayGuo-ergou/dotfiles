@@ -120,7 +120,7 @@ M.on_attach = function(client, bufnr)
 
   client.server_capabilities = existing_capabilities
 
-  local function setup_lsp_recursive()
+  local function setup_vue_lsp_recursive()
     local max_retries = 5
     local retry_delay = 500
 
@@ -149,7 +149,8 @@ M.on_attach = function(client, bufnr)
 
     attempt_setup(1)
   end
-  setup_lsp_recursive()
+  -- Uncomment for v3
+  -- setup_vue_lsp_recursive()
 end
 
 return M

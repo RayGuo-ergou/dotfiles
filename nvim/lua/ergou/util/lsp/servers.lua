@@ -70,8 +70,8 @@ M.get = function()
       },
     },
     vue_ls = {
-      -- Will manual start
-      enabled = false,
+      -- For v3 Will manual start
+      -- enabled = false,
       init_options = {
         vue = {
           hybridMode = true,
