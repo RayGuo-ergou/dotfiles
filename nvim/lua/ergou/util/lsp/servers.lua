@@ -89,15 +89,26 @@ M.get = function()
 
           local params = {
             command = 'typescript.tsserverRequest',
-            -- First element is the arguments
             arguments = unpack(result),
           }
 
-          local res = ts_client:request_sync('workspace/executeCommand', params)
-          if res == nil or res.result == nil or res.err then
-            return
+          -- need vtsls to start
+          local max_retries = 5
+          local retry_delay = 100
+
+          for attempt = 1, max_retries do
+            local res = ts_client:request_sync('workspace/executeCommand', params)
+
+            if res ~= nil and res.result ~= nil and not res.err then
+              return res.result.body
+            end
+
+            if attempt < max_retries then
+              vim.wait(retry_delay)
+            end
           end
-          return res.result.body
+
+          return nil
         end
       end,
       on_attach = function(client, _)
