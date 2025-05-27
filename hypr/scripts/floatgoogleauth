@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# I have mixed feeling about this because you can see the delay
+handle() {
+  case "$1" in
+    activewindow*)
+      win_json=$(hyprctl activewindow -j)
+      title=$(echo "$win_json" | jq -r '.title')
+      class=$(echo "$win_json" | jq -r '.class')
+      address=$(echo "$win_json" | jq -r '.address')
+      floating=$(echo "$win_json" | jq -r '.floating')
+
+      echo "TITLE: $title"
+      echo "CLASS: $class"
+      echo "ADDRESS: $address"
+      echo "FLOATING: $floating"
+
+      expected_prefix="Sign in – Google accounts —"
+
+      if [ "$class" = "zen" ] \
+         && printf '%s\n' "$title" | grep -Fq "$expected_prefix" \
+         && [ "$floating" = "false" ]; then
+        echo "Floating window at $address"
+        hyprctl dispatch togglefloating "address:$address"
+      fi
+      ;;
+  esac
+}
+
+SOCKET="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+socat -U - UNIX-CONNECT:"$SOCKET" | while read -r line; do
+  handle "$line"
+done
+
