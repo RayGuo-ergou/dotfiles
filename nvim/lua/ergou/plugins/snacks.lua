@@ -151,6 +151,7 @@ return {
       },
       image = {
         enabled = true,
+        inline = false,
       },
       indent = {
         enabled = true,
