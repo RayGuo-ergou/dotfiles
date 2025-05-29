@@ -6,7 +6,12 @@ function M.copy_filename()
   local filepath = vim.fn.expand('%:p')
   -- Get just the filename
   local filename = vim.fn.expand('%:t')
+  local line_number = vim.api.nvim_win_get_cursor(0)[1]
   local modify = vim.fn.fnamemodify
+  local relative_cwd = modify(filepath, ':.')
+  local relative_home = modify(filepath, ':~')
+  local filename_no_extension = modify(filename, ':r')
+  local extension = modify(filename, ':e')
 
   -- Skip if no file is open
   if filepath == '' then
@@ -14,22 +19,30 @@ function M.copy_filename()
     return
   end
 
+  local function add_line_number(str)
+    return str .. ' +' .. line_number
+  end
+
   local results = {
-    modify(filepath, ':.'),
-    modify(filepath, ':~'),
+    relative_cwd,
+    add_line_number(relative_cwd),
+    relative_home,
+    add_line_number(relative_home),
     filepath,
     filename,
-    modify(filename, ':r'),
-    modify(filename, ':e'),
+    filename_no_extension,
+    extension,
   }
 
   local items = {
     'Path relative to CWD: ' .. results[1],
-    'Path relative to HOME: ' .. results[2],
-    'Absolute path: ' .. results[3],
-    'Filename: ' .. results[4],
-    'Filename without extension: ' .. results[5],
-    'Extension of the filename: ' .. results[6],
+    'Path relative to CWD with line number: ' .. results[2],
+    'Path relative to HOME: ' .. results[3],
+    'Path relative to HOME with line number: ' .. results[4],
+    'Absolute path: ' .. results[5],
+    'Filename: ' .. results[6],
+    'Filename without extension: ' .. results[7],
+    'Extension of the filename: ' .. results[8],
   }
 
   vim.ui.select(items, {
