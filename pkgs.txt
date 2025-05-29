@@ -14,9 +14,11 @@ bluez-utils
 btrfs-progs
 cliphist
 composer
+cpio
 datagrip
 datagrip-jre
 discord
+dosfstools
 efibootmgr
 eza
 fastfetch
@@ -79,6 +81,7 @@ reflector
 rofi-wayland
 slack-desktop
 slurp
+socat
 sof-firmware
 sudo
 swaync-git
@@ -91,6 +94,7 @@ tmux-git
 trash-cli
 tree
 ttf-firacode-nerd
+tumbler
 unzip
 uwsm
 vim
