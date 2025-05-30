@@ -22,6 +22,8 @@ alias lg='TERM=screen-256color lazygit'
 alias cdlazyvim='cd ~/.local/share/nvim/lazy'
 alias se='sessionizer'
 alias icat='kitty icat'
+# journal warning error
+alias jourwr='journalctl -p warning..emerg -r'
 
 vimf() {
   local file=$(fd --type f --hidden --exclude .git | fzf --reverse)
