@@ -16,13 +16,22 @@ return {
       { 'n', '<c-u>', actions.scroll_view(-0.25), { desc = 'Scroll the view up' } },
       { 'n', '<c-d>', actions.scroll_view(0.25), { desc = 'Scroll the view down' } },
     }
+    ---@type DiffviewConfig
     return {
       keymaps = {
         file_panel = scrollKeyMapping,
         file_history_panel = scrollKeyMapping,
       },
       enhanced_diff_hl = true,
-      hooks = {}, -- See ':h diffview-config-hooks'
+      hooks = {
+        -- Tailwind lsp has a bug that likely a infinity loop that will use all cpu resources
+        view_opened = function()
+          vim.cmd('LspStop tailwindcss')
+        end,
+        view_closed = function()
+          vim.cmd('LspStart tailwindcss')
+        end,
+      }, -- See ':h diffview-config-hooks'
     }
   end,
   cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
