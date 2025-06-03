@@ -48,7 +48,6 @@ imagemagick
 ipset
 jdk-openjdk
 jq
-kitty
 lazygit
 linux
 linux-firmware
