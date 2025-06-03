@@ -121,6 +121,7 @@ vim.filetype.add({
   },
   filename = {
     ['vifmrc'] = 'vim',
+    ['config'] = 'bash',
   },
   pattern = {
     ['%.env%.[%w_.-]+'] = 'bash',
