@@ -1,0 +1,7 @@
+font-family = FiraCode Nerd Font
+keybind = performable:ctrl+v=paste_from_clipboard
+copy-on-select = clipboard
+font-size = 14
+background-opacity = 0.75
+# TODO: add into update-catppuccin script
+theme = catppuccin-macchiato.conf
