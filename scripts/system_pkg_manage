@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PKG_FILE="$DOTFILES/pkgs.txt"
+PKG_ALL_FILE="$DOTFILES/pkgs-all.txt"
 EXCLUDE_PATTERNS=(
     # PHP7 has to manually installed
     "php74*" 
@@ -25,19 +26,14 @@ EXCLUDE_PATTERNS=(
 function ensure_paru() {
     if ! command -v paru &> /dev/null; then
         echo "Paru is not installed. Installing paru..."
-
-        # Ensure base-devel and git are installed
         sudo pacman -Sy --needed --noconfirm base-devel git
-
-        # Create temp directory and clone paru
         tmpdir=$(mktemp -d)
         git clone https://aur.archlinux.org/paru.git "$tmpdir/paru"
         pushd "$tmpdir/paru" > /dev/null || exit 1
         makepkg -si --noconfirm
         popd > /dev/null
         rm -rf "$tmpdir"
-
-        echo "Paru installed successfully."
+        echo "Paru installed successally."
     else
         echo "Paru is already installed."
     fi
@@ -45,10 +41,14 @@ function ensure_paru() {
 
 function save_packages() {
     echo "Saving explicitly installed packages..."
-
     local all_pkgs
     mapfile -t all_pkgs < <(pacman -Qqe)
 
+    # Save complete package list
+    printf "%s\n" "${all_pkgs[@]}" > "$PKG_ALL_FILE"
+    echo "Saved $(wc -l < "$PKG_ALL_FILE") packages to $PKG_ALL_FILE (complete list)."
+
+    # Save filtered package list
     local filtered_pkgs=()
     for pkg in "${all_pkgs[@]}"; do
         local skip=false
@@ -63,26 +63,44 @@ function save_packages() {
             filtered_pkgs+=("$pkg")
         fi
     done
-
     printf "%s\n" "${filtered_pkgs[@]}" > "$PKG_FILE"
-    echo "Saved $(wc -l < "$PKG_FILE") packages to $PKG_FILE (excludes: ${EXCLUDE_PATTERNS[*]})."
+    echo "Saved $(wc -l < "$PKG_FILE") packages to $PKG_FILE (filtered list, excludes: ${EXCLUDE_PATTERNS[*]})."
 }
 
 function install_packages() {
-    if [[ ! -f "$PKG_FILE" ]]; then
-        echo "Error: $PKG_FILE not found. Please run with 'save' first."
+    local use_all=false
+    local target_file="$PKG_FILE"
+
+    # Parse the all flag
+    if [[ "$1" == "--all" ]]; then
+        use_all=true
+        target_file="$PKG_ALL_FILE"
+    fi
+
+    if [[ ! -f "$target_file" ]]; then
+        echo "Error: $target_file not found. Please run with 'save' first."
         exit 1
     fi
+
     ensure_paru
-    echo "Installing packages from $PKG_FILE using paru..."
-    paru -S --needed --noconfirm $(< "$PKG_FILE")
-    echo "Packages installed successfully."
+
+    if $use_all; then
+        echo "Installing ALL packages from $target_file using paru..."
+    else
+        echo "Installing filtered packages from $target_file using paru..."
+    fi
+
+    paru -S --needed --noconfirm $(< "$target_file")
+    echo "Packages installed successally."
 }
 
 function usage() {
-    echo "Usage: $0 {save|install}"
-    echo "  save    - Save explicitly installed packages to $PKG_FILE, excluding patterns"
-    echo "  install - Install packages listed in $PKG_FILE using paru (auto-installs paru if needed)"
+    echo "Usage: $0 {save|install [--all]}"
+    echo "  save           - Save packages to both $PKG_FILE (filtered) and $PKG_ALL_FILE (complete)"
+    echo "  install        - Install filtered packages from $PKG_FILE using paru"
+    echo "  install --all - Install all packages from $PKG_ALL_FILE using paru"
+    echo ""
+    echo "The script automatically installs paru if needed during install operations."
 }
 
 # Main
@@ -91,11 +109,10 @@ case "$1" in
         save_packages
         ;;
     install)
-        install_packages
+        install_packages "$2"
         ;;
     *)
         usage
         exit 1
         ;;
 esac
-
