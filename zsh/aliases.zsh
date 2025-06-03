@@ -24,6 +24,8 @@ alias se='sessionizer'
 alias icat='kitty icat'
 # journal warning error
 alias jourwr='journalctl -p warning..emerg -r'
+# see https://forum.endeavouros.com/t/how-to-delete-orphaned-packages-pacman-vs-pamac/45218
+alias rmorp='orphans=$(pacman -Qdtq); [[ -n "$orphans" ]] && sudo pacman -Rsn $orphans || echo "No orphaned packages found."'
 
 vimf() {
   local file=$(fd --type f --hidden --exclude .git | fzf --reverse)
