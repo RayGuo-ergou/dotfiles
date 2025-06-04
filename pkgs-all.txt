@@ -159,6 +159,7 @@ slurp
 socat
 steam
 sudo
+swappy
 swaync-git
 systemd-ui
 texinfo

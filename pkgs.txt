@@ -84,6 +84,7 @@ slack-desktop
 slurp
 socat
 sudo
+swappy
 swaync-git
 systemd-ui
 texinfo
