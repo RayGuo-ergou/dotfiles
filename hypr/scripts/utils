@@ -1,0 +1,5 @@
+# see https://feriman.com/stop-shell-script-overlaps-how-to-prevent-multiple-instances-from-running-simultaneously/
+PreventMultipleRun() {
+    lockfile="/tmp/$(basename "$0").lock"
+    [ -f "$lockfile" ] && ps -p $(cat $lockfile) > /dev/null && echo "$(basename "$0") is still running." && exit || echo $$ > $lockfile
+}
