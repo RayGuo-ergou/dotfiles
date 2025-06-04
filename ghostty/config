@@ -9,7 +9,7 @@ font-size = 14
 font-style = retina
 background-opacity = 0.75
 mouse-scroll-multiplier = 0.5
-adjust-underline-position = 3
+adjust-underline-position = 2
 # TODO: add into update-catppuccin script
 theme = catppuccin-macchiato.conf
 
