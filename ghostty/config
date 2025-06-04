@@ -1,6 +1,8 @@
 font-family = FiraCode Nerd Font
 keybind = performable:ctrl+v=paste_from_clipboard
-copy-on-select = clipboard
+keybind = performable:ctrl+c=copy_to_clipboard
+# Having infinity notification
+# copy-on-select = clipboard
 font-size = 14
 # https://github.com/ghostty-org/ghostty/discussions/5948
 font-style = retina
