@@ -77,41 +77,33 @@ M.get = function()
           hybridMode = true,
         },
         typescript = {
-          tsserverRequestCommand = 'tsserverRequest',
+          tsserverNotificationCommands = {
+            request = 'typescript.tsserverRequest',
+            response = 'typescript.tsserverResponse',
+          },
         },
       },
-      ---XXX: will block ui
       on_init = function(client)
-        client.handlers['tsserverRequest'] = function(_, result, context)
+        client.handlers['typescript.tsserverRequest'] = function(_, result, context)
           local clients = ergou.lsp.get_clients({ bufnr = context.bufnr, name = ergou.lsp.typescript.server_to_use })
-
           if #clients == 0 then
             return
           end
           local ts_client = clients[1]
 
-          local params = {
+          local param = unpack(result)
+          local id, command, payload = unpack(param)
+          ts_client:exec_cmd({
             command = 'typescript.tsserverRequest',
-            arguments = unpack(result),
-          }
-
-          -- need vtsls to start
-          local max_retries = 5
-          local retry_delay = 100
-
-          for attempt = 1, max_retries do
-            local res = ts_client:request_sync('workspace/executeCommand', params)
-
-            if res ~= nil and res.result ~= nil and not res.err then
-              return res.result.body
-            end
-
-            if attempt < max_retries then
-              vim.wait(retry_delay)
-            end
-          end
-
-          return nil
+            arguments = {
+              command,
+              payload,
+            },
+          }, { bufnr = context.bufnr }, function(_, r)
+            local response_data = { { id, r.body } }
+            ---@diagnostic disable-next-line: param-type-mismatch
+            client:notify('typescript.tsserverResponse', response_data)
+          end)
         end
       end,
       on_attach = function(client, _)
