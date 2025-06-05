@@ -18,7 +18,10 @@ if [ -n "$region" ]; then
         wl-copy < "$filename" && \
         {
             # Send clickable notification and handle response
+            # TODO: config swaync style for screenshot category
             response=$(notify-send "Screenshot Taken" "Click to edit with Swappy" \
+                --icon="$filename" \
+                --category="screenshot" \
                 --action="edit=Edit with Swappy" \
                 --action="open=Open Folder" \
                 --wait)
