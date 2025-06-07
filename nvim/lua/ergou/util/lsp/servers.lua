@@ -77,9 +77,9 @@ M.get = function()
           hybridMode = true,
         },
         typescript = {
-          tsserverNotificationCommands = {
-            request = 'typescript.tsserverRequest',
-            response = 'typescript.tsserverResponse',
+          tsserverRequestCommand = {
+            'typescript.tsserverRequest',
+            'typescript.tsserverResponse',
           },
         },
       },
@@ -92,7 +92,7 @@ M.get = function()
           local ts_client = clients[1]
 
           local param = unpack(result)
-          local id, command, payload = unpack(param)
+          local command, payload, id = unpack(param)
           ts_client:exec_cmd({
             command = 'typescript.tsserverRequest',
             arguments = {
