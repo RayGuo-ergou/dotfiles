@@ -70,21 +70,8 @@ M.get = function()
       },
     },
     vue_ls = {
-      -- For v3 Will manual start
-      -- enabled = false,
-      init_options = {
-        vue = {
-          hybridMode = true,
-        },
-        typescript = {
-          tsserverRequestCommand = {
-            'typescript.tsserverRequest',
-            'typescript.tsserverResponse',
-          },
-        },
-      },
       on_init = function(client)
-        client.handlers['typescript.tsserverRequest'] = function(_, result, context)
+        client.handlers['tsserver/request'] = function(_, result, context)
           local clients = ergou.lsp.get_clients({ bufnr = context.bufnr, name = ergou.lsp.typescript.server_to_use })
           if #clients == 0 then
             return
@@ -102,7 +89,7 @@ M.get = function()
           }, { bufnr = context.bufnr }, function(_, r)
             local response_data = { { id, r.body } }
             ---@diagnostic disable-next-line: param-type-mismatch
-            client:notify('typescript.tsserverResponse', response_data)
+            client:notify('tsserver/response', response_data)
           end)
         end
       end,
