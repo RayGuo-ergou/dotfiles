@@ -79,7 +79,7 @@ M.get = function()
           local ts_client = clients[1]
 
           local param = unpack(result)
-          local command, payload, id = unpack(param)
+          local id, command, payload = unpack(param)
           ts_client:exec_cmd({
             command = 'typescript.tsserverRequest',
             arguments = {
