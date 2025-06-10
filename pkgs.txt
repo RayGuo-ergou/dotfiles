@@ -28,6 +28,7 @@ gcc13
 ghostty
 git
 git-delta
+git-extras
 github-cli
 gnome-themes-extra
 go
