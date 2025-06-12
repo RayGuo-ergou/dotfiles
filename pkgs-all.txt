@@ -72,6 +72,7 @@ ncdu
 network-manager-applet
 networkmanager
 ninja
+nordvpn-bin
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
