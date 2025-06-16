@@ -185,3 +185,13 @@ vim.api.nvim_create_autocmd('WinNew', {
     end)
   end,
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('vue_set_comment'),
+  pattern = {
+    'vue',
+  },
+  callback = function()
+    vim.opt_local.comments = vim.opt_local.comments + '://'
+  end,
+})
