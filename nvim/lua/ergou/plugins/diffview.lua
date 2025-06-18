@@ -23,15 +23,16 @@ return {
         file_history_panel = scrollKeyMapping,
       },
       enhanced_diff_hl = true,
-      hooks = {
-        -- Tailwind lsp has a bug that likely a infinity loop that will use all cpu resources
-        view_opened = function()
-          vim.cmd('LspStop tailwindcss')
-        end,
-        view_closed = function()
-          vim.cmd('LspStart tailwindcss')
-        end,
-      }, -- See ':h diffview-config-hooks'
+      -- should be fixed in https://github.com/tailwindlabs/tailwindcss-intellisense/pull/1396
+      -- hooks = {
+      --   -- Tailwind lsp has a bug that likely a infinity loop that will use all cpu resources
+      --   view_opened = function()
+      --     vim.cmd('LspStop tailwindcss')
+      --   end,
+      --   view_closed = function()
+      --     vim.cmd('LspStart tailwindcss')
+      --   end,
+      -- }, -- See ':h diffview-config-hooks'
     }
   end,
   cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
