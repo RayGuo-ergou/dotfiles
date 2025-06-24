@@ -34,7 +34,7 @@ if [[ $# -eq 1 ]]; then
 else
     # If someone wants to make this extensible, i'll accept
     # PR
-    selected=$({ echo ~/note; find ~/work ~/git -mindepth 1 -maxdepth 1 -type d; find ~/test -mindepth 1 -maxdepth 2 -type d; } | fzf --no-preview --cycle --header-first --header="Create/Switch Session")
+    selected=$({ find ~/work ~/git ~/Documents -mindepth 1 -maxdepth 1 -type d; find ~/test -mindepth 1 -maxdepth 2 -type d; } | fzf --no-preview --cycle --header-first --header="Create/Switch Session")
 fi
 
 if [[ -z $selected ]]; then
