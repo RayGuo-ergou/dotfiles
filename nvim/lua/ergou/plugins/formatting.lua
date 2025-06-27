@@ -41,6 +41,16 @@ return {
           blade = { 'blade-formatter' },
         },
         format_on_save = function()
+          local win_cfg = vim.api.nvim_win_get_config(0)
+
+          local win_title = vim.iter(win_cfg.title or {}):flatten():totable()
+
+          if vim.tbl_contains(win_title, 'SnacksScratchTitle') then
+            vim.notify('Floating window, skip formatting.', vim.log.levels.INFO, {
+              id = '__conform_format_on_save_snack',
+            })
+            return nil
+          end
           if not vim.g.autoformat_enabled then
             return nil
           end
