@@ -11,29 +11,27 @@ mkdir -p "$save_dir"
 # Filename with timestamp
 filename="$save_dir/$(date +%Y-%m-%d_%H-%M-%S).png"
 
+# env = SLURP_ARGS, -d -b -B F050F022 -b 10101022 -c ff00ff
 # Select region with slurp, capture with grim, save and copy to clipboard
-region=$(slurp -d -b '#000000b0' -c '#00000000')
-if [ -n "$region" ]; then
-    grim -g "$region" "$filename" && \
-        wl-copy < "$filename" && \
-        {
-            # Send clickable notification and handle response
-            # TODO: config swaync style for screenshot category
-            response=$(notify-send "Screenshot Taken" "Click to edit with Swappy" \
-                --icon="$filename" \
-                --app-name="Screenshot" \
-                --category="screenshot" \
-                --action="edit=Edit with Swappy" \
-                --action="open=Open Folder" \
-                --wait)
+grimblast --freeze copysave area "$filename" && \
+    wl-copy < "$filename" && \
+    {
+        # Send clickable notification and handle response
+        # TODO: config swaync style for screenshot category
+        response=$(notify-send "Screenshot Taken" "Click to edit with Swappy" \
+            --icon="$filename" \
+            --app-name="Screenshot" \
+            --category="screenshot" \
+            --action="edit=Edit with Swappy" \
+            --action="open=Open Folder" \
+            --wait)
 
-            case "$response" in
-                "edit")
-                    swappy -f "$filename"
-                    ;;
-                "open")
-                    xdg-open "$(dirname "$filename")"
-                    ;;
-            esac
-        } &
-fi
+        case "$response" in
+            "edit")
+                swappy -f "$filename"
+                ;;
+            "open")
+                xdg-open "$(dirname "$filename")"
+                ;;
+        esac
+    } &
