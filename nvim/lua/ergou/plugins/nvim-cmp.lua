@@ -4,8 +4,7 @@ return {
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       'hrsh7th/cmp-buffer', -- source for text in buffer
-      -- The alias code is poorly implemented and no testing
-      { 'hrsh7th/cmp-path', commit = '91ff86c' }, -- source for file system paths
+      'RayGuo-ergou/cmp-path', -- source for file system paths
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-calc',
