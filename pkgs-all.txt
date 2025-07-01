@@ -12,6 +12,7 @@ bat
 bazecor
 bluez
 bluez-utils
+btop
 btrfs-progs
 chromium
 cliphist
@@ -41,6 +42,7 @@ github-cli
 gnome-themes-extra
 go
 grim
+grimblast-git
 grub
 grub-btrfs
 gthumb
@@ -156,6 +158,7 @@ qt5-wayland
 reflector
 rime-ice-git
 rofi-wayland
+rustup
 slack-desktop
 slurp
 socat
