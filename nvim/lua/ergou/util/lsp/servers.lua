@@ -81,6 +81,7 @@ M.get = function()
           local param = unpack(result)
           local id, command, payload = unpack(param)
           ts_client:exec_cmd({
+            title = 'vue_request_forward',
             command = 'typescript.tsserverRequest',
             arguments = {
               command,
