@@ -3,7 +3,9 @@
 current_session=$(tmux display-message -p '#S')
 
 # Present the sorted list, excluding the current session
-selected_session=$(_get_sessions | grep -v "^$current_session$" | fzf --no-preview --cycle --header-first --header "Switch Session (Ctrl+D to remove)" --bind "ctrl-d:execute(tmux kill-session -t {+})+reload(_get_sessions | grep -v \"^$current_session$\")")
+# FIXME: The ctrl-d spawn a new sh and does not delete the session
+# selected_session=$(_get_sessions | grep -v "^$current_session$" | fzf --no-preview --cycle --header-first --header "Switch Session (Ctrl+D to remove)" --bind "ctrl-d:execute(tmux kill-session -t {+})+reload(_get_sessions | grep -v \"^$current_session$\")")
+selected_session=$(_get_sessions | grep -v "^$current_session$" | fzf --no-preview --cycle --header-first)
 
 # Switch to the selected session if one is chosen
 if [ -n "$selected_session" ]; then
