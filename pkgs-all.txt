@@ -42,7 +42,6 @@ github-cli
 gnome-themes-extra
 go
 grim
-grimblast-git
 grub
 grub-btrfs
 gthumb
