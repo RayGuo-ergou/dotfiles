@@ -35,7 +35,7 @@ grim -g "$region" "$filename" &&
             --action="edit=Edit with Swappy" \
             --action="open=Open Folder" \
             --action="default=default" \
-            --expire-time=30000 \
+            --expire-time=5000 \
             --wait)
 
         case "$response" in
