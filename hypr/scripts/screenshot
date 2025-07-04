@@ -33,6 +33,7 @@ grim -g "$region" "$filename" &&
             --app-name="Screenshot" \
             --category="screenshot" \
             --action="edit=Edit with Swappy" \
+            --expire-time=30000 \
             --action="open=Open Folder" \
             --wait)
 
