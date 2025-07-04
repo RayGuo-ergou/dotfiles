@@ -11,29 +11,39 @@ mkdir -p "$save_dir"
 # Filename with timestamp
 filename="$save_dir/$(date +%Y-%m-%d_%H-%M-%S).png"
 
+hyprpicker -r -z &
+sleep 0.2
+
+killHyprpicker() {
+    pkill hyprpicker
+}
 # Select region with slurp, capture with grim, save and copy to clipboard
 region=$(slurp -d -b '#000000b0' -c '#00000000')
-if [ -n "$region" ]; then
-    grim -g "$region" "$filename" && \
-        wl-copy < "$filename" && \
-        {
-            # Send clickable notification and handle response
-            # TODO: config swaync style for screenshot category
-            response=$(notify-send "Screenshot Taken" "Click to edit with Swappy" \
-                --icon="$filename" \
-                --app-name="Screenshot" \
-                --category="screenshot" \
-                --action="edit=Edit with Swappy" \
-                --action="open=Open Folder" \
-                --wait)
-
-            case "$response" in
-                "edit")
-                    swappy -f "$filename"
-                    ;;
-                "open")
-                    xdg-open "$(dirname "$filename")"
-                    ;;
-            esac
-        } &
+if [ -z "$region" ]; then
+    killHyprpicker
+    exit 1
 fi
+grim -g "$region" "$filename" &&
+    wl-copy <"$filename" &&
+    {
+        # Send clickable notification and handle response
+        # TODO: config swaync style for screenshot category
+        response=$(notify-send "Screenshot Taken" "Click to edit with Swappy" \
+            --icon="$filename" \
+            --app-name="Screenshot" \
+            --category="screenshot" \
+            --action="edit=Edit with Swappy" \
+            --action="open=Open Folder" \
+            --wait)
+
+        case "$response" in
+        "edit")
+            swappy -f "$filename"
+            ;;
+        "open")
+            xdg-open "$(dirname "$filename")"
+            ;;
+        esac
+    } &
+
+killHyprpicker
