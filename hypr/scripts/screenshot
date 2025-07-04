@@ -33,11 +33,15 @@ grim -g "$region" "$filename" &&
             --app-name="Screenshot" \
             --category="screenshot" \
             --action="edit=Edit with Swappy" \
-            --expire-time=30000 \
             --action="open=Open Folder" \
+            --action="default=default" \
+            --expire-time=30000 \
             --wait)
 
         case "$response" in
+        "default")
+            gthumb "$filename"
+            ;;
         "edit")
             swappy -f "$filename"
             ;;
