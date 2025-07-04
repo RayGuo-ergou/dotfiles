@@ -199,7 +199,7 @@ M.get = function()
                 description = 'TypeScript compiler configuration file for vue',
                 fileMatch = { 'tsconfig*.json' },
                 name = 'vue-tsconfig.json',
-                url = 'https://raw.githubusercontent.com/vuejs/language-tools/master/packages/language-core/schemas/vue-tsconfig.schema.json',
+                url = 'https://raw.githubusercontent.com/vuejs/language-tools/refs/heads/master/extensions/vscode/schemas/vue-tsconfig.schema.json',
               },
             },
           }),
