@@ -216,9 +216,9 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEn
       vim.opt.relativenumber = false
       -- Conditional taken from https://github.com/rockyzhang24/dotfiles/commit/03dd14b5d43f812661b88c4660c03d714132abcf
       -- Workaround for https://github.com/neovim/neovim/issues/32068
-      if not vim.tbl_contains({ '@', '-' }, vim.v.event.cmdtype) then
-        vim.cmd('redraw')
-      end
+      -- if not vim.tbl_contains({ '@', '-' }, vim.v.event.cmdtype) then
+      --   vim.cmd('redraw')
+      -- end
     end
   end,
 })
