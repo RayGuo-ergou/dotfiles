@@ -92,6 +92,26 @@ if (import.meta.hot) {{
         }
       )
     ),
+    s(
+      'zschema',
+      fmt(
+        [[
+export const {}Schema = z.object({{
+ {}
+}});
+export type {} = z.infer<typeof {}Schema>;
+]],
+        {
+          i(1, 'name'),
+          i(2, '// fields'),
+          f(function(args)
+            local name = args[1][1] or ''
+            return name:gsub('^%l', string.upper)
+          end, { 1 }),
+          rep(1),
+        }
+      )
+    ),
   })
 end
 
