@@ -4,7 +4,7 @@ return {
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       'hrsh7th/cmp-buffer', -- source for text in buffer
-      'RayGuo-ergou/cmp-path', -- source for file system paths
+      'hrsh7th/cmp-path', -- source for file system paths
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-calc',
