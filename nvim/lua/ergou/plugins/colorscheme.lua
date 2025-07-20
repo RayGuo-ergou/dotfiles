@@ -56,6 +56,9 @@ return {
 
           UgUndo = { bg = C.surface2 },
           UgRedo = { bg = C.surface2 },
+
+          -- lsp
+          ['@lsp.type.component'] = { link = '@type' },
         }
         return groups
       end,

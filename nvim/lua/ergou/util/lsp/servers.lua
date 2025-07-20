@@ -102,6 +102,8 @@ M.get = function()
       end,
       on_attach = function(client, _)
         client.server_capabilities.documentFormattingProvider = nil
+        -- Only above 3.0.3
+        client.server_capabilities.semanticTokensProvider.full = true
       end,
     },
     -- intelephense is a node.js server, so it's pretty slow
