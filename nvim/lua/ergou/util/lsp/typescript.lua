@@ -118,6 +118,11 @@ M.on_attach = function(client, bufnr)
     existing_capabilities.workspace.fileOperations.didRename.filters = existing_filters
   end
 
+  -- vue 3.0.3
+  if vim.bo.filetype == 'vue' then
+    client.server_capabilities.semanticTokensProvider.full = false
+  end
+
   client.server_capabilities = existing_capabilities
 end
 
