@@ -16,7 +16,14 @@ function M.get()
 
   local keys = {
     -- Base LSP keymaps that don't depend on picker
-    { 'K', vim.lsp.buf.hover, desc = 'Hover Documentation' },
+    {
+      'K',
+      function()
+        -- HACK: Seems it require to be defined for noice to add border
+        vim.lsp.buf.hover({ border = '' })
+      end,
+      desc = 'Hover Documentation',
+    },
     { '<leader>k', vim.lsp.buf.signature_help, desc = 'Signature Documentation' },
     { 'grA', ergou.lsp.action.source, desc = 'Source Action' },
     { 'grD', vim.lsp.buf.declaration, desc = 'Goto Declaration' },
