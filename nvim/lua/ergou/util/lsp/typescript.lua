@@ -120,7 +120,9 @@ M.on_attach = function(client, bufnr)
 
   -- vue 3.0.3
   if vim.bo.filetype == 'vue' then
-    client.server_capabilities.semanticTokensProvider.full = false
+    existing_capabilities.semanticTokensProvider.full = false
+  else
+    existing_capabilities.semanticTokensProvider.full = true
   end
 
   client.server_capabilities = existing_capabilities
