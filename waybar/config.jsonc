@@ -73,8 +73,10 @@
 		},
 		"actions": {
 			"on-click-right": "mode",
-			"on-scroll-up": "shift_up",
-			"on-scroll-down": "shift_down"
+			// shift_down prev month
+			"on-scroll-up": "shift_down",
+			// shift_up next month
+			"on-scroll-down": "shift_up"
 		}
 	},
 	"backlight": {
