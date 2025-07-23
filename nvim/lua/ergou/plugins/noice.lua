@@ -1,5 +1,5 @@
 return {
-  'folke/noice.nvim',
+  'RayGuo-ergou/noice.nvim',
   event = 'VeryLazy',
   ---@type NoiceConfig
   opts = {
