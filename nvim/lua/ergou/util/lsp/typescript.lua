@@ -92,7 +92,7 @@ end
 
 ---@param client vim.lsp.Client
 M.update_capabilities = function(client)
-  local existing_capabilities = vim.deepcopy(client.server_capabilities)
+  local existing_capabilities = client.server_capabilities
 
   if existing_capabilities == nil then
     return
@@ -130,7 +130,7 @@ M.on_attach = function(client, bufnr)
     require('twoslash-queries').attach(client, bufnr)
   end
 
-  client.server_capabilities = M.update_capabilities(client)
+  M.update_capabilities(client)
 end
 
 return M
