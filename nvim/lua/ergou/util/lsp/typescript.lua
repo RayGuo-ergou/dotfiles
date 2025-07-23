@@ -123,8 +123,7 @@ M.update_capabilities = function(client)
   return existing_capabilities
 end
 
----@param client vim.lsp.Client
----@param bufnr integer
+---@type vim.lsp.client.on_attach_cb
 M.on_attach = function(client, bufnr)
   if package.loaded['twoslash-queries'] then
     require('twoslash-queries').attach(client, bufnr)
