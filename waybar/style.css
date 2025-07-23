@@ -7,11 +7,9 @@
   min-height: 0;
 }
 
-#custom-music,
 #systemd-failed-units,
 #workspaces,
 #tray,
-#backlight,
 #clock,
 #pulseaudio,
 #submap,
@@ -66,13 +64,6 @@
 
 #clock {
   color: @blue;
-  border-radius: 0px 1rem 1rem 0px;
-  margin-left: 0;
-  margin-right: 2rem;
-}
-
-#backlight {
-  color: @yellow;
 }
 
 #backlight {
@@ -81,12 +72,8 @@
 
 #pulseaudio {
   color: @maroon;
-  border-radius: 1rem 0px 0px 1rem;
-  margin-right: 0;
-}
-
-#custom-music {
-  color: @sky;
+  margin-left: 0;
+  margin-right: 2rem;
 }
 
 #tray {

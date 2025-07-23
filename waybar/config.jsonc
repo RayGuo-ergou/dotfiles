@@ -5,16 +5,14 @@
 		"hyprland/workspaces"
 	],
 	"modules-center": [
-		"custom/music",
+		"clock",
 		"hyprland/submap"
 	],
 	"modules-right": [
 		"systemd-failed-units",
 		"tray",
 		"custom/notification",
-		"pulseaudio",
-		"backlight",
-		"clock"
+		"pulseaudio"
 	],
 	"hyprland/workspaces": {
 		"on-click": "activate",
@@ -56,7 +54,7 @@
 		"escape": true
 	},
 	"clock": {
-		"format": "{:%H:%M}  ",
+		"format": "{:%B %d, %H:%M}",
 		"format-alt": "{:%A, %B %d, %Y %R}",
 		"tooltip-format": "<tt><small>{calendar}</small></tt>",
 		"calendar": {
