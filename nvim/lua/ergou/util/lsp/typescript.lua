@@ -91,11 +91,7 @@ M.get_vue_plugin = function()
 end
 
 ---@param client vim.lsp.Client
----@param bufnr integer
-M.on_attach = function(client, bufnr)
-  if package.loaded['twoslash-queries'] then
-    require('twoslash-queries').attach(client, bufnr)
-  end
+M.update_capabilities = function(client)
   local existing_capabilities = vim.deepcopy(client.server_capabilities)
 
   if existing_capabilities == nil then
@@ -124,8 +120,17 @@ M.on_attach = function(client, bufnr)
   else
     existing_capabilities.semanticTokensProvider.full = true
   end
+  return existing_capabilities
+end
 
-  client.server_capabilities = existing_capabilities
+---@param client vim.lsp.Client
+---@param bufnr integer
+M.on_attach = function(client, bufnr)
+  if package.loaded['twoslash-queries'] then
+    require('twoslash-queries').attach(client, bufnr)
+  end
+
+  client.server_capabilities = M.update_capabilities(client)
 end
 
 return M
