@@ -63,6 +63,21 @@ local function javascript()
       t(')'),
     }),
     filename_dependent_snippet(),
+
+    s(
+      'check-dom',
+      fmt(
+        [[
+if ({} instanceof HTMLElement === false) {{
+  {}
+}}
+]],
+        {
+          i(1, 'el'),
+          i(2, '// handle non-element'),
+        }
+      )
+    ),
   })
 end
 
