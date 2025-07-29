@@ -70,31 +70,6 @@ M.get = function()
       },
     },
     vue_ls = {
-      on_init = function(client)
-        client.handlers['tsserver/request'] = function(_, result, context)
-          local clients = ergou.lsp.get_clients({ bufnr = context.bufnr, name = ergou.lsp.typescript.server_to_use })
-          if #clients == 0 then
-            return
-          end
-          local ts_client = clients[1]
-
-          local param = unpack(result)
-          local id, command, payload = unpack(param)
-          ts_client:exec_cmd({
-            title = 'vue_request_forward',
-            command = 'typescript.tsserverRequest',
-            arguments = {
-              command,
-              payload,
-            },
-          }, { bufnr = context.bufnr }, function(_, r)
-            local response = r and r.body or nil
-            local response_data = { { id, response } }
-            ---@diagnostic disable-next-line: param-type-mismatch
-            client:notify('tsserver/response', response_data)
-          end)
-        end
-      end,
       on_attach = function(client, _)
         client.server_capabilities.documentFormattingProvider = nil
         -- Only above 3.0.3
