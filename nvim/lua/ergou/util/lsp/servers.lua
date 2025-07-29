@@ -70,12 +70,6 @@ M.get = function()
       },
     },
     vue_ls = {
-      -- HACK: Mason still read this
-      init_options = {
-        typescript = {
-          tsdk = '',
-        },
-      },
       on_init = function(client)
         client.handlers['tsserver/request'] = function(_, result, context)
           local clients = ergou.lsp.get_clients({ bufnr = context.bufnr, name = ergou.lsp.typescript.server_to_use })
