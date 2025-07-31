@@ -116,7 +116,7 @@ map('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 map('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 
 -- Copy file name
-map('n', '<leader>yc', ergou.copy.copy_filename, { desc = 'Copy Filename' })
+map('n', '<leader>yf', ergou.copy.copy_filename, { desc = 'Copy Filename' })
 map('n', '<leader>yg', ergou.copy.copy_git_branch, { desc = 'Copy Branch Name' })
 
 -- Clear search and stop snippet on escape
