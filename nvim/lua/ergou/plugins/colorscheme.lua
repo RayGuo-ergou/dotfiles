@@ -9,6 +9,9 @@ return {
     opts = {
       -- no_italic = true,
       transparent_background = true,
+      float = {
+        transparent = true,
+      },
       integrations = {
         aerial = true,
         diffview = true,
