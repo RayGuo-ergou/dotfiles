@@ -170,7 +170,6 @@ texinfo
 thunar
 timeshift
 timeshift-autosnap
-tmux-git
 trash-cli
 tree
 ttf-firacode-nerd
