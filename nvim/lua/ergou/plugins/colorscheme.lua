@@ -61,7 +61,7 @@ return {
           UgRedo = { bg = C.surface2 },
 
           -- lsp
-          ['@lsp.type.component'] = { link = '@parameter' },
+          ['@lsp.type.component'] = { fg = C.peach },
         }
         return groups
       end,
