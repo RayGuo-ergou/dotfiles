@@ -92,13 +92,6 @@ function M.setup()
       if client:supports_method('textDocument/inlayHint') and vim.g.auto_inlay_hint then
         vim.lsp.inlay_hint.enable()
       end
-
-      ---@see doc :h vim.lsp.document_color
-      if client:supports_method('textDocument/documentColor') then
-        vim.lsp.document_color.enable(true, bufnr, {
-          style = 'virtual',
-        })
-      end
     end,
   })
 end
