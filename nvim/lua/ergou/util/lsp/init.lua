@@ -92,6 +92,14 @@ function M.setup()
       if client:supports_method('textDocument/inlayHint') and vim.g.auto_inlay_hint then
         vim.lsp.inlay_hint.enable()
       end
+
+      -- HACK: neovim will auto enable document_color if possible, but there's no way to pass the options without calling `enable`
+      -- This is a hack to change the style
+      if vim.lsp.document_color.is_enabled(bufnr) and client:supports_method('textDocument/documentColor') then
+        vim.lsp.document_color.enable(true, bufnr, {
+          style = 'virtual',
+        })
+      end
     end,
   })
 end
