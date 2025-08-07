@@ -14,9 +14,9 @@ return {
     end,
   },
   config = function(_, opts)
-    local ft = require('Comment.ft')
+    -- local ft = require('Comment.ft')
     -- blade uses php comment for none html part
-    ft.set('blade', ft.get('php') or { '//%s', '/*%s*/' })
+    -- ft.set('blade', ft.get('php') or { '//%s', '/*%s*/' })
 
     require('Comment').setup(opts)
   end,
