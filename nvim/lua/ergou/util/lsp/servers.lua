@@ -227,6 +227,7 @@ M.get = function()
       },
     },
     hyprls = {},
+    laravel_ls = {},
   }
 
   return servers
