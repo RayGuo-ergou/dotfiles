@@ -6,6 +6,7 @@ adwaita-qt5-git
 adwaita-qt6-git
 alsa-utils
 amd-ucode
+ast-grep
 base
 base-devel
 bat
@@ -33,7 +34,6 @@ fcitx5-rime
 firefox
 firewalld
 fzf
-gcc13
 ghostty
 git
 git-delta

@@ -5,6 +5,7 @@ acpid
 adwaita-qt5-git
 adwaita-qt6-git
 alsa-utils
+ast-grep
 base
 base-devel
 bat
@@ -25,7 +26,6 @@ eza
 fastfetch
 firewalld
 fzf
-gcc13
 ghostty
 git
 git-delta
