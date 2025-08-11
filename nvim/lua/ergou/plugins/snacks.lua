@@ -424,14 +424,14 @@ return {
           {
             '<leader>st',
             function()
-              Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } })
+              require('todo-comments.snacks').pick({ keywords = { 'TODO', 'FIX', 'FIXME' } })
             end,
             desc = 'Todo/Fix/Fixme',
           },
           {
             '<leader>sT',
             function()
-              Snacks.picker.todo_comments()
+              require('todo-comments.snacks').pick({})
             end,
             desc = 'Todo',
           },
