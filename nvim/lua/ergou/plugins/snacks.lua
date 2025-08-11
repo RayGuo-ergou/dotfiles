@@ -392,13 +392,6 @@ return {
           })
         end,
       },
-      {
-        '<leader>gS',
-        function()
-          Snacks.picker.git_diff()
-        end,
-        desc = 'Git interactive staging',
-      },
     },
     init = function()
       vim.api.nvim_create_autocmd('User', {

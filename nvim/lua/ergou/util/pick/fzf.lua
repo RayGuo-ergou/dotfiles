@@ -41,7 +41,8 @@ M.get = function()
     { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
     { '<leader>/', '<cmd>FzfLua search_history<cr>', desc = 'Search History' },
     -- git
-    { '<leader>gs', '<cmd>FzfLua git_status<CR>', desc = 'Status' },
+    { '<leader>gs', '<cmd>FzfLua git_status<CR>', desc = 'Git Status' },
+    { '<leader>gS', '<cmd>FzfLua git_hunks<CR>', desc = 'Git Hunks' },
     --search
     { '<leader>s"', '<cmd>FzfLua registers<cr>', desc = 'Registers' },
     { '<leader>sc', '<cmd>FzfLua command_history<cr>', desc = 'Command History' },

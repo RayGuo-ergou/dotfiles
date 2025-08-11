@@ -78,7 +78,14 @@ M.get = function()
       function()
         Snacks.picker.git_status()
       end,
-      desc = 'Status',
+      desc = 'Git Status',
+    },
+    {
+      '<leader>gS',
+      function()
+        Snacks.picker.git_diff()
+      end,
+      desc = 'Git Hunks',
     },
     --search
     {
