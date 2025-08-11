@@ -156,6 +156,7 @@ pipewire-pulse
 qt5-wayland
 reflector
 rime-ice-git
+rofi-emoji
 rofi-wayland
 rustup
 slack-desktop

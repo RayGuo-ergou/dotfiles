@@ -82,6 +82,7 @@ pipewire-jack
 pipewire-pulse
 qt5-wayland
 reflector
+rofi-emoji
 rofi-wayland
 rustup
 slack-desktop
