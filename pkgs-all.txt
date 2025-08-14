@@ -156,8 +156,8 @@ pipewire-pulse
 qt5-wayland
 reflector
 rime-ice-git
+rofi
 rofi-emoji
-rofi-wayland
 rustup
 slack-desktop
 slurp
@@ -181,7 +181,6 @@ vim
 waybar
 wget
 wl-clip-persist
-wofi
 xcur2png
 xdg-desktop-portal-hyprland
 xdg-user-dirs
