@@ -90,17 +90,17 @@ return {
       }):map('<leader>uG')
 
       -- This is broken, if the change contains delete, it will not show
-      -- Snacks.toggle({
-      --   name = 'Git Signs Diff',
-      --   get = function()
-      --     -- HACK: I seriously don't have a better way, so keep this for now. I guess?
-      --     return require('gitsigns.config').config.linehl and require('gitsigns.config').config.show_deleted
-      --   end,
-      --   set = function(state)
-      --     require('gitsigns').toggle_deleted(state)
-      --     require('gitsigns').toggle_linehl(state)
-      --   end,
-      -- }):map('<leader>gd')
+      Snacks.toggle({
+        name = 'Git Signs Diff',
+        get = function()
+          -- HACK: I seriously don't have a better way, so keep this for now. I guess?
+          return require('gitsigns.config').config.linehl and require('gitsigns.config').config.show_deleted
+        end,
+        set = function(state)
+          require('gitsigns').toggle_deleted(state)
+          require('gitsigns').toggle_linehl(state)
+        end,
+      }):map('<leader>gd')
 
       Snacks.toggle({
         name = 'Git Signs Current Line Blame',

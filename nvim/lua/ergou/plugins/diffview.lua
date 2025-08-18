@@ -42,11 +42,11 @@ return {
       toggle,
       desc = 'Toggle Diffview',
     },
-    {
-      '<leader>gd',
-      toggle,
-      desc = 'Toggle Diffview',
-    },
+    -- {
+    --   '<leader>gd',
+    --   toggle,
+    --   desc = 'Toggle Diffview',
+    -- },
     {
       '<leader>dh',
       function()
