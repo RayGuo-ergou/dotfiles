@@ -19,6 +19,7 @@ alias php7='/usr/bin/php7.4'
 alias windowsroot='wslpath "$(wslvar USERPROFILE)"'
 alias yy='yazi'
 alias lg='TERM=screen-256color lazygit'
+alias ldc='TERM=screen-256color lazydocker'
 alias cdlazyvim='cd ~/.local/share/nvim/lazy'
 alias se='sessionizer'
 alias icat='kitty icat'
@@ -43,4 +44,3 @@ cdf() {
   fi
 }
 alias cdh='cdf $HOME'
-
