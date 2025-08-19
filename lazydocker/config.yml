@@ -1,0 +1,25 @@
+git:
+  paging:
+    pager: delta --dark --paging=never
+gui:
+  theme:
+    defaultFgColor:
+      - "#cad3f5"
+    cherryPickedCommitFgColor:
+      - "#8aadf4"
+    cherryPickedCommitBgColor:
+      - "#f0c6c6"
+    activeBorderColor:
+      - "#f5a97f"
+      - "bold"
+    unstagedChangesColor:
+      - "#ed8796"
+    selectedLineBgColor:
+      - "#494d64"
+    searchingActiveBorderColor:
+      - "#f5a97f"
+      - "bold"
+    optionsTextColor:
+      - "#8aadf4"
+    inactiveBorderColor:
+      - "#8aadf4"
