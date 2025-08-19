@@ -20,6 +20,7 @@ cpio
 datagrip
 datagrip-jre
 discord
+docker
 dosfstools
 efibootmgr
 eza
@@ -50,6 +51,7 @@ imagemagick
 ipset
 jdk-openjdk
 jq
+lazydocker
 lazygit
 linux
 linux-firmware
@@ -82,8 +84,8 @@ pipewire-jack
 pipewire-pulse
 qt5-wayland
 reflector
-rofi
 rofi-emoji
+rofi-wayland
 rustup
 slack-desktop
 slurp
