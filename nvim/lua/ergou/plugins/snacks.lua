@@ -150,8 +150,10 @@ return {
         },
       },
       image = {
+        doc = {
+          inline = false,
+        },
         enabled = true,
-        inline = false,
       },
       indent = {
         enabled = true,
