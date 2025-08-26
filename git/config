@@ -1,7 +1,3 @@
-[user]
-    email = 33137074+RayGuo-ergou@users.noreply.github.com
-    name = Ray Guo
-
 [core]
     editor = nvim
     pager = delta
