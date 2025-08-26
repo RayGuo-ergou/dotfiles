@@ -25,3 +25,7 @@
     colorMoved = default
 [pull]
 	rebase = true
+[commit]
+	gpgsign = true
+[alias]
+	sign-commit = !git -c user.signingkey=\"$GITHUB_GPG_SIGNING_KEY\" commit -S
