@@ -64,6 +64,7 @@ lazygit
 linux
 linux-firmware
 linux-headers
+lssecret-git
 man-db
 man-pages
 mariadb
@@ -158,6 +159,7 @@ pipewire-pulse
 qt5-wayland
 reflector
 rime-ice-git
+ripgrep
 rofi-emoji
 rofi-wayland
 rustup
