@@ -72,7 +72,11 @@ return {
           }
 
           if ft == 'php' then
-            config.lsp_format = 'first'
+            if string.find(file_path, 'removify%-hq') then
+              config.lsp_format = 'never'
+            else
+              config.lsp_format = 'first'
+            end
           end
 
           -- do not format blade file with html lsp

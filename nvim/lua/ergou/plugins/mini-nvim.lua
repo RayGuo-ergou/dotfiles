@@ -1,6 +1,6 @@
 return {
   {
-    'echasnovski/mini.splitjoin',
+    'nvim-mini/mini.splitjoin',
     keys = {
       {
         'gS',
@@ -10,7 +10,7 @@ return {
     opts = {},
   },
   {
-    'echasnovski/mini.align',
+    'nvim-mini/mini.align',
     keys = {
       {
         'gA',
@@ -25,7 +25,7 @@ return {
     },
   },
   {
-    'echasnovski/mini.hipatterns',
+    'nvim-mini/mini.hipatterns',
     event = 'LazyFile',
     opts = function()
       local hi = require('mini.hipatterns')
@@ -49,13 +49,13 @@ return {
     end,
   },
   {
-    'echasnovski/mini.ai',
+    'nvim-mini/mini.ai',
     event = 'VeryLazy',
     opts = function()
       local ai = require('mini.ai')
       return {
         custom_textobjects = {
-          -- HACK: for html tags, see: https://github.com/echasnovski/mini.nvim/issues/110#issuecomment-1212277863
+          -- HACK: for html tags, see: https://github.com/nvim-mini/mini.nvim/issues/110#issuecomment-1212277863
           t = false,
           -- Brackets not very good when nested
           b = false,
