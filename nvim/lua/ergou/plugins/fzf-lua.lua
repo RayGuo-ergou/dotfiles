@@ -34,6 +34,7 @@ return {
       config.defaults.actions.files['alt-c'] = config.defaults.actions.files['ctrl-r']
       -- ctrl-v is used for paste
       config.defaults.actions.files['alt-v'] = config.defaults.actions.files['ctrl-v']
+      config.defaults.actions.files['alt-s'] = config.defaults.actions.files['ctrl-s']
       config.set_action_helpstr(config.defaults.actions.files['ctrl-r'], 'toggle-root-dir')
 
       local img_previewer ---@type string[]?
