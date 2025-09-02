@@ -73,8 +73,9 @@ function M.config_files()
 end
 
 ---@param count integer select menu item count
-function M.select_height(count)
-  return math.floor(math.min(vim.o.lines * 0.8 - 16, count + 2) + 0.5) + 16
+function M.select_height(count, space_line)
+  space_line = space_line or 16
+  return math.floor(math.min(vim.o.lines * 0.8 - 16, count + 4) + 0.5) + space_line
 end
 
 ---@param ks LazyKeys[]

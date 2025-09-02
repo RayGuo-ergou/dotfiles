@@ -86,7 +86,7 @@ return {
           }, fzf_opts.kind == 'codeaction' and {
             winopts = {
               layout = 'vertical',
-              -- height is number of items minus 15 lines for the preview, with a max of 80% screen height
+              -- height is number of items minus 15 lines for the preview, with a max of 90% screen height
               height = ergou.pick.select_height(#items),
               width = 0.5,
               preview = not vim.tbl_isempty(ergou.lsp.get_clients({ bufnr = 0, name = 'vtsls' })) and {
@@ -101,8 +101,8 @@ return {
           } or {
             winopts = {
               width = 0.5,
-              -- height is number of items, with a max of 80% screen height
-              height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
+              -- height is number of items, with a max of 90% screen height
+              height = ergou.pick.select_height(#items, 0),
             },
           })
         end,
