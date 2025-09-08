@@ -160,8 +160,8 @@ qt5-wayland
 reflector
 rime-ice-git
 ripgrep
+rofi
 rofi-emoji
-rofi-wayland
 rustup
 slack-desktop
 slurp

@@ -86,8 +86,8 @@ pipewire-pulse
 qt5-wayland
 reflector
 ripgrep
+rofi
 rofi-emoji
-rofi-wayland
 rustup
 slack-desktop
 slurp
