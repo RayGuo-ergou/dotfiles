@@ -26,7 +26,7 @@ return {
       attach_to_untracked = true,
       on_attach = function(bufnr)
         local gitsigns = require('gitsigns')
-        local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
+        local repeatable_move = require('ergou.util.repeatable_move')
 
         local function map(mode, l, r, desc)
           vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
@@ -56,12 +56,12 @@ return {
         end, 'git diff against last commit')
 
         -- Jump to next/prev hunk
-        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()
+        local next_hunk_repeat, prev_hunk_repeat = repeatable_move.create_repeatable_move_pair(function()
           gitsigns.nav_hunk('next')
         end, function()
           gitsigns.nav_hunk('prev')
         end)
-        local last_hunk_repeat, first_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()
+        local last_hunk_repeat, first_hunk_repeat = repeatable_move.create_repeatable_move_pair(function()
           gitsigns.nav_hunk('last')
         end, function()
           gitsigns.nav_hunk('first')
