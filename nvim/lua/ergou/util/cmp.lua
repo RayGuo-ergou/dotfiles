@@ -272,6 +272,8 @@ end
 -- Function to check if the cursor is inside a start tag
 -- Can be a global function? bue need refactoring for sure
 local function is_in_start_tag()
+  -- It's okay to keep the default setting, `ignore_injections` to `true`
+  -- It will just make everything inside script tag or style tag as `raw_text`
   local node = vim.treesitter.get_node()
   if not node then
     return false
