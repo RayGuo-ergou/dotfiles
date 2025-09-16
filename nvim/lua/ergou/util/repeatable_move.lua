@@ -9,7 +9,12 @@
 ---   local repeatable_move = require('ergou.util.repeatable_move')
 ---   local forward, backward = repeatable_move.create_repeatable_move_pair(forward_fn, backward_fn)
 ---   local repeat_next, repeat_prev = repeatable_move.get_repeat_functions()
+---
+--- Or via global ergou:
+---   local forward, backward = ergou.repeatable_move.create_repeatable_move_pair(forward_fn, backward_fn)
+---   local repeat_next, repeat_prev = ergou.repeatable_move.get_repeat_functions()
 
+---@class ergou.util.repeatable_move
 local M = {}
 
 -- Cache for the treesitter textobjects repeatable_move module

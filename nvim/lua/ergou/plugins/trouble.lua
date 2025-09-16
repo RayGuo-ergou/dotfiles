@@ -3,7 +3,6 @@ return {
     'folke/trouble.nvim',
     config = function(_, opts)
       local map = vim.keymap.set
-      local repeatable_move = require('ergou.util.repeatable_move')
       local trouble_next = function()
         if require('trouble').is_open() then
           ---@diagnostic disable-next-line: missing-fields, missing-parameter
@@ -27,7 +26,7 @@ return {
           end
         end
       end
-      local trouble_forward, trouble_backward = repeatable_move.create_repeatable_move_pair(trouble_next, trouble_prev)
+      local trouble_forward, trouble_backward = ergou.repeatable_move.create_repeatable_move_pair(trouble_next, trouble_prev)
 
       map('n', '[q', trouble_backward, { desc = 'Previous trouble/quickfix item' })
       map('n', ']q', trouble_forward, { desc = 'Next trouble/quickfix item' })
