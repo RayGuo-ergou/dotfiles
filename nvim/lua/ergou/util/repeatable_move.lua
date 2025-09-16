@@ -31,15 +31,12 @@ end
 function M.create_repeatable_move(move_fn)
   local module = get_ts_repeat_move()
   if not module then
-    -- No treesitter textobjects available, return the function as-is
     return move_fn
   end
 
   if has_make_repeatable_move() then
-    -- Use the new make_repeatable_move pattern directly
     return module.make_repeatable_move(move_fn)
   else
-    -- Fall back to creating separate functions and wrapping them
     if module.make_repeatable_move_pair then
       local forward_repeat, backward_repeat = module.make_repeatable_move_pair(function(...)
         move_fn({ forward = true }, ...)
@@ -54,67 +51,18 @@ function M.create_repeatable_move(move_fn)
         end
       end
     else
-      -- Fallback to the original function if no repeatable move functionality is available
       return move_fn
     end
   end
 end
 
--- Create a repeatable move pair using the appropriate method
--- If the new make_repeatable_move exists, use it with the new pattern
--- Otherwise, fall back to the old make_repeatable_move_pair
--- NOTE: This function is deprecated in favor of create_repeatable_move
-function M.create_repeatable_move_pair(forward_fn, backward_fn)
-  local module = get_ts_repeat_move()
-  if not module then
-    -- No treesitter textobjects available, return original functions
-    return forward_fn, backward_fn
-  end
-
-  if has_make_repeatable_move() then
-    -- Use the new make_repeatable_move pattern
-    local repeatable_forward = module.make_repeatable_move(function(opts, ...)
-      if opts.forward then
-        forward_fn(...)
-      else
-        backward_fn(...)
-      end
-    end)
-
-    local function forward_wrapper(...)
-      return repeatable_forward({ forward = true }, ...)
-    end
-
-    local function backward_wrapper(...)
-      return repeatable_forward({ forward = false }, ...)
-    end
-
-    return forward_wrapper, backward_wrapper
-  else
-    -- Fall back to the old make_repeatable_move_pair
-    if module.make_repeatable_move_pair then
-      return module.make_repeatable_move_pair(forward_fn, backward_fn)
-    else
-      -- Fallback to original functions if no repeatable move functionality is available
-      return forward_fn, backward_fn
-    end
-  end
-end
-
--- Get the repeat functions for manual key mapping
 function M.get_repeat_functions()
   local module = get_ts_repeat_move()
   if not module then
     return nil, nil
   end
 
-  if has_make_repeatable_move() then
-    -- New API uses repeat_last_move_next and repeat_last_move_previous
-    return module.repeat_last_move_next, module.repeat_last_move_previous
-  else
-    -- Old API uses the same function names
-    return module.repeat_last_move_next, module.repeat_last_move_previous
-  end
+  return module.repeat_last_move_next, module.repeat_last_move_previous
 end
 
 return M
