@@ -13,8 +13,11 @@ return {
     end)
     local map = vim.keymap.set
 
-    map('n', ']t', function() todo_repeat({ forward = true }) end, { desc = 'Next todo comment' })
-    map('n', '[t', function() todo_repeat({ forward = false }) end, { desc = 'Previous todo comment' })
+    map('n', ']t', function()
+      todo_repeat({ forward = true })
+    end, { desc = 'Next todo comment' })
+    map('n', '[t', function()
+      todo_repeat({ forward = false })
     end, { desc = 'Previous todo comment' })
     require('todo-comments').setup(opts)
   end,
