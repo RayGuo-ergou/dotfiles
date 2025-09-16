@@ -185,7 +185,7 @@ return {
     },
     ---@param opts TSConfig
     config = function(_, opts)
-      local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
+      local repeatable_move = require('ergou.util.repeatable_move')
       local map = vim.keymap.set
 
       if type(opts.ensure_installed) == 'table' then
@@ -202,12 +202,15 @@ return {
       require('nvim-treesitter.configs').setup(opts)
 
       -- Override the default text objects next and previous
-      map({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
-      map({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
+      local repeat_next, repeat_prev = repeatable_move.get_repeat_functions()
+      if repeat_next and repeat_prev then
+        map({ 'n', 'x', 'o' }, ';', repeat_next)
+        map({ 'n', 'x', 'o' }, ',', repeat_prev)
+      end
 
       -- Create forward and backward movement functions with severity
       local function create_diagnostic_move_pair(severity)
-        return ts_repeat_move.make_repeatable_move_pair(function()
+        return repeatable_move.create_repeatable_move_pair(function()
           vim.diagnostic.jump({ count = 1, severity = severity })
         end, function()
           vim.diagnostic.jump({ count = -1, severity = severity })
