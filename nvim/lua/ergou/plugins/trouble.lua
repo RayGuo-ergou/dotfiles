@@ -34,8 +34,12 @@ return {
         end
       end)
 
-      map('n', '[q', function() trouble_repeat({ forward = false }) end, { desc = 'Previous trouble/quickfix item' })
-      map('n', ']q', function() trouble_repeat({ forward = true }) end, { desc = 'Next trouble/quickfix item' })
+      map('n', '[q', function()
+        trouble_repeat({ forward = false })
+      end, { desc = 'Previous trouble/quickfix item' })
+      map('n', ']q', function()
+        trouble_repeat({ forward = true })
+      end, { desc = 'Next trouble/quickfix item' })
 
       require('trouble').setup(opts)
     end,

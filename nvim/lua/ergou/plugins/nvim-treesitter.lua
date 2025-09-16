@@ -219,17 +219,29 @@ return {
       end
       -- Default diagnostic navigation (without severity)
       local diagnostic_repeat = create_diagnostic_move(nil)
-      map({ 'n', 'x', 'o' }, ']d', function() diagnostic_repeat({ forward = true }) end, { desc = 'Next Diagnostic' })
-      map({ 'n', 'x', 'o' }, '[d', function() diagnostic_repeat({ forward = false }) end, { desc = 'Prev Diagnostic' })
+      map({ 'n', 'x', 'o' }, ']d', function()
+        diagnostic_repeat({ forward = true })
+      end, { desc = 'Next Diagnostic' })
+      map({ 'n', 'x', 'o' }, '[d', function()
+        diagnostic_repeat({ forward = false })
+      end, { desc = 'Prev Diagnostic' })
 
       -- Diagnostic navigation for specific severities
       local diagnostic_error_repeat = create_diagnostic_move(vim.diagnostic.severity.ERROR)
-      map({ 'n', 'x', 'o' }, ']e', function() diagnostic_error_repeat({ forward = true }) end, { desc = 'Next Error' })
-      map({ 'n', 'x', 'o' }, '[e', function() diagnostic_error_repeat({ forward = false }) end, { desc = 'Prev Error' })
+      map({ 'n', 'x', 'o' }, ']e', function()
+        diagnostic_error_repeat({ forward = true })
+      end, { desc = 'Next Error' })
+      map({ 'n', 'x', 'o' }, '[e', function()
+        diagnostic_error_repeat({ forward = false })
+      end, { desc = 'Prev Error' })
 
       local diagnostic_warn_repeat = create_diagnostic_move(vim.diagnostic.severity.WARN)
-      map({ 'n', 'x', 'o' }, ']w', function() diagnostic_warn_repeat({ forward = true }) end, { desc = 'Next Warning' })
-      map({ 'n', 'x', 'o' }, '[w', function() diagnostic_warn_repeat({ forward = false }) end, { desc = 'Prev Warning' })
+      map({ 'n', 'x', 'o' }, ']w', function()
+        diagnostic_warn_repeat({ forward = true })
+      end, { desc = 'Next Warning' })
+      map({ 'n', 'x', 'o' }, '[w', function()
+        diagnostic_warn_repeat({ forward = false })
+      end, { desc = 'Prev Warning' })
     end,
   },
   -- Show context of the current function

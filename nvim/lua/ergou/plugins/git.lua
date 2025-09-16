@@ -70,10 +70,18 @@ return {
           end
         end)
         -- Jump to first/last hunk
-        map({ 'n', 'x', 'o' }, ']H', function() hunk_boundary_repeat({ forward = true }) end, 'jump to last git hunk')
-        map({ 'n', 'x', 'o' }, '[H', function() hunk_boundary_repeat({ forward = false }) end, 'jump to first git hunk')
-        map({ 'n', 'x', 'o' }, ']h', function() hunk_repeat({ forward = true }) end, 'jump to next git hunk')
-        map({ 'n', 'x', 'o' }, '[h', function() hunk_repeat({ forward = false }) end, 'jump to prev git hunk')
+        map({ 'n', 'x', 'o' }, ']H', function()
+          hunk_boundary_repeat({ forward = true })
+        end, 'jump to last git hunk')
+        map({ 'n', 'x', 'o' }, '[H', function()
+          hunk_boundary_repeat({ forward = false })
+        end, 'jump to first git hunk')
+        map({ 'n', 'x', 'o' }, ']h', function()
+          hunk_repeat({ forward = true })
+        end, 'jump to next git hunk')
+        map({ 'n', 'x', 'o' }, '[h', function()
+          hunk_repeat({ forward = false })
+        end, 'jump to prev git hunk')
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'select git hunk')
       end,

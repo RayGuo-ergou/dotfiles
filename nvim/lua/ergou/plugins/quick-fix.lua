@@ -37,8 +37,12 @@ return {
         end
       end)
 
-      map('n', '[Q', function() qf_repeat({ forward = false }) end, { desc = 'Previous quickfix item' })
-      map('n', ']Q', function() qf_repeat({ forward = true }) end, { desc = 'Next quickfix item' })
+      map('n', '[Q', function()
+        qf_repeat({ forward = false })
+      end, { desc = 'Previous quickfix item' })
+      map('n', ']Q', function()
+        qf_repeat({ forward = true })
+      end, { desc = 'Next quickfix item' })
 
       require('qf_helper').setup(opts)
     end,
