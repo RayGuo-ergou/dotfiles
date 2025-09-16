@@ -5,14 +5,15 @@
 --- The new API (if available) uses a single function that receives an opts table
 --- with a 'forward' boolean parameter, while the old API uses separate functions.
 ---
---- Usage:
----   local repeatable_move = require('ergou.util.repeatable_move')
----   local forward, backward = repeatable_move.create_repeatable_move_pair(forward_fn, backward_fn)
----   local repeat_next, repeat_prev = repeatable_move.get_repeat_functions()
+--- Preferred usage (new convention):
+---   local move_repeat = ergou.repeatable_move.create_repeatable_move(forward_fn, backward_fn)
+---   map('n', ']x', function() move_repeat({ forward = true }) end)
+---   map('n', '[x', function() move_repeat({ forward = false }) end)
 ---
---- Or via global ergou:
+--- Legacy usage (backward compatibility):
 ---   local forward, backward = ergou.repeatable_move.create_repeatable_move_pair(forward_fn, backward_fn)
----   local repeat_next, repeat_prev = ergou.repeatable_move.get_repeat_functions()
+---   map('n', ']x', forward)
+---   map('n', '[x', backward)
 
 ---@class ergou.util.repeatable_move
 local M = {}
@@ -41,9 +42,58 @@ local function has_make_repeatable_move()
   return module and type(module.make_repeatable_move) == 'function'
 end
 
+-- Create a repeatable move using the new convention
+-- Returns a single function that takes { forward = boolean } opts
+function M.create_repeatable_move(forward_fn, backward_fn)
+  local module = get_ts_repeat_move()
+  if not module then
+    -- No treesitter textobjects available, return a function that manually handles direction
+    return function(opts, ...)
+      if opts.forward then
+        forward_fn(...)
+      else
+        backward_fn(...)
+      end
+    end
+  end
+
+  if has_make_repeatable_move() then
+    -- Use the new make_repeatable_move pattern directly
+    return module.make_repeatable_move(function(opts, ...)
+      if opts.forward then
+        forward_fn(...)
+      else
+        backward_fn(...)
+      end
+    end)
+  else
+    -- Fall back to creating a function that mimics the new pattern
+    if module.make_repeatable_move_pair then
+      local forward_repeat, backward_repeat = module.make_repeatable_move_pair(forward_fn, backward_fn)
+      return function(opts, ...)
+        if opts.forward then
+          forward_repeat(...)
+        else
+          backward_repeat(...)
+        end
+      end
+    else
+      -- Fallback to a simple function if no repeatable move functionality is available
+      return function(opts, ...)
+        if opts.forward then
+          forward_fn(...)
+        else
+          backward_fn(...)
+        end
+      end
+    end
+  end
+end
+
 -- Create a repeatable move pair using the appropriate method
 -- If the new make_repeatable_move exists, use it with the new pattern
 -- Otherwise, fall back to the old make_repeatable_move_pair
+-- NOTE: This function is deprecated in favor of create_repeatable_move
 function M.create_repeatable_move_pair(forward_fn, backward_fn)
   local module = get_ts_repeat_move()
   if not module then
