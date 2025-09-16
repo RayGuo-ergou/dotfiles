@@ -25,9 +25,9 @@ local function has_make_repeatable_move()
   return module and type(module.make_repeatable_move) == 'function'
 end
 
--- Create a repeatable move using the new convention
--- Takes a single function that receives { forward = boolean } opts
--- Returns a function that takes { forward = boolean } opts
+---Creates a repeatable move function using ts-repeat-move module if available
+---@param move_fn fun(opts: {forward: boolean}, ...: any): any A movement function that takes direction options and additional arguments
+---@return fun(opts: {forward: boolean}, ...: any): any # Returns the original function or a repeatable version
 function M.create_repeatable_move(move_fn)
   local module = get_ts_repeat_move()
   if not module then
