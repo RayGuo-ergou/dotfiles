@@ -55,15 +55,19 @@ return {
         end, 'git diff against last commit')
 
         -- Jump to next/prev hunk
-        local hunk_repeat = ergou.repeatable_move.create_repeatable_move(function()
-          gitsigns.nav_hunk('next')
-        end, function()
-          gitsigns.nav_hunk('prev')
+        local hunk_repeat = ergou.repeatable_move.create_repeatable_move(function(opts)
+          if opts.forward then
+            gitsigns.nav_hunk('next')
+          else
+            gitsigns.nav_hunk('prev')
+          end
         end)
-        local hunk_boundary_repeat = ergou.repeatable_move.create_repeatable_move(function()
-          gitsigns.nav_hunk('last')
-        end, function()
-          gitsigns.nav_hunk('first')
+        local hunk_boundary_repeat = ergou.repeatable_move.create_repeatable_move(function(opts)
+          if opts.forward then
+            gitsigns.nav_hunk('last')
+          else
+            gitsigns.nav_hunk('first')
+          end
         end)
         -- Jump to first/last hunk
         map({ 'n', 'x', 'o' }, ']H', function() hunk_boundary_repeat({ forward = true }) end, 'jump to last git hunk')

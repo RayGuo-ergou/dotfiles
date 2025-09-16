@@ -26,7 +26,13 @@ return {
           end
         end
       end
-      local trouble_repeat = ergou.repeatable_move.create_repeatable_move(trouble_next, trouble_prev)
+      local trouble_repeat = ergou.repeatable_move.create_repeatable_move(function(opts)
+        if opts.forward then
+          trouble_next()
+        else
+          trouble_prev()
+        end
+      end)
 
       map('n', '[q', function() trouble_repeat({ forward = false }) end, { desc = 'Previous trouble/quickfix item' })
       map('n', ']q', function() trouble_repeat({ forward = true }) end, { desc = 'Next trouble/quickfix item' })

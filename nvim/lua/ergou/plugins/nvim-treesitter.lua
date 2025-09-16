@@ -209,10 +209,12 @@ return {
 
       -- Create diagnostic move function with severity
       local function create_diagnostic_move(severity)
-        return ergou.repeatable_move.create_repeatable_move(function()
-          vim.diagnostic.jump({ count = 1, severity = severity })
-        end, function()
-          vim.diagnostic.jump({ count = -1, severity = severity })
+        return ergou.repeatable_move.create_repeatable_move(function(opts)
+          if opts.forward then
+            vim.diagnostic.jump({ count = 1, severity = severity })
+          else
+            vim.diagnostic.jump({ count = -1, severity = severity })
+          end
         end)
       end
       -- Default diagnostic navigation (without severity)
