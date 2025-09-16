@@ -1,3 +1,15 @@
+--- Utility module for handling repeatable move functionality migration
+--- This module provides backwards compatibility between the old `make_repeatable_move_pair`
+--- and the new `make_repeatable_move` functions in nvim-treesitter-textobjects.
+---
+--- The new API (if available) uses a single function that receives an opts table
+--- with a 'forward' boolean parameter, while the old API uses separate functions.
+---
+--- Usage:
+---   local repeatable_move = require('ergou.util.repeatable_move')
+---   local forward, backward = repeatable_move.create_repeatable_move_pair(forward_fn, backward_fn)
+---   local repeat_next, repeat_prev = repeatable_move.get_repeat_functions()
+
 local M = {}
 
 -- Cache for the treesitter textobjects repeatable_move module
