@@ -3,7 +3,6 @@ return {
     'folke/trouble.nvim',
     config = function(_, opts)
       local map = vim.keymap.set
-      local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
       local trouble_next = function()
         if require('trouble').is_open() then
           ---@diagnostic disable-next-line: missing-fields, missing-parameter
@@ -27,10 +26,20 @@ return {
           end
         end
       end
-      local trouble_forward, trouble_backward = ts_repeat_move.make_repeatable_move_pair(trouble_next, trouble_prev)
+      local trouble_repeat = ergou.repeatable_move.create_repeatable_move(function(opts)
+        if opts.forward then
+          trouble_next()
+        else
+          trouble_prev()
+        end
+      end)
 
-      map('n', '[q', trouble_backward, { desc = 'Previous trouble/quickfix item' })
-      map('n', ']q', trouble_forward, { desc = 'Next trouble/quickfix item' })
+      map('n', '[q', function()
+        trouble_repeat({ forward = false })
+      end, { desc = 'Previous trouble/quickfix item' })
+      map('n', ']q', function()
+        trouble_repeat({ forward = true })
+      end, { desc = 'Next trouble/quickfix item' })
 
       require('trouble').setup(opts)
     end,

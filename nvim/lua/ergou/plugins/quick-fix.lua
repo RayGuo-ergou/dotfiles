@@ -21,7 +21,6 @@ return {
     },
     config = function(_, opts)
       local map = vim.keymap.set
-      local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 
       local qf_next = function()
         vim.cmd([[QNext]])
@@ -30,10 +29,20 @@ return {
       local qf_prev = function()
         vim.cmd([[QPrev]])
       end
-      local qf_forward, qf_backward = ts_repeat_move.make_repeatable_move_pair(qf_next, qf_prev)
+      local qf_repeat = ergou.repeatable_move.create_repeatable_move(function(opts)
+        if opts.forward then
+          qf_next()
+        else
+          qf_prev()
+        end
+      end)
 
-      map('n', '[Q', qf_backward, { desc = 'Previous quickfix item' })
-      map('n', ']Q', qf_forward, { desc = 'Next quickfix item' })
+      map('n', '[Q', function()
+        qf_repeat({ forward = false })
+      end, { desc = 'Previous quickfix item' })
+      map('n', ']Q', function()
+        qf_repeat({ forward = true })
+      end, { desc = 'Next quickfix item' })
 
       require('qf_helper').setup(opts)
     end,

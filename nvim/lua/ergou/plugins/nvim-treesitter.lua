@@ -185,7 +185,6 @@ return {
     },
     ---@param opts TSConfig
     config = function(_, opts)
-      local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
       local map = vim.keymap.set
 
       if type(opts.ensure_installed) == 'table' then
@@ -202,32 +201,47 @@ return {
       require('nvim-treesitter.configs').setup(opts)
 
       -- Override the default text objects next and previous
-      map({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
-      map({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
+      local repeat_next, repeat_prev = ergou.repeatable_move.get_repeat_functions()
+      if repeat_next and repeat_prev then
+        map({ 'n', 'x', 'o' }, ';', repeat_next)
+        map({ 'n', 'x', 'o' }, ',', repeat_prev)
+      end
 
-      -- Create forward and backward movement functions with severity
-      local function create_diagnostic_move_pair(severity)
-        return ts_repeat_move.make_repeatable_move_pair(function()
-          vim.diagnostic.jump({ count = 1, severity = severity })
-        end, function()
-          vim.diagnostic.jump({ count = -1, severity = severity })
+      -- Create diagnostic move function with severity
+      local function create_diagnostic_move(severity)
+        return ergou.repeatable_move.create_repeatable_move(function(opts)
+          if opts.forward then
+            vim.diagnostic.jump({ count = 1, severity = severity })
+          else
+            vim.diagnostic.jump({ count = -1, severity = severity })
+          end
         end)
       end
       -- Default diagnostic navigation (without severity)
-      local diagnostic_forward, diagnostic_backward = create_diagnostic_move_pair(nil)
-      map({ 'n', 'x', 'o' }, ']d', diagnostic_forward, { desc = 'Next Diagnostic' })
-      map({ 'n', 'x', 'o' }, '[d', diagnostic_backward, { desc = 'Prev Diagnostic' })
+      local diagnostic_repeat = create_diagnostic_move(nil)
+      map({ 'n', 'x', 'o' }, ']d', function()
+        diagnostic_repeat({ forward = true })
+      end, { desc = 'Next Diagnostic' })
+      map({ 'n', 'x', 'o' }, '[d', function()
+        diagnostic_repeat({ forward = false })
+      end, { desc = 'Prev Diagnostic' })
 
       -- Diagnostic navigation for specific severities
-      local diagnostic_forward_error, diagnostic_backward_error =
-        create_diagnostic_move_pair(vim.diagnostic.severity.ERROR)
-      map({ 'n', 'x', 'o' }, ']e', diagnostic_forward_error, { desc = 'Next Error' })
-      map({ 'n', 'x', 'o' }, '[e', diagnostic_backward_error, { desc = 'Prev Error' })
+      local diagnostic_error_repeat = create_diagnostic_move(vim.diagnostic.severity.ERROR)
+      map({ 'n', 'x', 'o' }, ']e', function()
+        diagnostic_error_repeat({ forward = true })
+      end, { desc = 'Next Error' })
+      map({ 'n', 'x', 'o' }, '[e', function()
+        diagnostic_error_repeat({ forward = false })
+      end, { desc = 'Prev Error' })
 
-      local diagnostic_forward_warn, diagnostic_backward_warn =
-        create_diagnostic_move_pair(vim.diagnostic.severity.WARN)
-      map({ 'n', 'x', 'o' }, ']w', diagnostic_forward_warn, { desc = 'Next Warning' })
-      map({ 'n', 'x', 'o' }, '[w', diagnostic_backward_warn, { desc = 'Prev Warning' })
+      local diagnostic_warn_repeat = create_diagnostic_move(vim.diagnostic.severity.WARN)
+      map({ 'n', 'x', 'o' }, ']w', function()
+        diagnostic_warn_repeat({ forward = true })
+      end, { desc = 'Next Warning' })
+      map({ 'n', 'x', 'o' }, '[w', function()
+        diagnostic_warn_repeat({ forward = false })
+      end, { desc = 'Prev Warning' })
     end,
   },
   -- Show context of the current function

@@ -26,7 +26,6 @@ return {
       attach_to_untracked = true,
       on_attach = function(bufnr)
         local gitsigns = require('gitsigns')
-        local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 
         local function map(mode, l, r, desc)
           vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
@@ -56,21 +55,33 @@ return {
         end, 'git diff against last commit')
 
         -- Jump to next/prev hunk
-        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()
-          gitsigns.nav_hunk('next')
-        end, function()
-          gitsigns.nav_hunk('prev')
+        local hunk_repeat = ergou.repeatable_move.create_repeatable_move(function(opts)
+          if opts.forward then
+            gitsigns.nav_hunk('next')
+          else
+            gitsigns.nav_hunk('prev')
+          end
         end)
-        local last_hunk_repeat, first_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()
-          gitsigns.nav_hunk('last')
-        end, function()
-          gitsigns.nav_hunk('first')
+        local hunk_boundary_repeat = ergou.repeatable_move.create_repeatable_move(function(opts)
+          if opts.forward then
+            gitsigns.nav_hunk('last')
+          else
+            gitsigns.nav_hunk('first')
+          end
         end)
         -- Jump to first/last hunk
-        map({ 'n', 'x', 'o' }, ']H', last_hunk_repeat, 'jump to last git hunk')
-        map({ 'n', 'x', 'o' }, '[H', first_hunk_repeat, 'jump to first git hunk')
-        map({ 'n', 'x', 'o' }, ']h', next_hunk_repeat, 'jump to next git hunk')
-        map({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat, 'jump to prev git hunk')
+        map({ 'n', 'x', 'o' }, ']H', function()
+          hunk_boundary_repeat({ forward = true })
+        end, 'jump to last git hunk')
+        map({ 'n', 'x', 'o' }, '[H', function()
+          hunk_boundary_repeat({ forward = false })
+        end, 'jump to first git hunk')
+        map({ 'n', 'x', 'o' }, ']h', function()
+          hunk_repeat({ forward = true })
+        end, 'jump to next git hunk')
+        map({ 'n', 'x', 'o' }, '[h', function()
+          hunk_repeat({ forward = false })
+        end, 'jump to prev git hunk')
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'select git hunk')
       end,
