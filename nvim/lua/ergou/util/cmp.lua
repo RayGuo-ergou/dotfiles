@@ -272,8 +272,7 @@ end
 -- Function to check if the cursor is inside a start tag
 -- Can be a global function? bue need refactoring for sure
 local function is_in_start_tag()
-  local ts_utils = require('nvim-treesitter.ts_utils')
-  local node = ts_utils.get_node_at_cursor()
+  local node = vim.treesitter.get_node()
   if not node then
     return false
   end
