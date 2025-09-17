@@ -4,6 +4,19 @@ return {
   opts = {},
   keys = {
     {
+      '<c-space>',
+      mode = { 'n', 'o', 'x' },
+      function()
+        require('flash').treesitter({
+          actions = {
+            ['<c-space>'] = 'next',
+            ['<BS>'] = 'prev',
+          },
+        })
+      end,
+      desc = 'Treesitter Incremental Selection',
+    },
+    {
       's',
       mode = { 'n', 'x' },
       function()
