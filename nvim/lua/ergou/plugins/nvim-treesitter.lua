@@ -8,7 +8,8 @@ return {
         ergou.error('Please restart Neovim and run `:TSUpdate` to use the `nvim-treesitter` **main** branch.')
         return
       end
-      vim.cmd.TSUpdate()
+      -- somehow when install it throws error
+      pcall(vim.cmd.TSUpdate)
     end,
     cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
     event = { 'LazyFile', 'VeryLazy' },
@@ -75,7 +76,9 @@ return {
         ergou.error('**treesitter-main** requires the `tree-sitter` executable to be installed')
         return
       end
-      if type(opts.ensure_installed) ~= 'table' then
+      if
+        type(opts.ensure_installed --[[@as string[] ]]) ~= 'table'
+      then
         ergou.error('`nvim-treesitter` opts.ensure_installed must be a table')
       end
 
@@ -86,7 +89,7 @@ return {
       end
       TS.setup(opts)
 
-      local needed = opts.ensure_installed --[[@as string[] ]]
+      local needed = ergou.dedup(opts.ensure_installed --[[@as string[] ]])
       ergou.ui.installed = TS.get_installed('parsers')
 
       local install = vim.tbl_filter(function(lang)
