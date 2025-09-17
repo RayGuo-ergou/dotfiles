@@ -8,8 +8,7 @@ return {
         ergou.error('Please restart Neovim and run `:TSUpdate` to use the `nvim-treesitter` **main** branch.')
         return
       end
-      -- somehow when install it throws error
-      pcall(vim.cmd.TSUpdate)
+      TS.update(nil, { summary = true })
     end,
     cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
     event = { 'LazyFile', 'VeryLazy' },
@@ -89,6 +88,8 @@ return {
       -- setup treesitter
       TS.setup(opts)
 
+      ergou.treesitter.get_installed(true) -- initialize the installed langs
+
       -- install missing parsers
       local install = vim.tbl_filter(function(lang)
         return not ergou.treesitter.have(lang)
@@ -101,9 +102,17 @@ return {
 
       -- treesitter highlighting
       vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('ergou_treesitter', { clear = true }),
         callback = function(ev)
           if ergou.treesitter.have(ev.match) then
             pcall(vim.treesitter.start)
+            -- check if ftplugins changed foldexpr/indentexpr
+            for _, option in ipairs({ 'foldexpr', 'indentexpr' }) do
+              local expr = 'v:lua.ergou.treesitter.' .. option .. '()'
+              if vim.opt_global[option]:get() == expr then
+                vim.opt_local[option] = expr
+              end
+            end
           end
         end,
       })
