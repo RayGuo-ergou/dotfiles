@@ -28,7 +28,7 @@ return {
         local gitsigns = require('gitsigns')
 
         local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
+          vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc, silent = true })
         end
 
         -- Actions
