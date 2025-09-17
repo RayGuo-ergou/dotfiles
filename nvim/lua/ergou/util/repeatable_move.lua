@@ -10,9 +10,16 @@ local function get_ts_repeat_move()
     return ts_repeat_move
   end
 
-  local ok, module = pcall(require, 'nvim-treesitter.textobjects.repeatable_move')
-  if ok then
-    ts_repeat_move = module
+  local ok_old, module_old = pcall(require, 'nvim-treesitter.textobjects.repeatable_move')
+  if ok_old then
+    ts_repeat_move = module_old
+    return ts_repeat_move
+  end
+
+  -- new is `nvim-treesitter-textobjects` instead of `nvim-treesitter.textobjects`
+  local ok_new, module_new = pcall(require, 'nvim-treesitter-textobjects.repeatable_move')
+  if ok_new then
+    ts_repeat_move = module_new
     return ts_repeat_move
   end
 
