@@ -14,7 +14,8 @@ return {
     cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
     event = { 'LazyFile', 'VeryLazy' },
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-    ---@type TSConfig
+    opts_extend = { 'ensure_installed' },
+    ---@class ergou.TSConfig: TSConfig
     opts = {
       ensure_installed = {
         'c',
@@ -69,42 +70,39 @@ return {
         'hyprlang',
       },
     },
-    ---@param plugin LazyPlugin
-    ---@param opts TSConfig
-    config = function(plugin, opts)
-      if vim.fn.executable('tree-sitter') == 0 then
-        ergou.error('**treesitter-main** requires the `tree-sitter` executable to be installed')
-        return
-      end
-      if
-        type(opts.ensure_installed --[[@as string[] ]]) ~= 'table'
-      then
-        ergou.error('`nvim-treesitter` opts.ensure_installed must be a table')
+    ---@param opts ergou.TSConfig
+    config = function(_, opts)
+      local TS = require('nvim-treesitter')
+
+      -- some quick sanity checks
+      if not TS.get_installed then
+        return ergou.error('Please use `:Lazy` and update `nvim-treesitter`')
+      elseif vim.fn.executable('tree-sitter') == 0 then
+        return ergou.error({
+          '**treesitter-main** requires the `tree-sitter` CLI executable to be installed.',
+          'Run `:checkhealth nvim-treesitter` for more information.',
+        })
+      elseif type(opts.ensure_installed) ~= 'table' then
+        return ergou.error('`nvim-treesitter` opts.ensure_installed must be a table')
       end
 
-      local TS = require('nvim-treesitter')
-      if not TS.get_installed then
-        ergou.error('Please use `:Lazy` and update `nvim-treesitter`')
-        return
-      end
+      -- setup treesitter
       TS.setup(opts)
 
-      local needed = ergou.dedup(opts.ensure_installed --[[@as string[] ]])
-      ergou.ui.installed = TS.get_installed('parsers')
-
+      -- install missing parsers
       local install = vim.tbl_filter(function(lang)
-        return not ergou.ui.have(lang)
-      end, needed)
-
+        return not ergou.treesitter.have(lang)
+      end, opts.ensure_installed or {})
       if #install > 0 then
         TS.install(install, { summary = true }):await(function()
-          ergou.ui.installed = TS.get_installed('parsers')
+          ergou.treesitter.get_installed(true) -- refresh the installed langs
         end)
       end
 
+      -- treesitter highlighting
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(ev)
-          if ergou.ui.have(ev.match) then
+          if ergou.treesitter.have(ev.match) then
             pcall(vim.treesitter.start)
           end
         end,

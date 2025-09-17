@@ -12,7 +12,7 @@ local LazyUtil = require('lazy.core.util')
 ---@field public copy ergou.util.copy
 ---@field public fold ergou.util.fold
 ---@field public repeatable_move ergou.util.repeatable_move
----@field public ui ergou.util.ui
+---@field public treesitter ergou.util.treesitter
 local M = {}
 
 setmetatable(M, {
