@@ -12,6 +12,7 @@ local LazyUtil = require('lazy.core.util')
 ---@field public copy ergou.util.copy
 ---@field public fold ergou.util.fold
 ---@field public repeatable_move ergou.util.repeatable_move
+---@field public treesitter ergou.util.treesitter
 local M = {}
 
 setmetatable(M, {
@@ -24,6 +25,22 @@ setmetatable(M, {
     return t[k]
   end,
 })
+
+---@generic T
+---@param list T[]
+---@return T[]
+function M.dedup(list)
+  local ret = {}
+  local seen = {}
+  for _, v in ipairs(list) do
+    if not seen[v] then
+      table.insert(ret, v)
+      seen[v] = true
+    end
+  end
+  return ret
+end
+
 function M.is_win()
   return vim.uv.os_uname().sysname:find('Windows') ~= nil
 end

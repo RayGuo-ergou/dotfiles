@@ -1,7 +1,14 @@
 return {
   'folke/flash.nvim',
   ---@type Flash.Config
-  opts = {},
+  opts = {
+    modes = {
+      treesitter = {
+        -- Select and perform action, don't have to select
+        labels = '',
+      },
+    },
+  },
   keys = {
     {
       '<c-space>',

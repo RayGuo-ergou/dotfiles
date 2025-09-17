@@ -89,7 +89,7 @@ return {
               -- height is number of items minus 15 lines for the preview, with a max of 90% screen height
               height = ergou.pick.select_height(#items),
               width = 0.5,
-              preview = not vim.tbl_isempty(ergou.lsp.get_clients({ bufnr = 0, name = 'vtsls' })) and {
+              preview = not vim.tbl_isempty(vim.lsp.get_clients({ bufnr = 0, name = 'vtsls' })) and {
                 layout = 'vertical',
                 vertical = 'down:15,border-top',
                 hidden = 'hidden',

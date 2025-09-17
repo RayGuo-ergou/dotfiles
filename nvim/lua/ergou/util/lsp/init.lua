@@ -8,9 +8,6 @@
 ---@field public servers ergou.util.lsp.servers
 local M = {}
 
----@class LspClientFilterOpts: vim.lsp.get_clients.Filter
----@field public filter fun(client: vim.lsp.Client):boolean
-
 setmetatable(M, {
   __index = function(t, k)
     ---@diagnostic disable-next-line: no-unknown
@@ -32,12 +29,6 @@ M.action = setmetatable({}, {
     end
   end,
 })
-
----@param opts? LspClientFilterOpts
-function M.get_clients(opts)
-  local ret = vim.lsp.get_clients(opts)
-  return opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
-end
 
 local function config_servers()
   local servers = ergou.lsp.servers.get()

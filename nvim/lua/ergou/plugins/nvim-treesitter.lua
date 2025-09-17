@@ -1,51 +1,22 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
+    branch = 'main',
+    build = function()
+      local TS = require('nvim-treesitter')
+      if not TS.get_installed then
+        ergou.error('Please restart Neovim and run `:TSUpdate` to use the `nvim-treesitter` **main** branch.')
+        return
+      end
+      -- somehow when install it throws error
+      pcall(vim.cmd.TSUpdate)
+    end,
+    cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
     event = { 'LazyFile', 'VeryLazy' },
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-    init = function(plugin)
-      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
-      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
-      -- no longer trigger the **nvim-treeitter** module to be loaded in time.
-      -- Luckily, the only thins that those plugins need are the custom queries, which we make available
-      -- during startup.
-      require('lazy.core.loader').add_to_rtp(plugin)
-      require('nvim-treesitter.query_predicates')
-    end,
-    dependencies = {
-      {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        config = function()
-          -- When in diff mode, we want to use the default
-          -- vim text objects c & C instead of the treesitter ones.
-          local move = require('nvim-treesitter.textobjects.move') ---@type table<string,fun(...)>
-          local configs = require('nvim-treesitter.configs')
-          for name, fn in pairs(move) do
-            if name:find('goto') == 1 then
-              move[name] = function(q, ...)
-                if vim.wo.diff then
-                  local config = configs.get_module('textobjects.move')[name] ---@type table<string,string>
-                  for key, query in pairs(config or {}) do
-                    if q == query and key:find('[%]%[][cC]') then
-                      vim.cmd('normal! ' .. key)
-                      return
-                    end
-                  end
-                end
-                return fn(q, ...)
-              end
-            end
-          end
-        end,
-      },
-    },
-    cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
-    ---@type TSConfig
-    ---@diagnostic disable-next-line: missing-fields
+    opts_extend = { 'ensure_installed' },
+    ---@class ergou.TSConfig: TSConfig
     opts = {
-      highlight = { enable = true },
-      indent = { enable = true, disable = { 'lua' } },
       ensure_installed = {
         'c',
         'git_rebase',
@@ -98,146 +69,141 @@ return {
         'blade',
         'hyprlang',
       },
-      incremental_selection = {
-        enable = false,
-        keymaps = {
-          init_selection = '<C-space>',
-          node_incremental = '<C-space>',
-          scope_incremental = false,
-          node_decremental = '<bs>',
-        },
-      },
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-          keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
-            ['aa'] = { query = { '@parameter.outer' }, desc = 'Function params/array elements outer' },
-            ['ia'] = { query = { '@parameter.inner' }, desc = 'Function params/array elements inner' },
-            ['aA'] = '@assignment.outer',
-            ['iA'] = '@assignment.inner',
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['ac'] = '@call.outer',
-            ['ic'] = '@call.inner',
-            ['al'] = '@loop.outer',
-            ['il'] = '@loop.inner',
-            ['ai'] = '@conditional.outer',
-            ['ii'] = '@conditional.inner',
-          },
-        },
-        move = {
-          enable = true,
-          goto_next_start = {
-            [']f'] = '@function.outer',
-            [']c'] = '@call.outer',
-            [']a'] = '@parameter.outer',
-            [']l'] = '@loop.outer',
-            [']i'] = '@conditional.outer',
-          },
-          goto_next_end = {
-            [']F'] = '@function.outer',
-            [']C'] = '@call.outer',
-            [']A'] = '@parameter.outer',
-            [']L'] = '@loop.outer',
-            [']I'] = '@conditional.outer',
-          },
-          goto_previous_start = {
-            ['[f'] = '@function.outer',
-            ['[c'] = '@call.outer',
-            ['[a'] = '@parameter.outer',
-            ['[l'] = '@loop.outer',
-            ['[i'] = '@conditional.outer',
-          },
-          goto_previous_end = {
-            ['[F'] = '@function.outer',
-            ['[C'] = '@call.outer',
-            ['[A'] = '@parameter.outer',
-            ['[L'] = '@loop.outer',
-            ['[I'] = '@conditional.outer',
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ['<leader>ra'] = '@parameter.inner',
-          },
-          swap_previous = {
-            ['<leader>rA'] = '@parameter.inner',
-          },
-        },
-        lsp_interop = {
-          enable = true,
-          floating_preview_opts = {
-            border = 'rounded',
-          },
-          peek_definition_code = {
-            ['<leader>df'] = '@function.outer',
-            ['<leader>dF'] = '@class.outer',
-          },
-        },
-      },
     },
-    ---@param opts TSConfig
+    ---@param opts ergou.TSConfig
     config = function(_, opts)
-      local map = vim.keymap.set
+      local TS = require('nvim-treesitter')
 
-      if type(opts.ensure_installed) == 'table' then
-        ---@type table<string, boolean>
-        local added = {}
-        opts.ensure_installed = vim.tbl_filter(function(lang)
-          if added[lang] then
-            return false
-          end
-          added[lang] = true
-          return true
-        end, opts.ensure_installed)
-      end
-      require('nvim-treesitter.configs').setup(opts)
-
-      -- Override the default text objects next and previous
-      local repeat_next, repeat_prev = ergou.repeatable_move.get_repeat_functions()
-      if repeat_next and repeat_prev then
-        map({ 'n', 'x', 'o' }, ';', repeat_next)
-        map({ 'n', 'x', 'o' }, ',', repeat_prev)
+      -- some quick sanity checks
+      if not TS.get_installed then
+        return ergou.error('Please use `:Lazy` and update `nvim-treesitter`')
+      elseif vim.fn.executable('tree-sitter') == 0 then
+        return ergou.error({
+          '**treesitter-main** requires the `tree-sitter` CLI executable to be installed.',
+          'Run `:checkhealth nvim-treesitter` for more information.',
+        })
+      elseif type(opts.ensure_installed) ~= 'table' then
+        return ergou.error('`nvim-treesitter` opts.ensure_installed must be a table')
       end
 
-      -- Create diagnostic move function with severity
-      local function create_diagnostic_move(severity)
-        return ergou.repeatable_move.create_repeatable_move(function(opt)
-          if opt.forward then
-            vim.diagnostic.jump({ count = 1, severity = severity })
-          else
-            vim.diagnostic.jump({ count = -1, severity = severity })
-          end
+      -- setup treesitter
+      TS.setup(opts)
+
+      -- install missing parsers
+      local install = vim.tbl_filter(function(lang)
+        return not ergou.treesitter.have(lang)
+      end, opts.ensure_installed or {})
+      if #install > 0 then
+        TS.install(install, { summary = true }):await(function()
+          ergou.treesitter.get_installed(true) -- refresh the installed langs
         end)
       end
-      -- Default diagnostic navigation (without severity)
-      local diagnostic_repeat = create_diagnostic_move(nil)
-      map({ 'n', 'x', 'o' }, ']d', function()
-        diagnostic_repeat({ forward = true })
-      end, { desc = 'Next Diagnostic' })
-      map({ 'n', 'x', 'o' }, '[d', function()
-        diagnostic_repeat({ forward = false })
-      end, { desc = 'Prev Diagnostic' })
 
-      -- Diagnostic navigation for specific severities
-      local diagnostic_error_repeat = create_diagnostic_move(vim.diagnostic.severity.ERROR)
-      map({ 'n', 'x', 'o' }, ']e', function()
-        diagnostic_error_repeat({ forward = true })
-      end, { desc = 'Next Error' })
-      map({ 'n', 'x', 'o' }, '[e', function()
-        diagnostic_error_repeat({ forward = false })
-      end, { desc = 'Prev Error' })
+      -- treesitter highlighting
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(ev)
+          if ergou.treesitter.have(ev.match) then
+            pcall(vim.treesitter.start)
+          end
+        end,
+      })
+    end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
+    event = 'VeryLazy',
+    opts = {},
+    keys = function()
+      local moves = {
+        goto_next_start = {
+          [']f'] = '@function.outer',
+          [']c'] = '@call.outer',
+          [']a'] = '@parameter.outer',
+          [']l'] = '@loop.outer',
+          [']i'] = '@conditional.outer',
+        },
+        goto_next_end = {
+          [']F'] = '@function.outer',
+          [']C'] = '@call.outer',
+          [']A'] = '@parameter.outer',
+          [']L'] = '@loop.outer',
+          [']I'] = '@conditional.outer',
+        },
+        goto_previous_start = {
+          ['[f'] = '@function.outer',
+          ['[c'] = '@call.outer',
+          ['[a'] = '@parameter.outer',
+          ['[l'] = '@loop.outer',
+          ['[i'] = '@conditional.outer',
+        },
+        goto_previous_end = {
+          ['[F'] = '@function.outer',
+          ['[C'] = '@call.outer',
+          ['[A'] = '@parameter.outer',
+          ['[L'] = '@loop.outer',
+          ['[I'] = '@conditional.outer',
+        },
+      }
+      local ret = {} ---@type LazyKeysSpec[]
+      for method, keymaps in pairs(moves) do
+        for key, query in pairs(keymaps) do
+          local desc = query:gsub('@', ''):gsub('%..*', '')
+          desc = desc:sub(1, 1):upper() .. desc:sub(2)
+          desc = (key:sub(1, 1) == '[' and 'Prev ' or 'Next ') .. desc
+          desc = desc .. (key:sub(2, 2) == key:sub(2, 2):upper() and ' End' or ' Start')
+          ret[#ret + 1] = {
+            key,
+            function()
+              -- don't use treesitter if in diff mode and the key is one of the c/C keys
+              if vim.wo.diff and key:find('[cC]') then
+                return vim.cmd('normal! ' .. key)
+              end
+              require('nvim-treesitter-textobjects.move')[method](query, 'textobjects')
+            end,
+            desc = desc,
+            mode = { 'n', 'x', 'o' },
+            silent = true,
+          }
+        end
+      end
 
-      local diagnostic_warn_repeat = create_diagnostic_move(vim.diagnostic.severity.WARN)
-      map({ 'n', 'x', 'o' }, ']w', function()
-        diagnostic_warn_repeat({ forward = true })
-      end, { desc = 'Next Warning' })
-      map({ 'n', 'x', 'o' }, '[w', function()
-        diagnostic_warn_repeat({ forward = false })
-      end, { desc = 'Prev Warning' })
+      local textobjects = {
+        ['aa'] = { query = '@parameter.outer', desc = 'Function params/array elements outer' },
+        ['ia'] = { query = '@parameter.inner', desc = 'Function params/array elements inner' },
+        ['aA'] = { query = '@assignment.outer', desc = 'Assignment outer' },
+        ['iA'] = { query = '@assignment.inner', desc = 'Assignment inner' },
+        ['af'] = { query = '@function.outer', desc = 'Function outer' },
+        ['if'] = { query = '@function.inner', desc = 'Function inner' },
+        ['ac'] = { query = '@call.outer', desc = 'Call outer' },
+        ['ic'] = { query = '@call.inner', desc = 'Call inner' },
+        ['al'] = { query = '@loop.outer', desc = 'Loop outer' },
+        ['il'] = { query = '@loop.inner', desc = 'Loop inner' },
+        ['ai'] = { query = '@conditional.outer', desc = 'Conditional outer' },
+        ['ii'] = { query = '@conditional.inner', desc = 'Conditional inner' },
+      }
+
+      for key, config in pairs(textobjects) do
+        ret[#ret + 1] = {
+          key,
+          function()
+            require('nvim-treesitter-textobjects.select').select_textobject(config.query, 'textobjects')
+          end,
+          desc = config.desc,
+          mode = { 'x', 'o' },
+          silent = true,
+        }
+      end
+      return ret
+    end,
+    config = function(_, opts)
+      ergou.repeatable_move.setup_diagnostic()
+      local TS = require('nvim-treesitter-textobjects')
+      if not TS.setup then
+        ergou.error('Please use `:Lazy` and update `nvim-treesitter`')
+        return
+      end
+      TS.setup(opts)
     end,
   },
   -- Show context of the current function
