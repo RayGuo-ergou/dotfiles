@@ -177,6 +177,7 @@ timeshift
 timeshift-autosnap
 trash-cli
 tree
+tree-sitter-cli
 ttf-firacode-nerd
 tumbler
 unzip
