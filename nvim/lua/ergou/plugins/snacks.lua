@@ -384,6 +384,7 @@ return {
             file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
             width = 0.8,
             height = 0.8,
+            border = 'rounded',
             wo = {
               spell = false,
               wrap = false,
