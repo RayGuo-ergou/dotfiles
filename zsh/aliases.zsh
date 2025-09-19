@@ -27,6 +27,8 @@ alias icat='kitty icat'
 alias jourwr='journalctl -p warning..emerg -r'
 # see https://forum.endeavouros.com/t/how-to-delete-orphaned-packages-pacman-vs-pamac/45218
 alias rmorp='sudo pacman -R $(pacman -Qdtq)'
+alias laltf='php artisan test --filter'
+alias lalcc='php artisan optimize:clear'
 
 vimf() {
   local file=$(fd --type f --hidden --exclude .git | fzf --reverse)
