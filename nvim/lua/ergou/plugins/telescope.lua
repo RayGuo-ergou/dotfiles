@@ -65,6 +65,7 @@ return {
           },
           mappings = {
             i = {
+              ['<esc>'] = actions.close,
               ['<c-t>'] = open_with_trouble,
               ['<a-t>'] = open_selected_with_trouble,
               ['<a-i>'] = find_files_no_ignore,

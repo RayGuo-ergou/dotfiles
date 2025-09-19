@@ -199,6 +199,7 @@ return {
         win = {
           input = {
             keys = {
+              ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
               ['<a-c>'] = {
                 'toggle_cwd',
                 mode = { 'n', 'i' },
