@@ -64,7 +64,6 @@ opt.showmode = false -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartcase = true -- Don't ignore case with capitals
-opt.indentexpr = 'v:lua.ergou.treesitter.indentexpr()' -- treesitter indents
 opt.smartindent = true -- Insert indents automatically
 opt.spelllang = { 'en' }
 opt.splitbelow = true -- Put new windows below current
@@ -93,9 +92,9 @@ opt.fillchars = {
 
 -- Fold
 opt.foldlevel = 99
-opt.foldmethod = 'expr'
-opt.foldexpr = 'v:lua.ergou.treesitter.foldexpr()' -- treesitter folds
+opt.foldmethod = 'indent'
 opt.foldtext = ''
+-- Treesitter fold will set in `nvim-treesitter`
 
 -- Set pumblend to 0 so the cmp menu is not transparent
 -- The transparent menu caused the icon not showing properly if any text is under that row

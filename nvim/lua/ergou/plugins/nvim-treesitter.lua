@@ -104,15 +104,16 @@ return {
       vim.api.nvim_create_autocmd('FileType', {
         group = vim.api.nvim_create_augroup('ergou_treesitter', { clear = true }),
         callback = function(ev)
-          if ergou.treesitter.have(ev.match) then
-            pcall(vim.treesitter.start)
-            -- check if ftplugins changed foldexpr/indentexpr
-            for _, option in ipairs({ 'foldexpr', 'indentexpr' }) do
-              local expr = 'v:lua.ergou.treesitter.' .. option .. '()'
-              if vim.opt_global[option]:get() == expr then
-                vim.opt_local[option] = expr
-              end
-            end
+          if not ergou.treesitter.have(ev.match) then
+            return
+          end
+          pcall(vim.treesitter.start)
+          if ergou.treesitter.have(ev.match, 'indents') then
+            vim.opt_local.indentexpr = 'v:lua.ergou.treesitter.indentexpr()'
+          end
+          if ergou.treesitter.have(ev.match, 'folds') then
+            vim.opt_local.foldmethod = 'expr'
+            vim.opt_local.foldexpr = 'v:lua.ergou.treesitter.foldexpr()'
           end
         end,
       })
