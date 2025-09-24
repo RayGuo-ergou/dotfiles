@@ -1,3 +1,6 @@
+:root {
+  --notification-icon-size: 64px;
+}
 * {
   all: unset;
   font-size: 14px;
@@ -326,4 +329,5 @@ scrollbar trough {
 
 .image {
   padding-right: 0.5rem;
+  -gtk-icon-size: var(--notification-icon-size);
 }
