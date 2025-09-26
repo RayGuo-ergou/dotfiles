@@ -123,89 +123,58 @@ return {
     'nvim-treesitter/nvim-treesitter-textobjects',
     branch = 'main',
     event = 'VeryLazy',
-    opts = {},
-    keys = function()
-      local moves = {
-        goto_next_start = {
-          [']f'] = '@function.outer',
-          [']c'] = '@call.outer',
-          [']a'] = '@parameter.outer',
-          [']l'] = '@loop.outer',
-          [']i'] = '@conditional.outer',
+    opts = {
+      move = {
+        set_jumps = true, -- whether to set jumps in the jumplist
+        keys = {
+          goto_next_start = {
+            [']f'] = '@function.outer',
+            [']c'] = '@call.outer',
+            [']a'] = '@parameter.outer',
+            [']l'] = '@loop.outer',
+            [']i'] = '@conditional.outer',
+          },
+          goto_next_end = {
+            [']F'] = '@function.outer',
+            [']C'] = '@call.outer',
+            [']A'] = '@parameter.outer',
+            [']L'] = '@loop.outer',
+            [']I'] = '@conditional.outer',
+          },
+          goto_previous_start = {
+            ['[f'] = '@function.outer',
+            ['[c'] = '@call.outer',
+            ['[a'] = '@parameter.outer',
+            ['[l'] = '@loop.outer',
+            ['[i'] = '@conditional.outer',
+          },
+          goto_previous_end = {
+            ['[F'] = '@function.outer',
+            ['[C'] = '@call.outer',
+            ['[A'] = '@parameter.outer',
+            ['[L'] = '@loop.outer',
+            ['[I'] = '@conditional.outer',
+          },
         },
-        goto_next_end = {
-          [']F'] = '@function.outer',
-          [']C'] = '@call.outer',
-          [']A'] = '@parameter.outer',
-          [']L'] = '@loop.outer',
-          [']I'] = '@conditional.outer',
+      },
+      select = {
+        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+        keys = {
+          ['aa'] = { query = '@parameter.outer', desc = 'Function params/array elements outer' },
+          ['ia'] = { query = '@parameter.inner', desc = 'Function params/array elements inner' },
+          ['aA'] = { query = '@assignment.outer', desc = 'Assignment outer' },
+          ['iA'] = { query = '@assignment.inner', desc = 'Assignment inner' },
+          ['af'] = { query = '@function.outer', desc = 'Function outer' },
+          ['if'] = { query = '@function.inner', desc = 'Function inner' },
+          ['ac'] = { query = '@call.outer', desc = 'Call outer' },
+          ['ic'] = { query = '@call.inner', desc = 'Call inner' },
+          ['al'] = { query = '@loop.outer', desc = 'Loop outer' },
+          ['il'] = { query = '@loop.inner', desc = 'Loop inner' },
+          ['ai'] = { query = '@conditional.outer', desc = 'Conditional outer' },
+          ['ii'] = { query = '@conditional.inner', desc = 'Conditional inner' },
         },
-        goto_previous_start = {
-          ['[f'] = '@function.outer',
-          ['[c'] = '@call.outer',
-          ['[a'] = '@parameter.outer',
-          ['[l'] = '@loop.outer',
-          ['[i'] = '@conditional.outer',
-        },
-        goto_previous_end = {
-          ['[F'] = '@function.outer',
-          ['[C'] = '@call.outer',
-          ['[A'] = '@parameter.outer',
-          ['[L'] = '@loop.outer',
-          ['[I'] = '@conditional.outer',
-        },
-      }
-      local ret = {} ---@type LazyKeysSpec[]
-      for method, keymaps in pairs(moves) do
-        for key, query in pairs(keymaps) do
-          local desc = query:gsub('@', ''):gsub('%..*', '')
-          desc = desc:sub(1, 1):upper() .. desc:sub(2)
-          desc = (key:sub(1, 1) == '[' and 'Prev ' or 'Next ') .. desc
-          desc = desc .. (key:sub(2, 2) == key:sub(2, 2):upper() and ' End' or ' Start')
-          ret[#ret + 1] = {
-            key,
-            function()
-              -- don't use treesitter if in diff mode and the key is one of the c/C keys
-              if vim.wo.diff and key:find('[cC]') then
-                return vim.cmd('normal! ' .. key)
-              end
-              require('nvim-treesitter-textobjects.move')[method](query, 'textobjects')
-            end,
-            desc = desc,
-            mode = { 'n', 'x', 'o' },
-            silent = true,
-          }
-        end
-      end
-
-      local textobjects = {
-        ['aa'] = { query = '@parameter.outer', desc = 'Function params/array elements outer' },
-        ['ia'] = { query = '@parameter.inner', desc = 'Function params/array elements inner' },
-        ['aA'] = { query = '@assignment.outer', desc = 'Assignment outer' },
-        ['iA'] = { query = '@assignment.inner', desc = 'Assignment inner' },
-        ['af'] = { query = '@function.outer', desc = 'Function outer' },
-        ['if'] = { query = '@function.inner', desc = 'Function inner' },
-        ['ac'] = { query = '@call.outer', desc = 'Call outer' },
-        ['ic'] = { query = '@call.inner', desc = 'Call inner' },
-        ['al'] = { query = '@loop.outer', desc = 'Loop outer' },
-        ['il'] = { query = '@loop.inner', desc = 'Loop inner' },
-        ['ai'] = { query = '@conditional.outer', desc = 'Conditional outer' },
-        ['ii'] = { query = '@conditional.inner', desc = 'Conditional inner' },
-      }
-
-      for key, config in pairs(textobjects) do
-        ret[#ret + 1] = {
-          key,
-          function()
-            require('nvim-treesitter-textobjects.select').select_textobject(config.query, 'textobjects')
-          end,
-          desc = config.desc,
-          mode = { 'x', 'o' },
-          silent = true,
-        }
-      end
-      return ret
-    end,
+      },
+    },
     config = function(_, opts)
       ergou.repeatable_move.setup_diagnostic()
       local TS = require('nvim-treesitter-textobjects')
@@ -214,6 +183,46 @@ return {
         return
       end
       TS.setup(opts)
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('ergou_treesitter_textobjects', { clear = true }),
+        callback = function(ev)
+          if not ergou.treesitter.have(ev.match, 'textobjects') then
+            return
+          end
+          ---@type table<string, table<string, string>>
+          local moves = vim.tbl_get(opts, 'move', 'keys') or {}
+
+          for method, keymaps in pairs(moves) do
+            for key, query in pairs(keymaps) do
+              local desc = query:gsub('@', ''):gsub('%..*', '')
+              desc = desc:sub(1, 1):upper() .. desc:sub(2)
+              desc = (key:sub(1, 1) == '[' and 'Prev ' or 'Next ') .. desc
+              desc = desc .. (key:sub(2, 2) == key:sub(2, 2):upper() and ' End' or ' Start')
+              if not (vim.wo.diff and key:find('[cC]')) then
+                vim.keymap.set({ 'n', 'x', 'o' }, key, function()
+                  require('nvim-treesitter-textobjects.move')[method](query, 'textobjects')
+                end, {
+                  buffer = ev.buf,
+                  desc = desc,
+                  silent = true,
+                })
+              end
+            end
+          end
+
+          ---@type table<string, table<string, string>>
+          local selects = vim.tbl_get(opts, 'select', 'keys') or {}
+          for key, config in pairs(selects) do
+            vim.keymap.set({ 'x', 'o' }, key, function()
+              require('nvim-treesitter-textobjects.select').select_textobject(config.query, 'textobjects')
+            end, {
+              buffer = ev.buf,
+              desc = config.desc,
+              silent = true,
+            })
+          end
+        end,
+      })
     end,
   },
   -- Show context of the current function
