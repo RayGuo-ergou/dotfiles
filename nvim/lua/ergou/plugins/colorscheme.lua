@@ -12,6 +12,16 @@ return {
       float = {
         transparent = true,
       },
+      lsp_styles = {
+        enabled = true,
+        underlines = {
+          errors = { 'undercurl' },
+          hints = { 'undercurl' },
+          warnings = { 'undercurl' },
+          information = { 'undercurl' },
+          ok = { 'undercurl' },
+        },
+      },
       integrations = {
         aerial = true,
         diffview = true,
@@ -26,16 +36,6 @@ return {
         },
         which_key = true,
         lsp_trouble = true,
-        native_lsp = {
-          enabled = true,
-          underlines = {
-            errors = { 'undercurl' },
-            hints = { 'undercurl' },
-            warnings = { 'undercurl' },
-            information = { 'undercurl' },
-            ok = { 'undercurl' },
-          },
-        },
         snacks = true,
       },
       custom_highlights = function(C)
