@@ -102,7 +102,7 @@ opt.pumblend = 0
 
 opt.smoothscroll = true
 
--- No cursor blink in termnial mode
+-- No cursor blink in terminal mode
 opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 
 if g.hide_deprecated_message then
