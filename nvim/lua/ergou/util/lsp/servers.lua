@@ -238,38 +238,7 @@ M.get_native = function()
   --- @type table<string, lspconfig.Config>
   local servers = {
     -- I have ast_grep install via pacman as i want to use it outside neovim
-    ast_grep = {
-      filetypes = { -- https://ast-grep.github.io/reference/languages.html
-        'bash',
-        'c',
-        'cpp',
-        'csharp',
-        'css',
-        'elixir',
-        'go',
-        'haskell',
-        'html',
-        'java',
-        'javascript',
-        'javascriptreact',
-        'javascript.jsx',
-        'json',
-        'kotlin',
-        'lua',
-        'nix',
-        'php',
-        'python',
-        'ruby',
-        'rust',
-        'scala',
-        'solidity',
-        'swift',
-        'typescript',
-        'typescriptreact',
-        'typescript.tsx',
-        'yaml',
-      },
-    },
+    ast_grep = {},
   }
 
   return servers
