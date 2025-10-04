@@ -14,6 +14,7 @@ bluez
 bluez-utils
 btop
 btrfs-progs
+carapace-bin
 cliphist
 composer
 cpio

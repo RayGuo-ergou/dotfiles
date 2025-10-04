@@ -15,6 +15,7 @@ bluez
 bluez-utils
 btop
 btrfs-progs
+carapace-bin
 chromium
 cliphist
 composer
