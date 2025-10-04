@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://carapace.sh/schemas/command.json
+name: artisan
+description: Laravel Artisan CLI
+
+completion:
+  positional:
+    # Credit https://github.com/zsh-users/zsh-completions/blob/master/src/_artisan
+    - ["$([[ -f artisan ]] && php artisan list --raw --no-ansi 2>/dev/null | awk 'NF >= 2 && $1 !~ /^Available/ && $1 !~ /^Usage:/ { cmd = $1; $1 = \"\"; desc = substr($0, 2); gsub(/\\t/, \" \", desc); print cmd \"\\t\" desc }')"]

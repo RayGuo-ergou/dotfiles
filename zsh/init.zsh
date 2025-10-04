@@ -86,8 +86,7 @@ execute_if_command_exists carapace '
     source <(carapace _carapace)
 '
 # fzf-tab
-# https://github.com/Aloxaf/fzf-tab/pull/479#discussion_r1794558759
-zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' fzf-flags --color=bg+:#303347,spinner:#f4dbd6,hl:#ed8796 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796
 
 # disable autocd
 unsetopt autocd
