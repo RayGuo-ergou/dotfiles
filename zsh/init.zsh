@@ -85,6 +85,9 @@ execute_if_command_exists carapace '
     zstyle ":completion:*:git:*" group-order "main commands" "alias commands" "external commands"
     source <(carapace _carapace)
 '
+# fzf-tab
+# https://github.com/Aloxaf/fzf-tab/pull/479#discussion_r1794558759
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
 # disable autocd
 unsetopt autocd
