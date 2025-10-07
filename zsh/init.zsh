@@ -80,13 +80,16 @@ fi
 # init cargo
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
-execute_if_command_exists carapace '
-    export CARAPACE_BRIDGES="zsh,fish,bash,inshellisense"
-    zstyle ":completion:*:git:*" group-order "main commands" "alias commands" "external commands"
-    source <(carapace _carapace)
-'
+if command -v carapace >/dev/null 2>&1; then
+	export CARAPACE_BRIDGES="zsh,fish,bash,inshellisense"
+	zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+	zstyle ":completion:*:git:*" group-order "main commands" "alias commands" "external commands"
+	source <(carapace _carapace)
+fi
+
 # fzf-tab
 zstyle ':fzf-tab:*' fzf-flags --color=bg+:#303347,spinner:#f4dbd6,hl:#ed8796 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796
+zstyle ':fzf-tab:*' query-string '' #https://github.com/Aloxaf/fzf-tab/issues/32#issuecomment-1519639800
 
 # disable autocd
 unsetopt autocd
