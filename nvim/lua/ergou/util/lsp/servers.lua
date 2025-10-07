@@ -79,7 +79,7 @@ M.get = function()
     -- Use phpactor instead for large files
     -- it's not as good as intelephense, but it's faster
     intelephense = {
-      enabled = not ergou.lsp.php.server_to_use == 'intelephense',
+      enabled = ergou.lsp.php.server_to_use == 'intelephense',
     },
     -- To install phpactor, need php8
     phpactor = {
