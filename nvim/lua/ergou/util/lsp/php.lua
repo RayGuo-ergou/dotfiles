@@ -1,5 +1,7 @@
 ---@class ergou.util.lsp.php
 local M = {}
-M.working_large_file = false
+M.servers = { 'intelephense', 'phpactor' }
+---@type 'intelephense' | 'phpactor'
+M.server_to_use = 'intelephense'
 
 return M
