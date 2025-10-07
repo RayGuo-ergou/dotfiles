@@ -30,3 +30,6 @@ vite.config.*.timestamp-*
 
 # Tmux log
 tmux-client-*.log
+
+# phpactor
+.phpactor.json
