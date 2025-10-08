@@ -90,6 +90,7 @@ fi
 # fzf-tab
 zstyle ':fzf-tab:*' fzf-flags --color=bg+:#303347,spinner:#f4dbd6,hl:#ed8796 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796
 zstyle ':fzf-tab:*' query-string '' #https://github.com/Aloxaf/fzf-tab/issues/32#issuecomment-1519639800
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # disable autocd
 unsetopt autocd
