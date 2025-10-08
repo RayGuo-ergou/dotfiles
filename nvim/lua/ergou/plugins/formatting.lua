@@ -1,6 +1,6 @@
 local timeout = 1500
 ---@type conform.FiletypeFormatter
-local eslintFormat = { 'eslint_d' }
+local eslint_format = { 'eslint_d' }
 -- local eslintFormat = { lsp_format = 'prefer' }
 return {
   {
@@ -14,20 +14,20 @@ return {
         },
       },
       formatters_by_ft = {
-        vue = eslintFormat,
-        javascript = eslintFormat,
-        typescript = eslintFormat,
-        javascriptreact = eslintFormat,
-        typescriptreact = eslintFormat,
-        css = eslintFormat,
-        scss = eslintFormat,
-        html = eslintFormat,
-        json = eslintFormat,
-        jsonc = eslintFormat,
-        json5 = eslintFormat,
-        yaml = eslintFormat,
-        markdown = eslintFormat,
-        graphql = eslintFormat,
+        vue = eslint_format,
+        javascript = eslint_format,
+        typescript = eslint_format,
+        javascriptreact = eslint_format,
+        typescriptreact = eslint_format,
+        css = eslint_format,
+        scss = eslint_format,
+        html = eslint_format,
+        json = eslint_format,
+        jsonc = eslint_format,
+        json5 = eslint_format,
+        yaml = eslint_format,
+        markdown = eslint_format,
+        graphql = eslint_format,
         lua = { 'stylua' },
         python = { 'isort', 'black' },
         php = { 'pint', 'phpcbf', stop_after_first = true },
