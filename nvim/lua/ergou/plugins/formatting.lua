@@ -1,7 +1,13 @@
 local timeout = 1500
 ---@type conform.FiletypeFormatter
 local eslint_format = { 'eslint_d' }
--- local eslintFormat = { lsp_format = 'prefer' }
+---@type conform.FiletypeFormatter
+local json_format = {
+  formatters = { 'eslint_d', 'jq' },
+  -- If eslint can format do not run jq
+  stop_after_first = true,
+}
+
 return {
   {
     'stevearc/conform.nvim',
@@ -22,9 +28,9 @@ return {
         css = eslint_format,
         scss = eslint_format,
         html = eslint_format,
-        json = eslint_format,
-        jsonc = eslint_format,
-        json5 = eslint_format,
+        json = json_format,
+        jsonc = json_format,
+        json5 = json_format,
         yaml = eslint_format,
         markdown = eslint_format,
         graphql = eslint_format,
