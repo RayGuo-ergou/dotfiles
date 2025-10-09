@@ -24,7 +24,9 @@ local yaml_format = function(bufnr)
   local cwd = ergou.root.cwd()
   local eslint_config_js = ergou.root.find_file('eslint.config.js', cwd)
   local eslint_config_ts = ergou.root.find_file('eslint.config.ts', cwd)
-  local can_run_eslint = eslint_config_js or eslint_config_ts
+  -- I mapped neon as yaml ft, maybe can add the neon to eslint config tho
+  local is_neon = vim.fn.expand('%:e') == 'neon'
+  local can_run_eslint = (eslint_config_js or eslint_config_ts) and not is_neon
   local formatter_exist = require('conform').get_formatter_info('eslint_d', bufnr).available
 
   if can_run_eslint and formatter_exist then
