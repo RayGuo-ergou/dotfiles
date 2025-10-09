@@ -15,6 +15,7 @@ return {
       'prettierd',
       'blade-formatter',
       'ts_query_ls',
+      'yamlfmt',
     },
   },
   ---@param opts MasonSettings | {ensure_installed: string[]}

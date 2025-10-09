@@ -8,6 +8,20 @@ local json_format = {
   -- If eslint can format do not run jq
   stop_after_first = true,
 }
+---@type conform.FiletypeFormatter
+local yaml_format = {
+  'eslint_d',
+  'yamlfmt',
+  -- If eslint can format do not run yamlfmt
+  stop_after_first = true,
+}
+
+---@type conform.FiletypeFormatter
+local php_formatter = {
+  'pint',
+  'phpcbf',
+  stop_after_first = true,
+}
 
 return {
   {
@@ -32,12 +46,12 @@ return {
         json = json_format,
         jsonc = json_format,
         json5 = json_format,
-        yaml = eslint_format,
+        yaml = yaml_format,
         markdown = eslint_format,
         graphql = eslint_format,
         lua = { 'stylua' },
         python = { 'isort', 'black' },
-        php = { 'pint', 'phpcbf', stop_after_first = true },
+        php = php_formatter,
         zsh = { 'shfmt' },
         sh = { 'shfmt' },
         bash = { 'shfmt' },
