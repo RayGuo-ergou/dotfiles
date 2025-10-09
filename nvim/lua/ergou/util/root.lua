@@ -195,7 +195,7 @@ end
 ---@param cwd string
 ---@return string|nil
 ---@usage find_file('package.json', vim.fn.getcwd())
-function M.find_file(filename, cwd)
+function M.find_file_recursively(filename, cwd)
   ---@type string|nil
   local current_dir = cwd
   local root_dir = '/'
@@ -209,6 +209,22 @@ function M.find_file(filename, cwd)
 
     current_dir = vim.uv.fs_realpath(current_dir .. '/..')
   until current_dir == root_dir
+
+  return nil
+end
+
+---@param filename string
+---@param cwd string
+---@return string|nil
+---@usage find_file('package.json', vim.fn.getcwd())
+function M.find_file(filename, cwd)
+  ---@type string|nil
+  local current_dir = cwd
+  local file_path = current_dir .. '/' .. filename
+  local stat = vim.uv.fs_stat(file_path)
+  if stat and stat.type == 'file' then
+    return file_path
+  end
 
   return nil
 end

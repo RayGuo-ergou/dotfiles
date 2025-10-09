@@ -1,20 +1,39 @@
+-- TODO: abstract the json and yaml format function
+
 local timeout = 1500
 ---@type conform.FiletypeFormatter
 local eslint_format = { 'eslint_d' }
+
 ---@type conform.FiletypeFormatter
-local json_format = {
-  'eslint_d',
-  'jq',
-  -- If eslint can format do not run jq
-  stop_after_first = true,
-}
+local json_format = function(bufnr)
+  local cwd = ergou.root.cwd()
+  local eslint_config_js = ergou.root.find_file('eslint.config.js', cwd)
+  local eslint_config_ts = ergou.root.find_file('eslint.config.ts', cwd)
+  local can_run_eslint = eslint_config_js or eslint_config_ts
+  local formatter_exist = require('conform').get_formatter_info('eslint_d', bufnr).available
+
+  if can_run_eslint and formatter_exist then
+    return { 'eslint_d' }
+  else
+    return { 'jq' }
+  end
+end
+
 ---@type conform.FiletypeFormatter
-local yaml_format = {
-  'eslint_d',
-  'yamlfmt',
-  -- If eslint can format do not run yamlfmt
-  stop_after_first = true,
-}
+local yaml_format = function(bufnr)
+  dd(1)
+  local cwd = ergou.root.cwd()
+  local eslint_config_js = ergou.root.find_file('eslint.config.js', cwd)
+  local eslint_config_ts = ergou.root.find_file('eslint.config.ts', cwd)
+  local can_run_eslint = eslint_config_js or eslint_config_ts
+  local formatter_exist = require('conform').get_formatter_info('eslint_d', bufnr).available
+
+  if can_run_eslint and formatter_exist then
+    return { 'eslint_d' }
+  else
+    return { 'yamlfmt' }
+  end
+end
 
 ---@type conform.FiletypeFormatter
 local php_formatter = {
