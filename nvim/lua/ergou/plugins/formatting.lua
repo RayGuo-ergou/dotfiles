@@ -3,7 +3,8 @@ local timeout = 1500
 local eslint_format = { 'eslint_d' }
 ---@type conform.FiletypeFormatter
 local json_format = {
-  formatters = { 'eslint_d', 'jq' },
+  'eslint_d',
+  'jq',
   -- If eslint can format do not run jq
   stop_after_first = true,
 }
