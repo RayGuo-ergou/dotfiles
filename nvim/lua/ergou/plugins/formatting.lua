@@ -21,7 +21,6 @@ end
 
 ---@type conform.FiletypeFormatter
 local yaml_format = function(bufnr)
-  dd(1)
   local cwd = ergou.root.cwd()
   local eslint_config_js = ergou.root.find_file('eslint.config.js', cwd)
   local eslint_config_ts = ergou.root.find_file('eslint.config.ts', cwd)
