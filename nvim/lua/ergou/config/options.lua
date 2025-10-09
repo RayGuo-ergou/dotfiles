@@ -118,6 +118,7 @@ vim.filetype.add({
     http = 'http',
     zsh = 'bash',
     sh = 'bash',
+    neon = 'yaml', -- neon is not exactly yaml, but they are close enough
   },
   filename = {
     ['vifmrc'] = 'vim',
