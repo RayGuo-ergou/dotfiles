@@ -35,6 +35,7 @@ return {
 
     for _, tool in ipairs(opts.ensure_installed) do
       if not mr.is_installed(tool) then
+        vim.notify('Installing ' .. tool .. '...')
         local p = mr.get_package(tool)
         p:install()
       end
