@@ -16,6 +16,7 @@ return {
       'blade-formatter',
       'ts_query_ls',
       'yamlfmt',
+      'sleek',
     },
   },
   ---@param opts MasonSettings | {ensure_installed: string[]}

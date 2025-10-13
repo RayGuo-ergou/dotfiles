@@ -77,6 +77,7 @@ return {
         bash = { 'shfmt' },
         liquid = { 'prettierd' },
         blade = { 'blade-formatter' },
+        sql = { 'sleek' },
       },
       format_on_save = function()
         local win_cfg = vim.api.nvim_win_get_config(0)
