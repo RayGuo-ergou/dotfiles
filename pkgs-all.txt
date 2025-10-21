@@ -2,8 +2,6 @@
 1password-cli
 7zip
 acpid
-adwaita-qt5-git
-adwaita-qt6-git
 alsa-utils
 amd-ucode
 ast-grep
@@ -33,6 +31,8 @@ fcitx5-configtool
 fcitx5-gtk
 fcitx5-mozc
 fcitx5-rime
+fd
+ffmpeg
 firefox
 firewalld
 fzf
@@ -157,7 +157,6 @@ pipewire-alsa
 pipewire-audio
 pipewire-jack
 pipewire-pulse
-qt5-wayland
 reflector
 rime-ice-git
 ripgrep
@@ -172,6 +171,7 @@ sudo
 swappy
 swaync-git
 systemd-ui
+tectonic
 texinfo
 thunar
 timeshift

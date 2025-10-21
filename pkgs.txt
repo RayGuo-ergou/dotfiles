@@ -2,8 +2,6 @@
 1password-cli
 7zip
 acpid
-adwaita-qt5-git
-adwaita-qt6-git
 alsa-utils
 ast-grep
 base
@@ -26,6 +24,8 @@ dosfstools
 efibootmgr
 eza
 fastfetch
+fd
+ffmpeg
 firewalld
 fzf
 ghostty
@@ -84,7 +84,6 @@ pipewire-alsa
 pipewire-audio
 pipewire-jack
 pipewire-pulse
-qt5-wayland
 reflector
 ripgrep
 rofi
@@ -97,6 +96,7 @@ sudo
 swappy
 swaync-git
 systemd-ui
+tectonic
 texinfo
 thunar
 timeshift
