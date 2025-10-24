@@ -11,6 +11,9 @@ return {
       -- 'mtime',
     },
     use_default_keymaps = false,
+    confirmation = {
+      border = 'rounded',
+    },
     keymaps = {
       ['g?'] = 'actions.show_help',
       ['<CR>'] = 'actions.select',
