@@ -67,6 +67,7 @@ return {
         'zig',
         'blade',
         'hyprlang',
+        'make',
       },
     },
     ---@param opts ergou.TSConfig
