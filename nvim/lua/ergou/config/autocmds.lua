@@ -222,3 +222,26 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEn
     end
   end,
 })
+
+-- Set tab settings for Makefiles
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'make',
+  callback = function()
+    vim.bo.expandtab = false
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
+    vim.bo.softtabstop = 0
+  end,
+  desc = 'Use tabs for Makefiles',
+})
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = 'Makefile,*.mk,makefile',
+  callback = function()
+    vim.bo.expandtab = false
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
+    vim.bo.softtabstop = 0
+  end,
+  desc = 'Use tabs for Makefiles on buffer enter',
+})
