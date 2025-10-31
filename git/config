@@ -26,3 +26,5 @@
 
 [include]
     path = ~/.gitconfig.personal
+[rerere]
+	enabled = true
