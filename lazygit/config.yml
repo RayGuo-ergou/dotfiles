@@ -1,6 +1,6 @@
 git:
-  paging:
-    pager: delta --dark --paging=never
+  pagers:
+    - pager: delta --dark --paging=never
 gui:
   theme:
     defaultFgColor:
@@ -23,13 +23,10 @@ gui:
       - "#8aadf4"
     inactiveBorderColor:
       - "#8aadf4"
-
-
   authorColors:
     'Ray Guo': '#8aadf4'
     'ergou': '#8aadf4'
     '*': '#ed8796'
-
 customCommands:
   - key: "v"
     context: "localBranches"
@@ -40,9 +37,7 @@ customCommands:
         title: "Which PR do you want to check out?"
         key: "PullRequestNumber"
         command: >-
-          gh pr list --json number,title,headRefName,updatedAt
-          --template '{{`{{range .}}{{printf "#%v: %s - %s (%s)" .number .title .headRefName (timeago .updatedAt)}}{{end}}`}}'
+          gh pr list --json number,title,headRefName,updatedAt --template '{{`{{range .}}{{printf "#%v: %s - %s (%s)" .number .title .headRefName (timeago .updatedAt)}}{{end}}`}}'
         filter: '#(?P<number>[0-9]+): (?P<title>.+) - (?P<ref_name>[^ ]+).*'
         valueFormat: '{{.number}}'
         labelFormat: '{{"#" | black | bold}}{{.number | white | bold}} {{.title | yellow | bold}}{{" [" | black | bold}}{{.ref_name | green}}{{"]" | black | bold}}'
-  
