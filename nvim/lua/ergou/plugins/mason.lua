@@ -20,6 +20,7 @@ return {
     },
     ui = {
       border = 'rounded',
+      height = 0.8,
     },
   },
   ---@param opts MasonSettings | {ensure_installed: string[]}
