@@ -53,6 +53,9 @@ require('lazy').setup({
   install = {
     colorscheme = { 'catppuccin-macchiato' },
   },
+  ui = {
+    border = 'rounded',
+  },
 })
 local group = vim.api.nvim_create_augroup('Ergou', { clear = true })
 vim.api.nvim_create_autocmd('User', {
