@@ -4,7 +4,7 @@
 window_class=$(hyprctl activewindow -j | jq -r '.class')
 
 # If it's not 1Password, store the clipboard content
-if [[ "$window_class" != "1Password" ]]; then
+if [[ "$window_class" != "1Password" ]] && [[ "$window_class" != "1password" ]]; then
     cliphist store
 else
     echo "Ignored clipboard from 1Password window"
