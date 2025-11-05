@@ -58,10 +58,10 @@ return {
           -- HACK: for html tags, see: https://github.com/nvim-mini/mini.nvim/issues/110#issuecomment-1212277863
           t = false,
           -- Brackets not very good when nested
-          b = false,
-          ['{'] = false,
-          ['['] = false,
-          ['<'] = false,
+          -- b = false,
+          -- ['{'] = false,
+          -- ['['] = false,
+          -- ['<'] = false,
           o = ai.gen_spec.treesitter({ -- code block
             a = { '@block.outer', '@conditional.outer', '@loop.outer' },
             i = { '@block.inner', '@conditional.inner', '@loop.inner' },
