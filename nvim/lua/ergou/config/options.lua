@@ -116,6 +116,7 @@ vim.filetype.add({
     rofi = 'rasi',
     wofi = 'rasi',
     http = 'http',
+    -- remove after https://github.com/nvim-treesitter/nvim-treesitter/pull/8240
     zsh = 'bash',
     sh = 'bash',
     neon = 'yaml', -- neon is not exactly yaml, but they are close enough
