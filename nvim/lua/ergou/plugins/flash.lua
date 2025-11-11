@@ -1,5 +1,6 @@
 return {
   'folke/flash.nvim',
+  url = 'https://github.com/RayGuo-ergou/flash.nvim',
   ---@type Flash.Config
   opts = {
     modes = {
