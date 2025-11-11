@@ -13,6 +13,7 @@ bluez
 bluez-utils
 btop
 btrfs-progs
+calibre
 carapace-bin
 chromium
 cliphist
