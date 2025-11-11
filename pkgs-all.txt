@@ -23,6 +23,7 @@ datagrip-jre
 discord
 docker
 dosfstools
+doxx
 efibootmgr
 eza
 fastfetch

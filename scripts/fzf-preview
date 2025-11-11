@@ -7,6 +7,22 @@
 # - https://github.com/sharkdp/bat
 # - https://github.com/hpjansson/chafa
 # - https://iterm2.com/utilities/imgcat
+# - doxx (for Word document preview)
+# - 7z (for zip files)
+
+# Function to handle specific file types with custom commands
+# Usage: handle_file_type "extension" "command"
+handle_file_type() {
+  local extension="$1"
+  local command="$2"
+  local file="$3"
+
+  if [[ $file =~ \.$extension$ ]]; then
+    eval "$command \"$file\""
+    return 0
+  fi
+  return 1
+}
 
 if [[ $# -ne 1 ]]; then
   >&2 echo "usage: $0 FILENAME[:LINENO][:IGNORED]"
@@ -26,6 +42,12 @@ if [[ ! -r $file ]]; then
   fi
 fi
 
+if handle_file_type "docx" "doxx" "$file" ||
+  handle_file_type "doc" "doxx" "$file" ||
+  handle_file_type "zip" "7z l" "$file"; then
+  exit 0
+fi
+
 type=$(file --brief --dereference --mime -- "$file")
 
 if [[ ! $type =~ image/ ]]; then
@@ -35,9 +57,9 @@ if [[ ! $type =~ image/ ]]; then
   fi
 
   # Sometimes bat is installed as batcat.
-  if command -v batcat > /dev/null; then
+  if command -v batcat >/dev/null; then
     batname="batcat"
-  elif command -v bat > /dev/null; then
+  elif command -v bat >/dev/null; then
     batname="bat"
   else
     cat "$1"
@@ -50,15 +72,15 @@ fi
 
 dim=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}
 if [[ $dim = x ]]; then
-  dim=$(stty size < /dev/tty | awk '{print $2 "x" $1}')
-elif ! [[ $KITTY_WINDOW_ID ]] && (( FZF_PREVIEW_TOP + FZF_PREVIEW_LINES == $(stty size < /dev/tty | awk '{print $1}') )); then
+  dim=$(stty size </dev/tty | awk '{print $2 "x" $1}')
+elif ! [[ $KITTY_WINDOW_ID ]] && ((FZF_PREVIEW_TOP + FZF_PREVIEW_LINES == $(stty size </dev/tty | awk '{print $1}'))); then
   # Avoid scrolling issue when the Sixel image touches the bottom of the screen
   # * https://github.com/junegunn/fzf/issues/2544
   dim=${FZF_PREVIEW_COLUMNS}x$((FZF_PREVIEW_LINES - 1))
 fi
 
 # 1. Use icat (from Kitty) if kitten is installed
-if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten > /dev/null; then
+if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten >/dev/null; then
   # 1. 'memory' is the fastest option but if you want the image to be scrollable,
   #    you have to use 'stream'.
   #
@@ -68,13 +90,13 @@ if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten >
   kitten icat --clear --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" "$file" | sed '$d' | sed $'$s/$/\e[m/'
 
 # 2. Use chafa with Sixel output
-elif command -v chafa > /dev/null; then
+elif command -v chafa >/dev/null; then
   chafa -s "$dim" "$file"
   # Add a new line character so that fzf can display multiple images in the preview window
   echo
 
 # 3. If chafa is not found but imgcat is available, use it on iTerm2
-elif command -v imgcat > /dev/null; then
+elif command -v imgcat >/dev/null; then
   # NOTE: We should use https://iterm2.com/utilities/it2check to check if the
   # user is running iTerm2. But for the sake of simplicity, we just assume
   # that's the case here.
