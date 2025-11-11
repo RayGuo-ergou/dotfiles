@@ -42,8 +42,8 @@ if [[ ! -r $file ]]; then
   fi
 fi
 
-if handle_file_type "docx" "doxx" "$file" ||
-  handle_file_type "doc" "doxx" "$file" ||
+if handle_file_type "docx" "doxx --export ansi --color-depth 4" "$file" ||
+  handle_file_type "doc" "doxx --export ansi --color-depth 4" "$file" ||
   handle_file_type "zip" "7z l" "$file"; then
   exit 0
 fi
