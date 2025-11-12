@@ -52,6 +52,23 @@ return {
       cyclic = true,
     })
 
+    local cardinal_numbers = augend.constant.new({
+      elements = {
+        'one',
+        'two',
+        'three',
+        'four',
+        'five',
+        'six',
+        'seven',
+        'eight',
+        'nine',
+        'ten',
+      },
+      word = false,
+      cyclic = true,
+    })
+
     local weekdays = augend.constant.new({
       elements = {
         'Monday',
@@ -159,6 +176,7 @@ return {
           augend.integer.alias.hex, -- nonnegative hex number  (0x01, 0x1a1f, etc.)
           augend.date.alias['%Y/%m/%d'], -- date (2022/02/19, etc.)
           ordinal_numbers,
+          cardinal_numbers,
           weekdays,
           months,
           capitalized_boolean,
