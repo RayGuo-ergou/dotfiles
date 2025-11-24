@@ -125,8 +125,9 @@ M.get = function()
                 '((?:(?<=`)(?:[^"\'`]*)(?=\\${|`))|(?:(?<=\\})(?:[^"\'`]*)(?=\\${))|(?:(?<=\\})(?:[^"\'`]*)(?=`))|(?:(?<=\')(?:[^"\'`]*)(?=\'))|(?:(?<=")(?:[^"\'`]*)(?="))|(?:(?<=`)(?:[^"\'`]*)(?=`)))',
               },
               ---@see doc https://github.com/RayGuo-ergou/tailwind-intellisense-regex-list/tree/main?tab=readme-ov-file#laravel-blade-directives-and-component-attribute-functions
-              { '@?class\\(([^)]*)\\)', '[\'|"]([^\'"]*)[\'|"]' },
-              '(?:"|\')class(?:"|\')[\\s]*=>[\\s]*(?:"|\')([^"\']*)',
+              { '@?class(?:es)?\\(([^)]*)\\)', '[\'|"]([^\'"]*)[\'|"]' },
+              '(?:"|\')class(?:es)?(?:"|\')[\\s]*=>[\\s]*(?:"|\')([^"\']*)',
+              { '(?:->(?:add|remove|merge|when|unless)\\s*\\(([^)]*)\\))+', '[\'"]([^\'"]+)[\'"]' },
             },
           },
           classFunctions = {
