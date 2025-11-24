@@ -325,6 +325,7 @@ return {
           Snacks.gitbrowse({ what = 'branch', notify = false })
         end,
         desc = 'Git Browse Branch',
+        mode = { 'n', 'v' },
       },
       {
         '<leader>grV',
@@ -332,6 +333,7 @@ return {
           Snacks.gitbrowse({ what = 'file', notify = false })
         end,
         desc = 'Git Browse',
+        mode = { 'n', 'v' },
       },
       {
         '<leader>lg',
