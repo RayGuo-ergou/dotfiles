@@ -15,7 +15,6 @@ alias resetlazy='rm -rf $HOME/.local/share/nvim/*'
 if is_wsl; then
   alias x-www-browser='wslview'
 fi
-alias php7='/usr/bin/php7.4'
 alias windowsroot='wslpath "$(wslvar USERPROFILE)"'
 alias yy='yazi'
 alias lg='TERM=screen-256color lazygit'
