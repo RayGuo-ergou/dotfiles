@@ -9,14 +9,13 @@ selected_session=$(_get_sessions | grep -v "^$current_session$" | fzf \
   --cycle \
   --header-first \
   --header "Switch Session (Ctrl+D to remove)" \
-  --bind "ctrl-d:execute-silent(tmux kill-session -t {+})+reload(_get_sessions | grep -v \"^$current_session$\")")
+  --bind "ctrl-d:execute-silent(tmux kill-session -t {+})+reload(_get_sessions | grep -v \"^$current_session$\" || true)")
 
 # Switch to the selected session if one is chosen
 if [ -n "$selected_session" ]; then
   # Set the 'updated_at' environment variable with the current timestamp
   tmux set-environment -t "$selected_session" updated_at "$(date +%Y-%m-%dT%H:%M:%S)"
-  
+
   # Switch to the selected session
   tmux switch-client -t "$selected_session"
 fi
-
