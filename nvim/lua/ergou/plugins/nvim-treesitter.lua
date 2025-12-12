@@ -46,7 +46,7 @@ return {
         'php_only',
         'phpdoc',
         'json',
-        'jsonc',
+        -- 'jsonc', see https://github.com/nvim-treesitter/nvim-treesitter/commit/d2350758b39dce3593ffa8b058f863ea4cfa5b0e
         'json5',
         'jsdoc',
         'http',
