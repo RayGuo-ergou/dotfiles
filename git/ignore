@@ -18,6 +18,7 @@ node_modules
 
 # output file
 out
+*.out
 
 # copy file to wsl2 auto generated
 *.Identifier
