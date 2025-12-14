@@ -153,6 +153,59 @@ local function vue()
   })
 end
 
+local function php()
+  local function get_php_class_info()
+    local path = vim.fn.expand('%:r')
+    local cwd = vim.uv.cwd()
+
+    if cwd then
+      local escaped_cwd = string.gsub(cwd, '([%(%)%.%%%+%-%*%?%[%]%^%$])', '%%%1')
+      path = string.gsub(path, escaped_cwd .. '/', '', 1)
+    end
+    local elements = ergou.string.str_split(path, '/')
+    local class_name = elements[#elements]
+    local namespace_parts = {}
+
+    for index = 1, #elements - 1 do
+      table.insert(namespace_parts, ergou.string.first_to_upper(elements[index]))
+    end
+
+    local namespace = table.concat(namespace_parts, '\\')
+
+    return {
+      class_name = class_name,
+      namespace = namespace,
+    }
+  end
+
+  ls.add_snippets('php', {
+    s(
+      'cl',
+      fmt(
+        [[
+<?php
+
+namespace {};
+
+class {}
+{{
+{}
+}}
+]],
+        {
+          f(function()
+            return get_php_class_info().namespace
+          end),
+          f(function()
+            return get_php_class_info().class_name
+          end),
+          i(0, '// Class body'),
+        }
+      )
+    ),
+  })
+end
+
 function M.setup_snipes()
   ls.filetype_extend('javascript', { 'jsdoc' })
   ls.filetype_extend('typescript', { 'javascript', 'tsdoc' })
@@ -162,6 +215,7 @@ function M.setup_snipes()
   javascript()
   vue()
   typescript()
+  php()
 end
 
 return M
