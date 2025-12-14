@@ -35,10 +35,10 @@ else
     # If someone wants to make this extensible, i'll accept
     # PR
     fixed_folders=(
-        "$HOME/Documents/"
+        "$HOME/Documents"
     )
 
-    selected=$({ 
+    selected=$({
         printf '%s\n' "${fixed_folders[@]}"
         find ~/work ~/git ~/Documents -mindepth 1 -maxdepth 1 -type d
         find ~/test -mindepth 1 -maxdepth 2 -type d
@@ -67,4 +67,3 @@ fi
 
 set_updated_at "$selected_name"
 switch_to "$selected_name"
-
