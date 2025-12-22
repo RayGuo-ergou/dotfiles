@@ -1,6 +1,7 @@
 return {
   {
     'gorbit99/codewindow.nvim',
+    url = 'https://github.com/RayGuo-ergou/codewindow.nvim',
     keys = {
       {
         '<leader>tm',
