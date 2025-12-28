@@ -16,6 +16,7 @@ btrfs-progs
 calibre
 carapace-bin
 chromium
+clamav
 cliphist
 composer
 cpio
@@ -83,13 +84,12 @@ nordvpn-bin
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
-nvidia
+nvidia-open
 nvidia-settings
 nvtop
 openssh
 os-prober
 paru
-paru-debug
 pavucontrol
 php
 php74
@@ -160,7 +160,8 @@ pipewire-audio
 pipewire-jack
 pipewire-pulse
 reflector
-rime-ice-git
+rime-ice-pinyin-git
+rime-japanese
 ripgrep
 rofi
 rofi-emoji
@@ -192,6 +193,8 @@ wl-clip-persist
 xcur2png
 xdg-desktop-portal-hyprland
 xdg-user-dirs
+yay
+yay-debug
 yazi
 ydotool
 zen-browser-bin
