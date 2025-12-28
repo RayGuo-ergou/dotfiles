@@ -1,19 +1,18 @@
 patch:
-    # 仅使用「雾凇拼音」的默认配置，配置此行即可
+  # 仅使用「雾凇拼音」的默认配置，配置此行即可
   __include: rime_ice_suggestion:/
   # 以下根据自己所需自行定义，仅做参考。
   # 针对对应处方的定制条目，请使用 <recipe>.custom.yaml 中配置，例如 rime_ice.custom.yaml
   __patch:
     key_binder/select_first_character: up
     key_binder/select_last_character: down
-
     key_binder/bindings/+:
       # 开启逗号句号翻页
-      - { when: paging, accept: bracketleft, send: Page_Up }
-      - { when: has_menu, accept: bracketright, send: Page_Down }
+      - {when: paging, accept: bracketleft, send: Page_Up}
+      - {when: has_menu, accept: bracketright, send: Page_Down}
   # 菜单
   menu:
-    page_size: 7 # 候选词个数
+    page_size: 5 # 候选词个数
     # alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⑩ ]  # 修改候选项标签
     # alternative_select_keys: ASDFGHJKL  # 如编码字符占用数字键，则需另设选字键
     # ascii_mode、inline、no_inline、vim_mode 等等设定，可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
@@ -30,10 +29,10 @@ patch:
   # inline_ascii 无输入时，切换中英；有输入时，切换到临时英文模式，按回车上屏后回到中文状态
   # noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
   ascii_composer:
-    good_old_caps_lock: true  # true | false
+    good_old_caps_lock: true # true | false
     switch_key:
-      Caps_Lock: clear  # commit_code | commit_text | clear
-      Shift_L: commit_code     # commit_code | commit_text | inline_ascii | clear | noop
-      Shift_R: commit_code     # commit_code | commit_text | inline_ascii | clear | noop
-      Control_L: noop   # commit_code | commit_text | inline_ascii | clear | noop
-      Control_R: noop   # commit_code | commit_text | inline_ascii | clear | noop
+      Caps_Lock: clear # commit_code | commit_text | clear
+      Shift_L: commit_code # commit_code | commit_text | inline_ascii | clear | noop
+      Shift_R: commit_code # commit_code | commit_text | inline_ascii | clear | noop
+      Control_L: noop # commit_code | commit_text | inline_ascii | clear | noop
+      Control_R: noop # commit_code | commit_text | inline_ascii | clear | noop
