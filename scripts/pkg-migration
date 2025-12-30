@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+MIGRATION_DIR="${DOTFILES}/pkg_migrations"
+
+if [[ ! -d "$MIGRATION_DIR" ]]; then
+    echo "Error: Migration directory not found: $MIGRATION_DIR"
+    exit 1
+fi
+
+mapfile -t scripts < <(find "$MIGRATION_DIR" -name "*.sh" -type f | sort)
+
+if [[ ${#scripts[@]} -eq 0 ]]; then
+    echo "No migration scripts found in $MIGRATION_DIR"
+    exit 1
+fi
+
+declare -a script_names
+for script in "${scripts[@]}"; do
+    script_names+=("$(basename "$script")")
+done
+
+select_fzf() {
+    local selected
+    selected=$(printf '%s\n' "${script_names[@]}" | fzf \
+        --height=40% \
+        --reverse \
+        --prompt="Select migration script: " \
+        --preview="bat --color=always $MIGRATION_DIR/{}" \
+        --preview-window=right:60%:wrap)
+    echo "$selected"
+}
+
+select_gum() {
+    gum choose "${script_names[@]}"
+}
+
+selected=""
+if command -v fzf &> /dev/null; then
+    selected=$(select_fzf)
+elif command -v gum &> /dev/null; then
+    selected=$(select_gum)
+else
+    echo "Error: Neither fzf nor gum is installed."
+    echo "Install one of them:"
+    echo "  paru -S fzf"
+    echo "  paru -S gum"
+    exit 1
+fi
+
+if [[ -z "$selected" ]]; then
+    echo "No script selected."
+    exit 0
+fi
+
+selected_script="$MIGRATION_DIR/$selected"
+
+echo "Running: $selected"
+echo "----------------------------------------"
+bash "$selected_script"
+echo "----------------------------------------"
+echo "Migration completed."
