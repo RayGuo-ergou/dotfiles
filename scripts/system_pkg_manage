@@ -4,7 +4,7 @@ PKG_FILE="$DOTFILES/pkgs.txt"
 PKG_ALL_FILE="$DOTFILES/pkgs-all.txt"
 EXCLUDE_PATTERNS=(
     # PHP7 has to manually installed
-    "php74*" 
+    "php74*"
     # Not always a amd machine
     "amd-ucode"
     # Will need paru to install, so no need to reinstall it self
@@ -24,14 +24,14 @@ EXCLUDE_PATTERNS=(
 
 # Ensure paru is installed
 function ensure_paru() {
-    if ! command -v paru &> /dev/null; then
+    if ! command -v paru &>/dev/null; then
         echo "Paru is not installed. Installing paru..."
         sudo pacman -Sy --needed --noconfirm base-devel git
         tmpdir=$(mktemp -d)
         git clone https://aur.archlinux.org/paru.git "$tmpdir/paru"
-        pushd "$tmpdir/paru" > /dev/null || exit 1
+        pushd "$tmpdir/paru" >/dev/null || exit 1
         makepkg -si --noconfirm
-        popd > /dev/null
+        popd >/dev/null
         rm -rf "$tmpdir"
         echo "Paru installed successally."
     else
@@ -45,8 +45,8 @@ function save_packages() {
     mapfile -t all_pkgs < <(pacman -Qqe)
 
     # Save complete package list
-    printf "%s\n" "${all_pkgs[@]}" > "$PKG_ALL_FILE"
-    echo "Saved $(wc -l < "$PKG_ALL_FILE") packages to $PKG_ALL_FILE (complete list)."
+    printf "%s\n" "${all_pkgs[@]}" >"$PKG_ALL_FILE"
+    echo "Saved $(wc -l <"$PKG_ALL_FILE") packages to $PKG_ALL_FILE (complete list)."
 
     # Save filtered package list
     local filtered_pkgs=()
@@ -63,8 +63,8 @@ function save_packages() {
             filtered_pkgs+=("$pkg")
         fi
     done
-    printf "%s\n" "${filtered_pkgs[@]}" > "$PKG_FILE"
-    echo "Saved $(wc -l < "$PKG_FILE") packages to $PKG_FILE (filtered list, excludes: ${EXCLUDE_PATTERNS[*]})."
+    printf "%s\n" "${filtered_pkgs[@]}" >"$PKG_FILE"
+    echo "Saved $(wc -l <"$PKG_FILE") packages to $PKG_FILE (filtered list, excludes: ${EXCLUDE_PATTERNS[*]})."
 }
 
 function install_packages() {
@@ -90,7 +90,7 @@ function install_packages() {
         echo "Installing filtered packages from $target_file using paru..."
     fi
 
-    paru -S --needed --noconfirm $(< "$target_file")
+    paru -S --needed --noconfirm $(<"$target_file")
     echo "Packages installed successally."
 }
 
@@ -105,14 +105,14 @@ function usage() {
 
 # Main
 case "$1" in
-    save)
-        save_packages
-        ;;
-    install)
-        install_packages "$2"
-        ;;
-    *)
-        usage
-        exit 1
-        ;;
+save)
+    save_packages
+    ;;
+install)
+    install_packages "$2"
+    ;;
+*)
+    usage
+    exit 1
+    ;;
 esac
