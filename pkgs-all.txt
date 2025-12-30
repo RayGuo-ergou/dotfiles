@@ -50,6 +50,7 @@ grim
 grub
 grub-btrfs
 gthumb
+gum
 hblock
 htop
 hypridle
@@ -63,6 +64,7 @@ imagemagick
 ipset
 jdk-openjdk
 jq
+just
 lazydocker
 lazygit
 linux

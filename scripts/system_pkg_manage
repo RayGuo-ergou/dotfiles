@@ -1,7 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PKG_FILE="$DOTFILES/pkgs.txt"
 PKG_ALL_FILE="$DOTFILES/pkgs-all.txt"
+MIGRATION_DIR="$DOTFILES/pkg_migrations"
+
 EXCLUDE_PATTERNS=(
     # PHP7 has to manually installed
     "php74*"
@@ -33,10 +35,112 @@ function ensure_paru() {
         makepkg -si --noconfirm
         popd >/dev/null
         rm -rf "$tmpdir"
-        echo "Paru installed successally."
+        echo "Paru installed successfully."
     else
         echo "Paru is already installed."
     fi
+}
+
+function create_migration() {
+    local old_file="$1"
+    local new_file="$2"
+    local timestamp=$(date +"%Y%m%d_%H%M%S")
+    local migration_file="$MIGRATION_DIR/${timestamp}_pkg_migration.sh"
+
+    # Ensure migration directory exists
+    mkdir -p "$MIGRATION_DIR"
+
+    # Read old and new package lists
+    local -a old_pkgs new_pkgs
+    if [[ -f "$old_file" ]]; then
+        mapfile -t old_pkgs <"$old_file"
+    fi
+    mapfile -t new_pkgs <"$new_file"
+
+    # Find added and removed packages
+    local -a added removed
+
+    # Find added packages (in new but not in old)
+    for pkg in "${new_pkgs[@]}"; do
+        local found=false
+        for old_pkg in "${old_pkgs[@]}"; do
+            if [[ "$pkg" == "$old_pkg" ]]; then
+                found=true
+                break
+            fi
+        done
+        if ! $found; then
+            added+=("$pkg")
+        fi
+    done
+
+    # Find removed packages (in old but not in new)
+    for pkg in "${old_pkgs[@]}"; do
+        local found=false
+        for new_pkg in "${new_pkgs[@]}"; do
+            if [[ "$pkg" == "$new_pkg" ]]; then
+                found=true
+                break
+            fi
+        done
+        if ! $found; then
+            removed+=("$pkg")
+        fi
+    done
+
+    # Only create migration if there are changes
+    if [[ ${#added[@]} -eq 0 && ${#removed[@]} -eq 0 ]]; then
+        echo "No package changes detected. No migration created."
+        return
+    fi
+
+    # Create migration file
+    cat >"$migration_file" <<'EOF'
+#!/usr/bin/env bash
+set -e
+
+echo "Running package migration: $(basename "$0")"
+echo "========================================"
+
+EOF
+
+    # Add removal commands
+    if [[ ${#removed[@]} -gt 0 ]]; then
+        cat >>"$migration_file" <<EOF
+
+echo "Removing ${#removed[@]} package(s)..."
+EOF
+        for pkg in "${removed[@]}"; do
+            echo "paru -Rns --noconfirm '$pkg' 2>/dev/null || echo \"Package '$pkg' not found, skipping...\"" >>"$migration_file"
+        done
+    fi
+
+    # Add installation commands
+    if [[ ${#added[@]} -gt 0 ]]; then
+        cat >>"$migration_file" <<EOF
+
+echo "Installing ${#added[@]} package(s)..."
+EOF
+        for pkg in "${added[@]}"; do
+            echo "paru -S --needed --noconfirm '$pkg'" >>"$migration_file"
+        done
+    fi
+
+    cat >>"$migration_file" <<'EOF'
+
+echo "========================================"
+echo "Migration completed successfully!"
+EOF
+
+    # Make migration executable
+    chmod +x "$migration_file"
+
+    echo ""
+    echo "Migration created: $migration_file"
+    echo "  - Added: ${#added[@]} package(s)"
+    echo "  - Removed: ${#removed[@]} package(s)"
+    echo ""
+    echo "To apply this migration, run: $migration_file"
 }
 
 function save_packages() {
@@ -44,11 +148,14 @@ function save_packages() {
     local all_pkgs
     mapfile -t all_pkgs < <(pacman -Qqe)
 
-    # Save complete package list
-    printf "%s\n" "${all_pkgs[@]}" >"$PKG_ALL_FILE"
-    echo "Saved $(wc -l <"$PKG_ALL_FILE") packages to $PKG_ALL_FILE (complete list)."
+    # Create temporary files for new package lists
+    local tmp_all=$(mktemp)
+    local tmp_filtered=$(mktemp)
 
-    # Save filtered package list
+    # Save complete package list to temp
+    printf "%s\n" "${all_pkgs[@]}" >"$tmp_all"
+
+    # Save filtered package list to temp
     local filtered_pkgs=()
     for pkg in "${all_pkgs[@]}"; do
         local skip=false
@@ -63,7 +170,19 @@ function save_packages() {
             filtered_pkgs+=("$pkg")
         fi
     done
-    printf "%s\n" "${filtered_pkgs[@]}" >"$PKG_FILE"
+    printf "%s\n" "${filtered_pkgs[@]}" >"$tmp_filtered"
+
+    # Create migrations before updating files
+    echo ""
+    echo "Checking for package changes..."
+    create_migration "$PKG_FILE" "$tmp_filtered"
+
+    # Move temp files to actual files
+    mv "$tmp_all" "$PKG_ALL_FILE"
+    mv "$tmp_filtered" "$PKG_FILE"
+
+    echo ""
+    echo "Saved $(wc -l <"$PKG_ALL_FILE") packages to $PKG_ALL_FILE (complete list)."
     echo "Saved $(wc -l <"$PKG_FILE") packages to $PKG_FILE (filtered list, excludes: ${EXCLUDE_PATTERNS[*]})."
 }
 
@@ -91,16 +210,18 @@ function install_packages() {
     fi
 
     paru -S --needed --noconfirm $(<"$target_file")
-    echo "Packages installed successally."
+    echo "Packages installed successfully."
 }
 
 function usage() {
     echo "Usage: $0 {save|install [--all]}"
     echo "  save           - Save packages to both $PKG_FILE (filtered) and $PKG_ALL_FILE (complete)"
+    echo "                   Creates migration file in $MIGRATION_DIR if changes detected"
     echo "  install        - Install filtered packages from $PKG_FILE using paru"
-    echo "  install --all - Install all packages from $PKG_ALL_FILE using paru"
+    echo "  install --all  - Install all packages from $PKG_ALL_FILE using paru"
     echo ""
     echo "The script automatically installs paru if needed during install operations."
+    echo "Migration files are created automatically and can be run independently to apply changes."
 }
 
 # Main
