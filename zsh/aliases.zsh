@@ -28,6 +28,8 @@ alias jourwr='journalctl -p warning..emerg -r'
 alias rmorp='sudo pacman -R $(pacman -Qdtq)'
 alias laltf='php artisan test --filter'
 alias lalcc='php artisan optimize:clear'
+alias liddown='hyprctl keyword monitor "eDP-1,disable"'
+alias lidup='hyprctl keyword monitor "eDP-1,highrr,auto,1"'
 
 vimf() {
   local file=$(fd --type f --hidden --exclude .git | fzf --reverse)
