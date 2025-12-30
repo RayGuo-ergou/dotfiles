@@ -22,6 +22,8 @@ EXCLUDE_PATTERNS=(
     "chromium"
     "firefox"
     "chrome"
+    # Manual install
+    "yay*"
 )
 
 # Ensure paru is installed
@@ -33,7 +35,7 @@ function ensure_paru() {
         git clone https://aur.archlinux.org/paru.git "$tmpdir/paru"
         pushd "$tmpdir/paru" >/dev/null || exit 1
         makepkg -si --noconfirm
-        popd >/dev/null
+        popd >/dev/null || exit
         rm -rf "$tmpdir"
         echo "Paru installed successfully."
     else
@@ -44,7 +46,8 @@ function ensure_paru() {
 function create_migration() {
     local old_file="$1"
     local new_file="$2"
-    local timestamp=$(date +"%Y%m%d_%H%M%S")
+    local timestamp
+    timestamp=$(date +"%Y%m%d_%H%M%S")
     local migration_file="$MIGRATION_DIR/${timestamp}_pkg_migration.sh"
 
     # Ensure migration directory exists
@@ -149,8 +152,10 @@ function save_packages() {
     mapfile -t all_pkgs < <(pacman -Qqe)
 
     # Create temporary files for new package lists
-    local tmp_all=$(mktemp)
-    local tmp_filtered=$(mktemp)
+    local tmp_all
+    tmp_all=$(mktemp)
+    local tmp_filtered
+    tmp_filtered=$(mktemp)
 
     # Save complete package list to temp
     printf "%s\n" "${all_pkgs[@]}" >"$tmp_all"
@@ -160,6 +165,8 @@ function save_packages() {
     for pkg in "${all_pkgs[@]}"; do
         local skip=false
         for pattern in "${EXCLUDE_PATTERNS[@]}"; do
+            # Intentional glob pattern matching - do not quote
+            # shellcheck disable=SC2053
             if [[ $pkg == $pattern ]]; then
                 echo "Excluding package: $pkg"
                 skip=true
@@ -209,7 +216,7 @@ function install_packages() {
         echo "Installing filtered packages from $target_file using paru..."
     fi
 
-    paru -S --needed --noconfirm $(<"$target_file")
+    paru -S --needed --noconfirm - <"$target_file"
     echo "Packages installed successfully."
 }
 
