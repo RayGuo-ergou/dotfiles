@@ -19,8 +19,14 @@ function M.get()
     {
       'K',
       function()
-        -- HACK: Seems it require to be defined for noice to add border
-        vim.lsp.buf.hover({ border = '' })
+        vim.lsp.buf.hover()
+      end,
+      desc = 'Hover Documentation',
+    },
+    {
+      '<C-S-k>',
+      function()
+        vim.lsp.buf.signature_help()
       end,
       desc = 'Hover Documentation',
     },
