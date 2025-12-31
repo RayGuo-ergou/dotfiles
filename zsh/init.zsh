@@ -94,3 +94,5 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # disable autocd
 unsetopt autocd
+
+bindkey '^Z' undo
