@@ -51,7 +51,6 @@ hyprlock
 hyprpaper
 hyprpicker
 hyprpolkitagent
-hyprsysteminfo
 imagemagick
 ipset
 jdk-openjdk
