@@ -1,5 +1,9 @@
 local opt = vim.opt
+local o = vim.o
 local g = vim.g
+
+-- Default to rounded border
+o.winborder = 'rounded'
 
 -- Deprecated message
 g.hide_deprecated_message = true
