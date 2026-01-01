@@ -114,7 +114,7 @@ EOF
 echo "Removing ${#removed[@]} package(s)..."
 EOF
         for pkg in "${removed[@]}"; do
-            echo "paru -Rns --noconfirm '$pkg' 2>/dev/null || echo \"Package '$pkg' not found, skipping...\"" >>"$migration_file"
+            echo "err=\$(paru -Rns --noconfirm '$pkg' 2>&1) || echo \"\$err\"" >>"$migration_file"
         done
     fi
 
