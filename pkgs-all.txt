@@ -190,6 +190,7 @@ uwsm
 vim
 waybar
 wget
+witr-bin
 wl-clip-persist
 xcur2png
 xdg-desktop-portal-hyprland
