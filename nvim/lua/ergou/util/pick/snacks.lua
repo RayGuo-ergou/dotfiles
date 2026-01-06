@@ -93,7 +93,17 @@ M.get = function()
     {
       '<leader>gS',
       function()
-        Snacks.picker.git_diff()
+        Snacks.picker.git_diff({
+          win = {
+            input = {
+              keys = {
+                ['<c-x>'] = { 'git_restore_no_confirm', mode = { 'n', 'i' }, nowait = false },
+                ['<left>'] = { 'git_stage_only', mode = { 'n', 'i' } },
+                ['<right>'] = { 'git_unstage_only', mode = { 'n', 'i' } },
+              },
+            },
+          },
+        })
       end,
       desc = 'Git Hunks',
     },

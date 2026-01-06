@@ -300,8 +300,11 @@ return {
               local opts = { cwd = item.cwd } ---@type snacks.picker.util.cmd.Opts
               local cmd ---@type string[]
               if item.diff and item.staged ~= nil then
+                if item.staged then
+                  return
+                end
                 opts.input = item.diff
-                cmd = { 'git', 'apply', '--cached', item.staged and '--reverse' or nil }
+                cmd = { 'git', 'apply', '--cached' }
               elseif item.status and item.status:sub(2) ~= ' ' then
                 cmd = { 'git', 'add', item.file }
               else
@@ -329,8 +332,11 @@ return {
               local opts = { cwd = item.cwd } ---@type snacks.picker.util.cmd.Opts
               local cmd ---@type string[]
               if item.diff and item.staged ~= nil then
+                if not item.staged then
+                  return
+                end
                 opts.input = item.diff
-                cmd = { 'git', 'apply', '--cached', item.staged and '--reverse' or nil }
+                cmd = { 'git', 'apply', '--cached', '--reverse' }
               elseif item.status and item.status:sub(2) == ' ' then
                 cmd = { 'git', 'restore', '--staged', item.file }
               else
