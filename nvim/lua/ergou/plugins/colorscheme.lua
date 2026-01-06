@@ -59,6 +59,9 @@ return {
           SnacksInputBorder = { fg = C.blue },
           SnacksInputPrompt = { fg = C.blue },
 
+          -- weird it's not linked to `CursorLine` by default
+          SnacksPickerListCursorLine = { link = 'CursorLine' },
+
           UgUndo = { bg = C.surface2 },
           UgRedo = { bg = C.surface2 },
 
