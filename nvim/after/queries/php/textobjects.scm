@@ -1,6 +1,6 @@
 ; extends
 
 (array_element_initializer
-  (_) @parameters.inner)
+  (_) @parameter.inner)
 
-(array_element_initializer) @parameters.outer
+(array_element_initializer) @parameter.outer
