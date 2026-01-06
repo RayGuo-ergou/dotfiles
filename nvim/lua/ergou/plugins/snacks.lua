@@ -179,7 +179,7 @@ return {
       picker = {
         previewers = {
           diff = {
-            native = true,
+            style = 'terminal', ---@type "fancy"|"syntax"|"terminal"
           },
         },
         sources = {
