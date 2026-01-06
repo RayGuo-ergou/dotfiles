@@ -60,6 +60,7 @@ return {
           SnacksInputPrompt = { fg = C.blue },
 
           -- weird it's not linked to `CursorLine` by default
+          SnacksPickerMatch = { fg = C.red },
           SnacksPickerListCursorLine = { link = 'CursorLine' },
 
           UgUndo = { bg = C.surface2 },
