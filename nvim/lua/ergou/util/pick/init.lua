@@ -15,7 +15,7 @@ local M = setmetatable({}, {
 })
 
 ---@type ErgouPicker?
-M.picker = M.fzf.picker
+M.picker = M.snacks.picker
 
 ---@alias ErgouPickerName 'fzf'|'telescope'|'snacks'
 

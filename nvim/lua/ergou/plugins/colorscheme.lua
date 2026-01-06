@@ -36,7 +36,9 @@ return {
         },
         which_key = true,
         lsp_trouble = true,
-        snacks = true,
+        snacks = {
+          enabled = true,
+        },
       },
       custom_highlights = function(C)
         local groups = {
