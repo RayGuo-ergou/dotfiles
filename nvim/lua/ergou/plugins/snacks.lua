@@ -297,7 +297,6 @@ return {
             end
             local done = 0
             for _, item in ipairs(items) do
-              dd(item)
               local opts = { cwd = item.cwd } ---@type snacks.picker.util.cmd.Opts
               local cmd ---@type string[]
               if item.diff and item.staged ~= nil then
