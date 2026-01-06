@@ -243,6 +243,109 @@ return {
           trouble_open = function(...)
             return require('trouble.sources.snacks').actions.trouble_open.action(...)
           end,
+          --- @see https://github.com/folke/snacks.nvim/blob/fe7cfe9800a182274d0f868a74b7263b8c0c020b/lua/snacks/picker/actions.lua#L398
+          git_restore_no_confirm = function(picker)
+            local items = picker:selected({ fallback = true })
+            if #items == 0 then
+              return
+            end
+
+            local first = items[1]
+            if not first or not (first.status or (first.diff and first.staged ~= nil)) then
+              Snacks.notify.warn('Can\'t restore this change', { title = 'Snacks Picker' })
+              return
+            end
+
+            local done = 0
+            for _, item in ipairs(items) do
+              local cmd ---@type string[]
+              local opts = { cwd = item.cwd }
+
+              if item.diff and item.staged ~= nil then
+                opts.input = item.diff
+                if item.staged then
+                  cmd = { 'git', 'apply', '--reverse', '--cached' }
+                else
+                  cmd = { 'git', 'apply', '--reverse' }
+                end
+              elseif item.status then
+                cmd = { 'git', 'restore', item.file }
+              else
+                Snacks.notify.error('Can\'t restore this change', { title = 'Snacks Picker' })
+                return
+              end
+
+              Snacks.picker.util.cmd(cmd, function()
+                done = done + 1
+                if done == #items then
+                  vim.schedule(function()
+                    picker:refresh()
+                    vim.cmd.startinsert()
+                    vim.cmd.checktime()
+                  end)
+                end
+              end, opts)
+            end
+          end,
+          --- @see https://github.com/folke/snacks.nvim/blob/fe7cfe9800a182274d0f868a74b7263b8c0c020b/lua/snacks/picker/actions.lua#L368
+          git_stage_only = function(picker)
+            local items = picker:selected({ fallback = true })
+            local first = items[1]
+            if not first or not (first.status or (first.diff and first.staged ~= nil)) then
+              Snacks.notify.error('Can\'t stage this change', { title = 'Snacks Picker' })
+              return
+            end
+            local done = 0
+            for _, item in ipairs(items) do
+              dd(item)
+              local opts = { cwd = item.cwd } ---@type snacks.picker.util.cmd.Opts
+              local cmd ---@type string[]
+              if item.diff and item.staged ~= nil then
+                opts.input = item.diff
+                cmd = { 'git', 'apply', '--cached', item.staged and '--reverse' or nil }
+              elseif item.status and item.status:sub(2) ~= ' ' then
+                cmd = { 'git', 'add', item.file }
+              else
+                -- Snacks.notify.error('Can\'t stage/unstage this change', { title = 'Snacks Picker' })
+                return
+              end
+              Snacks.picker.util.cmd(cmd, function()
+                done = done + 1
+                if done == #items then
+                  picker:refresh()
+                end
+              end, opts)
+            end
+          end,
+          --- @see https://github.com/folke/snacks.nvim/blob/fe7cfe9800a182274d0f868a74b7263b8c0c020b/lua/snacks/picker/actions.lua#L368
+          git_unstage_only = function(picker)
+            local items = picker:selected({ fallback = true })
+            local first = items[1]
+            if not first or not (first.status or (first.diff and first.staged ~= nil)) then
+              Snacks.notify.error('Can\'t unstage this change', { title = 'Snacks Picker' })
+              return
+            end
+            local done = 0
+            for _, item in ipairs(items) do
+              local opts = { cwd = item.cwd } ---@type snacks.picker.util.cmd.Opts
+              local cmd ---@type string[]
+              if item.diff and item.staged ~= nil then
+                opts.input = item.diff
+                cmd = { 'git', 'apply', '--cached', item.staged and '--reverse' or nil }
+              elseif item.status and item.status:sub(2) == ' ' then
+                cmd = { 'git', 'restore', '--staged', item.file }
+              else
+                -- Snacks.notify.error('Can\'t stage/unstage this change', { title = 'Snacks Picker' })
+                return
+              end
+              Snacks.picker.util.cmd(cmd, function()
+                done = done + 1
+                if done == #items then
+                  picker:refresh()
+                end
+              end, opts)
+            end
+          end,
         },
       },
     },

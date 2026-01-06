@@ -76,7 +76,17 @@ M.get = function()
     {
       '<leader>gs',
       function()
-        Snacks.picker.git_status()
+        Snacks.picker.git_status({
+          win = {
+            input = {
+              keys = {
+                ['<c-x>'] = { 'git_restore_no_confirm', mode = { 'n', 'i' }, nowait = false },
+                ['<left>'] = { 'git_stage_only', mode = { 'n', 'i' } },
+                ['<right>'] = { 'git_unstage_only', mode = { 'n', 'i' } },
+              },
+            },
+          },
+        })
       end,
       desc = 'Git Status',
     },
