@@ -211,6 +211,7 @@ return {
               ['<c-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
               ['<c-f>'] = { 'list_scroll_down', mode = { 'i', 'n' } },
               ['<c-b>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
+              ['<a-q>'] = { 'qflist', mode = { 'i', 'n' } },
             },
           },
         },
