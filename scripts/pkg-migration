@@ -9,7 +9,7 @@ if [[ ! -d "$MIGRATION_DIR" ]]; then
     exit 1
 fi
 
-mapfile -t scripts < <(find "$MIGRATION_DIR" -name "*.sh" -type f | sort)
+mapfile -t scripts < <(find "$MIGRATION_DIR" -name "*.sh" -type f | sort -r)
 
 if [[ ${#scripts[@]} -eq 0 ]]; then
     echo "No migration scripts found in $MIGRATION_DIR"
