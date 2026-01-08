@@ -258,7 +258,7 @@ return {
               local cmd ---@type string[]
               if item.diff and item.staged ~= nil then
                 if item.staged then
-                  return
+                  goto continue
                 end
                 opts.input = item.diff
                 cmd = { 'git', 'apply', '--cached' }
@@ -266,7 +266,7 @@ return {
                 cmd = { 'git', 'add', item.file }
               else
                 -- Snacks.notify.error('Can\'t stage/unstage this change', { title = 'Snacks Picker' })
-                return
+                goto continue
               end
               Snacks.picker.util.cmd(cmd, function()
                 done = done + 1
@@ -274,6 +274,8 @@ return {
                   picker:refresh()
                 end
               end, opts)
+              -- FIXME: if noting change it will not refresh so it will not unselect
+              ::continue::
             end
           end,
           --- @see https://github.com/folke/snacks.nvim/blob/fe7cfe9800a182274d0f868a74b7263b8c0c020b/lua/snacks/picker/actions.lua#L368
@@ -290,7 +292,7 @@ return {
               local cmd ---@type string[]
               if item.diff and item.staged ~= nil then
                 if not item.staged then
-                  return
+                  goto continue
                 end
                 opts.input = item.diff
                 cmd = { 'git', 'apply', '--cached', '--reverse' }
@@ -298,7 +300,7 @@ return {
                 cmd = { 'git', 'restore', '--staged', item.file }
               else
                 -- Snacks.notify.error('Can\'t stage/unstage this change', { title = 'Snacks Picker' })
-                return
+                goto continue
               end
               Snacks.picker.util.cmd(cmd, function()
                 done = done + 1
@@ -306,6 +308,8 @@ return {
                   picker:refresh()
                 end
               end, opts)
+              -- FIXME: if noting change it will not refresh so it will not unselect
+              ::continue::
             end
           end,
         },

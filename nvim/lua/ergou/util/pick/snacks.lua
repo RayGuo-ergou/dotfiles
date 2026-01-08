@@ -80,6 +80,7 @@ M.get = function()
           win = {
             input = {
               keys = {
+                ['<Tab>'] = { 'select_and_next', mode = { 'i', 'n' } },
                 ['<c-x>'] = { 'git_restore', mode = { 'n', 'i' }, nowait = false },
                 ['<left>'] = { 'git_stage_only', mode = { 'n', 'i' } },
                 ['<right>'] = { 'git_unstage_only', mode = { 'n', 'i' } },
@@ -91,12 +92,14 @@ M.get = function()
       desc = 'Git Status',
     },
     {
+
       '<leader>gS',
       function()
         Snacks.picker.git_diff({
           win = {
             input = {
               keys = {
+                ['<Tab>'] = { 'select_and_next', mode = { 'i', 'n' } },
                 ['<c-x>'] = { 'git_restore', mode = { 'n', 'i' }, nowait = false },
                 ['<left>'] = { 'git_stage_only', mode = { 'n', 'i' } },
                 ['<right>'] = { 'git_unstage_only', mode = { 'n', 'i' } },
