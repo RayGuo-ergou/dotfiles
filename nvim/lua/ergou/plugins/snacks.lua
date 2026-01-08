@@ -200,6 +200,7 @@ return {
           input = {
             keys = {
               ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
+              ['<a-o>'] = { 'toggle_hidden', mode = { 'i', 'n' } },
               ['<a-c>'] = {
                 'toggle_cwd',
                 mode = { 'n', 'i' },
