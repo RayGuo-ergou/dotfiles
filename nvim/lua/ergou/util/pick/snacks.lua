@@ -80,7 +80,7 @@ M.get = function()
           win = {
             input = {
               keys = {
-                ['<c-x>'] = { 'git_restore_no_confirm', mode = { 'n', 'i' }, nowait = false },
+                ['<c-x>'] = { 'git_restore', mode = { 'n', 'i' }, nowait = false },
                 ['<left>'] = { 'git_stage_only', mode = { 'n', 'i' } },
                 ['<right>'] = { 'git_unstage_only', mode = { 'n', 'i' } },
               },
@@ -97,7 +97,7 @@ M.get = function()
           win = {
             input = {
               keys = {
-                ['<c-x>'] = { 'git_restore_no_confirm', mode = { 'n', 'i' }, nowait = false },
+                ['<c-x>'] = { 'git_restore', mode = { 'n', 'i' }, nowait = false },
                 ['<left>'] = { 'git_stage_only', mode = { 'n', 'i' } },
                 ['<right>'] = { 'git_unstage_only', mode = { 'n', 'i' } },
               },
