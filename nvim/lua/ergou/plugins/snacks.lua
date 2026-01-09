@@ -341,7 +341,7 @@ return {
                 local opts = { cwd = item.cwd }
 
                 if item.status == '??' then
-                  cmd = { 'rm', item.file }
+                  cmd = { 'trash', item.file }
                 elseif item.diff and item.staged ~= nil then
                   opts.input = item.diff
                   if item.staged then
