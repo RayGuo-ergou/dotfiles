@@ -334,40 +334,42 @@ return {
             local msg = #items == 1 and ('Discard changes to `%s`?'):format(files[1])
               or ('Discard changes to %d files?'):format(#items)
 
-            Snacks.picker.util.confirm(msg, function()
-              local done = 0
-              for _, item in ipairs(items) do
-                local cmd ---@type string[]
-                local opts = { cwd = item.cwd }
+            local confirm = vim.fn.confirm(msg, '&Yes\n&No', 1)
+            if confirm ~= 1 then
+              return
+            end
+            local done = 0
+            for _, item in ipairs(items) do
+              local cmd ---@type string[]
+              local opts = { cwd = item.cwd }
 
-                if item.status == '??' then
-                  cmd = { 'trash', item.file }
-                elseif item.diff and item.staged ~= nil then
-                  opts.input = item.diff
-                  if item.staged then
-                    cmd = { 'git', 'apply', '--reverse', '--cached' }
-                  else
-                    cmd = { 'git', 'apply', '--reverse' }
-                  end
-                elseif item.status then
-                  cmd = { 'git', 'restore', item.file }
+              if item.status == '??' then
+                cmd = { 'trash', item.file }
+              elseif item.diff and item.staged ~= nil then
+                opts.input = item.diff
+                if item.staged then
+                  cmd = { 'git', 'apply', '--reverse', '--cached' }
                 else
-                  Snacks.notify.error('Can\'t restore this change', { title = 'Snacks Picker' })
-                  return
+                  cmd = { 'git', 'apply', '--reverse' }
                 end
-
-                Snacks.picker.util.cmd(cmd, function()
-                  done = done + 1
-                  if done == #items then
-                    vim.schedule(function()
-                      picker:refresh()
-                      vim.cmd.startinsert()
-                      vim.cmd.checktime()
-                    end)
-                  end
-                end, opts)
+              elseif item.status then
+                cmd = { 'git', 'restore', item.file }
+              else
+                Snacks.notify.error('Can\'t restore this change', { title = 'Snacks Picker' })
+                return
               end
-            end)
+
+              Snacks.picker.util.cmd(cmd, function()
+                done = done + 1
+                if done == #items then
+                  vim.schedule(function()
+                    picker:refresh()
+                    vim.cmd.startinsert()
+                    vim.cmd.checktime()
+                  end)
+                end
+              end, opts)
+            end
           end,
         },
       },
