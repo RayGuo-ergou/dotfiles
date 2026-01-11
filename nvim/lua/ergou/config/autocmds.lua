@@ -89,6 +89,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'DressingInput',
     'query',
     'dbui',
+    'gitsigns-blame',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

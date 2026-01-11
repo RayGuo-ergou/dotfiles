@@ -122,6 +122,13 @@ return {
           require('gitsigns').toggle_current_line_blame(state)
         end,
       }):map('<leader>gtb')
+
+      Snacks.toggle({
+        name = 'Git Signs Blame',
+        set = function()
+          require('gitsigns').blame()
+        end,
+      }):map('<leader>gtB')
     end,
   },
   {
