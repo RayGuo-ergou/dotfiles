@@ -136,5 +136,6 @@ vim.filetype.add({
     ['.*/waybar/.*%.css'] = 'less',
     ['.*/wofi/.*%.css'] = 'less',
     ['.*/hypr/.*%.conf'] = 'hyprlang',
+    ['database.rules.json'] = 'json5',
   },
 })
