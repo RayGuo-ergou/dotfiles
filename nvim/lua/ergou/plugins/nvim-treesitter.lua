@@ -2,14 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
-    build = function()
-      local TS = require('nvim-treesitter')
-      if not TS.get_installed then
-        ergou.error('Please restart Neovim and run `:TSUpdate` to use the `nvim-treesitter` **main** branch.')
-        return
-      end
-      TS.update(nil, { summary = true })
-    end,
+    build = ':TSUpdate',
     cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
     event = { 'LazyFile', 'VeryLazy' },
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
