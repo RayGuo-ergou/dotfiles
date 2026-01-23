@@ -1,223 +1,259 @@
 {
   "$schema": "https://opencode.ai/theme.json",
   "defs": {
-    "nord0": "#2E3440",
-    "nord1": "#3B4252",
-    "nord2": "#434C5E",
-    "nord3": "#4C566A",
-    "nord4": "#D8DEE9",
-    "nord5": "#E5E9F0",
-    "nord6": "#ECEFF4",
-    "nord7": "#8FBCBB",
-    "nord8": "#88C0D0",
-    "nord9": "#81A1C1",
-    "nord10": "#5E81AC",
-    "nord11": "#BF616A",
-    "nord12": "#D08770",
-    "nord13": "#EBCB8B",
-    "nord14": "#A3BE8C",
-    "nord15": "#B48EAD"
+    "mochaRosewater": "#f5e0dc",
+    "mochaFlamingo": "#f2cdcd",
+    "mochaPink": "#f5c2e7",
+    "mochaMauve": "#cba6f7",
+    "mochaRed": "#f38ba8",
+    "mochaMaroon": "#eba0ac",
+    "mochaPeach": "#fab387",
+    "mochaYellow": "#f9e2af",
+    "mochaGreen": "#a6e3a1",
+    "mochaTeal": "#94e2d5",
+    "mochaSky": "#89dceb",
+    "mochaSapphire": "#74c7ec",
+    "mochaBlue": "#89b4fa",
+    "mochaLavender": "#b4befe",
+    "mochaText": "#cdd6f4",
+    "mochaSubtext1": "#bac2de",
+    "mochaSubtext0": "#a6adc8",
+    "mochaOverlay2": "#9399b2",
+    "mochaOverlay1": "#7f849c",
+    "mochaOverlay0": "#6c7086",
+    "mochaSurface2": "#585b70",
+    "mochaSurface1": "#45475a",
+    "mochaSurface0": "#313244",
+    "mochaBase": "#1e1e2e",
+    "mochaMantle": "#181825",
+    "mochaCrust": "#11111b",
+    "latteRosewater": "#dc8a78",
+    "latteFlamingo": "#dd7878",
+    "lattePink": "#ea76cb",
+    "latteMauve": "#8839ef",
+    "latteRed": "#d20f39",
+    "latteMaroon": "#e64553",
+    "lattePeach": "#fe640b",
+    "latteYellow": "#df8e1d",
+    "latteGreen": "#40a02b",
+    "latteTeal": "#179287",
+    "latteSky": "#04a5e5",
+    "latteSapphire": "#209fb5",
+    "latteBlue": "#1e66f5",
+    "latteLavender": "#7287fd",
+    "latteText": "#4c4f69",
+    "latteSubtext1": "#5c5f77",
+    "latteSubtext0": "#6c6f85",
+    "latteOverlay2": "#7c7f93",
+    "latteOverlay1": "#8c8fa1",
+    "latteOverlay0": "#9ca0b0",
+    "latteSurface2": "#acb0be",
+    "latteSurface1": "#bcc0cc",
+    "latteSurface0": "#ccd0da",
+    "latteBase": "#eff1f5",
+    "latteMantle": "#e6e9ef",
+    "latteCrust": "#dce0e8"
   },
   "theme": {
     "primary": {
-      "dark": "nord8",
-      "light": "nord10"
+      "dark": "mochaBlue",
+      "light": "latteBlue"
     },
     "secondary": {
-      "dark": "nord9",
-      "light": "nord9"
+      "dark": "mochaMauve",
+      "light": "latteMauve"
     },
     "accent": {
-      "dark": "nord7",
-      "light": "nord7"
+      "dark": "mochaTeal",
+      "light": "latteTeal"
     },
     "error": {
-      "dark": "nord11",
-      "light": "nord11"
+      "dark": "mochaRed",
+      "light": "latteRed"
     },
     "warning": {
-      "dark": "nord12",
-      "light": "nord12"
+      "dark": "mochaYellow",
+      "light": "latteYellow"
     },
     "success": {
-      "dark": "nord14",
-      "light": "nord14"
+      "dark": "mochaGreen",
+      "light": "latteGreen"
     },
     "info": {
-      "dark": "nord8",
-      "light": "nord10"
+      "dark": "mochaSky",
+      "light": "latteSky"
     },
     "text": {
-      "dark": "nord4",
-      "light": "nord0"
+      "dark": "mochaText",
+      "light": "latteText"
     },
     "textMuted": {
-      "dark": "nord3",
-      "light": "nord1"
+      "dark": "mochaOverlay0",
+      "light": "latteOverlay0"
     },
     "background": {
       "dark": "none",
       "light": "none"
     },
     "backgroundPanel": {
-      "dark": "nord1",
-      "light": "nord5"
+      "dark": "mochaMantle",
+      "light": "latteMantle"
     },
     "backgroundElement": {
-      "dark": "nord1",
-      "light": "nord4"
+      "dark": "mochaSurface0",
+      "light": "latteSurface0"
     },
     "border": {
-      "dark": "nord2",
-      "light": "nord3"
+      "dark": "mochaSurface1",
+      "light": "latteSurface1"
     },
     "borderActive": {
-      "dark": "nord3",
-      "light": "nord2"
+      "dark": "mochaBlue",
+      "light": "latteBlue"
     },
     "borderSubtle": {
-      "dark": "nord2",
-      "light": "nord3"
+      "dark": "mochaSurface0",
+      "light": "latteSurface0"
     },
     "diffAdded": {
-      "dark": "nord14",
-      "light": "nord14"
+      "dark": "mochaGreen",
+      "light": "latteGreen"
     },
     "diffRemoved": {
-      "dark": "nord11",
-      "light": "nord11"
+      "dark": "mochaRed",
+      "light": "latteRed"
     },
     "diffContext": {
-      "dark": "nord3",
-      "light": "nord3"
+      "dark": "mochaOverlay0",
+      "light": "latteOverlay0"
     },
     "diffHunkHeader": {
-      "dark": "nord3",
-      "light": "nord3"
+      "dark": "mochaMauve",
+      "light": "latteMauve"
     },
     "diffHighlightAdded": {
-      "dark": "nord14",
-      "light": "nord14"
+      "dark": "mochaGreen",
+      "light": "latteGreen"
     },
     "diffHighlightRemoved": {
-      "dark": "nord11",
-      "light": "nord11"
+      "dark": "mochaRed",
+      "light": "latteRed"
     },
     "diffAddedBg": {
-      "dark": "#3B4252",
-      "light": "#E5E9F0"
+      "dark": "#23332e",
+      "light": "#dceada"
     },
     "diffRemovedBg": {
-      "dark": "#3B4252",
-      "light": "#E5E9F0"
+      "dark": "#34222f",
+      "light": "#f7e4e1"
     },
     "diffContextBg": {
-      "dark": "nord1",
-      "light": "nord5"
+      "dark": "mochaMantle",
+      "light": "latteMantle"
     },
     "diffLineNumber": {
-      "dark": "nord2",
-      "light": "nord4"
+      "dark": "mochaOverlay0",
+      "light": "latteOverlay0"
     },
     "diffAddedLineNumberBg": {
-      "dark": "#3B4252",
-      "light": "#E5E9F0"
+      "dark": "#23332e",
+      "light": "#dceada"
     },
     "diffRemovedLineNumberBg": {
-      "dark": "#3B4252",
-      "light": "#E5E9F0"
+      "dark": "#34222f",
+      "light": "#f7e4e1"
     },
     "markdownText": {
-      "dark": "nord4",
-      "light": "nord0"
+      "dark": "mochaText",
+      "light": "latteText"
     },
     "markdownHeading": {
-      "dark": "nord8",
-      "light": "nord10"
+      "dark": "mochaBlue",
+      "light": "latteBlue"
     },
     "markdownLink": {
-      "dark": "nord9",
-      "light": "nord9"
+      "dark": "mochaSky",
+      "light": "latteSky"
     },
     "markdownLinkText": {
-      "dark": "nord7",
-      "light": "nord7"
+      "dark": "mochaTeal",
+      "light": "latteTeal"
     },
     "markdownCode": {
-      "dark": "nord14",
-      "light": "nord14"
+      "dark": "mochaGreen",
+      "light": "latteGreen"
     },
     "markdownBlockQuote": {
-      "dark": "nord3",
-      "light": "nord3"
+      "dark": "mochaOverlay0",
+      "light": "latteOverlay0"
     },
     "markdownEmph": {
-      "dark": "nord12",
-      "light": "nord12"
+      "dark": "mochaPeach",
+      "light": "lattePeach"
     },
     "markdownStrong": {
-      "dark": "nord13",
-      "light": "nord13"
+      "dark": "mochaYellow",
+      "light": "latteYellow"
     },
     "markdownHorizontalRule": {
-      "dark": "nord3",
-      "light": "nord3"
+      "dark": "mochaSurface2",
+      "light": "latteSurface2"
     },
     "markdownListItem": {
-      "dark": "nord8",
-      "light": "nord10"
+      "dark": "mochaBlue",
+      "light": "latteBlue"
     },
     "markdownListEnumeration": {
-      "dark": "nord7",
-      "light": "nord7"
+      "dark": "mochaTeal",
+      "light": "latteTeal"
     },
     "markdownImage": {
-      "dark": "nord9",
-      "light": "nord9"
+      "dark": "mochaSky",
+      "light": "latteSky"
     },
     "markdownImageText": {
-      "dark": "nord7",
-      "light": "nord7"
+      "dark": "mochaTeal",
+      "light": "latteTeal"
     },
     "markdownCodeBlock": {
-      "dark": "nord4",
-      "light": "nord0"
+      "dark": "mochaText",
+      "light": "latteText"
     },
     "syntaxComment": {
-      "dark": "nord3",
-      "light": "nord3"
+      "dark": "mochaOverlay0",
+      "light": "latteOverlay0"
     },
     "syntaxKeyword": {
-      "dark": "nord9",
-      "light": "nord9"
+      "dark": "mochaMauve",
+      "light": "latteMauve"
     },
     "syntaxFunction": {
-      "dark": "nord8",
-      "light": "nord8"
+      "dark": "mochaBlue",
+      "light": "latteBlue"
     },
     "syntaxVariable": {
-      "dark": "nord7",
-      "light": "nord7"
+      "dark": "mochaTeal",
+      "light": "latteTeal"
     },
     "syntaxString": {
-      "dark": "nord14",
-      "light": "nord14"
+      "dark": "mochaGreen",
+      "light": "latteGreen"
     },
     "syntaxNumber": {
-      "dark": "nord15",
-      "light": "nord15"
+      "dark": "mochaPeach",
+      "light": "lattePeach"
     },
     "syntaxType": {
-      "dark": "nord7",
-      "light": "nord7"
+      "dark": "mochaYellow",
+      "light": "latteYellow"
     },
     "syntaxOperator": {
-      "dark": "nord9",
-      "light": "nord9"
+      "dark": "mochaSky",
+      "light": "latteSky"
     },
     "syntaxPunctuation": {
-      "dark": "nord4",
-      "light": "nord0"
+      "dark": "mochaOverlay2",
+      "light": "latteOverlay2"
     }
   }
 }
