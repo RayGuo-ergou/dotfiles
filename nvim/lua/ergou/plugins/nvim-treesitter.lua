@@ -4,8 +4,9 @@ return {
     branch = 'main',
     build = ':TSUpdate',
     cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
-    event = { 'LazyFile', 'VeryLazy' },
-    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    lazy = false,
+    -- event = { 'LazyFile', 'VeryLazy' },
+    -- lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     opts_extend = { 'ensure_installed' },
     ---@class ergou.TSConfig: TSConfig
     opts = {
