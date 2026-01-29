@@ -5,14 +5,17 @@ acpid
 alsa-utils
 amd-ucode
 ast-grep
+aws-cli
 base
 base-devel
 bat
 bazecor
+bind
 bluez
 bluez-utils
 btop
 btrfs-progs
+bun
 calibre
 carapace-bin
 chromium
@@ -55,6 +58,7 @@ hblock
 htop
 hypridle
 hyprland
+hyprlauncher
 hyprlock
 hyprpaper
 hyprpicker
@@ -88,6 +92,7 @@ noto-fonts-emoji
 nvidia-open
 nvidia-settings
 nvtop
+opencode-bin
 openssh
 os-prober
 paru
@@ -160,6 +165,7 @@ pipewire-alsa
 pipewire-audio
 pipewire-jack
 pipewire-pulse
+protonplus
 reflector
 rime-ice-pinyin-git
 rime-japanese
@@ -190,7 +196,6 @@ uwsm
 vim
 waybar
 wget
-witr-bin
 wl-clip-persist
 xcur2png
 xdg-desktop-portal-hyprland
@@ -200,5 +205,6 @@ yay-debug
 yazi
 ydotool
 zen-browser-bin
+zip
 zoxide
 zsh

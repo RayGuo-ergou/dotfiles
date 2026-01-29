@@ -4,14 +4,17 @@
 acpid
 alsa-utils
 ast-grep
+aws-cli
 base
 base-devel
 bat
 bazecor
+bind
 bluez
 bluez-utils
 btop
 btrfs-progs
+bun
 calibre
 carapace-bin
 clamav
@@ -47,6 +50,7 @@ hblock
 htop
 hypridle
 hyprland
+hyprlauncher
 hyprlock
 hyprpaper
 hyprpicker
@@ -80,6 +84,7 @@ noto-fonts-emoji
 nvidia-open
 nvidia-settings
 nvtop
+opencode-bin
 openssh
 pavucontrol
 php
@@ -88,6 +93,7 @@ pipewire-alsa
 pipewire-audio
 pipewire-jack
 pipewire-pulse
+protonplus
 reflector
 ripgrep
 rofi
@@ -115,7 +121,6 @@ uwsm
 vim
 waybar
 wget
-witr-bin
 wl-clip-persist
 xcur2png
 xdg-desktop-portal-hyprland
@@ -123,5 +128,6 @@ xdg-user-dirs
 yazi
 ydotool
 zen-browser-bin
+zip
 zoxide
 zsh
