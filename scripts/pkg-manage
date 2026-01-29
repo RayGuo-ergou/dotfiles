@@ -13,6 +13,7 @@ EXCLUDE_PATTERNS=(
     "paru*"
     # Well, my working machine should not have steam
     "steam"
+    "*proton*"
     # If not dual boot windows with arch, no need
     "os-prober"
     # Working PC no need chinese keyboard
