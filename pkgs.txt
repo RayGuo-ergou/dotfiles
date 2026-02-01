@@ -93,7 +93,6 @@ pipewire-alsa
 pipewire-audio
 pipewire-jack
 pipewire-pulse
-protonplus
 reflector
 ripgrep
 rofi
@@ -104,7 +103,7 @@ slurp
 socat
 sudo
 swappy
-swaync-git
+swaync
 systemd-ui
 tectonic
 texinfo

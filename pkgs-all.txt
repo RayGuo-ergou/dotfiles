@@ -179,7 +179,7 @@ socat
 steam
 sudo
 swappy
-swaync-git
+swaync
 systemd-ui
 tectonic
 texinfo
