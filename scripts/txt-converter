@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+# Check if a command exists
+command_exists() {
+    info "Checking if $1 exists"
+    command -v "$1" >/dev/null 2>&1
+}
+
+install_command() {
+    local cmd_to_check="$1"
+    local install_cmd="$2"
+    if ! command_exists $cmd_to_check; then
+        info "$cmd_to_check not found! Installing..."
+        local output=$(eval $install_cmd 2>&1)
+        if [ $? -eq 0 ]; then
+            success "$cmd_to_check installed!"
+            info "$output"
+        else
+            fail "$output"
+        fi
+    else
+        echo "$cmd_to_check is already installed!"
+    fi
+}
+
+info() {
+    printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+}
+user() {
+    printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+}
+success() {
+    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+fail() {
+    printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+    echo ''
+    exit
+}
+
+install_command "fzf" "sudo pacman -S --noconfirm fzf"
+install_command "enca" "sudo pacman -S --noconfirm enca"
+
+selected_file=$(find . -type f | fzf --prompt="Select file: " --preview="head -20 {}")
+
+if [ -z "$selected_file" ]; then
+    fail "No file selected"
+fi
+
+user "Select language hint for encoding detection:"
+selected_language=$(enca --list languages 2>/dev/null |
+    grep -oP '^\s*[a-z]+' |
+    sed 's/^[[:space:]]*//' |
+    fzf --prompt="Select language: " --height=40% --no-preview)
+
+if [ -z "$selected_language" ]; then
+    fail "No language selected"
+fi
+
+info "Detecting encoding for: $selected_file (language: $selected_language)"
+detected_encoding=$(enca -L "$selected_language" -i "$selected_file" 2>/dev/null)
+
+if [ -z "$detected_encoding" ] || [ "$detected_encoding" = "unknown" ]; then
+    user "enca could not detect encoding, falling back to manual selection"
+
+    encodings=(
+        "GB18030"
+        "GBK"
+        "GB2312"
+        "BIG5"
+        "ISO-8859-1"
+        "SHIFT-JIS"
+        "EUC-JP"
+        "EUC-KR"
+        "WINDOWS-1252"
+    )
+
+    preview_conversion() {
+        local encoding=$1
+        iconv -f "$encoding" -t UTF-8 "$selected_file" 2>/dev/null | head -20
+    }
+
+    export -f preview_conversion
+    export selected_file
+
+    detected_encoding=$(printf '%s\n' "${encodings[@]}" |
+        fzf --prompt="Select source encoding: " \
+            --preview="preview_conversion {}" \
+            --preview-window=right:60%:wrap \
+            --height=80%)
+fi
+
+if [ -z "$detected_encoding" ]; then
+    fail "No encoding selected"
+fi
+
+info "Using encoding: $detected_encoding"
+
+output_file="${selected_file%.*}_utf8.${selected_file##*.}"
+
+iconv -f "$detected_encoding" -t UTF-8 "$selected_file" -o "$output_file"
+
+if [ $? -eq 0 ]; then
+    success "Converted: $output_file"
+    info "Preview:"
+    head -5 "$output_file"
+else
+    fail "Conversion failed with encoding: $detected_encoding"
+fi
