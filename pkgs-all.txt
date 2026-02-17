@@ -30,6 +30,7 @@ docker
 dosfstools
 doxx
 efibootmgr
+enca
 eza
 fastfetch
 fcitx5
