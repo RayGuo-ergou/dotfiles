@@ -63,6 +63,7 @@ return {
         'hyprlang',
         'make',
         'just',
+        'zsh',
       },
     },
     ---@param opts ergou.TSConfig
