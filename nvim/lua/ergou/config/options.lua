@@ -126,9 +126,10 @@ vim.filetype.add({
   filename = {
     ['vifmrc'] = 'vim',
     ['database.rules.json'] = 'json5',
+    ['.env'] = 'bash',
   },
   pattern = {
-    ['%.env%.[%w_.-]+'] = 'bash',
+    ['.*/.env.[%w_.-]+'] = 'bash',
     ['.*/git/config'] = 'gitconfig',
     ['.gitconfig.*'] = 'gitconfig',
     ['.*/git/ignore'] = 'gitignore',
