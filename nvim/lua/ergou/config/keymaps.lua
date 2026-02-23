@@ -152,3 +152,5 @@ ergou.toggle.treesitter():map('<leader>uT')
 ergou.toggle.spelling():map('<leader>us')
 ergou.toggle.zen():map('<leader>Z')
 ergou.toggle.zoom():map('<leader>wm'):map('<leader>z')
+
+map('n', '@', '<nop>')
