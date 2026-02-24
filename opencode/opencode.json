@@ -2,8 +2,8 @@
   "$schema": "https://opencode.ai/config.json",
   "theme": "default",
   "keybinds": {
-    "input_newline": "return,ctrl+j",
-    "input_submit": "shift+return,ctrl+return,alt+return,"
+    "input_newline": "return,ctrl+j,shift+return",
+    "input_submit": "ctrl+return,alt+return"
   },
   "permission": {
     "*": "allow",
