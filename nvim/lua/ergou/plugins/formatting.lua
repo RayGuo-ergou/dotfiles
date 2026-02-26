@@ -120,6 +120,10 @@ return {
 
         -- do not format blade file with html lsp
         if ft == 'blade' then
+          -- I have no idea why `.bladeignore` file does not work, bruh
+          if string.find(file_path, 'markdown') then
+            return nil
+          end
           config.lsp_format = 'never'
         end
 
