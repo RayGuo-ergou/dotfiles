@@ -69,20 +69,6 @@ return {
       cyclic = true,
     })
 
-    local weekdays = augend.constant.new({
-      elements = {
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      },
-      word = true,
-      cyclic = true,
-    })
-
     local months = augend.constant.new({
       elements = {
         'January',
@@ -97,15 +83,6 @@ return {
         'October',
         'November',
         'December',
-      },
-      word = true,
-      cyclic = true,
-    })
-
-    local capitalized_boolean = augend.constant.new({
-      elements = {
-        'True',
-        'False',
       },
       word = true,
       cyclic = true,
@@ -177,10 +154,11 @@ return {
           augend.date.alias['%Y/%m/%d'], -- date (2022/02/19, etc.)
           ordinal_numbers,
           cardinal_numbers,
-          weekdays,
+          augend.constant.alias.en_weekday, -- Mon, Tue, ..., Sat, Sun
+          augend.constant.alias.en_weekday_full, -- Monday, Tuesday, ..., Saturday, Sunday
           months,
-          capitalized_boolean,
           augend.constant.alias.bool, -- boolean value (true <-> false)
+          augend.constant.alias.Bool, -- boolean value (True <-> False)
           logical_alias,
         },
         vue = {
