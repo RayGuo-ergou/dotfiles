@@ -1,27 +1,13 @@
 return {
   'stevearc/overseer.nvim',
-  opts = {
-    task_list = {
-      bindings = {
-        ['<C-l>'] = false,
-        ['<C-h>'] = false,
-      },
-    },
-  },
+  lazy = false, -- plugin is self-lazy-loading
+  opts = {},
   cmd = {
     'OverseerOpen',
     'OverseerClose',
     'OverseerToggle',
-    'OverseerSaveBundle',
-    'OverseerLoadBundle',
-    'OverseerDeleteBundle',
-    'OverseerRunCmd',
     'OverseerRun',
-    'OverseerInfo',
-    'OverseerBuild',
-    'OverseerQuickAction',
     'OverseerTaskAction',
-    'OverseerClearCache',
   },
   keys = {
     {
