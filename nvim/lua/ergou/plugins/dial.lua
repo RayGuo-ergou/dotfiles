@@ -89,19 +89,20 @@ return {
     })
 
     local tailwind_color = augend.user.new({
-      find = require('dial.augend.common').find_pattern('%a+%-%a+%-%d?%d%d'),
+      find = function(line, cursor)
+        local find_pattern = require('dial.augend.common').find_pattern
+        return find_pattern('%a+%-%a+%-%a+%-%d?%d%d')(line, cursor) or find_pattern('%a+%-%a+%-%d?%d%d')(line, cursor)
+      end,
       add = function(text, addend, cursor)
-        local _, _, prefix, color = string.find(text, '(%a+%-%a+%-)(%d?%d%d)')
+        local _, _, prefix, color = string.find(text, '(.+%-)(%d+)')
         ---@type number
         ---@diagnostic disable-next-line: assign-type-mismatch
         color = tonumber(color)
-
         if addend > 0 then
           for _ = 1, addend do
             if color >= 950 then
               break
             end
-
             if color == 50 then
               color = 100
             elseif color == 900 then
@@ -115,7 +116,6 @@ return {
             if color <= 50 then
               break
             end
-
             if color == 100 then
               color = 50
             elseif color == 950 then
