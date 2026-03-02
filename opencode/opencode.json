@@ -3,7 +3,8 @@
   "theme": "default",
   "keybinds": {
     "input_newline": "return,ctrl+j,shift+return",
-    "input_submit": "ctrl+return,alt+return"
+    "input_submit": "ctrl+return,alt+return",
+    "session_interrupt": "ctrl+q"
   },
   "permission": {
     "*": "allow",
