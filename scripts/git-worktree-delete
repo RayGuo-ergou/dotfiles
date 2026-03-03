@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cwd="$(pwd)"
+worktree="$(basename "$cwd")"
+root="${worktree%%--*}"
+branch="${worktree#*--}"
+
+if [[ "$root" == "$worktree" ]]; then
+  echo "Not inside a worktree directory"
+  exit 1
+fi
+
+printf "Remove worktree and branch '%s'? [y/N] " "$branch"
+read -r answer
+[[ "$answer" != [yY] ]] && exit 0
+
+root_path="$(dirname "$cwd")/$root"
+
+git -C "$root_path" worktree remove "$cwd" --force
+git -C "$root_path" branch -D "$branch"
+
+if [[ -n $TMUX ]]; then
+  $(dirname "$0")/sessionizer "$root_path"
+  if tmux list-sessions 2>/dev/null | grep -q "^${worktree}:"; then
+    tmux kill-session -t "$worktree"
+  fi
+else
+  cd "$root_path"
+fi

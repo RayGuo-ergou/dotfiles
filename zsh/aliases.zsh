@@ -45,3 +45,6 @@ cdf() {
   fi
 }
 alias cdh='cdf $HOME'
+
+alias gwa='git-worktree-add'
+alias gwd='git-worktree-delete'
