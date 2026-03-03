@@ -30,8 +30,13 @@ if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --o
   force_flag="--force"
 fi
 
-git -C "$root_path" worktree remove "$cwd" "$force_flag"
-git -C "$root_path" branch -D "$branch"
+default_branch="$(git -C "$root_path" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|.*/||')"
+git -C "$root_path" worktree remove "$cwd" $force_flag
+# I sometimes make master as worktree, should not delete master in that case
+# And do NOT use `git delete-branch` it will also delete remove
+if [[ "$branch" != "$default_branch" ]]; then
+  git -C "$root_path" branch -D "$branch"
+fi
 
 if [[ -n $TMUX ]]; then
   $(dirname "$0")/sessionizer "$root_path"
