@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Git worktree helpers (inspired by DHH)
+# https://gist.github.com/dhh/18575558fc5ee10f15b6cd3e108ed844
+
 set -euo pipefail
 
 if [[ -z "$1" ]]; then
