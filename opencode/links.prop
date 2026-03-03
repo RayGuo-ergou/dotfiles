@@ -1,2 +1,3 @@
 $DOTFILES/opencode/opencode.json=$HOME/.config/opencode/opencode.json
+$DOTFILES/opencode/tui.json=$HOME/.config/opencode/tui.json
 $DOTFILES/opencode/themes/default.json=$HOME/.config/opencode/themes/default.json
