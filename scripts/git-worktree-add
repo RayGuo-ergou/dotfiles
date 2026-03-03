@@ -16,6 +16,10 @@ path="$(dirname "$PWD")/${base}--${branch}"
 
 git worktree add -b "$branch" "$path"
 
+for env_file in "$PWD"/.env*; do
+  [[ -f "$env_file" ]] && cp "$env_file" "$path/"
+done
+
 if [[ -n $TMUX ]]; then
   $(dirname "$0")/sessionizer "$path"
 else
