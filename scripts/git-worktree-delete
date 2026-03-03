@@ -9,6 +9,7 @@ cwd="$(pwd)"
 worktree="$(basename "$cwd")"
 root="${worktree%%--*}"
 branch="${worktree#*--}"
+force_flag=""
 
 if [[ "$root" == "$worktree" ]]; then
   echo "Not inside a worktree directory"
@@ -21,7 +22,15 @@ read -r answer
 
 root_path="$(dirname "$cwd")/$root"
 
-git -C "$root_path" worktree remove "$cwd" --force
+# see https://gist.github.com/catapulta/5fa16111817d6b653c1e5ff4608c7567
+if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+  echo "Warning: '$branch' has modified or untracked files."
+  read -q "?Are you sure? This will discard all changes. [y/N] " || return
+  echo
+  force_flag="--force"
+fi
+
+git -C "$root_path" worktree remove "$cwd" "$force_flag"
 git -C "$root_path" branch -D "$branch"
 
 if [[ -n $TMUX ]]; then
