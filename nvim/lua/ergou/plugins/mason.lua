@@ -17,6 +17,7 @@ return {
       'ts_query_ls',
       'yamlfmt',
       'sleek',
+      'shfmt',
     },
     ui = {
       border = 'rounded',
