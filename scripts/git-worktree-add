@@ -30,7 +30,8 @@ if [[ -z "$branch" ]]; then
 fi
 
 base="$(basename "$PWD")"
-path="$(dirname "$PWD")/${base}--${branch}"
+branch_path="${branch//\//%2F}"
+path="$(dirname "$PWD")/${base}--${branch_path}"
 
 if echo "$existing_branches" | grep -qx "$branch"; then
   git worktree add "$path" "$branch"

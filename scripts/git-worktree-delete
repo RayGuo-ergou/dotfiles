@@ -9,6 +9,7 @@ cwd="$(pwd)"
 worktree="$(basename "$cwd")"
 root="${worktree%%--*}"
 branch="${worktree#*--}"
+branch="${branch//%2F/\/}"
 force_flag=""
 
 if [[ "$root" == "$worktree" ]]; then
