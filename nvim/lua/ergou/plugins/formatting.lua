@@ -2,7 +2,7 @@
 
 local timeout = 1500
 ---@type conform.FiletypeFormatter
-local eslint_format = { 'eslint_d' }
+local eslint_format = { lsp_format = 'prefer' }
 
 ---@type conform.FiletypeFormatter
 local json_format = function(bufnr)

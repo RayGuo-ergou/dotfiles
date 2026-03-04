@@ -73,6 +73,11 @@ function M.setup()
 
       local client_name = client.name
       local file_type = vim.bo[bufnr].filetype
+      -- XXX: probably wrong but keep this here for now
+      -- local existing_capabilities = client.server_capabilities
+      -- if existing_capabilities and client.name ~= 'eslint' and vim.tbl_contains(M.eslint.filetypes, file_type) then
+      --   existing_capabilities.documentFormattingProvider = nil
+      -- end
       if
         not (file_type == 'vue' and vim.list_contains(M.typescript.servers, client_name))
         and client:supports_method('textDocument/documentSymbol')
