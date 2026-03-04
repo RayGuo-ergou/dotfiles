@@ -16,7 +16,7 @@ if [[ "$root" == "$worktree" ]]; then
   exit 1
 fi
 
-printf "Remove worktree and branch '%s'? [y/N] " "$branch"
+echo "Remove worktree and branch '%s'? [y/N] " "$branch"
 read -r answer
 [[ "$answer" != [yY] ]] && exit 0
 
@@ -25,7 +25,9 @@ root_path="$(dirname "$cwd")/$root"
 # see https://gist.github.com/catapulta/5fa16111817d6b653c1e5ff4608c7567
 if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
   echo "Warning: '$branch' has modified or untracked files."
-  read -q "?Are you sure? This will discard all changes. [y/N] " || return
+  echo "Are you sure? This will discard all changes. [y/N] "
+  read -r confirm
+  [[ "$confirm" != [yY] ]] && exit 0
   echo
   force_flag="--force"
 fi

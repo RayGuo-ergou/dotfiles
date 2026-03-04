@@ -5,16 +5,38 @@
 
 set -euo pipefail
 
-if [[ -z "$1" ]]; then
-  echo "Usage: git-worktree-add [branch name]"
+existing_branches="$(git branch --all --format='%(refname:short)' |
+  grep -v 'HEAD' |
+  sed 's|^origin/||' |
+  grep -v '^origin$' |
+  sort -u)"
+
+if [[ -n "${1:-}" ]]; then
+  branch="$1"
+else
+  fzf_output="$(echo "$existing_branches" | fzf \
+    --print-query \
+    --prompt="Branch: " \
+    --preview='bash -c "git log --oneline --color=always -20 {1} 2>/dev/null || git log --oneline --color=always -20 origin/{1} 2>/dev/null || echo New branch"' ||
+    true)"
+  query="$(echo "$fzf_output" | sed -n '1p')"
+  selected="$(echo "$fzf_output" | sed -n '2p')"
+  branch="${selected:-$query}"
+fi
+
+if [[ -z "$branch" ]]; then
+  echo "No branch selected"
   exit 1
 fi
 
-branch="$1"
 base="$(basename "$PWD")"
 path="$(dirname "$PWD")/${base}--${branch}"
 
-git worktree add -b "$branch" "$path"
+if echo "$existing_branches" | grep -qx "$branch"; then
+  git worktree add "$path" "$branch"
+else
+  git worktree add -b "$branch" "$path"
+fi
 
 for env_file in "$PWD"/.env*; do
   [[ -f "$env_file" ]] && cp "$env_file" "$path/"
