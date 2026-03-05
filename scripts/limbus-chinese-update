@@ -79,6 +79,7 @@ find_steam_libraries() {
         "$HOME/.steam/steam/steamapps/libraryfolders.vdf"
         "$HOME/.local/share/Steam/steamapps/libraryfolders.vdf"
         "$HOME/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/libraryfolders.vdf" # Flatpak
+        "/mnt/steamgames/SteamLibrary/libraryfolder.vdf"
     )
 
     local libraries=()
