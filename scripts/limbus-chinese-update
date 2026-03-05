@@ -1,0 +1,198 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+info() {
+    printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+}
+
+user() {
+    printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+}
+
+success() {
+    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+die() {
+    printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+    echo ''
+    exit 1
+}
+
+command_exists() {
+    if command -v "$1" >/dev/null 2>&1; then
+        info "$1 command exists"
+    else
+        die "$1 command does not exist"
+    fi
+}
+
+command_exists jq
+command_exists curl
+command_exists 7z
+
+WORK_DIR="$(mktemp -d /tmp/llc_install_XXXXXX)"
+trap 'rm -rf "$WORK_DIR"' EXIT
+info "Working directory: $WORK_DIR"
+
+# ── 1. Fetch latest release asset URL from GitHub API ────────────────────────
+REPO="LocalizeLimbusCompany/LocalizeLimbusCompany"
+API_URL="https://api.github.com/repos/${REPO}/releases/latest"
+
+info "Fetching latest release info from GitHub..."
+RELEASE_JSON="$(curl -fsSL "$API_URL")"
+
+# Target the LimbusLocalize_*.7z release asset specifically
+MOD_URL="$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | test("^LimbusLocalize_.*\\.7z$")) | .browser_download_url')"
+MOD_NAME="$(echo "$RELEASE_JSON" | jq -r '.assets[] | select(.name | test("^LimbusLocalize_.*\\.7z$")) | .name')"
+RELEASE_TAG="$(echo "$RELEASE_JSON" | jq -r '.tag_name')"
+
+if [[ -z "$MOD_URL" ]]; then
+    die "Could not find a zip/7z asset in the latest release ($RELEASE_TAG)"
+fi
+info "Latest release: $RELEASE_TAG"
+info "Mod asset:      $MOD_NAME"
+
+FONT_URL="https://raw.githubusercontent.com/${REPO}/refs/heads/main/Fonts/LLCCN-Font.7z"
+FONT_NAME="LLCCN-Font.7z"
+
+# ── 2. Download files ─────────────────────────────────────────────────────────
+MOD_FILE="$WORK_DIR/$MOD_NAME"
+FONT_FILE="$WORK_DIR/$FONT_NAME"
+
+info "Downloading mod package..."
+curl -fL --progress-bar -o "$MOD_FILE" "$MOD_URL"
+success "Downloaded $MOD_NAME"
+
+info "Downloading font package..."
+curl -fL --progress-bar -o "$FONT_FILE" "$FONT_URL"
+success "Downloaded $FONT_NAME"
+
+# ── 3. Find Steam library paths ───────────────────────────────────────────────
+#
+# Steam stores additional library paths in libraryfolders.vdf.
+# We search all known default locations for that file.
+#
+find_steam_libraries() {
+    local vdf_candidates=(
+        "$HOME/.steam/steam/steamapps/libraryfolders.vdf"
+        "$HOME/.local/share/Steam/steamapps/libraryfolders.vdf"
+        "$HOME/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/libraryfolders.vdf" # Flatpak
+    )
+
+    local libraries=()
+
+    for vdf in "${vdf_candidates[@]}"; do
+        if [[ ! -f "$vdf" ]]; then
+            continue
+        fi
+        # Extract "path" values from the VDF (both old and new format)
+        while IFS= read -r line; do
+            if [[ "$line" =~ \"path\"[[:space:]]+\"([^\"]+)\" ]]; then
+                libraries+=("${BASH_REMATCH[1]}/steamapps")
+            fi
+        done <"$vdf"
+        # Also add the directory containing the VDF itself
+        libraries+=("$(dirname "$vdf")")
+    done
+
+    # Deduplicate and print existing paths
+    local seen=()
+    for lib in "${libraries[@]}"; do
+        if [[ ! -d "$lib" ]]; then
+            continue
+        fi
+        local already=0
+        for s in "${seen[@]:-}"; do
+            if [[ "$s" == "$lib" ]]; then
+                already=1
+                break
+            fi
+        done
+        if ((already)); then
+            continue
+        fi
+        seen+=("$lib")
+        echo "$lib"
+    done
+}
+
+info "Searching for Steam library paths..."
+mapfile -t STEAM_LIBS < <(find_steam_libraries)
+
+if [[ ${#STEAM_LIBS[@]} -eq 0 ]]; then
+    warn "Could not auto-detect any Steam library. Falling back to manual input."
+    read -rp "Enter path to your steamapps folder (e.g. /mnt/steamgames/SteamLibrary/steamapps): " MANUAL_LIB
+    STEAM_LIBS=("$MANUAL_LIB")
+fi
+
+for lib in "${STEAM_LIBS[@]}"; do
+    info "  Found library: $lib"
+done
+
+# ── 4. Find Limbus Company installation ──────────────────────────────────────
+LIMBUS_DIR=""
+
+for lib in "${STEAM_LIBS[@]}"; do
+    candidate="$lib/common/Limbus Company"
+    if [[ -d "$candidate" ]]; then
+        LIMBUS_DIR="$candidate"
+        break
+    fi
+done
+
+if [[ -z "$LIMBUS_DIR" ]]; then
+    warn "Limbus Company not found automatically in any detected library."
+    read -rp "Enter the full path to 'Limbus Company' game folder: " LIMBUS_DIR
+fi
+
+if [[ ! -d "$LIMBUS_DIR" ]]; then
+    die "Directory does not exist: $LIMBUS_DIR"
+fi
+if [[ ! -d "$LIMBUS_DIR/LimbusCompany_Data" ]]; then
+    die "LimbusCompany_Data not found inside: $LIMBUS_DIR  (is this the right folder?)"
+fi
+
+success "Limbus Company found at: $LIMBUS_DIR"
+
+GAME_DATA_DIR="$LIMBUS_DIR/LimbusCompany_Data"
+
+# ── 5. Extract and merge both archives ───────────────────────────────────────
+#
+# Both archives contain files under LimbusCompany_Data/.
+# We extract each to a staging dir then rsync/cp into the game folder.
+#
+extract_and_merge() {
+    local archive="$1"
+    local label="$2"
+    local staging="$WORK_DIR/staging_${label}"
+    mkdir -p "$staging"
+
+    info "Extracting $label..."
+    7z x -y -o"$staging" "$archive" >/dev/null
+
+    # Locate LimbusCompany_Data inside the extracted tree (may be at root or nested)
+    local data_src
+    data_src="$(find "$staging" -maxdepth 3 -type d -name "LimbusCompany_Data" | head -1)"
+
+    if [[ -z "$data_src" ]]; then
+        warn "$label: LimbusCompany_Data not found inside archive — skipping merge for this package."
+        warn "Extracted contents:"
+        find "$staging" -maxdepth 3 | sed 's|'"$staging"'||'
+        return
+    fi
+
+    info "Merging $label -> $GAME_DATA_DIR ..."
+    # cp -r merges directories and overwrites individual files without deleting extras
+    cp -rf "$data_src/." "$GAME_DATA_DIR/"
+    success "$label merged successfully."
+}
+
+extract_and_merge "$MOD_FILE" "mod"
+extract_and_merge "$FONT_FILE" "font"
+
+# ── Done ──────────────────────────────────────────────────────────────────────
+echo ""
+success "Installation complete! (release $RELEASE_TAG)"
+info "Game data directory: $GAME_DATA_DIR"
