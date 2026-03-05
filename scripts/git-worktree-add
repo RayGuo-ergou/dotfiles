@@ -30,7 +30,7 @@ if [[ -z "$branch" ]]; then
 fi
 
 base="$(basename "$PWD")"
-branch_path="${branch//\//%2F}"
+branch_path="${branch//\//@}"
 path="$(dirname "$PWD")/${base}--${branch_path}"
 
 if echo "$existing_branches" | grep -qx "$branch"; then
@@ -44,7 +44,7 @@ for env_file in "$PWD"/.env*; do
 done
 
 if [[ -n $TMUX ]]; then
-  $(dirname "$0")/sessionizer "$path"
+  "$(dirname "$0")"/sessionizer "$path"
 else
   cd "$path"
 fi

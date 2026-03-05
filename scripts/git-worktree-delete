@@ -9,7 +9,7 @@ cwd="$(pwd)"
 worktree="$(basename "$cwd")"
 root="${worktree%%--*}"
 branch="${worktree#*--}"
-branch="${branch//%2F/\/}"
+branch="${branch//@/\/}"
 force_flag=""
 
 if [[ "$root" == "$worktree" ]]; then
@@ -42,7 +42,7 @@ if [[ "$branch" != "$default_branch" ]]; then
 fi
 
 if [[ -n $TMUX ]]; then
-  $(dirname "$0")/sessionizer "$root_path"
+  "$(dirname "$0")"/sessionizer "$root_path"
   if tmux list-sessions 2>/dev/null | grep -q "^${worktree}:"; then
     tmux kill-session -t "$worktree"
   fi
