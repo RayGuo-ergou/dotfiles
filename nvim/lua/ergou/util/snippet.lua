@@ -206,6 +206,15 @@ class {}
   })
 end
 
+local function gitcommit()
+  ls.add_snippets('gitcommit', {
+    s('skip-ci', {
+      t('[skip ci]'),
+      i(0),
+    }),
+  })
+end
+
 function M.setup_snipes()
   ls.filetype_extend('javascript', { 'jsdoc' })
   ls.filetype_extend('typescript', { 'javascript', 'tsdoc' })
@@ -216,6 +225,7 @@ function M.setup_snipes()
   vue()
   typescript()
   php()
+  gitcommit()
 end
 
 return M

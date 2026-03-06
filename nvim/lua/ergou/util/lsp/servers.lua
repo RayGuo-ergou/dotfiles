@@ -209,6 +209,10 @@ M.get = function()
           },
         },
       },
+      on_attach = function(client, _)
+        -- FIXME: only disable if eslint attached
+        client.server_capabilities.documentFormattingProvider = nil
+      end,
     },
     taplo = {},
     nil_ls = {},
