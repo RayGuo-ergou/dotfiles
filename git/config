@@ -28,3 +28,5 @@
     path = ~/.gitconfig.personal
 [rerere]
 	enabled = true
+[alias]
+	fix-commit = commit --edit --file=.git/COMMIT_EDITMSG
