@@ -200,6 +200,10 @@ M.get = function()
           schemas = require('schemastore').yaml.schemas(),
         },
       },
+      on_attach = function(client, _)
+        -- FIXME: only disable if eslint attached
+        client.server_capabilities.documentFormattingProvider = nil
+      end,
     },
     cssls = {
       settings = {
