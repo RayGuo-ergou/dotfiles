@@ -13,7 +13,8 @@ local json_format = function(bufnr)
   local formatter_exist = require('conform').get_formatter_info('eslint_d', bufnr).available
 
   if can_run_eslint and formatter_exist then
-    return { 'eslint_d' }
+    ---@diagnostic disable-next-line: return-type-mismatch
+    return eslint_format
   else
     return { 'jq' }
   end
@@ -30,7 +31,8 @@ local yaml_format = function(bufnr)
   local formatter_exist = require('conform').get_formatter_info('eslint_d', bufnr).available
 
   if can_run_eslint and formatter_exist then
-    return { 'eslint_d' }
+    ---@diagnostic disable-next-line: return-type-mismatch
+    return eslint_format
   else
     return { 'yamlfmt' }
   end
