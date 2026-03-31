@@ -171,6 +171,12 @@ M.get = function()
       },
     },
     jsonls = {
+      capabilities = {
+        textDocument = {
+          ---@diagnostic disable-next-line: assign-type-mismatch if assign nil for some reason it does not work
+          formatting = false,
+        },
+      },
       settings = {
         json = {
           schemas = require('schemastore').json.schemas({
