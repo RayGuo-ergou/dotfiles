@@ -28,7 +28,9 @@
       "php artisan test*": "allow",
       "rm -rf": "deny",
       "sudo": "deny",
-      "chmod*": "deny",
+      "chmod": "deny",
+      "npm": "deny",
+      "npx": "deny",
       "prientenv": "deny"
     },
     "external_directory": "ask",
