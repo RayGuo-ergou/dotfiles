@@ -26,12 +26,12 @@
       "pnpm lint:fix": "allow",
       "vendor/bin/pint*": "allow",
       "php artisan test*": "allow",
-      "rm -rf": "deny",
-      "sudo": "deny",
-      "chmod": "deny",
-      "npm": "deny",
-      "npx": "deny",
-      "prientenv": "deny"
+      "rm -rf*": "deny",
+      "sudo*": "deny",
+      "chmod*": "deny",
+      "npm*": "deny",
+      "npx*": "deny",
+      "prientenv*": "deny"
     },
     "external_directory": "ask",
     "skill": {
