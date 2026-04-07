@@ -5,6 +5,7 @@
     "grep": "allow",
     "glob": "allow",
     "edit": "allow",
+    "todowrite": "allow",
     "read": {
       "*": "allow",
       "*.env": "deny",
