@@ -26,6 +26,7 @@
       "pnpm lint": "allow",
       "pnpm lint:fix": "allow",
       "vendor/bin/pint*": "allow",
+      "./vendor/bin/pint*": "allow",
       "php artisan test*": "allow",
       "rm -rf*": "deny",
       "sudo*": "deny",
