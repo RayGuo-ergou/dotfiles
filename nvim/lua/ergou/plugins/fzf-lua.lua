@@ -70,9 +70,6 @@ return {
               ['svg'] = { 'imgcat' },
             },
             ueberzug_scaler = 'fit_contain',
-            treesitter = {
-              context = true,
-            },
           },
         },
         -- Custom ergou option to configure vim.ui.select
