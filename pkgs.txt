@@ -118,10 +118,12 @@ tree-sitter-cli
 ttf-firacode-nerd
 tumbler
 unzip
+usb_modeswitch
 uwsm
 vim
 waybar
 wget
+wireguard-tools
 wl-clip-persist
 xcur2png
 xdg-desktop-portal-hyprland
@@ -130,5 +132,6 @@ yazi
 ydotool
 zen-browser-bin
 zip
+zoom
 zoxide
 zsh

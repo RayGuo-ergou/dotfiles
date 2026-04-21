@@ -25,6 +25,8 @@ EXCLUDE_PATTERNS=(
     "chrome"
     # Manual install
     "yay*"
+    # For wheel simulator
+    "oversteer"
 )
 
 # Ensure paru is installed
