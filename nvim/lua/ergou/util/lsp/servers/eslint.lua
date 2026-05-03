@@ -1,7 +1,4 @@
----@class ergou.util.lsp.eslint
-local M = {}
-
-M.customizations = {
+local customizations = {
   { rule = 'style/*', severity = 'off', fixable = true },
   { rule = 'format/*', severity = 'off', fixable = true },
   { rule = '*-indent', severity = 'off', fixable = true },
@@ -13,7 +10,8 @@ M.customizations = {
   { rule = '*quotes', severity = 'off', fixable = true },
   { rule = '*semi', severity = 'off', fixable = true },
 }
-M.filetypes = {
+
+local filetypes = {
   'javascript',
   'javascriptreact',
   'typescript',
@@ -36,4 +34,10 @@ M.filetypes = {
   'postcss',
 }
 
-return M
+---@type lspconfig.Config
+return {
+  filetypes = filetypes,
+  settings = {
+    rulesCustomizations = customizations,
+  },
+}

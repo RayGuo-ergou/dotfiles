@@ -1,7 +1,6 @@
 ---@class ergou.util.lsp
 ---@field public typescript ergou.util.lsp.typescript
 ---@field public php ergou.util.lsp.php
----@field public eslint ergou.util.lsp.eslint
 ---@field public cspell ergou.util.lsp.cspell
 ---@field public tsformat ergou.util.lsp.tsformat
 ---@field public keymap ergou.util.lsp.keymap
