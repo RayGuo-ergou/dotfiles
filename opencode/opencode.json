@@ -6,6 +6,7 @@
     "glob": "allow",
     "edit": "allow",
     "todowrite": "allow",
+    "task": "allow",
     "read": {
       "*": "allow",
       "*.env": "deny",
