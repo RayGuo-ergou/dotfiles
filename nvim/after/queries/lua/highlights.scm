@@ -8,3 +8,6 @@
 
 ((identifier) @variable.builtin
   (#eq? @variable.builtin "Snacks"))
+
+((identifier) @variable.builtin
+  (#eq? @variable.builtin "hl"))

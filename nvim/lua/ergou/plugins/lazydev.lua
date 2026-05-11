@@ -4,6 +4,7 @@ return {
     ft = 'lua', -- only load on lua files
     opts = {
       library = {
+        '/usr/share/hypr/stubs',
         { path = 'nvim-lspconfig/lua', words = { 'lsp' } },
         { path = 'markdown.nvim/lua/render-markdown', words = { 'render%.md' } },
         { path = 'snacks.nvim', words = { 'Snacks' } },
