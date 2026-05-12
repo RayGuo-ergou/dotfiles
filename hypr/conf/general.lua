@@ -1,3 +1,5 @@
+local macchiato = require("themes.macchiato")
+
 hl.config({
 	general = {
 		gaps_in = 5,
@@ -5,10 +7,9 @@ hl.config({
 
 		border_size = 4,
 
-		-- For now use plain text not variable can change later
 		col = {
-			active_border = { colors = { "rgb(8aadf4)", "rgb(f5bde6)" }, angle = 45 },
-			inactive_border = "rgb(494d64)",
+			active_border = { colors = { macchiato.blue, macchiato.pink }, angle = 45 },
+			inactive_border = macchiato.surface1,
 		},
 
 		resize_on_border = false,
@@ -27,7 +28,7 @@ hl.config({
 			enabled = true,
 			range = 4,
 			render_power = 3,
-			color = "rgb(24273a)",
+			color = macchiato.base,
 		},
 
 		blur = {
