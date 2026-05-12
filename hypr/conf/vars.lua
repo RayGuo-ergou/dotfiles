@@ -7,7 +7,7 @@
 ---@field cursorTheme string
 ---@field mainMod string
 return {
-	terminal = "kitty",
+	terminal = "ghostty",
 	fileManager = "thunar",
 	menu = "rofi -show drun -show-icons",
 	browser = "zen-browser",
