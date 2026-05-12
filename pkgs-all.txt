@@ -168,6 +168,7 @@ pipewire-audio
 pipewire-jack
 pipewire-pulse
 protonplus
+quickshell
 reflector
 rime-ice-pinyin-git
 rime-japanese

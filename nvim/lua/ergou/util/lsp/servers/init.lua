@@ -38,6 +38,7 @@ M.get = function()
     'ts_query_ls',
     'hyprls',
     'laravel_ls',
+    'qmlls',
   })
 end
 

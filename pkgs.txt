@@ -94,6 +94,7 @@ pipewire-alsa
 pipewire-audio
 pipewire-jack
 pipewire-pulse
+quickshell
 reflector
 ripgrep
 rofi
