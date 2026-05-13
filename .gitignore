@@ -1,3 +1,5 @@
 secret.zsh
 *.log
 
+quickshell/.qmlls.ini
+
