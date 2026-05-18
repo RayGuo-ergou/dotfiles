@@ -29,11 +29,7 @@ Rectangle {
 
   Process {
     id: titleProc
-    command: [
-      "sh",
-      "-c",
-      "hyprctl activewindow 2>/dev/null | sed -n 's/^\\s*title: //p' | head -n 1"
-    ]
+    command: ["sh", AppStyle.scriptsDir + "active-window-title.sh"]
     running: true
 
     stdout: StdioCollector {

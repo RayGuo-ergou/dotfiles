@@ -2,6 +2,9 @@ pragma Singleton
 import QtQuick
 
 QtObject {
+    // Scripts directory
+    readonly property string scriptsDir: String(Qt.resolvedUrl("../scripts/")).replace("file://", "")
+
     // Base tokens
     readonly property int spacingXs: 4
     readonly property int spacingSm: 6

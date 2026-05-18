@@ -178,16 +178,13 @@ Rectangle {
   }
 
   function switchToWorkspace(localTarget, workspaceId) {
-    const localTargetIsNumeric = /^[1-9]\d*$/.test(localTarget)
-    if (localTargetIsNumeric) {
-      switchProc.command = [
-        "sh",
-        "-c",
-        `hyprctl dispatch focusmonitor '${root.monitorName}'; hypr-local-workspaces goto ${localTarget} --no-compact`
-      ]
-    } else {
-      switchProc.command = ["hyprctl", "dispatch", "workspace", workspaceId.toString()]
-    }
+    switchProc.command = [
+      "sh",
+      AppStyle.scriptsDir + "workspace-switch.sh",
+      root.monitorName,
+      localTarget,
+      workspaceId.toString()
+    ]
     switchProc.running = true
     pollProc.running = true
   }
@@ -273,11 +270,7 @@ Rectangle {
 
   Process {
     id: pollProc
-    command: [
-      "sh",
-      "-c",
-      "printf '__WORKSPACES__\\n'; hyprctl workspaces -j 2>/dev/null; printf '\\n__MONITORS__\\n'; hyprctl monitors -j 2>/dev/null; printf '\\n__CLIENTS__\\n'; hyprctl clients -j 2>/dev/null"
-    ]
+    command: ["sh", AppStyle.scriptsDir + "hyprland-workspaces.sh"]
     running: true
 
     stdout: StdioCollector {

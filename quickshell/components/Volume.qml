@@ -60,21 +60,13 @@ Rectangle {
 
   function setOutputPercent(value) {
     const pct = clampPercent(value)
-    volumeCommand.command = [
-      "sh",
-      "-c",
-      "wpctl set-volume @DEFAULT_AUDIO_SINK@ " + pct + "% >/dev/null 2>&1; wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 >/dev/null 2>&1"
-    ]
+    volumeCommand.command = ["sh", AppStyle.scriptsDir + "volume-set-output.sh", pct.toString()]
     volumeCommand.running = true
   }
 
   function setInputPercent(value) {
     const pct = clampPercent(value)
-    volumeCommand.command = [
-      "sh",
-      "-c",
-      "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ " + pct + "% >/dev/null 2>&1; wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0 >/dev/null 2>&1"
-    ]
+    volumeCommand.command = ["sh", AppStyle.scriptsDir + "volume-set-input.sh", pct.toString()]
     volumeCommand.running = true
   }
 
@@ -292,11 +284,7 @@ Rectangle {
 
   Process {
     id: volumeProc
-    command: [
-      "sh",
-      "-c",
-      "out_line=\"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null)\"; in_line=\"$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ 2>/dev/null)\"; out_raw=\"$(printf '%s\\n' \"$out_line\" | awk '{print $2}')\"; in_raw=\"$(printf '%s\\n' \"$in_line\" | awk '{print $2}')\"; out_pct=$(awk -v v=\"$out_raw\" 'BEGIN { if (v==\"\" || v !~ /^[0-9.]+$/) print 0; else printf \"%d\", (v*100)+0.5 }'); in_pct=$(awk -v v=\"$in_raw\" 'BEGIN { if (v==\"\" || v !~ /^[0-9.]+$/) print 0; else printf \"%d\", (v*100)+0.5 }'); out_muted=0; in_muted=0; printf '%s' \"$out_line\" | grep -q '\\[MUTED\\]' && out_muted=1; printf '%s' \"$in_line\" | grep -q '\\[MUTED\\]' && in_muted=1; printf 'OUT %s %s\\nIN %s %s\\n' \"$out_pct\" \"$out_muted\" \"$in_pct\" \"$in_muted\""
-    ]
+    command: ["sh", AppStyle.scriptsDir + "volume-status.sh"]
     running: true
 
     stdout: StdioCollector {
