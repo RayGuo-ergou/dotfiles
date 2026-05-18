@@ -154,11 +154,11 @@ Rectangle {
 
   PopupWindow {
     id: clickOutsideCatcher
-    parentWindow: QsWindow.window
-    relativeX: 0
-    relativeY: 0
-    width: QsWindow.window ? QsWindow.window.width : 0
-    height: QsWindow.window ? QsWindow.window.height : 0
+    anchor.window: QsWindow.window
+    anchor.rect.x: 0
+    anchor.rect.y: 0
+    implicitWidth: QsWindow.window ? QsWindow.window.width : 0
+    implicitHeight: QsWindow.window ? QsWindow.window.height : 0
     color: "transparent"
     visible: root.menuVisible
 
@@ -170,10 +170,10 @@ Rectangle {
 
   PopupWindow {
     id: volumeMenu
-    parentWindow: QsWindow.window
-    relativeX: Math.round(root.mapToItem(null, 0, 0).x + ((root.width - width) / 2))
-    relativeY: Math.round(root.mapToItem(null, 0, root.height).y + AppStyle.volumeMenuOffsetY)
-    width: AppStyle.volumeMenuWidth
+    anchor.window: QsWindow.window
+    anchor.rect.x: Math.round(root.mapToItem(null, 0, 0).x + ((root.width - width) / 2))
+    anchor.rect.y: Math.round(root.mapToItem(null, 0, root.height).y + AppStyle.volumeMenuOffsetY)
+    implicitWidth: AppStyle.volumeMenuWidth
     visible: root.menuVisible
     color: "transparent"
 
@@ -222,8 +222,8 @@ Rectangle {
           MouseArea {
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
-            onPressed: root.setOutputPercent(root.percentFromY(mouse.y, parent.height))
-            onPositionChanged: {
+            onPressed: function(mouse) { root.setOutputPercent(root.percentFromY(mouse.y, parent.height)) }
+            onPositionChanged: function(mouse) {
               if (pressed) {
                 root.setOutputPercent(root.percentFromY(mouse.y, parent.height))
               }
@@ -271,8 +271,8 @@ Rectangle {
           MouseArea {
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
-            onPressed: root.setInputPercent(root.percentFromY(mouse.y, parent.height))
-            onPositionChanged: {
+            onPressed: function(mouse) { root.setInputPercent(root.percentFromY(mouse.y, parent.height)) }
+            onPositionChanged: function(mouse) {
               if (pressed) {
                 root.setInputPercent(root.percentFromY(mouse.y, parent.height))
               }

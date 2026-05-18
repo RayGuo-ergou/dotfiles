@@ -138,11 +138,11 @@ Rectangle {
 
   PopupWindow {
     id: clickOutsideCatcher
-    parentWindow: QsWindow.window
-    relativeX: 0
-    relativeY: 0
-    width: QsWindow.window ? QsWindow.window.width : 0
-    height: QsWindow.window ? QsWindow.window.height : 0
+    anchor.window: QsWindow.window
+    anchor.rect.x: 0
+    anchor.rect.y: 0
+    implicitWidth: QsWindow.window ? QsWindow.window.width : 0
+    implicitHeight: QsWindow.window ? QsWindow.window.height : 0
     color: "transparent"
     visible: root.menuVisible
 
@@ -154,10 +154,10 @@ Rectangle {
 
   PopupWindow {
     id: mediaMenu
-    parentWindow: QsWindow.window
-    relativeX: Math.round(root.x + root.width - width)
-    relativeY: Math.round(root.y + root.height + AppStyle.mediaMenuOffsetY)
-    width: AppStyle.mediaMenuWidth
+    anchor.window: QsWindow.window
+    anchor.rect.x: Math.round(root.x + root.width - width)
+    anchor.rect.y: Math.round(root.y + root.height + AppStyle.mediaMenuOffsetY)
+    implicitWidth: AppStyle.mediaMenuWidth
     visible: root.menuVisible
     color: "transparent"
 

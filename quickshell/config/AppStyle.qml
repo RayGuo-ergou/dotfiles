@@ -9,8 +9,9 @@ QtObject {
     readonly property int radiusSm: 6
     readonly property int radiusMd: 8
     readonly property int radiusPill: 16
-    readonly property int fontSizeSm: 13
-    readonly property int fontSizeMd: 16
+    readonly property int fontSizeSm: 16
+    readonly property int fontSizeMd: 18
+    readonly property string fontFamily: "FiraCode Nerd Font"
 
     // Bar
     readonly property int barHeight: 42

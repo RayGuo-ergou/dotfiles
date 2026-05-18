@@ -62,15 +62,7 @@ Scope {
                         height: parent.height
                     }
 
-                    KeyboardState {
-                        height: parent.height
-                    }
-
                     Clock {
-                        height: parent.height
-                    }
-
-                    SystemPower {
                         height: parent.height
                     }
                 }
