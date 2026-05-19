@@ -14,7 +14,6 @@ bluez
 bluez-utils
 btop
 btrfs-progs
-bun
 calibre
 carapace-bin
 clamav
