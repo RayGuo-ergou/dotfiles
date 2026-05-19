@@ -30,6 +30,8 @@
       "./vendor/bin/pint*": "allow",
       "php artisan test*": "allow",
       "rm -rf*": "deny",
+      "rm -f*": "deny",
+      "rm -r*": "deny",
       "sudo*": "deny",
       "chmod*": "deny",
       "npm*": "deny",
