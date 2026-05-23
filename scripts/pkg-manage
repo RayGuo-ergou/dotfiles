@@ -29,6 +29,12 @@ EXCLUDE_PATTERNS=(
     "oversteer"
 )
 
+# Packages that are built locally and not available in Arch/AUR
+# These are excluded from both save and install operations globally
+GLOBAL_EXCLUDE=(
+    "sfw-free"
+)
+
 # Ensure paru is installed
 function ensure_paru() {
     if ! command -v paru &>/dev/null; then
@@ -160,12 +166,28 @@ function save_packages() {
     local tmp_filtered
     tmp_filtered=$(mktemp)
 
-    # Save complete package list to temp
-    printf "%s\n" "${all_pkgs[@]}" >"$tmp_all"
+    # Exclude globally excluded packages from the complete list too
+    local all_filtered_pkgs=()
+    for pkg in "${all_pkgs[@]}"; do
+        local skip=false
+        for excluded in "${GLOBAL_EXCLUDE[@]}"; do
+            if [[ "$pkg" == "$excluded" ]]; then
+                echo "Globally excluding package: $pkg"
+                skip=true
+                break
+            fi
+        done
+        if ! $skip; then
+            all_filtered_pkgs+=("$pkg")
+        fi
+    done
+
+    # Save complete package list to temp (minus global excludes)
+    printf "%s\n" "${all_filtered_pkgs[@]}" >"$tmp_all"
 
     # Save filtered package list to temp
     local filtered_pkgs=()
-    for pkg in "${all_pkgs[@]}"; do
+    for pkg in "${all_filtered_pkgs[@]}"; do
         local skip=false
         for pattern in "${EXCLUDE_PATTERNS[@]}"; do
             # Intentional glob pattern matching - do not quote
@@ -219,7 +241,29 @@ function install_packages() {
         echo "Installing filtered packages from $target_file using paru..."
     fi
 
-    paru -S --needed --noconfirm - <"$target_file"
+    # Filter out globally excluded packages before installing
+    local -a pkgs_to_install=()
+    while IFS= read -r pkg; do
+        [[ -z "$pkg" ]] && continue
+        local skip=false
+        for excluded in "${GLOBAL_EXCLUDE[@]}"; do
+            if [[ "$pkg" == "$excluded" ]]; then
+                echo "Skipping globally excluded package: $pkg"
+                skip=true
+                break
+            fi
+        done
+        if ! $skip; then
+            pkgs_to_install+=("$pkg")
+        fi
+    done <"$target_file"
+
+    if [[ ${#pkgs_to_install[@]} -eq 0 ]]; then
+        echo "No packages to install."
+        return
+    fi
+
+    printf "%s\n" "${pkgs_to_install[@]}" | paru -S --needed --noconfirm -
     echo "Packages installed successfully."
 }
 
