@@ -1,5 +1,6 @@
 return {
   'rmagatti/goto-preview',
+  enabled = false,
   config = true,
   keys = {
     {

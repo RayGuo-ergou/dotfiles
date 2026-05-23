@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   'stevearc/overseer.nvim',
   lazy = false, -- plugin is self-lazy-loading
   opts = {},

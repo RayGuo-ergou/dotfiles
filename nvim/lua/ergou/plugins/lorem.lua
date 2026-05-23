@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   'derektata/lorem.nvim',
   cmd = { 'LoremIpsum' },
   config = function()
