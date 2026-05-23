@@ -23,6 +23,10 @@ return {
       border = 'rounded',
       height = 0.8,
     },
+    firewall = {
+      enabled = true,
+      auto_managed = false,
+    },
   },
   ---@param opts MasonSettings | {ensure_installed: string[]}
   config = function(_, opts)
