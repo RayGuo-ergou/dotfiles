@@ -92,7 +92,7 @@ noto-fonts-emoji
 nvidia-open
 nvidia-settings
 nvtop
-opencode-bin
+opencode
 openssh
 os-prober
 oversteer
