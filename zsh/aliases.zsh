@@ -2,6 +2,8 @@
 alias ls='eza -l --icons -h'
 alias cat='bat'
 alias nd='nr dev'
+alias ni='sfw ni'
+alias composer="sfw composer"
 alias vim='nvim'
 alias configzsh='nvim ~/.zshrc'
 alias reload='source ~/.zshrc'
