@@ -2,7 +2,6 @@ return {
   {
     'ibhagwan/fzf-lua',
     dependencies = {
-      'MeanderingProgrammer/render-markdown.nvim',
       'nvim-treesitter/nvim-treesitter-context',
     },
     opts = function()
