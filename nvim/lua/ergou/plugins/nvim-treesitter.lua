@@ -264,11 +264,4 @@ return {
     event = 'LazyFile',
     opts = {},
   },
-  -- { 'gbprod/php-enhanced-treesitter.nvim', ft = 'php' },
-  {
-    'ckolkey/ts-node-action',
-    dependencies = { 'nvim-treesitter' },
-    opts = {},
-    event = 'LazyFile',
-  },
 }
