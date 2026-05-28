@@ -77,14 +77,4 @@ return {
       vim.cmd.colorscheme('catppuccin-macchiato')
     end,
   },
-  {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    enabled = false,
-    name = 'tokyonight',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme('tokyonight')
-    end,
-  },
 }
