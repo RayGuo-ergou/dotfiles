@@ -139,3 +139,19 @@ fpath=($HOME/.zsh-complete $fpath)
 
 # gpg see https://stackoverflow.com/a/42265848
 export GPG_TTY=$(tty)
+
+# *** start docker rootless ***
+# paru -S docker-rootless-extras
+# systemctl --user enable --now docker.socket
+#
+# docker run --detach --name hq-test -p 3306:3306 --env MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=1 mariadb:latest
+# Then clean up volumns, containers, images if want to free up the space
+#
+# should be disabled via PKGBUILD file but keep as note here
+# systemctl disable docker.socket
+# systemctl disable docker.socket
+#
+# If want to delete user from docker group
+# sudo gpasswd -d $USER docker
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+# *** end docker rootless ***
