@@ -36,7 +36,8 @@
       "chmod*": "deny",
       "npm*": "deny",
       "npx*": "deny",
-      "prientenv*": "deny"
+      "prientenv*": "deny",
+      "docker*": "deny"
     },
     "external_directory": "ask",
     "skill": {
