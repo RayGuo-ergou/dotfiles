@@ -38,7 +38,6 @@ return {
             extra_args = { '--standard=vendor/php-cs/ruleset.xml' },
           }),
           null_ls.builtins.diagnostics.zsh,
-          null_ls.builtins.code_actions.ts_node_action,
         },
       })
     end,
