@@ -24,6 +24,7 @@ datagrip
 datagrip-jre
 discord
 docker
+docker-rootless-extras
 dosfstools
 doxx
 efibootmgr

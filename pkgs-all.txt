@@ -26,6 +26,7 @@ datagrip
 datagrip-jre
 discord
 docker
+docker-rootless-extras
 dosfstools
 doxx
 efibootmgr
@@ -205,8 +206,6 @@ wl-clip-persist
 xcur2png
 xdg-desktop-portal-hyprland
 xdg-user-dirs
-yay
-yay-debug
 yazi
 ydotool
 zen-browser-bin
