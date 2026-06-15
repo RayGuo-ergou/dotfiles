@@ -6,7 +6,7 @@ echo "========================================"
 
 
 echo "Installing 1 package(s)..."
-paru -S --needed --noconfirm 'enca'
+sudo pacman -S --needed --noconfirm 'enca'
 
 echo "========================================"
 echo "Migration completed successfully!"

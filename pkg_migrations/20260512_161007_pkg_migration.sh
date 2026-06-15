@@ -6,7 +6,7 @@ echo "========================================"
 
 
 echo "Installing 1 package(s)..."
-paru -S --needed --noconfirm 'quickshell'
+sudo pacman -S --needed --noconfirm 'quickshell'
 
 echo "========================================"
 echo "Migration completed successfully!"

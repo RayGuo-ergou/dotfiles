@@ -6,7 +6,7 @@ echo "========================================"
 
 
 echo "Removing 1 package(s)..."
-err=$(paru -Rns --noconfirm 'protonplus' 2>&1) || echo "$err"
+err=$(sudo pacman -Rns --noconfirm 'protonplus' 2>&1) || echo "$err"
 
 echo "========================================"
 echo "Migration completed successfully!"

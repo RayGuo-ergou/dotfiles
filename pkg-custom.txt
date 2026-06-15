@@ -9,7 +9,6 @@ git-extras
 mkinitcpio-numlock
 nordvpn-bin
 oversteer
-paru
 php74
 protonplus
 rime-ice-pinyin-git

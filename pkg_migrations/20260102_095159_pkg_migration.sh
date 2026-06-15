@@ -6,7 +6,7 @@ echo "========================================"
 
 
 echo "Removing 1 package(s)..."
-err=$(paru -Rns --noconfirm 'hyprsysteminfo' 2>&1) || echo "$err"
+err=$(sudo pacman -Rns --noconfirm 'hyprsysteminfo' 2>&1) || echo "$err"
 
 echo "========================================"
 echo "Migration completed successfully!"

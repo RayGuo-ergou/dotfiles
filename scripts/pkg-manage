@@ -11,13 +11,11 @@ PKG_ALL_FILE="$DOTFILES/pkgs-all.txt"
 PKG_CUSTOM_FILE="$DOTFILES/pkg-custom.txt"
 MIGRATION_DIR="$DOTFILES/pkg_migrations"
 
-EXCLUDE_PATTERNS=(
+SHARE_EXCLUDE_PATTERNS=(
     # PHP7 has to manually installed
     "php74*"
     # Not always a amd machine
     "amd-ucode"
-    # Will need paru to install, so no need to reinstall it self
-    "paru*"
     # Well, my working machine should not have steam
     "steam"
     "*proton*"
@@ -176,7 +174,7 @@ function save_packages() {
     local filtered_pkgs=()
     for pkg in "${all_filtered_pkgs[@]}"; do
         local skip=false
-        for pattern in "${EXCLUDE_PATTERNS[@]}"; do
+        for pattern in "${SHARE_EXCLUDE_PATTERNS[@]}"; do
             # Intentional glob pattern matching - do not quote
             # shellcheck disable=SC2053
             if [[ $pkg == $pattern ]]; then
@@ -202,7 +200,7 @@ function save_packages() {
 
     echo ""
     echo "Saved $(wc -l <"$PKG_ALL_FILE") packages to $PKG_ALL_FILE (complete list)."
-    echo "Saved $(wc -l <"$PKG_FILE") packages to $PKG_FILE (filtered list, excludes: ${EXCLUDE_PATTERNS[*]})."
+    echo "Saved $(wc -l <"$PKG_FILE") packages to $PKG_FILE (filtered list, excludes: ${SHARE_EXCLUDE_PATTERNS[*]})."
 }
 
 function save_custom() {

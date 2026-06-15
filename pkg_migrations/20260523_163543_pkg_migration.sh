@@ -6,10 +6,10 @@ echo "========================================"
 
 
 echo "Removing 1 package(s)..."
-err=$(paru -Rns --noconfirm 'opencode-bin' 2>&1) || echo "$err"
+err=$(sudo pacman -Rns --noconfirm 'opencode-bin' 2>&1) || echo "$err"
 
 echo "Installing 1 package(s)..."
-paru -S --needed --noconfirm 'opencode'
+sudo pacman -S --needed --noconfirm 'opencode'
 
 echo "========================================"
 echo "Migration completed successfully!"

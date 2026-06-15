@@ -141,7 +141,7 @@ fpath=($HOME/.zsh-complete $fpath)
 export GPG_TTY=$(tty)
 
 # *** start docker rootless ***
-# paru -S docker-rootless-extras
+# sudo pacman -S docker-rootless-extras
 # systemctl --user enable --now docker.socket
 #
 # docker run --detach --name hq-test -p 3306:3306 --env MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=1 mariadb:latest

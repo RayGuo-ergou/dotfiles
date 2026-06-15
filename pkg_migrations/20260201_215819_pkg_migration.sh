@@ -6,10 +6,10 @@ echo "========================================"
 
 
 echo "Removing 1 package(s)..."
-err=$(paru -Rns --noconfirm 'swaync-git' 2>&1) || echo "$err"
+err=$(sudo pacman -Rns --noconfirm 'swaync-git' 2>&1) || echo "$err"
 
 echo "Installing 1 package(s)..."
-paru -S --needed --noconfirm 'swaync'
+sudo pacman -S --needed --noconfirm 'swaync'
 
 echo "========================================"
 echo "Migration completed successfully!"

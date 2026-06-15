@@ -6,8 +6,8 @@ echo "========================================"
 
 
 echo "Installing 2 package(s)..."
-paru -S --needed --noconfirm 'gum'
-paru -S --needed --noconfirm 'just'
+sudo pacman -S --needed --noconfirm 'gum'
+sudo pacman -S --needed --noconfirm 'just'
 
 echo "========================================"
 echo "Migration completed successfully!"

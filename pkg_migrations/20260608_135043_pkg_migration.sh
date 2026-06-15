@@ -6,7 +6,7 @@ echo "========================================"
 
 
 echo "Installing 1 package(s)..."
-paru -S --needed --noconfirm 'docker-rootless-extras'
+sudo pacman -S --needed --noconfirm 'docker-rootless-extras'
 
 echo "========================================"
 echo "Migration completed successfully!"

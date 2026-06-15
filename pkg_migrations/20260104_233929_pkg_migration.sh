@@ -6,7 +6,7 @@ echo "========================================"
 
 
 echo "Installing 1 package(s)..."
-paru -S --needed --noconfirm 'witr-bin'
+sudo pacman -S --needed --noconfirm 'witr-bin'
 
 echo "========================================"
 echo "Migration completed successfully!"

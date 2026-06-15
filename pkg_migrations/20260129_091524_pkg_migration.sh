@@ -6,16 +6,16 @@ echo "========================================"
 
 
 echo "Removing 1 package(s)..."
-err=$(paru -Rns --noconfirm 'witr-bin' 2>&1) || echo "$err"
+err=$(sudo pacman -Rns --noconfirm 'witr-bin' 2>&1) || echo "$err"
 
 echo "Installing 7 package(s)..."
-paru -S --needed --noconfirm 'aws-cli'
-paru -S --needed --noconfirm 'bind'
-paru -S --needed --noconfirm 'bun'
-paru -S --needed --noconfirm 'hyprlauncher'
-paru -S --needed --noconfirm 'opencode-bin'
-paru -S --needed --noconfirm 'protonplus'
-paru -S --needed --noconfirm 'zip'
+sudo pacman -S --needed --noconfirm 'aws-cli'
+sudo pacman -S --needed --noconfirm 'bind'
+sudo pacman -S --needed --noconfirm 'bun'
+sudo pacman -S --needed --noconfirm 'hyprlauncher'
+sudo pacman -S --needed --noconfirm 'opencode-bin'
+sudo pacman -S --needed --noconfirm 'protonplus'
+sudo pacman -S --needed --noconfirm 'zip'
 
 echo "========================================"
 echo "Migration completed successfully!"

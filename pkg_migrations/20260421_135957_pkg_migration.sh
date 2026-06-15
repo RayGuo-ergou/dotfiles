@@ -6,9 +6,9 @@ echo "========================================"
 
 
 echo "Installing 3 package(s)..."
-paru -S --needed --noconfirm 'usb_modeswitch'
-paru -S --needed --noconfirm 'wireguard-tools'
-paru -S --needed --noconfirm 'zoom'
+sudo pacman -S --needed --noconfirm 'usb_modeswitch'
+sudo pacman -S --needed --noconfirm 'wireguard-tools'
+sudo pacman -S --needed --noconfirm 'zoom'
 
 echo "========================================"
 echo "Migration completed successfully!"

@@ -6,7 +6,7 @@ echo "========================================"
 
 
 echo "Installing 1 package(s)..."
-paru -S --needed --noconfirm 'tmux'
+sudo pacman -S --needed --noconfirm 'tmux'
 
 echo "========================================"
 echo "Migration completed successfully!"
