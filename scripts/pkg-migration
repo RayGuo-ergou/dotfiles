@@ -44,8 +44,8 @@ elif command -v gum &> /dev/null; then
 else
     echo "Error: Neither fzf nor gum is installed."
     echo "Install one of them:"
-    echo "  paru -S fzf"
-    echo "  paru -S gum"
+    echo "  pacman -S fzf"
+    echo "  pacman -S gum"
     exit 1
 fi
 

@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
+# Packages that are built locally and not available in Arch/AUR
+# These are excluded from both save and install operations globally
+GLOBAL_EXCLUDE=(
+    "sfw-free"
+    "php74-*" # php74 will install all php74-* pkgs
+)
+
 PKG_FILE="$DOTFILES/pkgs.txt"
 PKG_ALL_FILE="$DOTFILES/pkgs-all.txt"
+PKG_CUSTOM_FILE="$DOTFILES/pkg-custom.txt"
 MIGRATION_DIR="$DOTFILES/pkg_migrations"
 
 EXCLUDE_PATTERNS=(
@@ -28,29 +36,6 @@ EXCLUDE_PATTERNS=(
     # For wheel simulator
     "oversteer"
 )
-
-# Packages that are built locally and not available in Arch/AUR
-# These are excluded from both save and install operations globally
-GLOBAL_EXCLUDE=(
-    "sfw-free"
-)
-
-# Ensure paru is installed
-function ensure_paru() {
-    if ! command -v paru &>/dev/null; then
-        echo "Paru is not installed. Installing paru..."
-        sudo pacman -Sy --needed --noconfirm base-devel git
-        tmpdir=$(mktemp -d)
-        git clone https://aur.archlinux.org/paru.git "$tmpdir/paru"
-        pushd "$tmpdir/paru" >/dev/null || exit 1
-        makepkg -si --noconfirm
-        popd >/dev/null || exit
-        rm -rf "$tmpdir"
-        echo "Paru installed successfully."
-    else
-        echo "Paru is already installed."
-    fi
-}
 
 function create_migration() {
     local old_file="$1"
@@ -123,7 +108,7 @@ EOF
 echo "Removing ${#removed[@]} package(s)..."
 EOF
         for pkg in "${removed[@]}"; do
-            echo "err=\$(paru -Rns --noconfirm '$pkg' 2>&1) || echo \"\$err\"" >>"$migration_file"
+            echo "err=\$(sudo pacman -Rns --noconfirm '$pkg' 2>&1) || echo \"\$err\"" >>"$migration_file"
         done
     fi
 
@@ -134,7 +119,7 @@ EOF
 echo "Installing ${#added[@]} package(s)..."
 EOF
         for pkg in "${added[@]}"; do
-            echo "paru -S --needed --noconfirm '$pkg'" >>"$migration_file"
+            echo "sudo pacman -S --needed --noconfirm '$pkg'" >>"$migration_file"
         done
     fi
 
@@ -156,9 +141,10 @@ EOF
 }
 
 function save_packages() {
-    echo "Saving explicitly installed packages..."
+    echo "Saving explicitly installed packages from official repos only..."
     local all_pkgs
-    mapfile -t all_pkgs < <(pacman -Qqe)
+    # Only explicitly installed packages from official repos (excludes AUR and local PKGBUILDs)
+    mapfile -t all_pkgs < <(pacman -Qneq)
 
     # Create temporary files for new package lists
     local tmp_all
@@ -171,7 +157,9 @@ function save_packages() {
     for pkg in "${all_pkgs[@]}"; do
         local skip=false
         for excluded in "${GLOBAL_EXCLUDE[@]}"; do
-            if [[ "$pkg" == "$excluded" ]]; then
+            # Intentional glob pattern matching - do not quote
+            # shellcheck disable=SC2053
+            if [[ $pkg == $excluded ]]; then
                 echo "Globally excluding package: $pkg"
                 skip=true
                 break
@@ -218,6 +206,34 @@ function save_packages() {
     echo "Saved $(wc -l <"$PKG_FILE") packages to $PKG_FILE (filtered list, excludes: ${EXCLUDE_PATTERNS[*]})."
 }
 
+function save_custom() {
+    echo "Saving custom packages (AUR / local PKGBUILDs)..."
+    local custom_pkgs
+    # Explicitly installed packages not from official repos (AUR / local PKGBUILDs)
+    mapfile -t custom_pkgs < <(pacman -Qemq)
+
+    # Filter out globally excluded packages
+    local filtered_custom=()
+    for pkg in "${custom_pkgs[@]}"; do
+        local skip=false
+        for excluded in "${GLOBAL_EXCLUDE[@]}"; do
+            # Intentional glob pattern matching - do not quote
+            # shellcheck disable=SC2053
+            if [[ $pkg == $excluded ]]; then
+                echo "Globally excluding custom package: $pkg"
+                skip=true
+                break
+            fi
+        done
+        if ! $skip; then
+            filtered_custom+=("$pkg")
+        fi
+    done
+
+    printf "%s\n" "${filtered_custom[@]}" >"$PKG_CUSTOM_FILE"
+    echo "Saved $(wc -l <"$PKG_CUSTOM_FILE") custom packages to $PKG_CUSTOM_FILE."
+}
+
 function install_packages() {
     local use_all=false
     local target_file="$PKG_FILE"
@@ -233,12 +249,10 @@ function install_packages() {
         exit 1
     fi
 
-    ensure_paru
-
     if $use_all; then
-        echo "Installing ALL packages from $target_file using paru..."
+        echo "Installing ALL packages from $target_file using pacman..."
     else
-        echo "Installing filtered packages from $target_file using paru..."
+        echo "Installing filtered packages from $target_file using pacman..."
     fi
 
     # Filter out globally excluded packages before installing
@@ -247,7 +261,9 @@ function install_packages() {
         [[ -z "$pkg" ]] && continue
         local skip=false
         for excluded in "${GLOBAL_EXCLUDE[@]}"; do
-            if [[ "$pkg" == "$excluded" ]]; then
+            # Intentional glob pattern matching - do not quote
+            # shellcheck disable=SC2053
+            if [[ $pkg == $excluded ]]; then
                 echo "Skipping globally excluded package: $pkg"
                 skip=true
                 break
@@ -263,18 +279,20 @@ function install_packages() {
         return
     fi
 
-    printf "%s\n" "${pkgs_to_install[@]}" | paru -S --needed --noconfirm -
+    sudo pacman -S --needed --noconfirm "${pkgs_to_install[@]}"
     echo "Packages installed successfully."
 }
 
 function usage() {
-    echo "Usage: $0 {save|install [--all]}"
+    echo "Usage: $0 {save|save-custom|install [--all]}"
     echo "  save           - Save packages to both $PKG_FILE (filtered) and $PKG_ALL_FILE (complete)"
+    echo "                   Also updates $PKG_CUSTOM_FILE"
     echo "                   Creates migration file in $MIGRATION_DIR if changes detected"
-    echo "  install        - Install filtered packages from $PKG_FILE using paru"
-    echo "  install --all  - Install all packages from $PKG_ALL_FILE using paru"
+    echo "  save-custom    - Save custom packages (AUR / local PKGBUILDs) to $PKG_CUSTOM_FILE"
+    echo "  install        - Install filtered packages from $PKG_FILE using pacman"
+    echo "  install --all  - Install all packages from $PKG_ALL_FILE using pacman"
     echo ""
-    echo "The script automatically installs paru if needed during install operations."
+    echo "This script uses pacman and does not install AUR packages. Manage AUR packages manually."
     echo "Migration files are created automatically and can be run independently to apply changes."
 }
 
@@ -282,6 +300,7 @@ function usage() {
 case "$1" in
 save)
     save_packages
+    save_custom
     ;;
 install)
     install_packages "$2"

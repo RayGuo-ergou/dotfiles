@@ -1,5 +1,3 @@
-1password
-1password-cli
 7zip
 acpid
 alsa-utils
@@ -8,23 +6,18 @@ aws-cli
 base
 base-devel
 bat
-bazecor
 bind
 bluez
 bluez-utils
 btop
 btrfs-progs
 calibre
-carapace-bin
 clamav
 cliphist
 composer
 cpio
-datagrip
-datagrip-jre
 discord
 docker
-docker-rootless-extras
 dosfstools
 doxx
 efibootmgr
@@ -38,7 +31,6 @@ fzf
 ghostty
 git
 git-delta
-git-extras
 github-cli
 gnome-themes-extra
 go
@@ -71,13 +63,11 @@ man-pages
 mariadb
 meson
 mkcert
-mkinitcpio-numlock
 mtools
 ncdu
 network-manager-applet
 networkmanager
 ninja
-nordvpn-bin
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -99,7 +89,6 @@ ripgrep
 rofi
 rofi-emoji
 rustup
-slack-desktop
 slurp
 socat
 sudo
@@ -110,7 +99,6 @@ tectonic
 texinfo
 thunar
 timeshift
-timeshift-autosnap
 tmux
 trash-cli
 tree
@@ -130,8 +118,6 @@ xdg-desktop-portal-hyprland
 xdg-user-dirs
 yazi
 ydotool
-zen-browser-bin
 zip
-zoom
 zoxide
 zsh
