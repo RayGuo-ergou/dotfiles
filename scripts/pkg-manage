@@ -3,7 +3,6 @@
 # Packages that are built locally and not available in Arch/AUR
 # These are excluded from both save and install operations globally
 GLOBAL_EXCLUDE=(
-    "sfw-free"
     "php74-*" # php74 will install all php74-* pkgs
 )
 
