@@ -32,6 +32,8 @@ hl.bind(
 )
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("rofi -show window -show-icons"))
 hl.bind("Print", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot"))
+-- Temp when i use a keybord do not have print
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot"))
 hl.bind("ALT + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind("CTRL + SHIFT + X", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle1password"))
 
