@@ -33,6 +33,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "onePassword",
 	match = { class = "^(1(P|p)assword.*)$" },
+	size = { "monitor_w*0.6", "monitor_h*0.6" },
 	float = true,
 })
 
