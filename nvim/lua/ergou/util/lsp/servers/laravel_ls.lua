@@ -1,2 +1,4 @@
 ---@type lspconfig.Config
-return {}
+return {
+  enabled = false,
+}
