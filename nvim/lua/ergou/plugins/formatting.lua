@@ -78,7 +78,7 @@ return {
         sh = { 'shfmt' },
         bash = { 'shfmt' },
         liquid = { 'prettierd' },
-        blade = { 'blade-formatter' },
+        blade = { 'blade-formatter', lsp_format = 'never' },
         sql = { 'sleek' },
       },
       format_on_save = function()
@@ -123,7 +123,7 @@ return {
         -- do not format blade file with html lsp
         if ft == 'blade' then
           -- I have no idea why `.bladeignore` file does not work, bruh
-          if string.find(file_path, 'markdown') then
+          if string.find(file_path, 'markdown') or string.find(file_path, 'resources/views/zendesk/') then
             return nil
           end
           config.lsp_format = 'never'
