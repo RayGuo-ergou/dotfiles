@@ -1,6 +1,7 @@
 return {
   {
     'folke/ts-comments.nvim',
+    url = 'https://github.com/RayGuo-ergou/ts-comments.nvim',
     opts = {
       lang = {
         blade = {
