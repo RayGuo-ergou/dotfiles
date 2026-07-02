@@ -155,3 +155,4 @@ export GPG_TTY=$(tty)
 # sudo gpasswd -d $USER docker
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 # *** end docker rootless ***
+export SFW_VERBOSE=true
