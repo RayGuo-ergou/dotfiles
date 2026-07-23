@@ -29,6 +29,7 @@
       "vendor/bin/pint*": "allow",
       "./vendor/bin/pint*": "allow",
       "php artisan test*": "allow",
+      "ast-grep*": "allow",
       "rm -rf*": "deny",
       "rm -f*": "deny",
       "rm -r*": "deny",
@@ -40,8 +41,6 @@
       "docker*": "deny"
     },
     "external_directory": "ask",
-    "skill": {
-      "*": "ask"
-    }
+    "skill": "allow"
   }
 }
