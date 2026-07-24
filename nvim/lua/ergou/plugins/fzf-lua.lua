@@ -112,6 +112,7 @@ return {
           },
         },
         files = {
+          ignore_current_file = true,
           cwd_prompt = false,
           actions = {
             ['alt-i'] = { actions.toggle_ignore },
