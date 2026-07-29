@@ -30,6 +30,8 @@ M.get = function()
     { '<leader>ff', ergou.pick('files'), desc = 'Find Files (root dir)' },
     { '<leader>fF', ergou.pick('files', { root = false }), desc = 'Find Files (cwd)' },
     { '<leader>gf', '<cmd>FzfLua git_files<cr>', desc = 'Find Files (git-files)' },
+    { '<leader>go', '<cmd>FzfLua git_commits<cr>', desc = 'List git commits' },
+    { '<leader>gO', '<cmd>FzfLua git_bcommits<cr>', desc = 'List git commits (File)' },
     { '<leader>ft', '<cmd>FzfLua treesitter<cr>', desc = 'Find Treesitter' },
     { '<leader>:', '<cmd>FzfLua command_history<cr>', desc = 'Command History' },
     {
