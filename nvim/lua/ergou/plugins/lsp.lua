@@ -17,7 +17,7 @@ return {
         },
         opts = { attach_navic = false },
       },
-      { 'b0o/schemastore.nvim' },
+      { 'b0o/schemastore.nvim', url = 'https://github.com/RayGuo-ergou/SchemaStore.nvim' },
     },
     ---@class PluginLspOpts
     opts = {
