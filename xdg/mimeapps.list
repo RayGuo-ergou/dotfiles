@@ -15,6 +15,7 @@ x-scheme-handler/jetbrains=jetbrainsd.desktop
 x-scheme-handler/slack=slack.desktop
 text/csv=nvim.desktop
 inode/directory=thunar.desktop
+image/heif=org.gnome.gThumb.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;
@@ -30,3 +31,4 @@ application/x-extension-xht=zen.desktop;
 image/png=swappy.desktop;org.gnome.gThumb.desktop;
 image/gif=org.gnome.gThumb.desktop;
 image/jpeg=org.gnome.gThumb.desktop;
+image/heif=org.gnome.gThumb.desktop;
