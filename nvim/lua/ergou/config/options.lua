@@ -17,7 +17,7 @@ g.maplocalleader = '|'
 -- * the name of a detector function like `lsp` or `cwd`
 -- * a pattern or array of patterns like `.git` or `lua`.
 -- * a function with signature `function(buf) -> string|string[]`
-g.root_spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
+g.root_spec = { { '.git', 'lua', 'package.json' }, 'lsp', 'cwd' }
 
 -- Fix markdown indentation settings
 g.markdown_recommended_style = 0
