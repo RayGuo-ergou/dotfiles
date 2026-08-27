@@ -1,0 +1,4 @@
+[user]
+    signingkey = {gpg_key_id}
+    email = foo@bar.baz
+    name = Foo Bar
