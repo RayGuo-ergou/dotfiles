@@ -16,8 +16,13 @@ map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up', silent = true }
 map('v', '<A-j>', ':m \'>+1<cr>gv=gv', { desc = 'Move Down', silent = true })
 map('v', '<A-k>', ':m \'<-2<cr>gv=gv', { desc = 'Move Up', silent = true })
 
--- Disable highlight for search
-map('n', '<C-n>', '<cmd>nohlsearch<CR>', { noremap = true, silent = true })
+-- Disable highlight for search and clear multi cursor
+map(
+  'n',
+  '<C-n>',
+  '<Cmd>nohlsearch' .. '<Bar>call nvim_buf_clear_namespace(0, nvim_create_namespace("nvim.multicursor"), 0, -1)<CR>',
+  { desc = 'Disable highlight for search and clear multicursor' }
+)
 
 -- Change without yanking
 map({ 'n', 'x' }, 'c', '"_c', { noremap = true, silent = true })
@@ -38,7 +43,9 @@ map('v', '<leader><leader>', '<esc>', { noremap = true, silent = true })
 map(
   'n',
   '<leader>ur',
-  '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>',
+  '<Cmd>nohlsearch<Bar>diffupdate'
+    .. '<Bar>call nvim_buf_clear_namespace(0, nvim_create_namespace("nvim.multicursor"), 0, -1)'
+    .. '<Bar>normal! <C-L><CR>',
   { desc = 'Redraw / Clear hlsearch / Diff Update' }
 )
 
