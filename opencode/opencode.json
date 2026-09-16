@@ -42,5 +42,13 @@
     },
     "external_directory": "ask",
     "skill": "allow"
-  }
+  },
+  "disabled_providers": [
+    "vllm",
+    "local",
+    "ollama",
+    "lmstudio",
+    "llamacpp",
+    "opencode-local"
+  ]
 }
