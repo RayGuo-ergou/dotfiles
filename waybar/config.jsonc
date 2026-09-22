@@ -11,6 +11,7 @@
 	"modules-right": [
 		"systemd-failed-units",
 		"tray",
+		"custom/screenshare",
 		"custom/notification",
 		"pulseaudio"
 	],
@@ -51,6 +52,14 @@
 		"on-click": "swaync-client -t -sw",
 		"on-click-right": "swaync-client -d -sw",
 		"escape": true
+	},
+	"custom/screenshare": {
+		"exec": "$HOME/.config/waybar/scripts/check-screen-sharing",
+		"return-type": "json",
+		"interval": 2,
+		"format": "{text}",
+		"hide-empty-text": true,
+		"tooltip": true
 	},
 	"clock": {
 		"format": "{:%B %d, %H:%M}",

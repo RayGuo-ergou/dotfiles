@@ -13,6 +13,7 @@
 #clock,
 #pulseaudio,
 #submap,
+#custom-screenshare,
 #custom-notification {
   border-radius: 1rem;
   background-color: @surface0;
@@ -55,6 +56,10 @@
 
 #custom-notification {
   margin-right: 1rem;
+}
+
+#custom-screenshare.sharing {
+  color: @red;
 }
 
 #submap {

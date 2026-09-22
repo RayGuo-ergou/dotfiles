@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Waybar module: shows an indicator when the screen is being shared via xdg-desktop-portal-hyprland.
+
+jq -c '
+  [ .[] | select(.info.props."node.name"? == "xdg-desktop-portal-hyprland") ] as $screencasts
+  | if ($screencasts | length) > 0 then
+      { text: "\u25cf", class: "sharing", alt: "sharing", tooltip: "Screen sharing active" }
+    else
+      { text: "", class: "idle", alt: "idle", tooltip: "Not sharing screen" }
+    end
+' < <(pw-dump)
