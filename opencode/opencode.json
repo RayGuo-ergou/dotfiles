@@ -22,6 +22,7 @@
     "bash": {
       "*": "ask",
       "git status": "allow",
+      "git status --short": "allow",
       "git diff": "allow",
       "pnpm test": "allow",
       "pnpm lint": "allow",
