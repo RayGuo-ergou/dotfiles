@@ -40,6 +40,9 @@
     "external_directory": "ask",
     "skill": "allow"
   },
+  "plugins": [
+    "-opencode.provider.vllm"
+  ],
   "disabled_providers": [
     "vllm",
     "local",
