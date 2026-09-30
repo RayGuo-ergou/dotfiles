@@ -76,7 +76,7 @@ return {
               local function channel(value)
                 value = math.max(0, math.min(1, value))
                 -- Standard sRGB transfer function (linear RGB -> encoded sRGB):
-                -- https://www.w3.org/TR/css-color-4/#color-conversion-code (gam_sRGB)
+                -- https://www.w3.org/TR/css-color-4/#color-conversion-code
                 value = value <= 0.0031308 and 12.92 * value or 1.055 * value ^ (1 / 2.4) - 0.055
                 -- Scale to an 8-bit channel (0..255), rounding to the nearest integer.
                 return math.floor(value * 255 + 0.5)
