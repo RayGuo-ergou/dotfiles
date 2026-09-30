@@ -1,0 +1,2 @@
+---@type lspconfig.Config
+return {}
