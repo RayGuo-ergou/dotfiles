@@ -34,3 +34,5 @@ tmux-client-*.log
 
 # phpactor
 .phpactor.json
+
+*.pem
