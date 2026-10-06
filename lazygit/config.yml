@@ -24,10 +24,10 @@ gui:
       - "#8aadf4"
     inactiveBorderColor:
       - "#8aadf4"
-  authorColors:
-    'Ray Guo': '#8aadf4'
-    'ergou': '#8aadf4'
-    '*': '#ed8796'
+    authorColors:
+      'Ray Guo': '#8aadf4'
+      'ergou': '#8aadf4'
+      '*': '#ed8796'
 customCommands:
   - key: "v"
     context: "localBranches"
