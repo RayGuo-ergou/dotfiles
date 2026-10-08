@@ -34,7 +34,7 @@
       "chmod*": "deny",
       "npm*": "deny",
       "npx*": "deny",
-      "prientenv*": "deny",
+      "printenv*": "deny",
       "docker*": "deny"
     },
     "external_directory": "ask",
