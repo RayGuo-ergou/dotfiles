@@ -18,7 +18,7 @@
   },
   "animations": true,
   "tabs": {
-    "enabled": false,
+    "mode": "off",
     "layout": "horizontal"
   }
 }

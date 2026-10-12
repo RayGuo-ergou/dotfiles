@@ -1,54 +1,208 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "autoupdate": false,
-  "permission": {
-    "*": "ask",
-    "grep": "allow",
-    "glob": "allow",
-    "edit": "allow",
-    "todowrite": "allow",
-    "task": "allow",
-    "read": {
-      "*": "allow",
-      "*.env": "deny",
-      "*.env.*": "deny",
-      "*.env.example": "allow",
-      "*.key": "deny",
-      "*.pem": "deny",
-      "id_rsa*": "deny",
-      "id_ed25519": "deny",
-      ".aws/credentials": "deny",
-      ".gcloud/**": "deny"
+  "update": "disable",
+  "permissions": [
+    {
+      "action": "*",
+      "resource": "*",
+      "effect": "ask"
     },
-    "bash": {
-      "*": "ask",
-      "git status": "allow",
-      "git status --short": "allow",
-      "git diff": "allow",
-      "git diff --cached": "allow",
-      "ast-grep*": "allow",
-      "rm -rf*": "deny",
-      "rm -f*": "deny",
-      "rm -r*": "deny",
-      "sudo*": "deny",
-      "chmod*": "deny",
-      "npm*": "deny",
-      "npx*": "deny",
-      "printenv*": "deny",
-      "docker*": "deny"
+    {
+      "action": "grep",
+      "resource": "*",
+      "effect": "allow"
     },
-    "external_directory": "ask",
-    "skill": "allow"
-  },
+    {
+      "action": "glob",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
+      "action": "todowrite",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
+      "action": "subagent",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
+      "action": "read",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
+      "action": "read",
+      "resource": "*.env",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.env.*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.env.example",
+      "effect": "allow"
+    },
+    {
+      "action": "read",
+      "resource": "*.key",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.pem",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "id_rsa*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "id_ed25519",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": ".aws/credentials",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": ".gcloud/**",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "git status",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git status --short",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff --cached",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "ast-grep*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -rf*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -f*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -r*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "sudo*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "chmod*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "npm*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "npx*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "printenv*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "docker*",
+      "effect": "deny"
+    },
+    {
+      "action": "external_directory",
+      "resource": "*",
+      "effect": "ask"
+    },
+    {
+      "action": "skill",
+      "resource": "*",
+      "effect": "allow"
+    }
+  ],
   "plugins": [
     "-opencode.provider.vllm"
   ],
-  "disabled_providers": [
-    "vllm",
-    "local",
-    "ollama",
-    "lmstudio",
-    "llamacpp",
-    "opencode-local"
-  ]
+  "experimental": {
+    "policies": [
+      {
+        "action": "provider.use",
+        "resource": "vllm",
+        "effect": "deny"
+      },
+      {
+        "action": "provider.use",
+        "resource": "local",
+        "effect": "deny"
+      },
+      {
+        "action": "provider.use",
+        "resource": "ollama",
+        "effect": "deny"
+      },
+      {
+        "action": "provider.use",
+        "resource": "lmstudio",
+        "effect": "deny"
+      },
+      {
+        "action": "provider.use",
+        "resource": "llamacpp",
+        "effect": "deny"
+      },
+      {
+        "action": "provider.use",
+        "resource": "opencode-local",
+        "effect": "deny"
+      }
+    ]
+  }
 }
