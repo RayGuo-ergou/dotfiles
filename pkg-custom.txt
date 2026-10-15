@@ -7,6 +7,7 @@ datagrip-jre
 docker-rootless-extras
 git-extras
 mkinitcpio-numlock
+ni
 nordvpn-bin
 oversteer
 php74
@@ -15,6 +16,7 @@ rime-ice-pinyin-git
 rime-japanese
 sfw-free
 slack-desktop
+taze
 timeshift-autosnap
 zen-browser-bin
 zoom

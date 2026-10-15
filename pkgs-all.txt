@@ -87,6 +87,8 @@ openssh
 os-prober
 pavucontrol
 php
+php-gd
+php-sodium
 pipewire
 pipewire-alsa
 pipewire-audio
@@ -99,6 +101,7 @@ rofi
 rofi-emoji
 rustup
 slurp
+smartmontools
 socat
 steam
 sudo
