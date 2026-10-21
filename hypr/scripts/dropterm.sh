@@ -9,14 +9,8 @@ active=$(hyprctl activewindow -j)
 class=$(jq -r '.class // empty' <<<"$active")
 window_pid=$(jq -r '.pid // empty' <<<"$active")
 
-# A tmux client must descend from the focused Ghostty, not another terminal.
 belongs_to_window() {
-  local pid=$1
-  while [[ $pid =~ ^[0-9]+$ ]] && ((pid > 1)); do
-    [[ $pid == "$window_pid" ]] && return 0
-    pid=$(awk '/^PPid:/ { print $2 }' "/proc/$pid/status" 2>/dev/null)
-  done
-  return 1
+  pstree -sp "$1" 2>/dev/null | grep -qF "($window_pid)"
 }
 
 if [[ $class == com.mitchellh.ghostty ]]; then
