@@ -2,14 +2,15 @@
 -- See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
 -- watch -n 0.5 "hyprctl clients -j | jq -r '.[] | \"class: \\(.class), title: \\(.title), initialTitle: \\(.initialTitle), initialClass: \\(.initialClass)\"'"
 
-hl.window_rule({
+local dropterm = {
 	name = "dropterm",
 	match = { class = "^(com\\.dropterm\\.ghostty)$" },
 	float = true,
 	size = { "monitor_w * 0.98", "monitor_h * 0.4" },
 	move = { "monitor_w * 0.01", "monitor_h * 0.01" },
 	workspace = "special:dropterm",
-})
+}
+hl.window_rule(dropterm)
 
 -- Ignore maximize requests from apps. You'll probably like this.
 hl.window_rule({
@@ -120,3 +121,5 @@ hl.window_rule({
 	match = { title = "^Rename.*" },
 	float = true,
 })
+
+return dropterm
