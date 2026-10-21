@@ -1,5 +1,5 @@
 {
-	"layer": "top",
+	"layer": "bottom",
 	"position": "top",
 	"modules-left": [
 		"hyprland/workspaces"

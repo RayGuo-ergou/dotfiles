@@ -1,4 +1,5 @@
 font-family = FiraCode Nerd Font
+gtk-single-instance = false
 keybind = performable:ctrl+v=paste_from_clipboard
 keybind = performable:ctrl+c=copy_to_clipboard
 keybind = ctrl+enter=unbind
