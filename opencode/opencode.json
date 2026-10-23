@@ -168,6 +168,16 @@
       "effect": "allow"
     }
   ],
+  "mcp": {
+    "servers": {
+      "figma": {
+        "type": "remote",
+        "url": "https://mcp.figma.com/mcp",
+        "disabled": false,
+        "oauth": {}
+      }
+    }
+  },
   "plugins": [
     "-opencode.provider.vllm"
   ],
