@@ -57,6 +57,12 @@ if hyprctl clients -j | jq -e --arg c "$CLASS" 'any(.[]; .class == $c)' >/dev/nu
   hyprctl dispatch 'hl.dsp.workspace.toggle_special("dropterm")'
   hyprctl eval 'require("scripts.dropterm").reset()'
 else
+  # FIXME: Maybe just open one without tmux?
+  # shellcheck disable=SC2016
   setsid -f ghostty --class="$CLASS" --working-directory="$dir" \
-    -e tmux new-session -A -s "$SESSION" -c "$dir"
+    -e zsh -ic '
+      tmux has-session -t "=main" 2>/dev/null ||
+        tmux new-session -d -s main -c "$2"
+      exec tmux new-session -A -s "$1" -c "$2"
+    ' zsh "$SESSION" "$dir"
 fi
