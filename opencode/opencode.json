@@ -169,6 +169,11 @@
       "effect": "ask"
     },
     {
+      "action": "external_directory",
+      "resource": "~/shared/opencode-skills/*",
+      "effect": "allow"
+    },
+    {
       "action": "skill",
       "resource": "*",
       "effect": "allow"
