@@ -4,6 +4,9 @@
    "skills": [
     "~/shared/opencode-skills",
   ],
+  "instructions": [
+    "~/shared/opencode-skills/dev-principles/SKILL.md"
+  ],
   "permissions": [
     {
       "action": "*",
