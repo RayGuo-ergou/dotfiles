@@ -5,7 +5,9 @@
     "~/shared/opencode-skills",
   ],
   "instructions": [
-    "~/shared/opencode-skills/dev-principles/SKILL.md"
+    "~/shared/opencode-skills/dev-principles/SKILL.md",
+    "~/.config/opencode/instructions/code-answers.md",
+    "~/.config/opencode/instructions/readme-is-documentation.md"
   ],
   "permissions": [
     {

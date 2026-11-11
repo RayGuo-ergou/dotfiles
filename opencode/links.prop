@@ -2,3 +2,5 @@ $DOTFILES/opencode/opencode.json=$HOME/.config/opencode/opencode.json
 $DOTFILES/opencode/tui.json=$HOME/.config/opencode/tui.json
 $DOTFILES/opencode/cli.json=$HOME/.config/opencode/cli.json
 $DOTFILES/opencode/themes/default.json=$HOME/.config/opencode/themes/default.json
+$DOTFILES/opencode/instructions/code-answers.md=$HOME/.config/opencode/instructions/code-answers.md
+$DOTFILES/opencode/instructions/readme-is-documentation.md=$HOME/.config/opencode/instructions/readme-is-documentation.md
