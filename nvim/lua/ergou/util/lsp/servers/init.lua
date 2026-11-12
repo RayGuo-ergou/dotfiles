@@ -15,6 +15,7 @@ M.get = function()
     'rust_analyzer',
     'vtsls',
     'ts_ls',
+    'astro',
     'html',
     'eslint',
     'vue_ls',

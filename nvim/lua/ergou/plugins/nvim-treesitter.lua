@@ -32,6 +32,7 @@ return {
         'vimdoc',
         'vim',
         'bash',
+        'astro',
         'html',
         'css',
         'scss',
