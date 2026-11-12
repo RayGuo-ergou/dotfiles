@@ -57,6 +57,7 @@ return {
         },
       },
       formatters_by_ft = {
+        astro = eslint_format,
         vue = eslint_format,
         javascript = eslint_format,
         typescript = eslint_format,
