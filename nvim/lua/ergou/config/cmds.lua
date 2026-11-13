@@ -5,6 +5,36 @@ vim.api.nvim_create_user_command('FormattingAutoToggle', function()
   vim.notify('Auto formatting ' .. status, vim.log.levels.INFO)
 end, {})
 
+vim.api.nvim_create_user_command('OpenFile', function(opts)
+  local path, first, last = opts.args:match('^(.-)#L?(%d+)%-L?(%d+)$')
+  if not path then
+    path, first = opts.args:match('^(.-)#L?(%d+)$')
+    last = first
+  end
+  path = path or opts.args
+  first, last = tonumber(first), tonumber(last)
+  if first and (first < 1 or last < first) then
+    error('OpenFile: invalid line range')
+  end
+
+  vim.api.nvim_cmd({ cmd = 'edit', args = { vim.fn.expand(path) } }, {})
+  if first then
+    if last > vim.api.nvim_buf_line_count(0) then
+      error('OpenFile: line range exceeds file length')
+    end
+    vim.api.nvim_win_set_cursor(0, { first, 0 })
+    vim.cmd('normal! V')
+    vim.api.nvim_win_set_cursor(0, { last, 0 })
+  end
+end, {
+  nargs = 1,
+  complete = function(arg)
+    return vim.fn.getcompletion(arg, 'file')
+  end,
+  desc = 'Open a file, optionally selecting #Lstart-Lend (L optional)',
+})
+vim.cmd([[cnoreabbrev <expr> of getcmdtype() == ':' && getcmdline() ==# 'of' ? 'OpenFile' : 'of']])
+
 vim.api.nvim_create_user_command('Explorer', function(opts)
   local function error(message)
     vim.notify(message, vim.log.levels.ERROR, { title = 'Explorer' })
