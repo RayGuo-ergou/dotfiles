@@ -177,6 +177,11 @@
       "effect": "allow"
     },
     {
+      "action": "external_directory",
+      "resource": "~/.config/opencode/instructions/*",
+      "effect": "allow"
+    },
+    {
       "action": "skill",
       "resource": "*",
       "effect": "allow"
