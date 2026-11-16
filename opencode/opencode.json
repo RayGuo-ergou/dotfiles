@@ -8,7 +8,8 @@
     "~/shared/opencode-skills/dev-principles/SKILL.md",
     "~/.config/opencode/instructions/code-answers.md",
     "~/.config/opencode/instructions/readme-is-documentation.md",
-    "~/.config/opencode/instructions/review-before-finishing.md"
+    "~/.config/opencode/instructions/review-before-finishing.md",
+    "~/.config/opencode/instructions/lint-auto-fix.md"
   ],
   "permissions": [
     {
