@@ -1,0 +1,15 @@
+[submodule "zsh/vendor/powerlevel10k"]
+	path = zsh/vendor/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "zsh/vendor/zsh-autosuggestions"]
+	path = zsh/vendor/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "zsh/vendor/zsh-syntax-highlighting"]
+	path = zsh/vendor/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "zsh/vendor/fzf-tab"]
+	path = zsh/vendor/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab.git
+[submodule "zsh/vendor/you-should-use"]
+	path = zsh/vendor/you-should-use
+	url = https://github.com/MichaelAquilina/zsh-you-should-use.git

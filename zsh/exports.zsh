@@ -1,13 +1,6 @@
-# ZSH
-export ZSH="$HOME/.oh-my-zsh"
-
 export plugins=(
   git
   git-extras
-  aliases
-  docker
-  ubuntu
-  bun
   tmux
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -15,18 +8,8 @@ export plugins=(
   # zsh-vi-mode
   you-should-use
   vi-mode
-  colored-man-pages
-  command-not-found
-  composer
-  ssh
-  copyfile
-  copypath
-  cp
-  gh
   fzf-tab # see https://github.com/Aloxaf/fzf-tab/issues/503
 )
-
-export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 export MANPAGER='nvim +Man!'
 
