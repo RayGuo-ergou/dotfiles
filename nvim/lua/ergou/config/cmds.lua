@@ -25,6 +25,7 @@ vim.api.nvim_create_user_command('OpenFile', function(opts)
     vim.api.nvim_win_set_cursor(0, { first, 0 })
     vim.cmd('normal! V')
     vim.api.nvim_win_set_cursor(0, { last, 0 })
+    vim.cmd('normal! zz')
   end
 end, {
   nargs = 1,
@@ -71,7 +72,7 @@ vim.api.nvim_create_user_command('Explorer', function(opts)
     return error('Could not find the XDG-default file manager')
   end
 
-  vim.system({ 'gtk-launch', desktop, vim.uri_from_fname(path) }, { text = true }, function(launch)
+  vim.system({ 'gtk-launch', desktop, vim.uri.from_fname(path) }, { text = true }, function(launch)
     if launch.code ~= 0 then
       vim.schedule(function()
         error('Could not launch file manager: ' .. vim.trim(launch.stderr or ''))
