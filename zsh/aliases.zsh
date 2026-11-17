@@ -1,81 +1,9 @@
-# alias
-alias ls='eza -l --icons -h'
-alias cat='bat'
-alias nd='nr dev'
-alias ni='sfw ni'
-alias npm='sfw npm'
-alias npx='sfw npx'
-alias pnpm='sfw pnpm'
-alias pnpx='sfw pnpx'
-# alias composer="sfw composer" ssl issue
-alias vim='nvim'
-alias configzsh='nvim ~/.zshrc'
-alias reload='source ~/.zshrc'
-alias aptupdate='sudo apt update && sudo apt upgrade -y'
-alias pvm='sudo update-alternatives --config php'
-alias jvm='sudo update-alternatives --config java'
-alias fe='ESLINT_USE_FLAT_CONFIG=true $HOME/.local/share/nvim/mason/bin/eslint_d restart'
-alias ufe='ESLINT_USE_FLAT_CONFIG= $HOME/.local/share/nvim/mason/bin/eslint_d restart'
-alias rcd='\cd'
-alias resetlazy='rm -rf $HOME/.local/share/nvim/*'
-if is_wsl; then
-  alias x-www-browser='wslview'
-fi
-alias windowsroot='wslpath "$(wslvar USERPROFILE)"'
-alias yy='yazi'
-alias lg='TERM=screen-256color lazygit'
-alias ldc='TERM=screen-256color lazydocker'
-alias cdlazyvim='cd ~/.local/share/nvim/lazy'
-alias se='sessionizer'
-alias icat='kitty icat'
-# journal warning error
-alias jourwr='journalctl -p warning..emerg -r'
-# see https://forum.endeavouros.com/t/how-to-delete-orphaned-packages-pacman-vs-pamac/45218
-alias rmorp='sudo pacman -R $(pacman -Qdtq)'
-alias lalcc='php artisan optimize:clear'
-alias weather='curl wttr.in'
-
-vimf() {
-  local file=$(fd --type f --hidden --exclude .git | fzf --reverse)
-  if [[ -n $file ]]; then
-    nvim "$file"
-  fi
-}
-cdf() {
-  local initial_dir="${1:-$PWD}" # Default to current dir if no dir is specified
-  local dir
-  # Note: No pattern is specified, so '.' is used to match everything in the specified directory.
-  dir=$(fd . "$initial_dir" --type d | fzf --height 40% --reverse --preview 'eza -l --icons -h --color always {}')
-  if [ -n "$dir" ]; then
-    cd "$dir"
-  fi
-}
-alias cdh='cdf $HOME'
-
-alias gwa='git-worktree-add'
-alias gwd='git-worktree-delete'
-
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
-
-alias -- -='cd -'
-alias 1='cd -1'
-alias 2='cd -2'
-alias 3='cd -3'
-alias 4='cd -4'
-alias 5='cd -5'
-alias 6='cd -6'
-alias 7='cd -7'
-alias 8='cd -8'
-alias 9='cd -9'
-
-alias md='mkdir -p'
-alias rd=rmdir
-
-# List directory contents
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
+source "$DOTFILES/zsh/aliases/directories.zsh"
+source "$DOTFILES/zsh/aliases/node.zsh"
+source "$DOTFILES/zsh/aliases/git.zsh"
+source "$DOTFILES/zsh/aliases/editors.zsh"
+source "$DOTFILES/zsh/aliases/system.zsh"
+source "$DOTFILES/zsh/aliases/tools.zsh"
+source "$DOTFILES/zsh/aliases/php.zsh"
+source "$DOTFILES/zsh/aliases/java.zsh"
+source "$DOTFILES/zsh/aliases/tmux.zsh"

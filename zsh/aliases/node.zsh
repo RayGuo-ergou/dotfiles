@@ -1,0 +1,8 @@
+alias nd='nr dev'
+alias ni='sfw ni'
+alias npm='sfw npm'
+alias npx='sfw npx'
+alias pnpm='sfw pnpm'
+alias pnpx='sfw pnpx'
+alias fe='ESLINT_USE_FLAT_CONFIG=true $HOME/.local/share/nvim/mason/bin/eslint_d restart'
+alias ufe='ESLINT_USE_FLAT_CONFIG= $HOME/.local/share/nvim/mason/bin/eslint_d restart'

@@ -1,7 +1,6 @@
 export plugins=(
   git
   git-extras
-  tmux
   zsh-autosuggestions
   zsh-syntax-highlighting
   # fast-syntax-highlighting
@@ -47,15 +46,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export EDITOR="nvim"
 
 export NVM_DIR="$HOME/.nvm"
-
-# tmux
-# Make sure the tmux omz plugin is installed
-# This also make sure sessionizer works as expected
-# E.g. zsh plugin will set the color to (tmux/screen) I guess?
-# Otherwise when paste with ctrl-v, plain text for the color like [27;5;106~
-# Will also be pasted
-export ZSH_TMUX_AUTOSTART=false
-export ZSH_TMUX_DEFAULT_SESSION_NAME='main'
 
 # To tell pnpm not to check packageManager
 # export COREPACK_ROOT="E"

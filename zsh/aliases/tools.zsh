@@ -1,0 +1,6 @@
+alias cat='bat'
+alias yy='yazi'
+alias ldc='TERM=screen-256color lazydocker'
+alias se='sessionizer'
+alias icat='kitty icat'
+alias weather='curl wttr.in'
