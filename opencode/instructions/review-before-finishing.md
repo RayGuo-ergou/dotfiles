@@ -2,7 +2,7 @@
 
 Whenever you add, delete, or change code, review the complete task diff before giving the final answer. Read the surrounding implementation and affected callers, not just the changed lines.
 
-- Remove code made unnecessary by the change: unused imports, variables, functions, dead branches, obsolete comments, and abandoned implementation paths.
+- Remove code and files made unnecessary by the change: unused imports, variables, functions, methods, classes, types, dead branches, obsolete comments, abandoned implementation paths, and files that are no longer referenced anywhere. Verify across the codebase that a method, class, or file has no remaining callers or references before deleting it.
 - Look for duplicated logic in the changed code and relevant existing code. Keep one source of truth where the behavior is genuinely the same; do not merge distinct responsibilities just because they look similar.
 - Review affected tests alongside existing tests. Remove or consolidate duplicate or obsolete tests only after verifying that retained tests cover the same behavior, assertions, and relevant failure cases, or that the behavior is intentionally no longer supported. Similar setup alone does not make tests redundant.
 - Never delete, skip, or weaken a test merely because it fails or is inconvenient. Preserve distinct regression cases, boundary cases, and contract coverage.
