@@ -1,259 +1,234 @@
 {
   "$schema": "https://opencode.ai/theme.json",
   "defs": {
-    "mochaRosewater": "#f5e0dc",
-    "mochaFlamingo": "#f2cdcd",
-    "mochaPink": "#f5c2e7",
-    "mochaMauve": "#cba6f7",
-    "mochaRed": "#f38ba8",
-    "mochaMaroon": "#eba0ac",
-    "mochaPeach": "#fab387",
-    "mochaYellow": "#f9e2af",
-    "mochaGreen": "#a6e3a1",
-    "mochaTeal": "#94e2d5",
-    "mochaSky": "#89dceb",
-    "mochaSapphire": "#74c7ec",
-    "mochaBlue": "#89b4fa",
-    "mochaLavender": "#b4befe",
-    "mochaText": "#cdd6f4",
-    "mochaSubtext1": "#bac2de",
-    "mochaSubtext0": "#a6adc8",
-    "mochaOverlay2": "#9399b2",
-    "mochaOverlay1": "#7f849c",
-    "mochaOverlay0": "#6c7086",
-    "mochaSurface2": "#585b70",
-    "mochaSurface1": "#45475a",
-    "mochaSurface0": "#313244",
-    "mochaBase": "#1e1e2e",
-    "mochaMantle": "#181825",
-    "mochaCrust": "#11111b",
-    "latteRosewater": "#dc8a78",
-    "latteFlamingo": "#dd7878",
-    "lattePink": "#ea76cb",
-    "latteMauve": "#8839ef",
-    "latteRed": "#d20f39",
-    "latteMaroon": "#e64553",
-    "lattePeach": "#fe640b",
-    "latteYellow": "#df8e1d",
-    "latteGreen": "#40a02b",
-    "latteTeal": "#179287",
-    "latteSky": "#04a5e5",
-    "latteSapphire": "#209fb5",
-    "latteBlue": "#1e66f5",
-    "latteLavender": "#7287fd",
-    "latteText": "#4c4f69",
-    "latteSubtext1": "#5c5f77",
-    "latteSubtext0": "#6c6f85",
-    "latteOverlay2": "#7c7f93",
-    "latteOverlay1": "#8c8fa1",
-    "latteOverlay0": "#9ca0b0",
-    "latteSurface2": "#acb0be",
-    "latteSurface1": "#bcc0cc",
-    "latteSurface0": "#ccd0da",
-    "latteBase": "#eff1f5",
-    "latteMantle": "#e6e9ef",
-    "latteCrust": "#dce0e8"
+    "macAccent": "#8aadf4",
+    "macRosewater": "#f4dbd6",
+    "macFlamingo": "#f0c6c6",
+    "macPink": "#f5bde6",
+    "macMauve": "#c6a0f6",
+    "macRed": "#ed8796",
+    "macMaroon": "#ee99a0",
+    "macPeach": "#f5a97f",
+    "macYellow": "#eed49f",
+    "macGreen": "#a6da95",
+    "macTeal": "#8bd5ca",
+    "macSky": "#91d7e3",
+    "macSapphire": "#7dc4e4",
+    "macBlue": "#8aadf4",
+    "macLavender": "#b7bdf8",
+    "macText": "#cad3f5",
+    "macSubtext1": "#b8c0e0",
+    "macSubtext0": "#a5adcb",
+    "macOverlay2": "#939ab7",
+    "macOverlay1": "#8087a2",
+    "macOverlay0": "#6e738d",
+    "macSurface2": "#5b6078",
+    "macSurface1": "#494d64",
+    "macSurface0": "#363a4f",
+    "macBase": "#24273a",
+    "macMantle": "#1e2030",
+    "macCrust": "#181926"
   },
   "theme": {
     "primary": {
-      "dark": "mochaBlue",
-      "light": "latteBlue"
+      "dark": "macAccent",
+      "light": "macAccent"
     },
     "secondary": {
-      "dark": "mochaMauve",
-      "light": "latteMauve"
+      "dark": "macAccent",
+      "light": "macAccent"
     },
     "accent": {
-      "dark": "mochaTeal",
-      "light": "latteTeal"
+      "dark": "macPink",
+      "light": "macPink"
     },
     "error": {
-      "dark": "mochaRed",
-      "light": "latteRed"
+      "dark": "macRed",
+      "light": "macRed"
     },
     "warning": {
-      "dark": "mochaYellow",
-      "light": "latteYellow"
+      "dark": "macYellow",
+      "light": "macYellow"
     },
     "success": {
-      "dark": "mochaGreen",
-      "light": "latteGreen"
+      "dark": "macGreen",
+      "light": "macGreen"
     },
     "info": {
-      "dark": "mochaSky",
-      "light": "latteSky"
+      "dark": "macTeal",
+      "light": "macTeal"
     },
     "text": {
-      "dark": "mochaText",
-      "light": "latteText"
+      "dark": "macText",
+      "light": "macText"
     },
     "textMuted": {
-      "dark": "mochaOverlay0",
-      "light": "latteOverlay0"
+      "dark": "macSubtext1",
+      "light": "macSubtext1"
     },
     "background": {
-      "dark": "none",
-      "light": "none"
+      "dark": "macBase",
+      "light": "macBase"
     },
     "backgroundPanel": {
-      "dark": "mochaMantle",
-      "light": "latteMantle"
+      "dark": "macMantle",
+      "light": "macMantle"
     },
     "backgroundElement": {
-      "dark": "mochaSurface0",
-      "light": "latteSurface0"
+      "dark": "macCrust",
+      "light": "macCrust"
     },
     "border": {
-      "dark": "mochaSurface1",
-      "light": "latteSurface1"
+      "dark": "macSurface0",
+      "light": "macSurface0"
     },
     "borderActive": {
-      "dark": "mochaBlue",
-      "light": "latteBlue"
+      "dark": "macSurface1",
+      "light": "macSurface1"
     },
     "borderSubtle": {
-      "dark": "mochaSurface0",
-      "light": "latteSurface0"
+      "dark": "macSurface2",
+      "light": "macSurface2"
     },
     "diffAdded": {
-      "dark": "mochaGreen",
-      "light": "latteGreen"
+      "dark": "macGreen",
+      "light": "macGreen"
     },
     "diffRemoved": {
-      "dark": "mochaRed",
-      "light": "latteRed"
+      "dark": "macRed",
+      "light": "macRed"
     },
     "diffContext": {
-      "dark": "mochaOverlay0",
-      "light": "latteOverlay0"
+      "dark": "macOverlay2",
+      "light": "macOverlay2"
     },
     "diffHunkHeader": {
-      "dark": "mochaMauve",
-      "light": "latteMauve"
+      "dark": "macPeach",
+      "light": "macPeach"
     },
     "diffHighlightAdded": {
-      "dark": "mochaGreen",
-      "light": "latteGreen"
+      "dark": "macGreen",
+      "light": "macGreen"
     },
     "diffHighlightRemoved": {
-      "dark": "mochaRed",
-      "light": "latteRed"
+      "dark": "macRed",
+      "light": "macRed"
     },
     "diffAddedBg": {
-      "dark": "#23332e",
-      "light": "#dceada"
+      "dark": "#a6da9580",
+      "light": "#a6da9580"
     },
     "diffRemovedBg": {
-      "dark": "#34222f",
-      "light": "#f7e4e1"
+      "dark": "#ed879680",
+      "light": "#ed879680"
     },
     "diffContextBg": {
-      "dark": "mochaMantle",
-      "light": "latteMantle"
+      "dark": "macMantle",
+      "light": "macMantle"
     },
     "diffLineNumber": {
-      "dark": "mochaOverlay0",
-      "light": "latteOverlay0"
+      "dark": "macSurface1",
+      "light": "macSurface1"
     },
     "diffAddedLineNumberBg": {
-      "dark": "#23332e",
-      "light": "#dceada"
+      "dark": "#a6da9540",
+      "light": "#a6da9540"
     },
     "diffRemovedLineNumberBg": {
-      "dark": "#34222f",
-      "light": "#f7e4e1"
+      "dark": "#ed879640",
+      "light": "#ed879640"
     },
     "markdownText": {
-      "dark": "mochaText",
-      "light": "latteText"
+      "dark": "macText",
+      "light": "macText"
     },
     "markdownHeading": {
-      "dark": "mochaBlue",
-      "light": "latteBlue"
+      "dark": "macAccent",
+      "light": "macAccent"
     },
     "markdownLink": {
-      "dark": "mochaSky",
-      "light": "latteSky"
+      "dark": "macBlue",
+      "light": "macBlue"
     },
     "markdownLinkText": {
-      "dark": "mochaTeal",
-      "light": "latteTeal"
+      "dark": "macSky",
+      "light": "macSky"
     },
     "markdownCode": {
-      "dark": "mochaGreen",
-      "light": "latteGreen"
+      "dark": "macGreen",
+      "light": "macGreen"
     },
     "markdownBlockQuote": {
-      "dark": "mochaOverlay0",
-      "light": "latteOverlay0"
+      "dark": "macYellow",
+      "light": "macYellow"
     },
     "markdownEmph": {
-      "dark": "mochaPeach",
-      "light": "lattePeach"
+      "dark": "macYellow",
+      "light": "macYellow"
     },
     "markdownStrong": {
-      "dark": "mochaYellow",
-      "light": "latteYellow"
+      "dark": "macPeach",
+      "light": "macPeach"
     },
     "markdownHorizontalRule": {
-      "dark": "mochaSurface2",
-      "light": "latteSurface2"
+      "dark": "macSubtext0",
+      "light": "macSubtext0"
     },
     "markdownListItem": {
-      "dark": "mochaBlue",
-      "light": "latteBlue"
+      "dark": "macBlue",
+      "light": "macBlue"
     },
     "markdownListEnumeration": {
-      "dark": "mochaTeal",
-      "light": "latteTeal"
+      "dark": "macSky",
+      "light": "macSky"
     },
     "markdownImage": {
-      "dark": "mochaSky",
-      "light": "latteSky"
+      "dark": "macBlue",
+      "light": "macBlue"
     },
     "markdownImageText": {
-      "dark": "mochaTeal",
-      "light": "latteTeal"
+      "dark": "macSky",
+      "light": "macSky"
     },
     "markdownCodeBlock": {
-      "dark": "mochaText",
-      "light": "latteText"
+      "dark": "macText",
+      "light": "macText"
     },
     "syntaxComment": {
-      "dark": "mochaOverlay0",
-      "light": "latteOverlay0"
+      "dark": "macOverlay2",
+      "light": "macOverlay2"
     },
     "syntaxKeyword": {
-      "dark": "mochaMauve",
-      "light": "latteMauve"
+      "dark": "macAccent",
+      "light": "macAccent"
     },
     "syntaxFunction": {
-      "dark": "mochaBlue",
-      "light": "latteBlue"
+      "dark": "macBlue",
+      "light": "macBlue"
     },
     "syntaxVariable": {
-      "dark": "mochaTeal",
-      "light": "latteTeal"
+      "dark": "macRed",
+      "light": "macRed"
     },
     "syntaxString": {
-      "dark": "mochaGreen",
-      "light": "latteGreen"
+      "dark": "macGreen",
+      "light": "macGreen"
     },
     "syntaxNumber": {
-      "dark": "mochaPeach",
-      "light": "lattePeach"
+      "dark": "macPeach",
+      "light": "macPeach"
     },
     "syntaxType": {
-      "dark": "mochaYellow",
-      "light": "latteYellow"
+      "dark": "macYellow",
+      "light": "macYellow"
     },
     "syntaxOperator": {
-      "dark": "mochaSky",
-      "light": "latteSky"
+      "dark": "macSky",
+      "light": "macSky"
     },
     "syntaxPunctuation": {
-      "dark": "mochaOverlay2",
-      "light": "latteOverlay2"
+      "dark": "macText",
+      "light": "macText"
     }
   }
 }
