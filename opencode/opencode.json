@@ -872,7 +872,7 @@
     {
       "action": "shell",
       "resource": "pnpm*",
-      "effect": "deny"
+      "effect": "ask"
     },
     {
       "action": "shell",

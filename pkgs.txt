@@ -18,6 +18,7 @@ composer
 cpio
 discord
 docker
+docker-compose
 dosfstools
 doxx
 efibootmgr
