@@ -67,8 +67,8 @@
       "light": "macSubtext1"
     },
     "background": {
-      "dark": "macBase",
-      "light": "macBase"
+      "dark": "none",
+      "light": "none"
     },
     "backgroundPanel": {
       "dark": "macMantle",
