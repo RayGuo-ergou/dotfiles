@@ -1,8 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "update": "disable",
-   "skills": [
-    "~/shared/opencode-skills",
+  "skills": [
+    "~/shared/opencode-skills"
   ],
   "instructions": [
     "~/shared/opencode-skills/dev-principles/SKILL.md",
@@ -35,6 +35,11 @@
       "effect": "allow"
     },
     {
+      "action": "read",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
       "action": "todowrite",
       "resource": "*",
       "effect": "allow"
@@ -45,7 +50,7 @@
       "effect": "allow"
     },
     {
-      "action": "read",
+      "action": "skill",
       "resource": "*",
       "effect": "allow"
     },
@@ -61,12 +66,17 @@
     },
     {
       "action": "read",
-      "resource": "*.env.example",
-      "effect": "allow"
+      "resource": "*.envrc",
+      "effect": "deny"
     },
     {
       "action": "read",
-      "resource": "*.key",
+      "resource": "*.dev.vars",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.dev.vars.*",
       "effect": "deny"
     },
     {
@@ -76,23 +86,253 @@
     },
     {
       "action": "read",
-      "resource": "id_rsa*",
+      "resource": "*.key",
       "effect": "deny"
     },
     {
       "action": "read",
-      "resource": "id_ed25519",
+      "resource": "*.p12",
       "effect": "deny"
     },
     {
       "action": "read",
-      "resource": ".aws/credentials",
+      "resource": "*.pfx",
       "effect": "deny"
     },
     {
       "action": "read",
-      "resource": ".gcloud/**",
+      "resource": "*.jks",
       "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.keystore",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*id_rsa*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*id_ed25519*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*id_ecdsa*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*id_dsa*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*/.ssh/*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*/.aws/*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*/.gcloud/*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*/.config/gcloud/*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*/.azure/*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*/.kube/*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*/.docker/config.json",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*/.config/gh/*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.npmrc",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.yarnrc.yml",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.pypirc",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.netrc",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.pgpass",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.git-credentials",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.terraformrc",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.tfvars",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.tfstate*",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*service-account*.json",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*credentials*.json",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*opencode/auth.json",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*/proc/*/environ",
+      "effect": "deny"
+    },
+    {
+      "action": "read",
+      "resource": "*.env.example",
+      "effect": "allow"
+    },
+    {
+      "action": "read",
+      "resource": "*.env.sample",
+      "effect": "allow"
+    },
+    {
+      "action": "read",
+      "resource": "*.env.template",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "*.env",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*.env.*",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*.envrc",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*.dev.vars*",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*.pem",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*.key",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*/.ssh/*",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*opencode.json",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*opencode.jsonc",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*/.opencode/*",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*/.config/opencode/*",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*/shared/opencode-skills/*",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*/.git/*",
+      "effect": "deny"
+    },
+    {
+      "action": "edit",
+      "resource": "*/.husky/*",
+      "effect": "ask"
+    },
+    {
+      "action": "edit",
+      "resource": "*.env.example",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "*.env.sample",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "*.env.template",
+      "effect": "allow"
     },
     {
       "action": "shell",
@@ -111,11 +351,6 @@
     },
     {
       "action": "shell",
-      "resource": "git log*",
-      "effect": "allow"
-    },
-    {
-      "action": "shell",
       "resource": "git diff",
       "effect": "allow"
     },
@@ -126,22 +361,27 @@
     },
     {
       "action": "shell",
-      "resource": "ast-grep*",
+      "resource": "git diff --stat",
       "effect": "allow"
     },
     {
       "action": "shell",
-      "resource": "head *",
+      "resource": "git diff --name-only",
       "effect": "allow"
     },
     {
       "action": "shell",
-      "resource": "sort *",
+      "resource": "git log *",
       "effect": "allow"
     },
     {
       "action": "shell",
-      "resource": "uniq *",
+      "resource": "ast-grep run *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "ast-grep scan *",
       "effect": "allow"
     },
     {
@@ -156,27 +396,467 @@
     },
     {
       "action": "shell",
-      "resource": "rm -rf*",
+      "resource": "head *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "sort *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "uniq",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "uniq -c",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "uniq -d",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "uniq -u",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "uniq -i",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "uniq -ic",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "uniq -ci",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "*$*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*`*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*<*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*\\*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*/.?*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "* .?*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*'.*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*\".*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*/?env*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "* ?env*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*/[*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "* [*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*/{*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "* {*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg *--hidden*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg* -u*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg* -?u*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg* -.*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg *--no-ignore*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg* -g*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg *--glob*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg *--iglob*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg *--type-add*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rg* -f*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "ast-grep *--no-ignore*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "ast-grep *--globs*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*.env*",
       "effect": "deny"
     },
     {
       "action": "shell",
-      "resource": "rm -f*",
+      "resource": "*.dev.vars*",
       "effect": "deny"
     },
     {
       "action": "shell",
-      "resource": "rm -r*",
+      "resource": "*id_rsa*",
       "effect": "deny"
     },
     {
       "action": "shell",
-      "resource": "sudo*",
+      "resource": "*id_ed25519*",
       "effect": "deny"
     },
     {
       "action": "shell",
-      "resource": "chmod*",
+      "resource": "*id_ecdsa*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*id_dsa*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.pem*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.key",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.key *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.p12*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.pfx*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.jks*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.keystore*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*/.ssh*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*/.aws*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*/.gcloud*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*/.config/gcloud*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*/.azure*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*/.kube*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*/.docker/config*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*/.config/gh*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.npmrc*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.yarnrc*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.pypirc*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.netrc*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.pgpass*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.git-credentials*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.tfvars*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*.tfstate*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*service-account*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*credentials*.json*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*opencode/auth*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "*/environ*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "env",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "env -0",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "env --null",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "printenv*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "export",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "export -p",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "set",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "declare -p*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "declare -x*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "typeset*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "compgen -v*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "node -e*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "node --eval*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "node -p*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "node --print*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "python* -c*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "perl* -e*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "perl* -E*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "ruby* -e*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "php* -r*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "deno eval*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "bash -c*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "sh -c*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "zsh -c*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "eval*",
       "effect": "deny"
     },
     {
@@ -191,7 +871,32 @@
     },
     {
       "action": "shell",
-      "resource": "printenv*",
+      "resource": "pnpm*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpx*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "yarn*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "bun*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "bunx*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "corepack*",
       "effect": "deny"
     },
     {
@@ -201,7 +906,147 @@
     },
     {
       "action": "shell",
+      "resource": "podman*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "nerdctl*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "sudo*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "doas*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "su",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "su *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "pkexec*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "chmod*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "chown*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "chgrp*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -rf*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -fr*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -Rf*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -fR*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -r*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -R*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -f*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm *--recursive*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rm *--force*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "find *-delete*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "find *-exec*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "find *-ok*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git clean*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git reset --hard*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git push *--force*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git push* -f*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
       "resource": "sort *-o*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "sort *--compress-program*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "sort *--files0-from*",
       "effect": "deny"
     },
     {
@@ -230,6 +1075,71 @@
       "effect": "deny"
     },
     {
+      "action": "shell",
+      "resource": "git log* -p*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git log *--patch*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git log* -u*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git log* -L*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git log* -c*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git log *--cc*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git log *--word-diff*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git log *--color-words*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git log *--ext-diff*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "ast-grep* -U*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "ast-grep *--update-all*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "ast-grep* -i*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "ast-grep *--interactive*",
+      "effect": "deny"
+    },
+    {
       "action": "external_directory",
       "resource": "*",
       "effect": "ask"
@@ -243,11 +1153,88 @@
       "action": "external_directory",
       "resource": "~/.config/opencode/instructions/*",
       "effect": "allow"
+    }
+  ],
+  "policies": [
+    {
+      "action": "tool.use",
+      "resource": "read:*.env",
+      "effect": "deny"
     },
     {
-      "action": "skill",
-      "resource": "*",
-      "effect": "allow"
+      "action": "tool.use",
+      "resource": "read:*.env.local",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "read:*.env.development*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "read:*.env.production*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "read:*.env.staging*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "read:*.env.test*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "read:*/.ssh/*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "read:*opencode/auth.json",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "edit:*opencode.json*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "edit:*/.config/opencode/*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "edit:*/shared/opencode-skills/*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "shell:*.env*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "shell:*/.ssh*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "shell:*opencode/auth*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "shell:printenv*",
+      "effect": "deny"
+    },
+    {
+      "action": "tool.use",
+      "resource": "shell:env",
+      "effect": "deny"
     }
   ],
   "mcp": {
