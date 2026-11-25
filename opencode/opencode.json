@@ -131,6 +131,31 @@
     },
     {
       "action": "shell",
+      "resource": "head *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "sort *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "uniq *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rg *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "fd *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
       "resource": "rm -rf*",
       "effect": "deny"
     },
@@ -172,6 +197,36 @@
     {
       "action": "shell",
       "resource": "docker*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "sort *-o*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "rg *--pre*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "fd *-x*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "fd *--exec*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "fd *-X*",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git log *--output*",
       "effect": "deny"
     },
     {
