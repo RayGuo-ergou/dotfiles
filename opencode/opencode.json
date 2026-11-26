@@ -346,27 +346,12 @@
     },
     {
       "action": "shell",
+      "resource": "git diff*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
       "resource": "git status --short",
-      "effect": "allow"
-    },
-    {
-      "action": "shell",
-      "resource": "git diff",
-      "effect": "allow"
-    },
-    {
-      "action": "shell",
-      "resource": "git diff --cached",
-      "effect": "allow"
-    },
-    {
-      "action": "shell",
-      "resource": "git diff --stat",
-      "effect": "allow"
-    },
-    {
-      "action": "shell",
-      "resource": "git diff --name-only",
       "effect": "allow"
     },
     {
