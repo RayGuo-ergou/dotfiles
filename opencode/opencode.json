@@ -6,7 +6,7 @@
   ],
   "instructions": [
     "~/shared/opencode-skills/dev-principles/SKILL.md",
-    "~/.config/opencode/instructions/coding-guidelines.md",
+    "~/.config/opencode/instructions/base-guidelines.md",
     "~/.config/opencode/instructions/code-answers.md",
     "~/.config/opencode/instructions/readme-is-documentation.md",
     "~/.config/opencode/instructions/review-before-finishing.md",
