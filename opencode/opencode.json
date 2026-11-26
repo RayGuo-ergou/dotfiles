@@ -791,31 +791,6 @@
     },
     {
       "action": "shell",
-      "resource": "node -e*",
-      "effect": "deny"
-    },
-    {
-      "action": "shell",
-      "resource": "node --eval*",
-      "effect": "deny"
-    },
-    {
-      "action": "shell",
-      "resource": "node -p*",
-      "effect": "deny"
-    },
-    {
-      "action": "shell",
-      "resource": "node --print*",
-      "effect": "deny"
-    },
-    {
-      "action": "shell",
-      "resource": "python* -c*",
-      "effect": "deny"
-    },
-    {
-      "action": "shell",
       "resource": "perl* -e*",
       "effect": "deny"
     },
