@@ -4,6 +4,10 @@ Apply when reading or explaining code in any language: answering why something h
 
 The user must be able to validate the answer without asking again for the code or its location. An unsupported summary is not enough.
 
+## Keep it brief
+
+Write for the human who asked, not for a model reading a transcript. Lead with the direct answer, give only the steps and excerpts needed to check it, and stop. Do not pad with restated questions, generic background, or every path that was ruled out. Expand only when the user asks for detailed documentation or a deeper walkthrough.
+
 ## Investigate before answering
 
 - Read the actual implementation and relevant callers; do not infer behavior from names, comments, documentation, or search matches alone.
@@ -31,4 +35,4 @@ The user must be able to validate the answer without asking again for the code o
 
 When challenged, reread the relevant code, acknowledge any incomplete or incorrect claim, and supply the missing evidence directly. Do not repeat an unsupported summary or make the user ask again for code and locations.
 
-Keep the explanation focused, but prioritize verifiable evidence over brevity.
+Keep the explanation short: every step and excerpt should be one the reader needs to verify the claim. Add length only for evidence they cannot check without, or when they ask for documentation or a deeper walkthrough.
